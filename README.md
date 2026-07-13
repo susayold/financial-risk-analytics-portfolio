@@ -1,43 +1,33 @@
 # Financial Risk Analytics Portfolio
 
-Public recruiter-facing hub for five completed financial-risk analytics case studies by **Nguyen Pham Khoi Nguyen**.
+Portfolio website by **Nguyen Pham Khoi Nguyen**.
 
-Live website after GitHub Pages is enabled:
+## Start Here
 
-https://susayold.github.io/financial-risk-analytics-portfolio/
+[Open the Financial Risk Analytics Portfolio](https://susayold.github.io/financial-risk-analytics-portfolio/)
 
-## Portfolio structure
+The website presents five completed, independent financial risk projects. Each project summary links directly to its public GitHub repository.
 
-| Area | Project | Live page | GitHub repository |
-|---|---|---|---|
-| Credit portfolio monitoring | Credit Portfolio Monitoring | https://susayold.github.io/credit-portfolio-monitoring/ | https://github.com/susayold/credit-portfolio-monitoring |
-| Credit scoring and cutoff logic | Credit Risk Decision Engine | https://susayold.github.io/credit-risk-decision-engine/ | https://github.com/susayold/credit-risk-decision-engine |
-| IFRS 9-style impairment and stress testing | IFRS 9 ECL Stress Testing | https://susayold.github.io/ifrs9-ecl-stress-testing/ | https://github.com/susayold/ifrs9-ecl-stress-testing |
-| Fraud and operational risk controls | Fraud and Operational Risk | https://susayold.github.io/fraud-operational-risk/ | https://github.com/susayold/fraud-operational-risk |
-| Risk-system rule implementation | Risk System Rule Implementation | https://susayold.github.io/risk-system-rule-implementation/ | https://github.com/susayold/risk-system-rule-implementation |
+## Projects
 
-## What this hub is for
+| Project | Focus | GitHub |
+|---|---|---|
+| Credit Portfolio Monitoring & Early Warning | Portfolio quality, maturity, concentration, model monitoring and KRI actions | [Open repository](https://github.com/susayold/credit-portfolio-monitoring) |
+| Credit Risk Decision Engine | WOE/IV, WOE-logistic scorecard, out-of-time validation and cutoff analysis | [Open repository](https://github.com/susayold/credit-risk-decision-engine) |
+| IFRS 9-Style ECL & Stress Testing | PD, LGD, EAD, ECL-proxy sensitivity and macro stress testing | [Open repository](https://github.com/susayold/ifrs9-ecl-stress-testing) |
+| Fraud Detection, Controls & Operational Risk | Fraud modeling, alert policy, controls, incidents and root-cause analysis | [Open repository](https://github.com/susayold/fraud-operational-risk) |
+| Risk System Rule Implementation | Policy simulation, BRD, rule matrix, UAT/SIT, release and rollback controls | [Open repository](https://github.com/susayold/risk-system-rule-implementation) |
 
-This repository gives recruiters one clean entry point for the full portfolio. The website summarizes:
+## Interpretation Notes
 
-- the business problem each project solves,
-- the risk skill demonstrated,
-- the core metrics and claim boundaries,
-- the live project page and the GitHub evidence repository for each project.
-
-The individual repositories remain the deep-dive evidence. This hub is the front door for CV, LinkedIn and recruiter sharing.
-
-## Claim boundaries
-
-- No production automated underwriting model is claimed.
-- No live loan origination system access is claimed.
 - EAD and ECL values are analytical proxy units unless explicitly stated otherwise.
-- Policy-routing results are simulations on historical accepted/booked accounts, not actual portfolio-loss reductions.
-- Fraud benefit is modelled under disclosed assumptions, not actual savings.
+- Policy-routing results are historical simulations, not realised portfolio-loss reductions.
+- Synthetic controls support workflow testing and are not presented as observed bank operations.
+- No production underwriting model, live loan-origination-system access or organisational approval is claimed.
 
 ## Contact
 
-**Nguyen Pham Khoi Nguyen**  
-Phone: 0865385817  
-Email: nguyen28052005@gmail.com  
-GitHub: https://github.com/susayold
+- **Nguyen Pham Khoi Nguyen**
+- Phone: 0865385817
+- Email: nguyen28052005@gmail.com
+- GitHub: [github.com/susayold](https://github.com/susayold)
