@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Financial Risk Analytics Portfolio by Nguyen Pham Khoi Nguyen: five independent credit risk, IFRS 9, fraud, operational risk and risk-system implementation case studies.">
+  <title>Financial Risk Analytics Portfolio | Nguyen Pham Khoi Nguyen</title>
+  <style>
+    :root {
+      --ink: #0f172a;
+      --muted: #64748b;
+      --line: #dbe3ee;
+      --paper: #ffffff;
+      --soft: #f6f8fb;
+      --teal: #006b68;
+      --teal-dark: #034c4b;
+      --blue: #1d4ed8;
+      --amber: #b45309;
+      --red: #b91c1c;
+      --shadow: 0 18px 48px rgba(15, 23, 42, .12);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--soft);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px clamp(18px, 4vw, 56px);
+      border-bottom: 1px solid rgba(219, 227, 238, .9);
+      background: rgba(255, 255, 255, .92);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: .01em;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--teal);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a, .toggle {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 11px;
+      background: #fff;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .toggle {
+      min-width: 78px;
+      border-color: var(--teal);
+      color: var(--teal-dark);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(52px, 8vw, 98px) clamp(18px, 4vw, 56px) clamp(34px, 6vw, 70px);
+      background:
+        linear-gradient(135deg, rgba(0, 107, 104, .95), rgba(15, 23, 42, .96)),
+        radial-gradient(circle at 85% 20%, rgba(255, 255, 255, .24), transparent 28%);
+      color: #fff;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+      gap: clamp(26px, 5vw, 70px);
+      align-items: end;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #a7f3d0;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.15;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+    }
+
+    h1 {
+      max-width: 850px;
+      font-size: clamp(42px, 8vw, 82px);
+    }
+
+    h2 {
+      font-size: clamp(28px, 4vw, 44px);
+    }
+
+    h3 {
+      font-size: 22px;
+    }
+
+    .lead {
+      max-width: 780px;
+      margin: 20px 0 0;
+      color: #dbeafe;
+      font-size: clamp(18px, 2vw, 22px);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 10px 15px;
+      text-decoration: none;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .btn.primary {
+      color: var(--teal-dark);
+      background: #fff;
+    }
+
+    .btn.secondary {
+      color: #fff;
+      border-color: rgba(255, 255, 255, .35);
+      background: rgba(255, 255, 255, .08);
+    }
+
+    .identity-card {
+      border: 1px solid rgba(255, 255, 255, .24);
+      border-radius: 12px;
+      padding: 22px;
+      background: rgba(255, 255, 255, .1);
+      box-shadow: var(--shadow);
+    }
+
+    .identity-card p {
+      margin: 8px 0 0;
+      color: #dbeafe;
+      overflow-wrap: anywhere;
+    }
+
+    .identity-card strong {
+      display: block;
+      color: #fff;
+      font-size: 20px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      max-width: 1180px;
+      margin: -34px auto 0;
+      padding: 0 clamp(18px, 4vw, 56px);
+      position: relative;
+      z-index: 4;
+    }
+
+    .stat {
+      min-height: 132px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px;
+      background: #fff;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, .08);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--teal-dark);
+      font-size: 28px;
+      line-height: 1.1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-weight: 650;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 58px clamp(18px, 4vw, 56px) 72px;
+    }
+
+    section {
+      margin-top: 64px;
+    }
+
+    section:first-child {
+      margin-top: 28px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    .section-head p {
+      max-width: 720px;
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .project {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: 0 14px 36px rgba(15, 23, 42, .07);
+    }
+
+    .project-top {
+      display: flex;
+      gap: 16px;
+      align-items: start;
+      padding: 22px 22px 0;
+    }
+
+    .project-number {
+      display: grid;
+      flex: 0 0 auto;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border-radius: 10px;
+      color: #fff;
+      background: var(--ink);
+      font-weight: 900;
+    }
+
+    .project h3 {
+      margin-bottom: 6px;
+    }
+
+    .project-type {
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .project-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 18px 22px 22px;
+    }
+
+    .project-body p {
+      margin: 0 0 14px;
+      color: #334155;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 2px 0 18px;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      background: #f8fafc;
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--teal-dark);
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: auto 0 18px;
+    }
+
+    .tag {
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: #0f3f3d;
+      background: #e6fffb;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .project-actions .btn {
+      min-height: 39px;
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+
+    .project-actions .primary {
+      color: #fff;
+      background: var(--teal);
+    }
+
+    .project-actions .secondary {
+      color: var(--teal-dark);
+      border-color: var(--line);
+      background: #fff;
+    }
+
+    .matrix, .boundary, .contact-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 14px 36px rgba(15, 23, 42, .06);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 15px 16px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: #334155;
+      background: #f8fafc;
+      font-size: 13px;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    td:first-child {
+      font-weight: 850;
+    }
+
+    .boundary {
+      padding: 22px;
+    }
+
+    .boundary ul {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 22px;
+      margin: 14px 0 0;
+      padding-left: 20px;
+      color: #334155;
+    }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 24px;
+      border-color: rgba(0, 107, 104, .25);
+      background: linear-gradient(135deg, #ffffff, #eefdfa);
+    }
+
+    .contact-card p {
+      margin: 8px 0 0;
+      color: #334155;
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 8px;
+      justify-items: end;
+      font-weight: 850;
+    }
+
+    footer {
+      padding: 28px clamp(18px, 4vw, 56px);
+      color: #cbd5e1;
+      background: var(--ink);
+      text-align: center;
+    }
+
+    [hidden] { display: none !important; }
+
+    @media (max-width: 980px) {
+      .hero-inner, .stats, .grid, .boundary ul, .contact-card {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        margin-top: 0;
+        padding-top: 18px;
+      }
+
+      .section-head {
+        display: block;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar {
+        position: static;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      h1 {
+        font-size: clamp(32px, 9vw, 42px);
+      }
+
+      .hero-inner > div,
+      .identity-card {
+        max-width: min(100%, 350px);
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .metric-row {
+        grid-template-columns: 1fr;
+      }
+
+      th, td {
+        display: block;
+        width: 100%;
+      }
+
+      th {
+        display: none;
+      }
+
+      td {
+        border-bottom: 0;
+        padding: 8px 16px;
+      }
+
+      tr {
+        display: block;
+        border-bottom: 1px solid var(--line);
+        padding: 10px 0;
+      }
+
+      tr:last-child {
+        border-bottom: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">FR</span>
+      <span data-en="Financial Risk Analytics Portfolio" data-vi="Hồ sơ phân tích rủi ro tài chính">Financial Risk Analytics Portfolio</span>
+    </div>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#projects" data-en="Projects" data-vi="Dự án">Projects</a>
+      <a href="#capabilities" data-en="Capabilities" data-vi="Năng lực">Capabilities</a>
+      <a href="#contact" data-en="Contact" data-vi="Liên hệ">Contact</a>
+      <button class="toggle" type="button" id="langToggle" aria-label="Switch language">VI</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="eyebrow" data-en="Recruiter-facing risk analytics case studies" data-vi="Bộ dự án phân tích rủi ro dành cho tuyển dụng">Recruiter-facing risk analytics case studies</p>
+        <h1 data-en="Five financial risk case studies across credit, ECL, fraud and policy implementation." data-vi="Năm case study rủi ro tài chính về tín dụng, ECL, gian lận và triển khai chính sách.">Five financial risk case studies across credit, ECL, fraud and policy implementation.</h1>
+        <p class="lead" data-en="This portfolio shows how I translate data into risk monitoring, scorecard logic, ECL-style stress testing, fraud controls and governed policy implementation. Each project is independently reviewable and links to its own GitHub repository." data-vi="Portfolio này thể hiện cách tôi chuyển dữ liệu thành giám sát rủi ro, logic chấm điểm tín dụng, kiểm tra sức chịu đựng theo hướng ECL, kiểm soát gian lận và triển khai chính sách có kiểm soát. Mỗi dự án có thể được xem độc lập và có liên kết tới GitHub riêng.">This portfolio shows how I translate data into risk monitoring, scorecard logic, ECL-style stress testing, fraud controls and governed policy implementation. Each project is independently reviewable and links to its own GitHub repository.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#projects" data-en="View the five projects" data-vi="Xem năm dự án">View the five projects</a>
+          <a class="btn secondary" href="https://github.com/susayold" target="_blank" rel="noopener" data-en="Open GitHub profile" data-vi="Mở hồ sơ GitHub">Open GitHub profile</a>
+        </div>
+      </div>
+      <aside class="identity-card" aria-label="Portfolio owner identity">
+        <strong>Nguyễn Phạm Khôi Nguyên</strong>
+        <p data-en="Financial Technology student focused on Risk Analytics, Credit Risk, Modeling and Risk Management roles." data-vi="Sinh viên Công nghệ Tài chính, định hướng Risk Analytics, Credit Risk, Modeling và Risk Management.">Financial Technology student focused on Risk Analytics, Credit Risk, Modeling and Risk Management roles.</p>
+        <p><b>Python</b> · <b>SQL</b> · <b>Excel</b> · <b>Power BI-ready design</b> · <b>HTML dashboards</b></p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="stats" aria-label="Portfolio highlights">
+    <div class="stat"><strong>5</strong><span data-en="Completed risk case studies" data-vi="Dự án rủi ro đã hoàn thiện">Completed risk case studies</span></div>
+    <div class="stat"><strong>Credit</strong><span data-en="Monitoring, scorecard and policy-routing decisions" data-vi="Giám sát, chấm điểm và định tuyến chính sách">Monitoring, scorecard and policy-routing decisions</span></div>
+    <div class="stat"><strong>ECL</strong><span data-en="PD, LGD, EAD, staging and scenario sensitivity" data-vi="PD, LGD, EAD, phân tầng và độ nhạy kịch bản">PD, LGD, EAD, staging and scenario sensitivity</span></div>
+    <div class="stat"><strong>Controls</strong><span data-en="Fraud, operational risk, UAT/SIT and release governance" data-vi="Gian lận, rủi ro hoạt động, UAT/SIT và quản trị triển khai">Fraud, operational risk, UAT/SIT and release governance</span></div>
+  </div>
+
+  <main>
+    <section id="projects">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-en="Project portfolio" data-vi="Danh mục dự án">Project portfolio</p>
+          <h2 data-en="Independent projects, one coherent risk story" data-vi="Các dự án độc lập, cùng một câu chuyện rủi ro rõ ràng">Independent projects, one coherent risk story</h2>
+          <p data-en="The projects can be read separately. Together, they show the workflow from portfolio monitoring to model-style decisioning, stress testing, fraud control and rule implementation governance." data-vi="Các dự án có thể xem riêng từng phần. Khi đặt cạnh nhau, chúng thể hiện luồng công việc từ giám sát danh mục, logic ra quyết định theo mô hình, kiểm tra sức chịu đựng, kiểm soát gian lận đến quản trị triển khai quy tắc.">The projects can be read separately. Together, they show the workflow from portfolio monitoring to model-style decisioning, stress testing, fraud control and rule implementation governance.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <article class="project">
+          <div class="project-top">
+            <div class="project-number">01</div>
+            <div>
+              <div class="project-type" data-en="Portfolio risk monitoring" data-vi="Giám sát rủi ro danh mục">Portfolio risk monitoring</div>
+              <h3 data-en="Credit Portfolio Monitoring" data-vi="Giám sát danh mục tín dụng">Credit Portfolio Monitoring</h3>
+            </div>
+          </div>
+          <div class="project-body">
+            <p data-en="A web-first risk monitoring case study covering portfolio health, maturity controls, early-warning indicators, concentration risk and management actions." data-vi="Dự án giám sát rủi ro danh mục bằng web, bao gồm sức khỏe danh mục, kiểm soát độ trưởng thành dữ liệu, chỉ báo cảnh báo sớm, rủi ro tập trung và hành động quản trị.">A web-first risk monitoring case study covering portfolio health, maturity controls, early-warning indicators, concentration risk and management actions.</p>
+            <div class="metric-row">
+              <div class="metric"><strong>673,840</strong><span data-en="High-risk account count" data-vi="Số tài khoản rủi ro cao">High-risk account count</span></div>
+              <div class="metric"><strong>19.42B</strong><span data-en="Analytical exposure units" data-vi="Đơn vị dư nợ phân tích">Analytical exposure units</span></div>
+              <div class="metric"><strong>131</strong><span data-en="Automated analytical and control checks" data-vi="Kiểm tra phân tích và kiểm soát tự động">Automated analytical and control checks</span></div>
+            </div>
+            <div class="tags"><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Excel control model</span><span class="tag">Risk dashboard</span></div>
+            <div class="project-actions">
+              <a class="btn primary" href="https://susayold.github.io/credit-portfolio-monitoring/" target="_blank" rel="noopener" data-en="Open project page" data-vi="Mở trang dự án">Open project page</a>
+              <a class="btn secondary" href="https://github.com/susayold/credit-portfolio-monitoring" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <div class="project-number">02</div>
+            <div>
+              <div class="project-type" data-en="Credit scoring and cutoff logic" data-vi="Chấm điểm tín dụng và ngưỡng quyết định">Credit scoring and cutoff logic</div>
+              <h3 data-en="Credit Risk Decision Engine" data-vi="Bộ ra quyết định rủi ro tín dụng">Credit Risk Decision Engine</h3>
+            </div>
+          </div>
+          <div class="project-body">
+            <p data-en="A formula-first credit-risk project covering target definition, WOE/IV, PD bands, score bands, cutoff strategy, validation, PSI, vintage and concentration risk." data-vi="Dự án rủi ro tín dụng tập trung vào công thức nền tảng: định nghĩa target, WOE/IV, nhóm PD, nhóm điểm, chiến lược cutoff, validation, PSI, vintage và rủi ro tập trung.">A formula-first credit-risk project covering target definition, WOE/IV, PD bands, score bands, cutoff strategy, validation, PSI, vintage and concentration risk.</p>
+            <div class="metric-row">
+              <div class="metric"><strong>100k</strong><span data-en="Public review sample" data-vi="Mẫu công khai để review">Public review sample</span></div>
+              <div class="metric"><strong>0.626</strong><span data-en="Moderate AUC ranking power" data-vi="AUC mức trung bình">Moderate AUC ranking power</span></div>
+              <div class="metric"><strong>PD</strong><span data-en="Score bands, cutoff and monitoring" data-vi="Nhóm điểm, cutoff và monitoring">Score bands, cutoff and monitoring</span></div>
+            </div>
+            <div class="tags"><span class="tag">WOE/IV</span><span class="tag">PD</span><span class="tag">Scorecard</span><span class="tag">Model risk limits</span></div>
+            <div class="project-actions">
+              <a class="btn primary" href="https://susayold.github.io/credit-risk-decision-engine/" target="_blank" rel="noopener" data-en="Open project page" data-vi="Mở trang dự án">Open project page</a>
+              <a class="btn secondary" href="https://github.com/susayold/credit-risk-decision-engine" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <div class="project-number">03</div>
+            <div>
+              <div class="project-type" data-en="IFRS 9-style impairment and stress testing" data-vi="Dự phòng tổn thất và stress testing theo hướng IFRS 9">IFRS 9-style impairment and stress testing</div>
+              <h3 data-en="IFRS 9 ECL Stress Testing" data-vi="Kiểm tra sức chịu đựng ECL theo IFRS 9">IFRS 9 ECL Stress Testing</h3>
+            </div>
+          </div>
+          <div class="project-body">
+            <p data-en="A risk-finance case study using PD, LGD and EAD logic to build staging, probability-weighted ECL, macro scenarios and sensitivity reporting." data-vi="Dự án risk-finance sử dụng logic PD, LGD và EAD để xây dựng phân tầng, ECL có trọng số xác suất, kịch bản vĩ mô và báo cáo độ nhạy.">A risk-finance case study using PD, LGD and EAD logic to build staging, probability-weighted ECL, macro scenarios and sensitivity reporting.</p>
+            <div class="metric-row">
+              <div class="metric"><strong>1.179B</strong><span data-en="EAD-proxy units" data-vi="Đơn vị EAD proxy">EAD-proxy units</span></div>
+              <div class="metric"><strong>118.65M</strong><span data-en="Probability-weighted ECL-proxy units" data-vi="Đơn vị ECL proxy có trọng số xác suất">Probability-weighted ECL-proxy units</span></div>
+              <div class="metric"><strong>+53.85%</strong><span data-en="Downside ECL sensitivity" data-vi="Độ nhạy ECL trong kịch bản xấu">Downside ECL sensitivity</span></div>
+            </div>
+            <div class="tags"><span class="tag">PD/LGD/EAD</span><span class="tag">Stage logic</span><span class="tag">Scenario analysis</span><span class="tag">Risk committee pack</span></div>
+            <div class="project-actions">
+              <a class="btn primary" href="https://susayold.github.io/ifrs9-ecl-stress-testing/" target="_blank" rel="noopener" data-en="Open project page" data-vi="Mở trang dự án">Open project page</a>
+              <a class="btn secondary" href="https://github.com/susayold/ifrs9-ecl-stress-testing" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <div class="project-number">04</div>
+            <div>
+              <div class="project-type" data-en="Fraud and operational risk controls" data-vi="Kiểm soát gian lận và rủi ro hoạt động">Fraud and operational risk controls</div>
+              <h3 data-en="Fraud and Operational Risk" data-vi="Gian lận và rủi ro hoạt động">Fraud and Operational Risk</h3>
+            </div>
+          </div>
+          <div class="project-body">
+            <p data-en="A fraud and operational-risk pack covering alert prioritisation, KRI thresholds, controls, issues, action logs, incident response and root-cause analysis." data-vi="Bộ dự án gian lận và rủi ro hoạt động bao gồm ưu tiên cảnh báo, ngưỡng KRI, kiểm soát, vấn đề, action log, phản ứng sự cố và phân tích nguyên nhân gốc.">A fraud and operational-risk pack covering alert prioritisation, KRI thresholds, controls, issues, action logs, incident response and root-cause analysis.</p>
+            <div class="metric-row">
+              <div class="metric"><strong>Backtest</strong><span data-en="Modelled net benefit under disclosed cost assumptions" data-vi="Lợi ích mô phỏng theo giả định chi phí đã công bố">Modelled net benefit under disclosed cost assumptions</span></div>
+              <div class="metric"><strong>KRI</strong><span data-en="Fraud and operational risk thresholds" data-vi="Ngưỡng gian lận và rủi ro hoạt động">Fraud and operational risk thresholds</span></div>
+              <div class="metric"><strong>RCA</strong><span data-en="Incident and root-cause workflow" data-vi="Quy trình sự cố và nguyên nhân gốc">Incident and root-cause workflow</span></div>
+            </div>
+            <div class="tags"><span class="tag">Fraud strategy</span><span class="tag">Operational risk</span><span class="tag">Controls</span><span class="tag">Issue management</span></div>
+            <div class="project-actions">
+              <a class="btn primary" href="https://susayold.github.io/fraud-operational-risk/" target="_blank" rel="noopener" data-en="Open project page" data-vi="Mở trang dự án">Open project page</a>
+              <a class="btn secondary" href="https://github.com/susayold/fraud-operational-risk" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <div class="project-number">05</div>
+            <div>
+              <div class="project-type" data-en="Risk-system rule implementation" data-vi="Triển khai quy tắc hệ thống rủi ro">Risk-system rule implementation</div>
+              <h3 data-en="Risk System Rule Implementation" data-vi="Triển khai quy tắc hệ thống rủi ro">Risk System Rule Implementation</h3>
+            </div>
+          </div>
+          <div class="project-body">
+            <p data-en="A bridge from scorecard output to implementation governance: policy scenarios, BRD, rule matrix, UAT/SIT, release checklist, rollback plan and monitoring." data-vi="Dự án nối output scorecard với quản trị triển khai: kịch bản chính sách, BRD, ma trận quy tắc, UAT/SIT, checklist triển khai, rollback và monitoring.">A bridge from scorecard output to implementation governance: policy scenarios, BRD, rule matrix, UAT/SIT, release checklist, rollback plan and monitoring.</p>
+            <div class="metric-row">
+              <div class="metric"><strong>49.96%</strong><span data-en="Lower auto-approved routed EL versus baseline" data-vi="EL định tuyến tự động phê duyệt thấp hơn so với baseline">Lower auto-approved routed EL versus baseline</span></div>
+              <div class="metric"><strong>UAT/SIT</strong><span data-en="Boundary and implementation test evidence" data-vi="Bằng chứng kiểm thử ngưỡng và triển khai">Boundary and implementation test evidence</span></div>
+              <div class="metric"><strong>Governance</strong><span data-en="Release, rollback and monitoring controls" data-vi="Kiểm soát triển khai, rollback và monitoring">Release, rollback and monitoring controls</span></div>
+            </div>
+            <div class="tags"><span class="tag">Policy simulation</span><span class="tag">BRD</span><span class="tag">Rule matrix</span><span class="tag">Release control</span></div>
+            <div class="project-actions">
+              <a class="btn primary" href="https://susayold.github.io/risk-system-rule-implementation/" target="_blank" rel="noopener" data-en="Open project page" data-vi="Mở trang dự án">Open project page</a>
+              <a class="btn secondary" href="https://github.com/susayold/risk-system-rule-implementation" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="capabilities">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-en="What a recruiter can verify" data-vi="Nhà tuyển dụng có thể kiểm tra gì">What a recruiter can verify</p>
+          <h2 data-en="Capability map" data-vi="Bản đồ năng lực">Capability map</h2>
+          <p data-en="The portfolio is designed so the reviewer can connect each business skill to a concrete project page, evidence file, dashboard or implementation document." data-vi="Portfolio được thiết kế để người xem liên kết từng năng lực nghiệp vụ với trang dự án, file bằng chứng, dashboard hoặc tài liệu triển khai cụ thể.">The portfolio is designed so the reviewer can connect each business skill to a concrete project page, evidence file, dashboard or implementation document.</p>
+        </div>
+      </div>
+      <div class="matrix">
+        <table>
+          <thead>
+            <tr>
+              <th data-en="Capability" data-vi="Năng lực">Capability</th>
+              <th data-en="Project evidence" data-vi="Bằng chứng dự án">Project evidence</th>
+              <th data-en="Business value" data-vi="Giá trị nghiệp vụ">Business value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-en="Credit portfolio monitoring" data-vi="Giám sát danh mục tín dụng">Credit portfolio monitoring</td>
+              <td data-en="Credit Portfolio Monitoring" data-vi="Giám sát danh mục tín dụng">Credit Portfolio Monitoring</td>
+              <td data-en="Find deteriorating segments, concentration risk and management actions before portfolio quality becomes a blind spot." data-vi="Phát hiện phân khúc suy giảm, rủi ro tập trung và hành động quản trị trước khi chất lượng danh mục trở thành điểm mù.">Find deteriorating segments, concentration risk and management actions before portfolio quality becomes a blind spot.</td>
+            </tr>
+            <tr>
+              <td data-en="Credit scoring and cutoff governance" data-vi="Chấm điểm tín dụng và quản trị cutoff">Credit scoring and cutoff governance</td>
+              <td data-en="Credit Risk Decision Engine" data-vi="Bộ ra quyết định rủi ro tín dụng">Credit Risk Decision Engine</td>
+              <td data-en="Translate historical outcomes into PD bands, score bands, cutoff actions and model-risk limitations." data-vi="Chuyển kết quả lịch sử thành nhóm PD, nhóm điểm, hành động cutoff và giới hạn model risk.">Translate historical outcomes into PD bands, score bands, cutoff actions and model-risk limitations.</td>
+            </tr>
+            <tr>
+              <td data-en="Impairment and stress testing" data-vi="Dự phòng tổn thất và kiểm tra sức chịu đựng">Impairment and stress testing</td>
+              <td data-en="IFRS 9 ECL Stress Testing" data-vi="Kiểm tra sức chịu đựng ECL theo IFRS 9">IFRS 9 ECL Stress Testing</td>
+              <td data-en="Explain how PD, LGD, EAD, staging and macro scenarios move ECL-proxy exposure under stress." data-vi="Giải thích cách PD, LGD, EAD, phân tầng và kịch bản vĩ mô làm thay đổi ECL proxy khi chịu áp lực.">Explain how PD, LGD, EAD, staging and macro scenarios move ECL-proxy exposure under stress.</td>
+            </tr>
+            <tr>
+              <td data-en="Fraud and operational risk management" data-vi="Quản lý gian lận và rủi ro hoạt động">Fraud and operational risk management</td>
+              <td data-en="Fraud and Operational Risk" data-vi="Gian lận và rủi ro hoạt động">Fraud and Operational Risk</td>
+              <td data-en="Prioritise alerts, define KRIs, assign controls and show incident/RCA discipline without claiming a live fraud platform." data-vi="Ưu tiên cảnh báo, định nghĩa KRI, phân công kiểm soát và thể hiện kỷ luật incident/RCA mà không claim hệ thống fraud live.">Prioritise alerts, define KRIs, assign controls and show incident/RCA discipline without claiming a live fraud platform.</td>
+            </tr>
+            <tr>
+              <td data-en="Rule implementation and release control" data-vi="Triển khai quy tắc và kiểm soát release">Rule implementation and release control</td>
+              <td data-en="Risk System Rule Implementation" data-vi="Triển khai quy tắc hệ thống rủi ro">Risk System Rule Implementation</td>
+              <td data-en="Move from PD/cutoff logic to BRD, rule matrix, UAT/SIT, rollback and post-implementation monitoring." data-vi="Chuyển từ logic PD/cutoff sang BRD, ma trận quy tắc, UAT/SIT, rollback và giám sát sau triển khai.">Move from PD/cutoff logic to BRD, rule matrix, UAT/SIT, rollback and post-implementation monitoring.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="boundaries">
+      <div class="boundary">
+        <p class="eyebrow" data-en="Claim boundaries" data-vi="Ranh giới diễn giải kết quả">Claim boundaries</p>
+        <h2 data-en="Clear scope, no overclaim" data-vi="Phạm vi rõ ràng, không phóng đại kết quả">Clear scope, no overclaim</h2>
+        <ul>
+          <li data-en="The portfolio does not claim production automated underwriting, live LOS access or organisational approval." data-vi="Portfolio không claim hệ thống phê duyệt tự động production, không có quyền truy cập LOS thật và không đại diện cho phê duyệt của tổ chức.">The portfolio does not claim production automated underwriting, live LOS access or organisational approval.</li>
+          <li data-en="EAD and ECL values are analytical proxy units unless a project explicitly states otherwise." data-vi="Các giá trị EAD và ECL là đơn vị proxy phục vụ phân tích, trừ khi dự án ghi rõ khác.">EAD and ECL values are analytical proxy units unless a project explicitly states otherwise.</li>
+          <li data-en="Policy-routing results are simulations on historical accepted/booked accounts, not actual portfolio-loss reductions." data-vi="Kết quả định tuyến chính sách là mô phỏng trên tài khoản lịch sử đã được chấp nhận/ghi nhận, không phải mức giảm tổn thất thực tế của danh mục.">Policy-routing results are simulations on historical accepted/booked accounts, not actual portfolio-loss reductions.</li>
+          <li data-en="Fraud benefit is modelled under disclosed assumptions and is not described as actual savings." data-vi="Lợi ích gian lận được mô phỏng theo giả định đã công bố và không được trình bày như khoản tiết kiệm thực tế.">Fraud benefit is modelled under disclosed assumptions and is not described as actual savings.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-card">
+        <div>
+          <p class="eyebrow" data-en="Contact" data-vi="Thông tin liên hệ">Contact</p>
+          <h2>Nguyễn Phạm Khôi Nguyên</h2>
+          <p data-en="Available for Data Analyst, Risk Analyst, Risk Analytics, Credit Risk, Junior Modeling and Risk Management roles." data-vi="Sẵn sàng ứng tuyển các vị trí Data Analyst, Risk Analyst, Risk Analytics, Credit Risk, Junior Modeling và Risk Management.">Available for Data Analyst, Risk Analyst, Risk Analytics, Credit Risk, Junior Modeling and Risk Management roles.</p>
+        </div>
+        <div class="contact-links">
+          <a href="tel:+84865385817">0865385817</a>
+          <a href="mailto:nguyen28052005@gmail.com">nguyen28052005@gmail.com</a>
+          <a href="https://github.com/susayold" target="_blank" rel="noopener">github.com/susayold</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span data-en="Financial Risk Analytics Portfolio by Nguyen Pham Khoi Nguyen" data-vi="Hồ sơ phân tích rủi ro tài chính của Nguyễn Phạm Khôi Nguyên">Financial Risk Analytics Portfolio by Nguyen Pham Khoi Nguyen</span>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('langToggle');
+    const applyLanguage = (lang) => {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-en][data-vi]').forEach((el) => {
+        el.textContent = el.dataset[lang];
+      });
+      toggle.textContent = lang === 'en' ? 'VI' : 'EN';
+      localStorage.setItem('portfolio-language', lang);
+    };
+    toggle.addEventListener('click', () => {
+      applyLanguage(document.documentElement.lang === 'vi' ? 'en' : 'vi');
+    });
+    applyLanguage(localStorage.getItem('portfolio-language') || 'en');
+  </script>
+</body>
+</html>
