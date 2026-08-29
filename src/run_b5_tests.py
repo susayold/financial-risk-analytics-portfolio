@@ -6,6 +6,15 @@ import csv
 import json
 from pathlib import Path
 import duckdb
+import yaml
+
+EXPECTED_PRICING_ROLES = {
+    'sub_grade': 'BENCHMARK_ONLY',
+    'grade_derived': 'BENCHMARK_ONLY',
+    'int_rate': 'ECONOMICS_ONLY',
+    'installment': 'ECONOMICS_ONLY',
+    'term': 'ECONOMICS_ONLY',
+}
 
 
 def q(con, sql):
@@ -16,6 +25,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument('--db-path', type=Path, required=True)
     ap.add_argument('--output-dir', type=Path, required=True)
+    ap.add_argument('--repo-root', type=Path, default=Path(__file__).resolve().parents[1])
     args = ap.parse_args(); args.output_dir.mkdir(parents=True, exist_ok=True)
     con = duckdb.connect(str(args.db_path), read_only=True)
     tests = []
@@ -45,7 +55,10 @@ def main() -> int:
         add('B5T07', 'PRICING_MART', {'rows': rows, 'distinct_account_id': ids, 'duplicates': dup}, {'rows': 325255, 'distinct_account_id': 325255, 'duplicates': 0}, (rows, ids, dup) == (325255, 325255, 0))
         core_cols = {r[0] for r in con.execute('DESCRIBE mart.mart_credit_application_core').fetchall()}; pricing_cols = {r[0] for r in con.execute('DESCRIBE mart.mart_credit_pricing_enriched').fetchall()}
         forbidden_core = sorted(core_cols & {'sub_grade', 'grade_derived', 'int_rate', 'installment', 'term'})
-        add('B5T08', 'PRICING_FEATURE_BOUNDARY', {'forbidden_core_fields': forbidden_core, 'pricing_fields_present': sorted(pricing_cols & {'sub_grade', 'grade_derived', 'int_rate', 'installment', 'term'})}, {'forbidden_core_fields': [], 'pricing_fields_present': ['grade_derived', 'installment', 'int_rate', 'sub_grade', 'term']}, not forbidden_core and {'sub_grade', 'grade_derived', 'int_rate', 'installment', 'term'}.issubset(pricing_cols))
+        actual_roles = yaml.safe_load((args.repo_root / 'config' / 'b5_contract.yaml').read_text(encoding='utf-8')).get('pricing_fields', {})
+        target_like = sorted(pricing_cols & {'default', 'loan_status', 'is_bad', 'bad_flag', 'target', 'predicted_pd'})
+        role_pass = actual_roles == EXPECTED_PRICING_ROLES
+        add('B5T08', 'PRICING_FEATURE_BOUNDARY', {'forbidden_core_fields': forbidden_core, 'pricing_fields_present': sorted(pricing_cols & set(EXPECTED_PRICING_ROLES)), 'actual_role_mapping': actual_roles, 'supplemental_target_like_fields': target_like}, {'forbidden_core_fields': [], 'pricing_fields_present': ['grade_derived', 'installment', 'int_rate', 'sub_grade', 'term'], 'actual_role_mapping': EXPECTED_PRICING_ROLES, 'supplemental_target_like_fields': []}, not forbidden_core and set(EXPECTED_PRICING_ROLES).issubset(pricing_cols) and role_pass and not target_like)
         rej_cols = {r[0] for r in con.execute('DESCRIBE mart.mart_rejected_context').fetchall()}; required = {'rejected_record_id', 'source_file', 'source_row_number', 'application_date', 'source_population'}
         rr, ri = q(con, 'SELECT COUNT(*), COUNT(DISTINCT rejected_record_id) FROM mart.mart_rejected_context')
         add('B5T09', 'REJECTED_SCHEMA', {'rows': rr, 'distinct_keys': ri, 'missing_required_fields': sorted(required-rej_cols)}, {'stable_key': True, 'missing_required_fields': []}, rr == ri and not (required-rej_cols))
@@ -57,6 +70,18 @@ def main() -> int:
         metadata = q(con, "SELECT COUNT(*) FROM mart.mart_credit_pricing_enriched WHERE source_population='ZENODO_FIGSHARE_MATCHED_ENRICHED' AND core_source_version='ZENODO_11295916' AND supplemental_version='FIGSHARE_22121477_V4' AND bridge_version='B5_BRIDGE_v1.0' AND pricing_mart_version='B5_PRICING_v1.0'")[0]
         rejected_meta = q(con, "SELECT COUNT(*) FROM mart.mart_rejected_context WHERE source_population='REJECTED_CONTEXT_ONLY' AND source_version='REJECTSTATS_KAGGLE_PUBLIC_V3' AND rejected_mart_version='B5_REJECTED_v1.0'")[0]
         add('B5T12', 'LINEAGE_METADATA', {'pricing_rows_with_metadata': metadata, 'rejected_rows_with_metadata': rejected_meta}, {'pricing_rows': 325255, 'rejected_rows': rr}, metadata == 325255 and rejected_meta == rr)
+        raw_app, parsed_app, raw_amount, parsed_amount, raw_dti, parsed_dti, nonnull_risk, nonnull_state, nonnull_emp, min_row, max_row, key_nulls = q(con, """
+            SELECT COUNT(*) FILTER(WHERE s.\"Application Date\" IS NOT NULL), COUNT(*) FILTER(WHERE TRY_CAST(s.\"Application Date\" AS DATE) IS NOT NULL),
+                   COUNT(*) FILTER(WHERE s.\"Amount Requested\" IS NOT NULL), COUNT(*) FILTER(WHERE TRY_CAST(s.\"Amount Requested\" AS DECIMAL(18,2)) IS NOT NULL),
+                   COUNT(*) FILTER(WHERE s.\"Debt-To-Income Ratio\" IS NOT NULL), COUNT(*) FILTER(WHERE TRY_CAST(REPLACE(TRIM(s.\"Debt-To-Income Ratio\"), '%', '') AS DECIMAL(10,4)) IS NOT NULL),
+                   COUNT(*) FILTER(WHERE s.Risk_Score IS NOT NULL), COUNT(*) FILTER(WHERE s.State IS NOT NULL), COUNT(*) FILTER(WHERE s.\"Employment Length\" IS NOT NULL),
+                   MIN(source_row_number), MAX(source_row_number), COUNT(*) FILTER(WHERE rejected_record_id IS NULL)
+            FROM raw.rejectstats_union r JOIN raw.rejectstats_source s ON r.source_row_number = s.rowid + 1
+        """)
+        parse_failures = raw_dti - parsed_dti
+        parse_observed = {'rows': rr, 'application_date_raw_non_null': raw_app, 'application_date_parsed_non_null': parsed_app, 'amount_raw_non_null': raw_amount, 'amount_parsed_non_null': parsed_amount, 'dti_raw_non_null': raw_dti, 'dti_parsed_non_null': parsed_dti, 'dti_parse_failure_count': parse_failures, 'risk_score_non_null': nonnull_risk, 'state_non_null': nonnull_state, 'employment_length_non_null': nonnull_emp, 'source_row_number_min': min_row, 'source_row_number_max': max_row, 'null_keys': key_nulls}
+        parse_pass = raw_app == parsed_app and raw_amount == parsed_amount and parsed_dti >= raw_dti * 0.99 and min_row == 1 and max_row == rr and key_nulls == 0 and (args.output_dir / 'rejectstats_dti_parse_audit.json').exists()
+        add('B5T13', 'REJECTED_PARSE_QUALITY', parse_observed, {'application_date_parse_failures': 0, 'amount_parse_failures': 0, 'dti_parse_failure_count': parse_failures, 'stored_unit': 'percentage_points', 'technical_key_row_range': [1, rr]}, parse_pass, 'Risk_Score and employment length sparsity are source profiles, not parser failures.')
     finally:
         con.close()
     gate = 'PASS' if all(t['status'] == 'PASS' for t in tests) else 'FAIL'

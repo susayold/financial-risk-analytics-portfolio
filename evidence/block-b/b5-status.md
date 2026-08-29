@@ -2,9 +2,9 @@
 
 ## Gate decision
 
-`B5 = REVIEWED / PASS` · Block B remains `IN PROGRESS` · Next gate: `B6 — Portfolio Overview`.
+`B5 = FINAL REVIEWED / PASS` · Block B remains `IN PROGRESS` · Next gate: `B6 — Portfolio Overview`.
 
-The executable run passed 12/12 independent B5 tests. Raw source files and row-level marts are execution-only and are not published.
+The executable run passed 13/13 independent B5 tests. Raw source files and row-level marts are execution-only and are not published.
 
 ## Scope completed
 
@@ -25,7 +25,7 @@ The executable run passed 12/12 independent B5 tests. Raw source files and row-l
 | Pricing mart | 325,255 rows, unique account_id |
 | Target overwrites | 0 |
 | RejectStats context rows | 27,648,741 |
-| Independent B5 tests | PASS (12/12) |
+| Independent B5 tests | PASS (13/13) |
 
 ## Boundary
 

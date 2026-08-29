@@ -8,5 +8,5 @@ Grain: one matched `account_id` (325,255 rows). B4 columns `actual_default`, `ta
 
 ## `mart.mart_rejected_context`
 
-Grain: one rejected application record. `rejected_record_id` is `md5(source_file + source_row_number)` because the source does not provide a governed account_id. Verified context fields include application date, requested amount, loan title, risk score, DTI, zip/state, employment length and policy code. It carries `outcome_observed=false`, `model_target_eligible=false` and `champion_merge_eligible=false`.
+Grain: one rejected application record. `rejected_record_id` is `md5(source_file + materialized DuckDB rowid + 1)` because the source does not provide a governed account_id. It is a technical source-row key, not a borrower/account/business key. Verified context fields include application date, requested amount, loan title, generic risk score, DTI, zip/state, employment length and policy code. `dti_rejected` is stored in percentage-point units after trimming and removing `%`. It carries `outcome_observed=false`, `model_target_eligible=false` and `champion_merge_eligible=false`.
 

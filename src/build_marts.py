@@ -11,13 +11,13 @@ import duckdb
 REQUIRED_SOURCE_COLUMNS = {
     'id', 'issue_d', 'revenue', 'dti_n', 'loan_amnt', 'fico_n',
     'experience_c', 'emp_length', 'purpose', 'home_ownership_n',
-    'addr_state', 'zip_code', 'Default',
+    'addr_state', 'zip_code', 'title', 'desc', 'Default',
 }
 
 EXPECTED_STAGING_COLUMNS = {
     'account_id', 'issue_d', 'revenue', 'dti_n', 'loan_amnt', 'fico_n',
     'experience_c', 'emp_length', 'purpose', 'home_ownership_n',
-    'addr_state', 'zip_code', 'actual_default', 'split_name',
+    'addr_state', 'zip_code', 'title', 'desc', 'actual_default', 'split_name',
 }
 
 EXPECTED_SPLITS = {
@@ -106,6 +106,8 @@ def bootstrap_staging(con: duckdb.DuckDBPyConnection, csv_path: Path) -> None:
             home_ownership_n,
             addr_state,
             zip_code,
+            title,
+            "desc" AS "desc",
             CAST("Default" AS INTEGER) AS actual_default,
             CASE
                 WHEN try_strptime(issue_d, '%b-%Y')::DATE < DATE '2016-01-01' THEN 'Development'

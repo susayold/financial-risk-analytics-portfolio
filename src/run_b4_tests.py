@@ -90,11 +90,17 @@ def main() -> int:
         boundary_pass = not forbidden_present and not champion_missing
         results.append({'id': 'B4T06', 'name': 'FEATURE_BOUNDARY', 'status': 'PASS' if boundary_pass else 'FAIL', 'observed': {'forbidden_present': forbidden_present, 'champion_missing': champion_missing}, 'expected': {'forbidden_present': [], 'champion_missing': []}})
 
+        staging_columns = {row[0] for row in con.execute('DESCRIBE staging.stg_lc_granting_core').fetchall()}
+        mart_columns = set(actual_columns)
+        dq_status_values, dq_flag_non_null = con.execute("SELECT STRING_AGG(DISTINCT dq_status, ',' ORDER BY dq_status), COUNT(*) FILTER (WHERE dq_flag_count IS NOT NULL) FROM mart.mart_credit_application_core").fetchone()
+        lineage_pass = {'title', 'desc'}.issubset(staging_columns) and 'title' not in mart_columns and 'desc' not in mart_columns and dq_status_values == 'STRUCTURAL_PASS' and dq_flag_non_null == 0
+        results.append({'id': 'B4T07', 'name': 'LINEAGE_DQ_SEMANTICS', 'status': 'PASS' if lineage_pass else 'FAIL', 'observed': {'staging_has_title': 'title' in staging_columns, 'staging_has_desc': 'desc' in staging_columns, 'mart_has_title': 'title' in mart_columns, 'mart_has_desc': 'desc' in mart_columns, 'dq_status_values': dq_status_values, 'dq_flag_non_null_rows': dq_flag_non_null}, 'expected': {'staging_has_title': True, 'staging_has_desc': True, 'mart_has_title': False, 'mart_has_desc': False, 'dq_status_values': 'STRUCTURAL_PASS', 'dq_flag_non_null_rows': 0}})
+
         null_rows = []
         for field in NULL_PROFILE_FIELDS:
             row_count, null_count = one(con, f"SELECT COUNT(*), SUM(CASE WHEN \"{field}\" IS NULL THEN 1 ELSE 0 END) FROM mart.mart_credit_application_core")
             null_rows.append({'field': field, 'row_count': row_count, 'null_count': null_count, 'null_rate': null_count / row_count if row_count else None})
-        results.append({'id': 'B4T07', 'name': 'NULL_PROFILE', 'status': 'PASS', 'observed': {'fields': len(null_rows)}, 'note': 'Descriptive only; no imputation or capping applied.'})
+        results.append({'id': 'B4T08', 'name': 'NULL_PROFILE', 'status': 'PASS', 'observed': {'fields': len(null_rows)}, 'note': 'Descriptive only; no imputation or capping applied.'})
     finally:
         con.close()
 

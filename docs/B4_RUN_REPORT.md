@@ -56,9 +56,10 @@ The SQL build is a direct projection with no `WHERE` clause and no joins. It der
 | B4T04 temporal reconciliation | PASS |
 | B4T05 schema contract | PASS |
 | B4T06 feature boundary | PASS |
-| B4T07 null profile | PASS (descriptive) |
+| B4T07 staging lineage + DQ semantics | PASS |
+| B4T08 null profile | PASS (descriptive) |
 
-Forbidden outcome/pricing fields are absent. All eight champion candidates are present. `preprocessing_version = NOT_APPLIED`.
+Forbidden outcome/pricing fields are absent. All eight champion candidates are present. `preprocessing_version = NOT_APPLIED`. The staging layer retains `title` and `desc` for lineage/DQ traceability, while the lean core mart excludes both. Every core row has `dq_status = STRUCTURAL_PASS`; `dq_flag_count` is NULL by design because no row-level exception framework exists.
 
 ## 8. Null profile
 
@@ -70,4 +71,4 @@ The aggregate null profile covers the eight champion candidates plus `addr_state
 
 ## 10. Boundary and next step
 
-This result does not claim portfolio findings, a production pipeline, predicted PD, calibration, LGD/EAD, ECL, pricing or decision cutoffs. Next stage is B5, where supplemental/pricing and rejected-context population boundaries must be made explicit before portfolio-risk analysis.
+This result does not claim portfolio findings, a production pipeline, predicted PD, calibration, LGD/EAD, ECL, pricing or decision cutoffs. B5 has now completed its controlled enrichment boundary; the next stage is B6 — Portfolio Overview.

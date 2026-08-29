@@ -21,7 +21,7 @@ def main() -> int:
 
 ## Gate decision
 
-`B5 = REVIEWED / PASS` · Block B remains `IN PROGRESS` · Next gate: `B6 — Portfolio Overview`.
+`B5 = FINAL REVIEWED / PASS` · Block B remains `IN PROGRESS` · Next gate: `B6 — Portfolio Overview`.
 
 The executable run passed {sum(t['status'] == 'PASS' for t in tests['tests'])}/{len(tests['tests'])} independent B5 tests. Raw source files and row-level marts are execution-only and are not published.
 
@@ -44,7 +44,7 @@ The executable run passed {sum(t['status'] == 'PASS' for t in tests['tests'])}/{
 | Pricing mart | 325,255 rows, unique account_id |
 | Target overwrites | 0 |
 | RejectStats context rows | {rejected_rows:,} |
-| Independent B5 tests | PASS (12/12) |
+| Independent B5 tests | PASS ({sum(t['status'] == 'PASS' for t in tests['tests'])}/{len(tests['tests'])}) |
 
 ## Boundary
 
@@ -85,11 +85,13 @@ Match rate is `325,255 / 331,865 = 98.00822624%`. Core enrichment coverage is `3
 
 Null comparisons are excluded from the concordance denominator. Conflicts are retained and the Zenodo/B4 core wins; supplemental values remain explicit and separate.
 """
-    run = """# B5 Run Report
+    run = f"""# B5 Run Report
 
 The run validated B4 pre-flight, ingested verified Figshare train/test files and public RejectStats, built staging, bridge and marts, then re-ran the B4 regression. The build fails closed before pricing construction if bridge counts or concordance do not match the locked baseline.
 
-`B5 = PASS` — 12/12 gates passed: source counts and key uniqueness, exact bridge counts, bridge grain, concordance, core authority, pricing mart grain, pricing feature boundary, rejected schema, rejected outcome boundary, B4 non-mutation and lineage metadata.
+`B5 = FINAL REVIEWED / PASS` — {sum(t['status'] == 'PASS' for t in tests['tests'])}/{len(tests['tests'])} gates passed: source counts and key uniqueness, exact bridge counts, bridge grain, concordance, core authority, pricing mart grain, executable pricing role contract, rejected schema, rejected outcome boundary, B4 non-mutation, lineage metadata and rejected parse quality.
+
+RejectStats `Debt-To-Income Ratio` is parsed by trimming and removing `%`, then casting to decimal percentage-point units. `risk_score` is retained under a generic name; no universal FICO interpretation is claimed. `rejected_record_id` is a technical source-row key based on the materialized source row position.
 
 Execution-only raw inputs are referenced by source/version metadata. No raw Figshare, RejectStats, DuckDB database, row-level bridge or row-level mart is committed or published.
 """
@@ -103,7 +105,7 @@ Grain: one matched `account_id` (325,255 rows). B4 columns `actual_default`, `ta
 
 ## `mart.mart_rejected_context`
 
-Grain: one rejected application record. `rejected_record_id` is `md5(source_file + source_row_number)` because the source does not provide a governed account_id. Verified context fields include application date, requested amount, loan title, risk score, DTI, zip/state, employment length and policy code. It carries `outcome_observed=false`, `model_target_eligible=false` and `champion_merge_eligible=false`.
+Grain: one rejected application record. `rejected_record_id` is `md5(source_file + materialized DuckDB rowid + 1)` because the source does not provide a governed account_id. It is a technical source-row key, not a borrower/account/business key. Verified context fields include application date, requested amount, loan title, generic risk score, DTI, zip/state, employment length and policy code. `dti_rejected` is stored in percentage-point units after trimming and removing `%`. It carries `outcome_observed=false`, `model_target_eligible=false` and `champion_merge_eligible=false`.
 """
     limits = """# B5 Assumptions and Limits
 
@@ -118,10 +120,12 @@ Grain: one rejected application record. `rejected_record_id` is `md5(source_file
 9. No reject inference, rejected BAD rate, PD, loss rate or causal approval claim is made.
 10. B5 performs no model preprocessing, fitting, PD/LGD/EAD/ECL estimation or champion-model promotion.
 11. Public evidence is aggregate and sanitized; row-level raw/supplemental data stays out of GitHub.
+12. RejectStats `risk_score` remains generic; the project does not assume one credit-score methodology across the full rejected-source period.
+13. RejectStats DTI parsing removes `%` and stores percentage-point units; parse failures are separately audited and are not imputed.
 """
     handoff = """# B5 Handoff
 
-`B5 = REVIEWED / PASS`. The next governed stage is `B6 — Portfolio Overview`.
+`B5 = FINAL REVIEWED / PASS`. The next governed stage is `B6 — Portfolio Overview`.
 
 Use three visibly separate populations in B6:
 

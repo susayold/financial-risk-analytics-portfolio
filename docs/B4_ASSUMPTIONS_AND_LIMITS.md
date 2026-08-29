@@ -11,4 +11,4 @@
 9. RejectStats remains outside the granted-loan mart.
 10. Historical Shadow remains a resolved-sample simulation, not live monitoring.
 
-`dq_status` reflects reviewed structural/source controls, not model-preprocessing quality. The mart is a reproducible analytical core and does not claim production deployment, model scores, PD calibration, cutoffs, pricing, LGD, EAD estimates or ECL.
+`dq_status = STRUCTURAL_PASS` reflects reviewed aggregate and structural/source controls, not model-preprocessing quality. `dq_flag_count` is `NULL` by design because no row-level account exception framework exists yet; `NULL` means not evaluated at account level, not measured zero. The mart is a reproducible analytical core and does not claim production deployment, model scores, PD calibration, cutoffs, pricing, LGD, EAD estimates or ECL.

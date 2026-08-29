@@ -5,7 +5,11 @@
   "counts": {
     "row_count": 27648741,
     "duplicate_rejected_record_id": 0,
-    "null_rejected_record_id": 0
+    "null_rejected_record_id": 0,
+    "source_row_number_min": 1,
+    "source_row_number_max": 27648741,
+    "first_100_key_checksum": "75dee2f86d1c041499adc1694e13e6e7",
+    "last_100_key_checksum": "479ed9f78e50719d7c4d2e83698bccd4"
   },
   "raw_schema": {
     "table": "raw.rejectstats_source",
@@ -78,5 +82,5 @@
     "Employment Length": "employment_length_rejected",
     "Policy Code": "policy_code"
   },
-  "technical_key": "md5(source file + source row number)"
+  "technical_key": "md5(source file + materialized DuckDB rowid + 1)"
 }

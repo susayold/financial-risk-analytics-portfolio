@@ -174,6 +174,27 @@
     },
     {
       "id": "B4T07",
+      "name": "LINEAGE_DQ_SEMANTICS",
+      "status": "PASS",
+      "observed": {
+        "staging_has_title": true,
+        "staging_has_desc": true,
+        "mart_has_title": false,
+        "mart_has_desc": false,
+        "dq_status_values": "STRUCTURAL_PASS",
+        "dq_flag_non_null_rows": 0
+      },
+      "expected": {
+        "staging_has_title": true,
+        "staging_has_desc": true,
+        "mart_has_title": false,
+        "mart_has_desc": false,
+        "dq_status_values": "STRUCTURAL_PASS",
+        "dq_flag_non_null_rows": 0
+      }
+    },
+    {
+      "id": "B4T08",
       "name": "NULL_PROFILE",
       "status": "PASS",
       "observed": {

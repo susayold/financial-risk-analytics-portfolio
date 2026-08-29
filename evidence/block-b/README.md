@@ -4,7 +4,7 @@
 
 `B0–B3 = REVIEWED / PASS`  
 `B4 = REVIEWED / PASS`
-`B5 = REVIEWED / PASS`
+`B5 = FINAL REVIEWED / PASS`
 `Block B overall = IN PROGRESS`  
 `Next gate = B6 — Portfolio Overview`
 

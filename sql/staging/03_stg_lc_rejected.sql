@@ -10,7 +10,7 @@ SELECT
     try_cast(amount_requested AS DECIMAL(18,2)) AS amount_requested,
     NULLIF(TRIM(loan_title), '') AS loan_title,
     try_cast(risk_score AS DECIMAL(10,2)) AS risk_score,
-    try_cast(debt_to_income_ratio AS DECIMAL(10,4)) AS dti_rejected,
+    try_cast(REPLACE(TRIM(debt_to_income_ratio), '%', '') AS DECIMAL(10,4)) AS dti_rejected,
     NULLIF(TRIM(zip_code), '') AS zip_code_rejected,
     NULLIF(UPPER(TRIM(state)), '') AS state_rejected,
     NULLIF(TRIM(employment_length), '') AS employment_length_rejected,

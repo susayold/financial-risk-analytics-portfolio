@@ -1,6 +1,6 @@
 # B5 Handoff
 
-`B5 = REVIEWED / PASS`. The next governed stage is `B6 — Portfolio Overview`.
+`B5 = FINAL REVIEWED / PASS`. The next governed stage is `B6 — Portfolio Overview`.
 
 Use three visibly separate populations in B6:
 

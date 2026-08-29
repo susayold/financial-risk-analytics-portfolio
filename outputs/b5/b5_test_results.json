@@ -200,7 +200,15 @@
           "int_rate",
           "sub_grade",
           "term"
-        ]
+        ],
+        "actual_role_mapping": {
+          "sub_grade": "BENCHMARK_ONLY",
+          "grade_derived": "BENCHMARK_ONLY",
+          "int_rate": "ECONOMICS_ONLY",
+          "installment": "ECONOMICS_ONLY",
+          "term": "ECONOMICS_ONLY"
+        },
+        "supplemental_target_like_fields": []
       },
       "expected": {
         "forbidden_core_fields": [],
@@ -210,7 +218,15 @@
           "int_rate",
           "sub_grade",
           "term"
-        ]
+        ],
+        "actual_role_mapping": {
+          "sub_grade": "BENCHMARK_ONLY",
+          "grade_derived": "BENCHMARK_ONLY",
+          "int_rate": "ECONOMICS_ONLY",
+          "installment": "ECONOMICS_ONLY",
+          "term": "ECONOMICS_ONLY"
+        },
+        "supplemental_target_like_fields": []
       },
       "note": ""
     },
@@ -264,10 +280,10 @@
           139
         ],
         "splits": {
-          "Development": 829347,
-          "Historical Shadow": 56160,
           "Validation": 293057,
-          "OOT": 169117
+          "Development": 829347,
+          "OOT": 169117,
+          "Historical Shadow": 56160
         }
       },
       "expected": {
@@ -300,6 +316,38 @@
         "rejected_rows": 27648741
       },
       "note": ""
+    },
+    {
+      "id": "B5T13",
+      "name": "REJECTED_PARSE_QUALITY",
+      "status": "PASS",
+      "observed": {
+        "rows": 27648741,
+        "application_date_raw_non_null": 27648741,
+        "application_date_parsed_non_null": 27648741,
+        "amount_raw_non_null": 27648741,
+        "amount_parsed_non_null": 27648741,
+        "dti_raw_non_null": 27648741,
+        "dti_parsed_non_null": 27648697,
+        "dti_parse_failure_count": 44,
+        "risk_score_non_null": 9151111,
+        "state_non_null": 27648719,
+        "employment_length_non_null": 26697386,
+        "source_row_number_min": 1,
+        "source_row_number_max": 27648741,
+        "null_keys": 0
+      },
+      "expected": {
+        "application_date_parse_failures": 0,
+        "amount_parse_failures": 0,
+        "dti_parse_failure_count": 44,
+        "stored_unit": "percentage_points",
+        "technical_key_row_range": [
+          1,
+          27648741
+        ]
+      },
+      "note": "Risk_Score and employment length sparsity are source profiles, not parser failures."
     }
   ]
 }

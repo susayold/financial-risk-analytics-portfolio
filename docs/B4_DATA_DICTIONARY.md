@@ -24,8 +24,8 @@
 | `home_ownership_n` | VARCHAR | Home-ownership field | staging | champion candidate | Yes | None | No imputation |
 | `addr_state` | VARCHAR | Applicant state | staging | analysis-only | No | None | Model excluded |
 | `zip_code` | VARCHAR | Applicant ZIP context | staging | analysis-only | No | None | Model excluded |
-| `dq_status` | VARCHAR | Reviewed structural/source control status | B4 build | governance | No | Constant `PASS` | Not model-preprocessing quality |
-| `dq_flag_count` | INTEGER | Propagated account-level DQ flag count | B4 build | governance | No | Constant `0` | No account-level exceptions existed upstream |
+| `dq_status` | VARCHAR | Reviewed structural/source control status | B4 build | governance | No | Constant `STRUCTURAL_PASS` | Aggregate/structural state, not account-level exception status |
+| `dq_flag_count` | INTEGER | Reserved account-level DQ flag count | B4 build | governance | No | `NULL` by design | No row-level exception framework exists yet |
 | `source_population` | VARCHAR | Governing population identifier | B4 build | lineage | No | Constant | `ZENODO_GRANTED_RESOLVED` |
 | `source_version` | VARCHAR | Governing source version | B4 build | lineage | No | Constant | `ZENODO_11295916` |
 | `feature_contract_version` | VARCHAR | Approved feature contract | B4 build | governance | No | Constant | `BLOCK_A_v1.0` |
@@ -36,3 +36,7 @@
 ## Explicit exclusions
 
 `title` and `desc` remain in staging but are intentionally omitted from the core mart because they are sparse, review-only and not needed for current portfolio KPIs. Pricing/supplemental fields, outcome-leakage fields and rejected-application fields are also absent by contract.
+
+## Staging lineage note
+
+The reviewed staging layer retains `title` and `desc` for lineage and DQ traceability. The lean B4 analytical core intentionally excludes both fields. B0–B3 established aggregate and structural Data Quality controls; B4 does not claim an account-level exception framework, so `dq_flag_count` is `NULL` by design.

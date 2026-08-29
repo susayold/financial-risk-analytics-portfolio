@@ -1,0 +1,10 @@
+{
+  "field": "Debt-To-Income Ratio",
+  "raw_non_null": 27648741,
+  "parsed_non_null": 27648697,
+  "parse_failure_count": 44,
+  "parse_failure_rate": 1.5913925339312918e-06,
+  "stored_unit": "percentage_points",
+  "parser": "trim + remove_percent + decimal_cast",
+  "interpretation": "Residual failures are explicitly counted; no imputation or silent coercion is applied."
+}

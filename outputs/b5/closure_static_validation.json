@@ -1,0 +1,66 @@
+{
+  "block": "B4_B5_CLOSURE",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "expected staging contains title",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "expected staging contains desc",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "B4 mart excludes title/desc",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "B4 uses STRUCTURAL_PASS",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "B4 dq_flag_count is NULL",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "RejectStats DTI removes percent",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "technical key uses materialized rowid",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "unordered row_number key removed",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "YAML pricing roles exact",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "test runner enforces YAML roles",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "B5T13 exists",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "stale account-level-DQ wording absent",
+      "status": "PASS",
+      "detail": "[]"
+    }
+  ]
+}

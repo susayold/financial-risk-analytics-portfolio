@@ -11,4 +11,6 @@
 9. No reject inference, rejected BAD rate, PD, loss rate or causal approval claim is made.
 10. B5 performs no model preprocessing, fitting, PD/LGD/EAD/ECL estimation or champion-model promotion.
 11. Public evidence is aggregate and sanitized; row-level raw/supplemental data stays out of GitHub.
+12. RejectStats `risk_score` remains generic; the project does not assume one credit-score methodology across the full rejected-source period.
+13. RejectStats DTI parsing removes `%` and stores percentage-point units; parse failures are separately audited and are not imputed.
 

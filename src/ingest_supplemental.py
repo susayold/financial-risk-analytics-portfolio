@@ -70,9 +70,9 @@ def ingest_rejectstats(con: duckdb.DuckDBPyConnection, reject_path: Path, output
     con.execute("""
         CREATE OR REPLACE TABLE raw.rejectstats_union AS
         SELECT
-            md5('rejected_2007_to_2018Q4.csv.gz:' || CAST(row_number() OVER () AS VARCHAR)) AS rejected_record_id,
+            md5('rejected_2007_to_2018Q4.csv.gz:' || CAST(rowid + 1 AS VARCHAR)) AS rejected_record_id,
             'rejected_2007_to_2018Q4.csv.gz' AS source_file,
-            row_number() OVER () AS source_row_number,
+            rowid + 1 AS source_row_number,
             "Application Date" AS application_date,
             "Amount Requested" AS amount_requested,
             "Loan Title" AS loan_title,
@@ -87,7 +87,10 @@ def ingest_rejectstats(con: duckdb.DuckDBPyConnection, reject_path: Path, output
     row_count = con.execute('SELECT COUNT(*) FROM raw.rejectstats_union').fetchone()[0]
     duplicate_keys = con.execute('SELECT COUNT(*) - COUNT(DISTINCT rejected_record_id) FROM raw.rejectstats_union').fetchone()[0]
     null_keys = con.execute('SELECT COUNT(*) FILTER (WHERE rejected_record_id IS NULL) FROM raw.rejectstats_union').fetchone()[0]
-    result = {'row_count': int(row_count), 'duplicate_rejected_record_id': int(duplicate_keys), 'null_rejected_record_id': int(null_keys)}
+    min_row, max_row = con.execute('SELECT MIN(source_row_number), MAX(source_row_number) FROM raw.rejectstats_union').fetchone()
+    first_keys = con.execute("SELECT md5(string_agg(rejected_record_id, ',' ORDER BY source_row_number)) FROM (SELECT rejected_record_id, source_row_number FROM raw.rejectstats_union ORDER BY source_row_number LIMIT 100)").fetchone()[0]
+    last_keys = con.execute("SELECT md5(string_agg(rejected_record_id, ',' ORDER BY source_row_number)) FROM (SELECT rejected_record_id, source_row_number FROM raw.rejectstats_union ORDER BY source_row_number DESC LIMIT 100)").fetchone()[0]
+    result = {'row_count': int(row_count), 'duplicate_rejected_record_id': int(duplicate_keys), 'null_rejected_record_id': int(null_keys), 'source_row_number_min': int(min_row), 'source_row_number_max': int(max_row), 'first_100_key_checksum': first_keys, 'last_100_key_checksum': last_keys}
     if duplicate_keys != 0 or null_keys != 0:
         raise ValueError(f'RejectStats technical key contract failed: {result}')
     (output_dir / 'rejectstats_source_schema.json').write_text(json.dumps({
@@ -97,7 +100,16 @@ def ingest_rejectstats(con: duckdb.DuckDBPyConnection, reject_path: Path, output
             'Amount Requested': 'amount_requested', 'Application Date': 'application_date', 'Loan Title': 'loan_title',
             'Risk_Score': 'risk_score', 'Debt-To-Income Ratio': 'dti_rejected', 'Zip Code': 'zip_code_rejected',
             'State': 'state_rejected', 'Employment Length': 'employment_length_rejected', 'Policy Code': 'policy_code',
-        }, 'technical_key': 'md5(source file + source row number)',
+        }, 'technical_key': 'md5(source file + materialized DuckDB rowid + 1)',
+    }, indent=2) + '\n', encoding='utf-8')
+    raw_dti_non_null = con.execute('SELECT COUNT(*) FILTER (WHERE "Debt-To-Income Ratio" IS NOT NULL) FROM raw.rejectstats_source').fetchone()[0]
+    parsed_dti_non_null = con.execute("SELECT COUNT(*) FILTER (WHERE TRY_CAST(REPLACE(TRIM(\"Debt-To-Income Ratio\"), '%', '') AS DECIMAL(10,4)) IS NOT NULL) FROM raw.rejectstats_source").fetchone()[0]
+    parse_failure_count = raw_dti_non_null - parsed_dti_non_null
+    (output_dir / 'rejectstats_dti_parse_audit.json').write_text(json.dumps({
+        'field': 'Debt-To-Income Ratio', 'raw_non_null': int(raw_dti_non_null), 'parsed_non_null': int(parsed_dti_non_null),
+        'parse_failure_count': int(parse_failure_count), 'parse_failure_rate': (parse_failure_count / raw_dti_non_null) if raw_dti_non_null else 0.0,
+        'stored_unit': 'percentage_points', 'parser': 'trim + remove_percent + decimal_cast',
+        'interpretation': 'Residual failures are explicitly counted; no imputation or silent coercion is applied.'
     }, indent=2) + '\n', encoding='utf-8')
     return result
 
