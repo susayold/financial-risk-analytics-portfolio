@@ -1,0 +1,38 @@
+{
+  "block": "B4_B5_CLOSURE",
+  "pre_hotfix_commit": "55378b9",
+  "post_hotfix_commit": "f2d2fa3",
+  "locked_counts_changed": false,
+  "bridge_changed": false,
+  "pricing_population_changed": false,
+  "rejected_population_changed": false,
+  "b4_status": "FINAL REVIEWED / PASS",
+  "b5_status": "FINAL REVIEWED / PASS",
+  "b4_tests": "8/8 PASS",
+  "b5_tests": "13/13 PASS",
+  "static_validation": "12/12 PASS",
+  "locked_counts": {
+    "core_rows": 1347681,
+    "core_bad": 269249,
+    "core_good": 1078432,
+    "issue_cohorts": 139,
+    "figshare_train": 236846,
+    "figshare_test": 95019,
+    "figshare_combined": 331865,
+    "matched": 325255,
+    "figshare_only": 6610,
+    "core_only": 1022426,
+    "full_bridge": 1354291,
+    "pricing_rows": 325255,
+    "rejected_rows": 27648741
+  },
+  "semantic_changes": [
+    "staging lineage restored: title and desc retained",
+    "B4 DQ semantics corrected: STRUCTURAL_PASS and NULL account-level flag placeholder",
+    "RejectStats DTI parser corrected: trim/remove percent/decimal cast in percentage-point units",
+    "technical source-row key stabilized on materialized DuckDB rowid",
+    "pricing-role governance made executable through exact YAML assertion",
+    "rejected parse-quality gate B5T13 added"
+  ],
+  "next_gate": "B6_PORTFOLIO_OVERVIEW"
+}
