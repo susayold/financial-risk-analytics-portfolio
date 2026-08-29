@@ -1,0 +1,185 @@
+{
+  "stage": "B4",
+  "gate_status": "PASS",
+  "tests": [
+    {
+      "id": "B4T01",
+      "name": "KEY",
+      "status": "PASS",
+      "observed": {
+        "row_count": 1347681,
+        "distinct_account_id": 1347681,
+        "null_account_id": 0,
+        "duplicate_account_id": 0
+      },
+      "expected": {
+        "row_count": 1347681,
+        "distinct_account_id": 1347681,
+        "null_account_id": 0,
+        "duplicate_account_id": 0
+      }
+    },
+    {
+      "id": "B4T02",
+      "name": "POPULATION",
+      "status": "PASS",
+      "observed": {
+        "staging_rows": 1347681,
+        "mart_rows": 1347681,
+        "population_loss": 0
+      },
+      "expected": {
+        "staging_rows": 1347681,
+        "mart_rows": 1347681,
+        "population_loss": 0
+      }
+    },
+    {
+      "id": "B4T03",
+      "name": "TARGET",
+      "status": "PASS",
+      "observed": {
+        "bad": 269249,
+        "good": 1078432,
+        "bad_rate": 0.19978689318911522,
+        "unknown_target": 0
+      },
+      "expected": {
+        "bad": 269249,
+        "good": 1078432,
+        "bad_rate": 0.199786893,
+        "unknown_target": 0
+      }
+    },
+    {
+      "id": "B4T04",
+      "name": "TEMPORAL",
+      "status": "PASS",
+      "observed": {
+        "Development": {
+          "row_count": 829347,
+          "min_issue_d": "2007-06-01",
+          "max_issue_d": "2015-12-01",
+          "issue_cohorts": 103
+        },
+        "Validation": {
+          "row_count": 293057,
+          "min_issue_d": "2016-01-01",
+          "max_issue_d": "2016-12-01",
+          "issue_cohorts": 12
+        },
+        "OOT": {
+          "row_count": 169117,
+          "min_issue_d": "2017-01-01",
+          "max_issue_d": "2017-12-01",
+          "issue_cohorts": 12
+        },
+        "Historical Shadow": {
+          "row_count": 56160,
+          "min_issue_d": "2018-01-01",
+          "max_issue_d": "2018-12-01",
+          "issue_cohorts": 12
+        }
+      },
+      "expected": {
+        "Development": 829347,
+        "Validation": 293057,
+        "OOT": 169117,
+        "Historical Shadow": 56160,
+        "issue_cohorts": 139,
+        "unassigned": 0,
+        "date_range": [
+          "2007-06-01",
+          "2018-12-01"
+        ]
+      }
+    },
+    {
+      "id": "B4T05",
+      "name": "SCHEMA",
+      "status": "PASS",
+      "observed": {
+        "columns": [
+          "account_id",
+          "issue_d",
+          "issue_year",
+          "issue_month",
+          "issue_cohort",
+          "split_name",
+          "actual_default",
+          "target_label",
+          "revenue",
+          "dti_n",
+          "loan_amnt",
+          "fico_n",
+          "experience_c",
+          "emp_length",
+          "purpose",
+          "home_ownership_n",
+          "addr_state",
+          "zip_code",
+          "dq_status",
+          "dq_flag_count",
+          "source_population",
+          "source_version",
+          "feature_contract_version",
+          "preprocessing_version",
+          "mart_version",
+          "mart_build_ts"
+        ]
+      },
+      "expected": {
+        "columns": [
+          "account_id",
+          "issue_d",
+          "issue_year",
+          "issue_month",
+          "issue_cohort",
+          "split_name",
+          "actual_default",
+          "target_label",
+          "revenue",
+          "dti_n",
+          "loan_amnt",
+          "fico_n",
+          "experience_c",
+          "emp_length",
+          "purpose",
+          "home_ownership_n",
+          "addr_state",
+          "zip_code",
+          "dq_status",
+          "dq_flag_count",
+          "source_population",
+          "source_version",
+          "feature_contract_version",
+          "preprocessing_version",
+          "mart_version",
+          "mart_build_ts"
+        ]
+      }
+    },
+    {
+      "id": "B4T06",
+      "name": "FEATURE_BOUNDARY",
+      "status": "PASS",
+      "observed": {
+        "forbidden_present": [],
+        "champion_missing": []
+      },
+      "expected": {
+        "forbidden_present": [],
+        "champion_missing": []
+      }
+    },
+    {
+      "id": "B4T07",
+      "name": "NULL_PROFILE",
+      "status": "PASS",
+      "observed": {
+        "fields": 10
+      },
+      "note": "Descriptive only; no imputation or capping applied."
+    }
+  ]
+}

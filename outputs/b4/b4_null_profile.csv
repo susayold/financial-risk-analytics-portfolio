@@ -1,0 +1,11 @@
+field,row_count,null_count,null_rate
+addr_state,1347681,0,0.0
+dti_n,1347681,0,0.0
+emp_length,1347681,0,0.0
+experience_c,1347681,0,0.0
+fico_n,1347681,0,0.0
+home_ownership_n,1347681,0,0.0
+loan_amnt,1347681,0,0.0
+purpose,1347681,0,0.0
+revenue,1347681,0,0.0
+zip_code,1347681,1,7.420153582338847e-07

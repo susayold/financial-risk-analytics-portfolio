@@ -46,7 +46,8 @@
     <a class="rail-item" href="#dq" data-slide="dq"><b>05</b><span>DQ</span></a>
     <a class="rail-item" href="#audit" data-slide="audit"><b>06</b><span>AUDIT</span></a>
     <a class="rail-item" href="#decision" data-slide="decision"><b>07</b><span>DECISION</span></a>
-    <a class="rail-item" href="#evidence" data-slide="evidence"><b>08</b><span>EVIDENCE</span></a>
+    <a class="rail-item" href="#b4" data-slide="b4"><b>08</b><span>B4 MART</span></a>
+    <a class="rail-item" href="#evidence" data-slide="evidence"><b>09</b><span>EVIDENCE</span></a>
   </aside>
 
   <main id="main-content">
@@ -58,7 +59,7 @@
           <p class="lead">Block B converts the governed credit-risk foundation from Block A into a reproducible analytical data layer using DuckDB, SQL and Python.</p>
           <div class="hero-actions">
             <a class="button primary" href="#proofs">Explore the controls <span aria-hidden="true">→</span></a>
-            <span class="status-pill"><i></i> CURRENT WEBSITE SCOPE · B0–B3</span>
+            <span class="status-pill"><i></i> CURRENT WEBSITE SCOPE · B0–B4</span>
           </div>
           <div class="hero-kpis" aria-label="Reviewed Block B metrics">
             <div><strong>1,347,681</strong><span>Loans reconciled</span></div>
@@ -67,7 +68,7 @@
             <div><strong>7 / 7</strong><span>DQ controls passed</span></div>
             <div><strong>139</strong><span>Issue cohorts</span></div>
           </div>
-          <div class="hero-status-card"><i data-lucide="shield-check"></i><div><b>B0–B3</b><strong>REVIEWED / PASS</strong></div><small>Next: B4</small></div>
+          <div class="hero-status-card"><i data-lucide="shield-check"></i><div><b>B0–B4</b><strong>REVIEWED / PASS</strong></div><small>Next: B5</small></div>
           <p class="claim-note"><span class="note-icon" aria-hidden="true">i</span><span>Final-resolution default outcome; <b>not a verified 12-month Probability of Default.</b></span></p>
         </div>
         <div class="hero-visual reveal reveal-delay" aria-label="Data engineering architecture from Zenodo through DuckDB, SQL, Python, staging, DQ and evidence">
@@ -171,19 +172,47 @@
 
     <section id="decision" class="slide white-slide" aria-labelledby="decision-title">
       <div class="container">
-        <div class="section-heading reveal"><div class="section-number">07<i></i></div><div><p class="eyebrow">REVIEWED DECISION</p><h2 id="decision-title">Trusted foundation, ready for the core mart</h2><p class="section-lead">Population, target, chronology and champion feature boundaries remain governed and reproducible.</p></div></div>
+        <div class="section-heading reveal"><div class="section-number">07<i></i></div><div><p class="eyebrow">REVIEWED DECISION</p><h2 id="decision-title">Trusted foundation, ready for the core mart</h2><p class="section-lead">B0–B3 controls and the B4 analytical mart preserve population, target, chronology and champion feature boundaries.</p></div></div>
         <div class="decision-grid reveal">
-          <article class="decision-main"><span class="decision-mark"><i data-lucide="check-check"></i></span><p class="eyebrow">CURRENT GATE</p><h3>B0–B3</h3><strong>REVIEWED / PASS</strong><p>Engineering foundation sufficiently controlled to proceed to the next analytical gate.</p></article>
-          <div class="next-gate"><span class="eyebrow">NEXT ANALYTICAL GATE</span><b>B4</b><code>mart_credit_application_core</code><p>Create a stable analytical mart at one loan/account grain and immediately rerun key, population and target regression checks.</p><a class="button secondary" href="#evidence">View evidence <span aria-hidden="true">→</span></a></div>
+          <article class="decision-main"><span class="decision-mark"><i data-lucide="check-check"></i></span><p class="eyebrow">CURRENT GATE</p><h3>B4</h3><strong>REVIEWED / PASS</strong><p>The core mart reconciles exactly to the reviewed staging population and is ready for the next governed boundary.</p></article>
+          <div class="next-gate"><span class="eyebrow">NEXT ANALYTICAL GATE</span><b>B5</b><code>supplemental / pricing / rejected marts</code><p>Define explicit supplemental, pricing and rejected-context populations before the first portfolio-risk analysis.</p><a class="button secondary" href="#evidence">View evidence <span aria-hidden="true">→</span></a></div>
         </div>
         <div class="cleanup-block reveal"><div class="cleanup-head"><span class="eyebrow">CLEANUP BOUNDARY</span><b>Runtime removed after evidence export</b></div><div class="cleanup-grid"><span><b>NO</b><small>Raw archive local</small></span><span><b>NO</b><small>Inner CSV local</small></span><span><b>NO</b><small>DuckDB local</small></span><span><b>NO</b><small>Row-level exports</small></span><span class="retained"><b>YES</b><small>Code retained</small></span><span class="retained"><b>YES</b><small>Config retained</small></span></div><p><i data-lucide="shield-alert"></i> Secure deletion is not claimed.</p></div>
         <div class="not-claimed reveal"><span class="eyebrow">NOT CLAIMED YET</span><div><span>Portfolio-risk findings</span><span>Calibrated PD model</span><span>Observed LGD / EAD</span><span>ECL result</span><span>Production pipeline</span></div></div>
       </div>
     </section>
 
+    <section id="b4" class="slide light-slide b4-slide" aria-labelledby="b4-title">
+      <div class="container">
+        <div class="section-heading reveal"><div class="section-number">08<i></i></div><div><p class="eyebrow">B4 · CORE APPLICATION MART</p><h2 id="b4-title">One governed analytical table.</h2><p class="section-lead">A canonical one-account mart that preserves the source population, target and chronology with no silent population change.</p></div></div>
+        <div class="b4-layout reveal">
+          <div class="b4-flow" aria-label="B4 data flow">
+            <div class="b4-flow-step"><span>01</span><code>staging.stg_lc_granting_core</code><small>Reviewed B0–B3 source staging</small></div>
+            <i aria-hidden="true">↓</i>
+            <div class="b4-flow-step featured"><span>02</span><code>mart.mart_credit_application_core</code><small>One row per account · B4_v1.0</small></div>
+            <i aria-hidden="true">↓</i>
+            <div class="b4-flow-step"><span>03</span><b>Portfolio Analytics</b><small>Downstream analytical input</small></div>
+          </div>
+          <div class="b4-metric-grid">
+            <div><strong>1,347,681</strong><span>Mart rows</span></div>
+            <div><strong>1,347,681</strong><span>Distinct accounts</span></div>
+            <div><strong>0</strong><span>Duplicate IDs</span></div>
+            <div><strong>0</strong><span>Population loss</span></div>
+          </div>
+        </div>
+        <div class="b4-schema-grid reveal-group">
+          <article class="b4-schema reveal-item"><span>01</span><h3>KEY / TIME / TARGET</h3><p><code>account_id</code> · <code>issue_d</code> · <code>split_name</code> · <code>actual_default</code></p></article>
+          <article class="b4-schema reveal-item"><span>02</span><h3>CHAMPION CANDIDATES</h3><p><code>revenue</code> · <code>dti_n</code> · <code>loan_amnt</code> · <code>fico_n</code> · <code>experience_c</code> · <code>emp_length</code> · <code>purpose</code> · <code>home_ownership_n</code></p></article>
+          <article class="b4-schema reveal-item"><span>03</span><h3>ANALYSIS-ONLY</h3><p><code>addr_state</code> · <code>zip_code</code><br>Model eligible: NO</p></article>
+          <article class="b4-schema reveal-item"><span>04</span><h3>GOVERNANCE METADATA</h3><p><code>dq_status</code> · <code>mart_version</code> · <code>preprocessing_version</code> · source/version trace</p></article>
+        </div>
+        <div class="b4-status reveal"><i data-lucide="shield-check"></i><span><b>B4 REVIEWED / PASS</b><small>No imputation, capping, encoding, pricing, PD, LGD/EAD or ECL is applied.</small></span></div>
+      </div>
+    </section>
+
     <section id="evidence" class="slide soft-slide" aria-labelledby="evidence-title">
       <div class="container">
-        <div class="section-heading reveal"><div class="section-number">08<i></i></div><div><p class="eyebrow">PUBLIC REVIEW PACKAGE</p><h2 id="evidence-title">Reviewed evidence, ready to inspect</h2><p class="section-lead">Sanitized evidence explains the run without publishing row-level LendingClub data.</p></div></div>
+        <div class="section-heading reveal"><div class="section-number">09<i></i></div><div><p class="eyebrow">PUBLIC REVIEW PACKAGE</p><h2 id="evidence-title">Reviewed evidence, ready to inspect</h2><p class="section-lead">Sanitized evidence explains the run without publishing row-level LendingClub data.</p></div></div>
         <div class="evidence-grid reveal-group">
           <a class="evidence-card featured reveal-item" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/README.md" target="_blank" rel="noreferrer"><div class="evidence-icon"><i data-lucide="folder-open"></i></div><span class="eyebrow">START HERE</span><h3>Block B Evidence Index</h3><p>Scope, status, claim boundary and handoff.</p><b>Open index <span aria-hidden="true">↗</span></b></a>
           <a class="evidence-card reveal-item" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/run-manifest.md" target="_blank" rel="noreferrer"><div class="evidence-icon"><i data-lucide="file-json-2"></i></div><span class="eyebrow">EXECUTION</span><h3>Run Manifest</h3><p>Scope, source checksum, test suite and next gate.</p><b>View artifact <span aria-hidden="true">↗</span></b></a>
@@ -192,9 +221,13 @@
           <a class="evidence-card reveal-item" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/reviewed-run-report.md" target="_blank" rel="noreferrer"><div class="evidence-icon"><i data-lucide="file-text"></i></div><span class="eyebrow">NARRATIVE</span><h3>Reviewed Run Report</h3><p>Human-readable implementation summary.</p><b>View artifact <span aria-hidden="true">↗</span></b></a>
           <a class="evidence-card reveal-item" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/remediation-summary.md" target="_blank" rel="noreferrer"><div class="evidence-icon"><i data-lucide="history"></i></div><span class="eyebrow">AUDIT HISTORY</span><h3>Remediation Summary</h3><p>What changed and what did not change.</p><b>View artifact <span aria-hidden="true">↗</span></b></a>
           <a class="evidence-card reveal-item" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/cleanup-verification.md" target="_blank" rel="noreferrer"><div class="evidence-icon"><i data-lucide="trash-2"></i></div><span class="eyebrow">DATA HANDLING</span><h3>Cleanup Verification</h3><p>Post-run local artifact state.</p><b>View artifact <span aria-hidden="true">↗</span></b></a>
+          <a class="evidence-card reveal-item" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/b4-status.md" target="_blank" rel="noreferrer"><div class="evidence-icon"><i data-lucide="badge-check"></i></div><span class="eyebrow">B4 GATE</span><h3>B4 Status</h3><p>Scope, gate result and next stage.</p><b>View artifact <span aria-hidden="true">↗</span></b></a>
+          <a class="evidence-card reveal-item" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/b4-reconciliation.md" target="_blank" rel="noreferrer"><div class="evidence-icon"><i data-lucide="scale"></i></div><span class="eyebrow">RECONCILIATION</span><h3>B4 Reconciliation</h3><p>Population, key, target and split counts.</p><b>View artifact <span aria-hidden="true">↗</span></b></a>
+          <a class="evidence-card reveal-item" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/b4-mart-schema.md" target="_blank" rel="noreferrer"><div class="evidence-icon"><i data-lucide="table-2"></i></div><span class="eyebrow">SCHEMA</span><h3>B4 Mart Schema</h3><p>Governed field groups and exclusions.</p><b>View artifact <span aria-hidden="true">↗</span></b></a>
+          <a class="evidence-card reveal-item" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/b4-run-report.md" target="_blank" rel="noreferrer"><div class="evidence-icon"><i data-lucide="file-text"></i></div><span class="eyebrow">RUN REPORT</span><h3>B4 Run Report</h3><p>Build method, tests and safe handoff.</p><b>View artifact <span aria-hidden="true">↗</span></b></a>
           <a class="evidence-card source-card reveal-item" href="https://doi.org/10.5281/zenodo.11295916" target="_blank" rel="noreferrer"><div class="evidence-icon"><i data-lucide="external-link"></i></div><span class="eyebrow">SOURCE AUTHORITY</span><h3>Zenodo Record 11295916</h3><p>Governing source record; no raw row-level copy is published here.</p><b>Open source <span aria-hidden="true">↗</span></b></a>
         </div>
-        <div class="footer-note reveal"><span><b>CRD<span>.</span>PI</b> · Better decisions through controlled evidence.</span><span>Block B · B0–B3 public presentation · v1.0</span></div>
+        <div class="footer-note reveal"><span><b>CRD<span>.</span>PI</b> · Better decisions through controlled evidence.</span><span>Block B · B0–B4 public presentation · v1.0 · IN PROGRESS</span></div>
       </div>
     </section>
   </main>

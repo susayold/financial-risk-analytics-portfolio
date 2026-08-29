@@ -1,0 +1,111 @@
+{
+  "stage": "B4",
+  "mart": "mart.mart_credit_application_core",
+  "mart_version": "B4_v1.0",
+  "columns": [
+    {
+      "name": "account_id",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "issue_d",
+      "type": "DATE"
+    },
+    {
+      "name": "issue_year",
+      "type": "INTEGER"
+    },
+    {
+      "name": "issue_month",
+      "type": "TIMESTAMP"
+    },
+    {
+      "name": "issue_cohort",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "split_name",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "actual_default",
+      "type": "INTEGER"
+    },
+    {
+      "name": "target_label",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "revenue",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "dti_n",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "loan_amnt",
+      "type": "BIGINT"
+    },
+    {
+      "name": "fico_n",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "experience_c",
+      "type": "BIGINT"
+    },
+    {
+      "name": "emp_length",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "purpose",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "home_ownership_n",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "addr_state",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "zip_code",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "dq_status",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "dq_flag_count",
+      "type": "INTEGER"
+    },
+    {
+      "name": "source_population",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "source_version",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "feature_contract_version",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "preprocessing_version",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "mart_version",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "mart_build_ts",
+      "type": "TIMESTAMP WITH TIME ZONE"
+    }
+  ]
+}

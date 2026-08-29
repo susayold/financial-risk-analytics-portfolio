@@ -1,0 +1,18 @@
+{
+  "stage": "B4",
+  "status": "PASS",
+  "staging_rows": 1347681,
+  "mart_rows": 1347681,
+  "distinct_account_id": 1347681,
+  "duplicate_account_id": 0,
+  "bad": 269249,
+  "good": 1078432,
+  "bad_rate": 0.19978689318911522,
+  "issue_cohorts": 139,
+  "development": 829347,
+  "validation": 293057,
+  "oot": 169117,
+  "historical_shadow": 56160,
+  "unassigned": 0,
+  "mart_version": "B4_v1.0"
+}

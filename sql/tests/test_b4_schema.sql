@@ -1,0 +1,1 @@
+DESCRIBE mart.mart_credit_application_core;
