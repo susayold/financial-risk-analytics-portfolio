@@ -1,0 +1,9 @@
+{
+  "stage": "B8",
+  "status": "BUILT",
+  "material_segments": 44,
+  "material_bad_associated_share_sum": 1.1036495199259195,
+  "max_materiality_rank": 44,
+  "materiality_rule": "relative_bad_rate > 1.0 AND account_share >= 0.001 (0.1%)",
+  "concentration_index_definition": "relative_bad_rate \u00d7 loan_amount_share; descriptive only"
+}

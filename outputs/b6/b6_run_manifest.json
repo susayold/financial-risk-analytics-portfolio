@@ -1,0 +1,18 @@
+{
+  "stage": "B6",
+  "status": "BUILT",
+  "source_mart": "mart.mart_credit_application_core",
+  "grain": "one row per application",
+  "preprocessing": "none",
+  "tables": [
+    "analytics.portfolio_overview",
+    "analytics.numeric_profile",
+    "analytics.portfolio_mix"
+  ],
+  "exports": [
+    "portfolio_kpis.json",
+    "portfolio_kpis.csv",
+    "numeric_profile.csv",
+    "portfolio_mix.csv"
+  ]
+}

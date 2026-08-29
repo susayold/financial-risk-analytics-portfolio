@@ -1,0 +1,117 @@
+{
+  "stage": "B6",
+  "gate_status": "PASS",
+  "tests": [
+    {
+      "id": "B6T01",
+      "name": "CORE_RECONCILIATION",
+      "status": "PASS",
+      "observed": {
+        "rows": 1347681,
+        "distinct_ids": 1347681,
+        "null_ids": 0
+      },
+      "expected": {
+        "rows": 1347681,
+        "distinct_ids": 1347681,
+        "null_ids": 0
+      }
+    },
+    {
+      "id": "B6T02",
+      "name": "TARGET_RECONCILIATION",
+      "status": "PASS",
+      "observed": {
+        "bad": 269249,
+        "good": 1078432,
+        "bad_rate": 0.19978689318911522,
+        "unknown": 0
+      },
+      "expected": {
+        "bad": 269249,
+        "good": 1078432,
+        "bad_rate": 0.199786893,
+        "unknown": 0
+      }
+    },
+    {
+      "id": "B6T03",
+      "name": "EXPOSURE_RECONCILIATION",
+      "status": "PASS",
+      "observed": {
+        "total_loan_amount": 19417698475.0,
+        "bad_associated_loan_amount": 4186020700.0,
+        "bad_associated_exposure_share": 0.21557759305972538
+      },
+      "expected": {
+        "total_positive": true,
+        "bad_nonnegative": true,
+        "share_between_0_and_1": true
+      }
+    },
+    {
+      "id": "B6T04",
+      "name": "NULL_PROFILE",
+      "status": "PASS",
+      "observed": {
+        "numeric_field_null_cells": 0
+      },
+      "note": "Descriptive only; no imputation or capping."
+    },
+    {
+      "id": "B6T05",
+      "name": "NUMERIC_SANITY",
+      "status": "PASS",
+      "observed": {
+        "invalid_profile_rows": 0
+      },
+      "expected": {
+        "invalid_profile_rows": 0
+      }
+    },
+    {
+      "id": "B6T06",
+      "name": "CATEGORY_SHARE_SUM",
+      "status": "PASS",
+      "observed": {
+        "emp_length": {
+          "accounts": 1347681,
+          "exposure_share": 1.0
+        },
+        "purpose": {
+          "accounts": 1347681,
+          "exposure_share": 1.0000000000000002
+        },
+        "addr_state": {
+          "accounts": 1347681,
+          "exposure_share": 1.0000000000000004
+        },
+        "experience_c": {
+          "accounts": 1347681,
+          "exposure_share": 1.0
+        },
+        "home_ownership_n": {
+          "accounts": 1347681,
+          "exposure_share": 1.0
+        }
+      },
+      "expected": {
+        "accounts": 1347681,
+        "exposure_share": 1.0
+      }
+    },
+    {
+      "id": "B6T07",
+      "name": "PRICING_SAMPLE_BOUNDARY",
+      "status": "PASS",
+      "observed": {
+        "pricing_fields_in_core": 0
+      },
+      "expected": {
+        "pricing_fields_in_core": 0
+      },
+      "note": "Matched pricing sample remains B5-controlled and is not mixed into core baseline metrics."
+    }
+  ],
+  "claim_boundary": "Descriptive portfolio composition and observed final-resolution BAD baseline; not 12-month PD."
+}

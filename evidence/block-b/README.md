@@ -1,12 +1,13 @@
-# Block B — B0–B5 reviewed evidence index
+# Block B — B0–B9 reviewed and locked evidence index
 
 ## Status
 
 `B0–B3 = REVIEWED / PASS`  
 `B4 = REVIEWED / PASS`
 `B5 = FINAL REVIEWED / PASS`
-`Block B overall = IN PROGRESS`  
-`Next gate = B6 — Portfolio Overview`
+`B6–B9 = FINAL REVIEWED / PASS`
+`Block B overall = FINAL REVIEWED / LOCKED`
+`Next gate = Block C — Credit Risk Modeling`
 
 This public evidence index contains sanitized aggregate and audit metadata only. It does not publish the raw LendingClub CSV, row-level Parquet, DuckDB database or private local paths.
 
@@ -36,6 +37,14 @@ This public evidence index contains sanitized aggregate and audit metadata only.
 - `mart_rejected_context` contains 27,648,741 deterministic-keyed context records with no observed outcome, GOOD/BAD label, PD, loss or champion merge eligibility.
 - Independent B5 suite passes 12/12. B5 does not perform reject inference, causal approval analysis, model fitting or PD/LGD/EAD/ECL estimation.
 
+## B6–B9 portfolio-risk analysis
+
+- B6 covers 1,347,681 core accounts, 269,249 BAD, 1,078,432 GOOD, 19.9787% observed final-resolution BAD rate and $19.42B `loan_amnt` exposure proxy.
+- B7 covers fixed FICO/DTI bands, persisted revenue/loan quantile cuts and categorical dimensions; each dimension reconciles to the full core.
+- B8 uses the predefined rule `relative_bad_rate > 1.0 AND account_share >= 0.1%`; it reports 44 material single-variable segments with deterministic ranking.
+- B9 uses `issue_d` and reconciles 139 monthly cohorts, annual cohorts and the four temporal splits. The 2018 historical shadow is right-truncated/resolution-selected and is not live monitoring.
+- B6–B9 are descriptive findings only. They do not claim PD, model performance, expected loss, causal drivers, reject inference or production policy.
+
 ## Claim boundary
 
 `actual_default` is the observed final-resolution default outcome in the resolved granted-loan population. It is not presented as a verified 12-month Probability of Default. B5 does not prove full-portfolio pricing conclusions, rejected-loan default performance, reject inference, causal approval effects, model performance, PD calibration, LGD/EAD, ECL, pricing/cutoff policy or production readiness.
@@ -54,4 +63,9 @@ This public evidence index contains sanitized aggregate and audit metadata only.
 - [B5 pricing mart schema](b5-pricing-mart-schema.md)
 - [B5 rejected-context boundary](b5-rejected-context-boundary.md)
 - [B5 run report](b5-run-report.md)
+- [B6 portfolio overview](b6-portfolio-overview.md)
+- [B7 segment risk](b7-segment-risk.md)
+- [B8 risk concentration](b8-risk-concentration.md)
+- [B9 vintage analysis](b9-vintage-analysis.md)
+- [Block B final lock](block-b-final-lock.md)
 - [Zenodo source record](https://doi.org/10.5281/zenodo.11295916)

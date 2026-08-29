@@ -1,5 +1,6 @@
 # Execution-only runtime: raw sources, DuckDB databases, caches and Python bytecode never enter GitHub.
 _b4_runtime/
 _b5_runtime/
+_analysis_runtime/
 **/__pycache__/
 *.py[cod]

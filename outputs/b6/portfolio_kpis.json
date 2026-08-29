@@ -1,0 +1,20 @@
+{
+  "total_accounts": 1347681,
+  "good_accounts": 1078432,
+  "bad_accounts": 269249,
+  "observed_bad_rate": 0.19978689318911522,
+  "total_loan_amount": 19417698475.0,
+  "avg_loan_amount": 14408.230490004682,
+  "median_loan_amount": 12000.0,
+  "bad_associated_loan_amount": 4186020700.0,
+  "bad_associated_exposure_share": 0.21557759305972538,
+  "avg_fico": 698.1589222523728,
+  "median_fico": 692.0,
+  "avg_dti": 18.299090704699456,
+  "median_dti": 17.63,
+  "avg_revenue": 77369.6831740299,
+  "median_revenue": 65000.0,
+  "issue_cohorts": 139,
+  "min_issue_d": "2007-06-01",
+  "max_issue_d": "2018-12-01"
+}

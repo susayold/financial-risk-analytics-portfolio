@@ -1,0 +1,205 @@
+{
+  "stage": "B7",
+  "gate_status": "PASS",
+  "tests": [
+    {
+      "id": "B7T01",
+      "name": "DIMENSION_COVERAGE",
+      "status": "PASS",
+      "observed": [
+        "addr_state",
+        "dti_band",
+        "emp_length",
+        "experience_c",
+        "fico_band",
+        "home_ownership_n",
+        "loan_amount_band",
+        "purpose",
+        "revenue_band"
+      ],
+      "expected": [
+        "addr_state",
+        "dti_band",
+        "emp_length",
+        "experience_c",
+        "fico_band",
+        "home_ownership_n",
+        "loan_amount_band",
+        "purpose",
+        "revenue_band"
+      ]
+    },
+    {
+      "id": "B7T02",
+      "name": "SEGMENT_COVERAGE",
+      "status": "PASS",
+      "observed": {
+        "fico_band": {
+          "accounts": 1347681,
+          "bad_accounts": 269249,
+          "loan_amount_share": 1.0
+        },
+        "dti_band": {
+          "accounts": 1347681,
+          "bad_accounts": 269249,
+          "loan_amount_share": 0.9999999999999999
+        },
+        "revenue_band": {
+          "accounts": 1347681,
+          "bad_accounts": 269249,
+          "loan_amount_share": 1.0
+        },
+        "loan_amount_band": {
+          "accounts": 1347681,
+          "bad_accounts": 269249,
+          "loan_amount_share": 0.9999999999999999
+        },
+        "purpose": {
+          "accounts": 1347681,
+          "bad_accounts": 269249,
+          "loan_amount_share": 1.0000000000000002
+        },
+        "home_ownership_n": {
+          "accounts": 1347681,
+          "bad_accounts": 269249,
+          "loan_amount_share": 1.0
+        },
+        "experience_c": {
+          "accounts": 1347681,
+          "bad_accounts": 269249,
+          "loan_amount_share": 1.0
+        },
+        "emp_length": {
+          "accounts": 1347681,
+          "bad_accounts": 269249,
+          "loan_amount_share": 1.0
+        },
+        "addr_state": {
+          "accounts": 1347681,
+          "bad_accounts": 269249,
+          "loan_amount_share": 1.0000000000000004
+        }
+      },
+      "expected": {
+        "accounts_per_dimension": 1347681
+      }
+    },
+    {
+      "id": "B7T03",
+      "name": "BAD_RECONCILIATION",
+      "status": "PASS",
+      "observed": {
+        "core_bad": 269249,
+        "by_dimension": {
+          "fico_band": 269249,
+          "dti_band": 269249,
+          "revenue_band": 269249,
+          "loan_amount_band": 269249,
+          "purpose": 269249,
+          "home_ownership_n": 269249,
+          "experience_c": 269249,
+          "emp_length": 269249,
+          "addr_state": 269249
+        }
+      },
+      "expected": {
+        "bad_per_dimension": 269249
+      }
+    },
+    {
+      "id": "B7T04",
+      "name": "EXPOSURE_RECONCILIATION",
+      "status": "PASS",
+      "observed": {
+        "fico_band": 1.0,
+        "dti_band": 0.9999999999999999,
+        "revenue_band": 1.0,
+        "loan_amount_band": 0.9999999999999999,
+        "purpose": 1.0000000000000002,
+        "home_ownership_n": 1.0,
+        "experience_c": 1.0,
+        "emp_length": 1.0,
+        "addr_state": 1.0000000000000004
+      },
+      "expected": {
+        "loan_amount_share_per_dimension": 1.0
+      }
+    },
+    {
+      "id": "B7T05",
+      "name": "MISSING_EXPLICIT",
+      "status": "PASS",
+      "observed": {
+        "unknown_missing_segment_rows": 0
+      },
+      "note": "Missing values are explicit, never silently dropped."
+    },
+    {
+      "id": "B7T06",
+      "name": "FIXED_BAND_DEFINITIONS",
+      "status": "PASS",
+      "observed": {
+        "fico_dti_bands": 7,
+        "quantile_bands": 4
+      },
+      "expected": {
+        "fico_dti_bands": 7,
+        "quantile_bands": 4
+      }
+    },
+    {
+      "id": "B7T07",
+      "name": "PURPOSE_COVERAGE",
+      "status": "PASS",
+      "observed": {
+        "accounts": 1347681,
+        "bad_accounts": 269249,
+        "loan_amount_share": 1.0000000000000002
+      }
+    },
+    {
+      "id": "B7T08",
+      "name": "HOME_EMPLOYMENT_COVERAGE",
+      "status": "PASS",
+      "observed": {
+        "home_ownership_n": {
+          "accounts": 1347681,
+          "bad_accounts": 269249,
+          "loan_amount_share": 1.0
+        },
+        "experience_c": {
+          "accounts": 1347681,
+          "bad_accounts": 269249,
+          "loan_amount_share": 1.0
+        },
+        "emp_length": {
+          "accounts": 1347681,
+          "bad_accounts": 269249,
+          "loan_amount_share": 1.0
+        }
+      }
+    },
+    {
+      "id": "B7T09",
+      "name": "STATE_COVERAGE",
+      "status": "PASS",
+      "observed": {
+        "accounts": 1347681,
+        "bad_accounts": 269249,
+        "loan_amount_share": 1.0000000000000004
+      }
+    },
+    {
+      "id": "B7T10",
+      "name": "PRIMARY_SIZE_RULE",
+      "status": "PASS",
+      "observed": {
+        "primary_segments_violating_rule": 0
+      },
+      "expected": {
+        "primary_segments_violating_rule": 0
+      }
+    }
+  ],
+  "claim_boundary": "Single-variable descriptive observed BAD segmentation; not predictive model performance."
+}

@@ -1,0 +1,8 @@
+{
+  "stage": "B8",
+  "status": "BUILT",
+  "source_table": "analytics.segment_risk",
+  "ranking_key": "bad_associated_share DESC",
+  "single_variable_only": true,
+  "no_combinatorial_fishing": true
+}

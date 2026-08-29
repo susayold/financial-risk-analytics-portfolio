@@ -1,0 +1,42 @@
+{
+  "fico_band": [
+    "<600",
+    "600–639",
+    "640–679",
+    "680–719",
+    "720–759",
+    "760–799",
+    "800+"
+  ],
+  "dti_band": [
+    "<10",
+    "10–19.99",
+    "20–29.99",
+    "30–39.99",
+    "40–59.99",
+    "60–99.99",
+    "100+"
+  ],
+  "revenue_band": [
+    "Q1 (≤25th percentile)",
+    "Q2 (>25th–50th percentile)",
+    "Q3 (>50th–75th percentile)",
+    "Q4 (>75th percentile)"
+  ],
+  "loan_amount_band": [
+    "Q1 (≤25th percentile)",
+    "Q2 (>25th–50th percentile)",
+    "Q3 (>50th–75th percentile)",
+    "Q4 (>75th percentile)"
+  ],
+  "quantile_cut_points": {
+    "revenue_q25": 46600.0,
+    "revenue_q50": 65000.0,
+    "revenue_q75": 92000.0,
+    "loan_amnt_q25": 7975.0,
+    "loan_amnt_q50": 12000.0,
+    "loan_amnt_q75": 20000.0
+  },
+  "missing_label": "UNKNOWN / MISSING",
+  "primary_segment_rule": "accounts >= 1,000 OR account_share >= 0.001"
+}

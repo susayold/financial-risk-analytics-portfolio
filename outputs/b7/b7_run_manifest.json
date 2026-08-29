@@ -1,0 +1,19 @@
+{
+  "stage": "B7",
+  "status": "BUILT",
+  "source_table": "mart.mart_credit_application_core",
+  "input_table": "analytics.segment_risk",
+  "dimensions": [
+    "addr_state",
+    "dti_band",
+    "emp_length",
+    "experience_c",
+    "fico_band",
+    "home_ownership_n",
+    "loan_amount_band",
+    "purpose",
+    "revenue_band"
+  ],
+  "row_count": 105,
+  "no_combinatorial_fishing": true
+}

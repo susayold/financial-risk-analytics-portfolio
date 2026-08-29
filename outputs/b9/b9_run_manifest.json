@@ -1,0 +1,13 @@
+{
+  "stage": "B9",
+  "status": "BUILT",
+  "source_table": "mart.mart_credit_application_core",
+  "temporal_authority": "issue_d",
+  "tables": [
+    "analytics.vintage_monthly",
+    "analytics.vintage_annual",
+    "analytics.vintage_split"
+  ],
+  "causal_claims": false,
+  "live_monitoring_claims": false
+}

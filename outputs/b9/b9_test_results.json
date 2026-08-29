@@ -1,0 +1,150 @@
+{
+  "stage": "B9",
+  "gate_status": "PASS",
+  "tests": [
+    {
+      "id": "B9T01",
+      "name": "COHORT_COUNT",
+      "status": "PASS",
+      "observed": {
+        "rows": 139,
+        "distinct_cohorts": 139,
+        "min": "2007-06-01",
+        "max": "2018-12-01"
+      },
+      "expected": {
+        "cohorts": 139,
+        "min": "2007-06",
+        "max": "2018-12"
+      }
+    },
+    {
+      "id": "B9T02",
+      "name": "MONTHLY_RECONCILIATION",
+      "status": "PASS",
+      "observed": {
+        "monthly": [
+          1347681,
+          269249,
+          19417698475.0,
+          4186020700.0
+        ],
+        "core": [
+          1347681,
+          269249,
+          19417698475,
+          4186020700
+        ]
+      },
+      "expected": {
+        "equal": true
+      }
+    },
+    {
+      "id": "B9T03",
+      "name": "ANNUAL_RECONCILIATION",
+      "status": "PASS",
+      "observed": {
+        "annual": [
+          1347681,
+          269249,
+          19417698475.0,
+          4186020700.0
+        ],
+        "core": [
+          1347681,
+          269249,
+          19417698475,
+          4186020700
+        ]
+      },
+      "expected": {
+        "equal": true
+      }
+    },
+    {
+      "id": "B9T04",
+      "name": "SPLIT_RECONCILIATION",
+      "status": "PASS",
+      "observed": {
+        "Development": {
+          "accounts": 829347,
+          "bad_rate": 0.1845572480517805,
+          "min": "2007-06-01",
+          "max": "2015-12-01"
+        },
+        "Validation": {
+          "accounts": 293057,
+          "bad_rate": 0.23281818895300233,
+          "min": "2016-01-01",
+          "max": "2016-12-01"
+        },
+        "OOT": {
+          "accounts": 169117,
+          "bad_rate": 0.23127184138791487,
+          "min": "2017-01-01",
+          "max": "2017-12-01"
+        },
+        "Historical Shadow": {
+          "accounts": 56160,
+          "bad_rate": 0.15751424501424502,
+          "min": "2018-01-01",
+          "max": "2018-12-01"
+        }
+      },
+      "expected": {
+        "Development": 829347,
+        "Validation": 293057,
+        "OOT": 169117,
+        "Historical Shadow": 56160
+      }
+    },
+    {
+      "id": "B9T05",
+      "name": "DATE_VALIDITY",
+      "status": "PASS",
+      "observed": {
+        "invalid_issue_dates": 0
+      },
+      "expected": {
+        "invalid_issue_dates": 0
+      }
+    },
+    {
+      "id": "B9T06",
+      "name": "TEMPORAL_AUTHORITY",
+      "status": "PASS",
+      "observed": {
+        "authority": "issue_d"
+      },
+      "expected": {
+        "authority": "issue_d"
+      }
+    },
+    {
+      "id": "B9T07",
+      "name": "RIGHT_TRUNCATION_CAVEAT",
+      "status": "PASS",
+      "observed": {
+        "caveat_present": true
+      },
+      "expected": {
+        "caveat_present": true
+      }
+    },
+    {
+      "id": "B9T08",
+      "name": "CLAIM_BOUNDARY",
+      "status": "PASS",
+      "observed": {
+        "causal_claims": false,
+        "live_monitoring_claims": false
+      },
+      "expected": {
+        "causal_claims": false,
+        "live_monitoring_claims": false
+      }
+    }
+  ],
+  "claim_boundary": "Vintage is descriptive and cohort-based. Temporal movement is associated/coincident/co-moving, not causal; this is not live monitoring."
+}
