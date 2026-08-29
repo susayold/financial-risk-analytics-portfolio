@@ -38,5 +38,8 @@
   .hero-copy{font-size:13px;overflow-wrap:anywhere}
 }
 
+.journey-card.in-progress{border-color:rgba(52,87,255,.42);background:linear-gradient(145deg,rgba(52,87,255,.11),rgba(123,97,255,.08))}.journey-card.in-progress .journey-status{color:var(--blue)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid rgba(76,201,240,.7);outline-offset:4px}
+
 
 

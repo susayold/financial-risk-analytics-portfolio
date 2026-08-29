@@ -35,13 +35,16 @@ function goTo(index) {
 }
 
 document.addEventListener('keydown', event => {
-  const tag = event.target?.tagName?.toLowerCase();
-  if (['input', 'textarea', 'select'].includes(tag) || event.target?.isContentEditable) return;
+  if (event.ctrlKey || event.metaKey || event.altKey) return;
+  const interactive = event.target?.closest(
+    ['a', 'button', 'summary', 'input', 'textarea', 'select', '[contenteditable="true"]', '[role="button"]', '[role="link"]'].join(',')
+  );
+  if (interactive) return;
   const activeId = railItems.find(item => item.classList.contains('is-active'))?.dataset.slide;
   const activeIndex = Math.max(0, slides.findIndex(slide => slide.id === activeId));
   const index = activeIndex;
-  if (['ArrowDown', 'PageDown', ' ', 'ArrowRight'].includes(event.key)) { event.preventDefault(); goTo(index + 1); }
-  if (['ArrowUp', 'PageUp', 'ArrowLeft'].includes(event.key)) { event.preventDefault(); goTo(index - 1); }
+  if (['ArrowDown', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); goTo(index + 1); }
+  if (['ArrowUp', 'PageUp'].includes(event.key)) { event.preventDefault(); goTo(index - 1); }
   if (event.key === 'Home') { event.preventDefault(); goTo(0); }
   if (event.key === 'End') { event.preventDefault(); goTo(slides.length - 1); }
 });
