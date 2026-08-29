@@ -14,6 +14,70 @@ REQUIRED_SOURCE_COLUMNS = {
     'addr_state', 'zip_code', 'Default',
 }
 
+EXPECTED_STAGING_COLUMNS = {
+    'account_id', 'issue_d', 'revenue', 'dti_n', 'loan_amnt', 'fico_n',
+    'experience_c', 'emp_length', 'purpose', 'home_ownership_n',
+    'addr_state', 'zip_code', 'actual_default', 'split_name',
+}
+
+EXPECTED_SPLITS = {
+    'Development': 829347,
+    'Validation': 293057,
+    'OOT': 169117,
+    'Historical Shadow': 56160,
+}
+
+
+def validate_staging_contract(con: duckdb.DuckDBPyConnection) -> dict:
+    """Fail closed if the reviewed B0–B3 staging contract is not present."""
+    actual_columns = {
+        row[0] for row in con.execute('DESCRIBE staging.stg_lc_granting_core').fetchall()
+    }
+    if actual_columns != EXPECTED_STAGING_COLUMNS:
+        raise ValueError(
+            'Staging columns do not match the locked B4 input contract: '
+            f'extra={sorted(actual_columns - EXPECTED_STAGING_COLUMNS)}, '
+            f'missing={sorted(EXPECTED_STAGING_COLUMNS - actual_columns)}'
+        )
+
+    row_count, distinct_ids, null_ids, unknown_target = con.execute("""
+        SELECT COUNT(*), COUNT(DISTINCT account_id),
+               COUNT(*) FILTER (WHERE account_id IS NULL),
+               COUNT(*) FILTER (WHERE actual_default IS NULL OR actual_default NOT IN (0, 1))
+        FROM staging.stg_lc_granting_core
+    """).fetchone()
+    if (row_count, distinct_ids, null_ids, unknown_target) != (1347681, 1347681, 0, 0):
+        raise ValueError(
+            'Staging key/target contract failed: '
+            f'rows={row_count}, distinct_ids={distinct_ids}, null_ids={null_ids}, '
+            f'unknown_target={unknown_target}'
+        )
+
+    split_rows = dict(con.execute("""
+        SELECT split_name, COUNT(*)
+        FROM staging.stg_lc_granting_core
+        GROUP BY split_name
+    """).fetchall())
+    if split_rows != EXPECTED_SPLITS:
+        raise ValueError(f'Staging split contract failed: observed={split_rows}')
+
+    min_date, max_date, cohort_count = con.execute("""
+        SELECT MIN(issue_d), MAX(issue_d), COUNT(DISTINCT STRFTIME(issue_d, '%Y-%m'))
+        FROM staging.stg_lc_granting_core
+    """).fetchone()
+    if (str(min_date), str(max_date), cohort_count) != ('2007-06-01', '2018-12-01', 139):
+        raise ValueError(
+            'Staging temporal contract failed: '
+            f'min_date={min_date}, max_date={max_date}, issue_cohorts={cohort_count}'
+        )
+    return {
+        'status': 'PASS',
+        'rows': row_count,
+        'distinct_account_id': distinct_ids,
+        'split_counts': split_rows,
+        'issue_cohorts': cohort_count,
+    }
+
 
 def bootstrap_staging(con: duckdb.DuckDBPyConnection, csv_path: Path) -> None:
     """Create the reviewed B0–B3 staging shape from the public source for execution only."""
@@ -82,9 +146,11 @@ def main() -> int:
         """).fetchone()[0]
         if not staging_exists:
             raise RuntimeError('staging.stg_lc_granting_core does not exist')
+        preflight = validate_staging_contract(con)
         result = build_b4_mart(con, args.repo_root)
         result['staging_rows'] = con.execute('SELECT COUNT(*) FROM staging.stg_lc_granting_core').fetchone()[0]
         result['source'] = 'ZENODO_11295916'
+        result['preflight'] = preflight
     finally:
         con.close()
 

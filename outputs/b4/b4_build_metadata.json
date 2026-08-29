@@ -3,5 +3,17 @@
   "rows": 1347681,
   "version": "B4_v1.0",
   "staging_rows": 1347681,
-  "source": "ZENODO_11295916"
+  "source": "ZENODO_11295916",
+  "preflight": {
+    "status": "PASS",
+    "rows": 1347681,
+    "distinct_account_id": 1347681,
+    "split_counts": {
+      "Development": 829347,
+      "Validation": 293057,
+      "Historical Shadow": 56160,
+      "OOT": 169117
+    },
+    "issue_cohorts": 139
+  }
 }
