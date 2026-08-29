@@ -1,0 +1,31 @@
+block: B5
+version: B5_v1.0
+core:
+  mart: mart.mart_credit_application_core
+  authority: ZENODO_11295916
+  expected_rows: 1347681
+figshare:
+  role: supplemental_only
+  source: Figshare article 22121477
+  doi: 10.6084/m9.figshare.22121477.v4
+  verified_version: 4
+  expected_train_rows: 236846
+  expected_test_rows: 95019
+  expected_combined_rows: 331865
+bridge:
+  join_key: account_id
+  expected_matched: 325255
+  expected_figshare_only: 6610
+  expected_core_only: 1022426
+  version: B5_BRIDGE_v1.0
+pricing_fields:
+  sub_grade: BENCHMARK_ONLY
+  grade_derived: BENCHMARK_ONLY
+  int_rate: ECONOMICS_ONLY
+  installment: ECONOMICS_ONLY
+  term: ECONOMICS_ONLY
+rejected:
+  role: context_only
+  observed_outcome: false
+  champion_merge_eligible: false
+  source_version: REJECTSTATS_KAGGLE_PUBLIC_V3

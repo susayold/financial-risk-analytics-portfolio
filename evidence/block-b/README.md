@@ -1,11 +1,12 @@
-# Block B — B0–B4 reviewed evidence index
+# Block B — B0–B5 reviewed evidence index
 
 ## Status
 
 `B0–B3 = REVIEWED / PASS`  
 `B4 = REVIEWED / PASS`
+`B5 = REVIEWED / PASS`
 `Block B overall = IN PROGRESS`  
-`Next gate = B5 — supplemental / pricing / rejected-context marts`
+`Next gate = B6 — Portfolio Overview`
 
 This public evidence index contains sanitized aggregate and audit metadata only. It does not publish the raw LendingClub CSV, row-level Parquet, DuckDB database or private local paths.
 
@@ -26,9 +27,18 @@ This public evidence index contains sanitized aggregate and audit metadata only.
 - Public B4 evidence is available in [b4-status](b4-status.md), [b4-reconciliation](b4-reconciliation.md), [b4-mart-schema](b4-mart-schema.md) and [b4-run-report](b4-run-report.md).
 - The B4 mart is not a model, a verified 12-month PD dataset, a pricing table or a production underwriting decision artifact.
 
+## B5 controlled enrichment
+
+- Figshare train/test source contract passes: 236,846 / 95,019 rows; 331,865 combined; zero train/test ID overlap.
+- The exact bridge contains 325,255 MATCHED, 6,610 FIGSHARE_ONLY and 1,022,426 CORE_ONLY rows; no duplicate account_id.
+- `mart_credit_pricing_enriched` contains 325,255 matched accounts and preserves Zenodo/B4 authority with 0 governed-field mismatches or target overwrites.
+- Concordance reproduces the locked baseline: 100% for issue_d, loan_amnt, purpose, addr_state and FICO; 99.9769% home ownership; 97.9788% revenue; 99.5222% DTI.
+- `mart_rejected_context` contains 27,648,741 deterministic-keyed context records with no observed outcome, GOOD/BAD label, PD, loss or champion merge eligibility.
+- Independent B5 suite passes 12/12. B5 does not perform reject inference, causal approval analysis, model fitting or PD/LGD/EAD/ECL estimation.
+
 ## Claim boundary
 
-`actual_default` is the observed final-resolution default outcome in the resolved granted-loan population. It is not presented as a verified 12-month Probability of Default. B0–B3 does not prove portfolio-risk findings, model performance, PD calibration, LGD/EAD, ECL, pricing/cutoff policy or production readiness.
+`actual_default` is the observed final-resolution default outcome in the resolved granted-loan population. It is not presented as a verified 12-month Probability of Default. B5 does not prove full-portfolio pricing conclusions, rejected-loan default performance, reject inference, causal approval effects, model performance, PD calibration, LGD/EAD, ECL, pricing/cutoff policy or production readiness.
 
 ## Artifacts
 
@@ -38,4 +48,10 @@ This public evidence index contains sanitized aggregate and audit metadata only.
 - [Reviewed run report](reviewed-run-report.md)
 - [Remediation summary](remediation-summary.md)
 - [Cleanup verification](cleanup-verification.md)
+- [B5 status](b5-status.md)
+- [B5 bridge summary](b5-bridge-summary.md)
+- [B5 field concordance](b5-field-concordance.md)
+- [B5 pricing mart schema](b5-pricing-mart-schema.md)
+- [B5 rejected-context boundary](b5-rejected-context-boundary.md)
+- [B5 run report](b5-run-report.md)
 - [Zenodo source record](https://doi.org/10.5281/zenodo.11295916)

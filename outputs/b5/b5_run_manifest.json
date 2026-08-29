@@ -1,0 +1,14 @@
+{
+  "block": "B5",
+  "status": "PASS",
+  "core_version": "B4_v1.0",
+  "supplemental_version": "FIGSHARE_22121477_V4",
+  "bridge_version": "B5_BRIDGE_v1.0",
+  "pricing_mart_version": "B5_PRICING_v1.0",
+  "rejected_mart_version": "B5_REJECTED_v1.0",
+  "matched": 325255,
+  "figshare_only": 6610,
+  "core_only": 1022426,
+  "rejected_context_rows": 27648741,
+  "next_gate": "B6_PORTFOLIO_OVERVIEW"
+}

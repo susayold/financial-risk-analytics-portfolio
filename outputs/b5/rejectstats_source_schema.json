@@ -1,0 +1,82 @@
+{
+  "source": "REJECTSTATS_KAGGLE_PUBLIC_V3",
+  "role": "context_only",
+  "observed_outcome": false,
+  "counts": {
+    "row_count": 27648741,
+    "duplicate_rejected_record_id": 0,
+    "null_rejected_record_id": 0
+  },
+  "raw_schema": {
+    "table": "raw.rejectstats_source",
+    "row_count": 27648741,
+    "columns": [
+      {
+        "raw_name": "Amount Requested",
+        "data_type": "DOUBLE",
+        "non_null_count": 27648741,
+        "semantic_role": "rejected applicant context"
+      },
+      {
+        "raw_name": "Application Date",
+        "data_type": "DATE",
+        "non_null_count": 27648741,
+        "semantic_role": "rejected applicant context"
+      },
+      {
+        "raw_name": "Loan Title",
+        "data_type": "VARCHAR",
+        "non_null_count": 27647438,
+        "semantic_role": "rejected applicant context"
+      },
+      {
+        "raw_name": "Risk_Score",
+        "data_type": "DOUBLE",
+        "non_null_count": 9151111,
+        "semantic_role": "rejected applicant context"
+      },
+      {
+        "raw_name": "Debt-To-Income Ratio",
+        "data_type": "VARCHAR",
+        "non_null_count": 27648741,
+        "semantic_role": "rejected applicant context"
+      },
+      {
+        "raw_name": "Zip Code",
+        "data_type": "VARCHAR",
+        "non_null_count": 27648448,
+        "semantic_role": "rejected applicant context"
+      },
+      {
+        "raw_name": "State",
+        "data_type": "VARCHAR",
+        "non_null_count": 27648719,
+        "semantic_role": "rejected applicant context"
+      },
+      {
+        "raw_name": "Employment Length",
+        "data_type": "VARCHAR",
+        "non_null_count": 26697386,
+        "semantic_role": "rejected applicant context"
+      },
+      {
+        "raw_name": "Policy Code",
+        "data_type": "DOUBLE",
+        "non_null_count": 27647823,
+        "semantic_role": "rejected applicant context"
+      }
+    ]
+  },
+  "verified_mappings": {
+    "Amount Requested": "amount_requested",
+    "Application Date": "application_date",
+    "Loan Title": "loan_title",
+    "Risk_Score": "risk_score",
+    "Debt-To-Income Ratio": "dti_rejected",
+    "Zip Code": "zip_code_rejected",
+    "State": "state_rejected",
+    "Employment Length": "employment_length_rejected",
+    "Policy Code": "policy_code"
+  },
+  "technical_key": "md5(source file + source row number)"
+}

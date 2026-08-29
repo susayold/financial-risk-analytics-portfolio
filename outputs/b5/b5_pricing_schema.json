@@ -1,0 +1,162 @@
+{
+  "table": "mart.mart_credit_pricing_enriched",
+  "version": "B5_PRICING_v1.0",
+  "columns": [
+    {
+      "name": "account_id",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "issue_d",
+      "type": "DATE"
+    },
+    {
+      "name": "issue_year",
+      "type": "INTEGER"
+    },
+    {
+      "name": "issue_month",
+      "type": "TIMESTAMP"
+    },
+    {
+      "name": "issue_cohort",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "split_name",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "actual_default",
+      "type": "INTEGER"
+    },
+    {
+      "name": "target_label",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "revenue",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "dti_n",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "loan_amnt",
+      "type": "BIGINT"
+    },
+    {
+      "name": "fico_n",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "experience_c",
+      "type": "BIGINT"
+    },
+    {
+      "name": "emp_length",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "purpose",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "home_ownership_n",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "addr_state",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "zip_code",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "sub_grade",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "grade_derived",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "int_rate",
+      "type": "DECIMAL(10,4)"
+    },
+    {
+      "name": "installment",
+      "type": "DECIMAL(18,2)"
+    },
+    {
+      "name": "term",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "figshare_source_split",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "figshare_source_file",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "issue_d_match",
+      "type": "BOOLEAN"
+    },
+    {
+      "name": "loan_amnt_match",
+      "type": "BOOLEAN"
+    },
+    {
+      "name": "revenue_match",
+      "type": "BOOLEAN"
+    },
+    {
+      "name": "dti_match",
+      "type": "BOOLEAN"
+    },
+    {
+      "name": "fico_match",
+      "type": "BOOLEAN"
+    },
+    {
+      "name": "purpose_match",
+      "type": "BOOLEAN"
+    },
+    {
+      "name": "home_ownership_match",
+      "type": "BOOLEAN"
+    },
+    {
+      "name": "addr_state_match",
+      "type": "BOOLEAN"
+    },
+    {
+      "name": "source_population",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "core_source_version",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "supplemental_version",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "bridge_version",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "pricing_mart_version",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "pricing_mart_build_ts",
+      "type": "TIMESTAMP WITH TIME ZONE"
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "block": "B5",
+  "status": "PASS",
+  "figshare": {
+    "train": 236846,
+    "test": 95019,
+    "combined": 331865,
+    "train_test_id_overlap": 0,
+    "train_duplicate_ids": 0,
+    "test_duplicate_ids": 0
+  },
+  "bridge": {
+    "counts": {
+      "FIGSHARE_ONLY": 6610,
+      "CORE_ONLY": 1022426,
+      "MATCHED": 325255
+    },
+    "full_bridge_rows": 1354291,
+    "duplicate_account_id": 0
+  },
+  "pricing": {
+    "rows": 325255,
+    "distinct_account_id": 325255,
+    "duplicates": 0,
+    "core_authority_mismatches": 0,
+    "core_forbidden_pricing_fields": []
+  },
+  "rejected": {
+    "rows": 27648741,
+    "distinct_rejected_record_id": 27648741,
+    "outcome_observed_true": 0,
+    "model_target_eligible_true": 0,
+    "champion_merge_eligible_true": 0,
+    "forbidden_outcome_columns": []
+  },
+  "core_regression": {
+    "rows": 1347681,
+    "distinct_account_id": 1347681,
+    "bad": 269249,
+    "good": 1078432,
+    "issue_cohorts": 139
+  },
+  "concordance": [
+    {
+      "field": "issue_d",
+      "matched_accounts": 325255,
+      "comparable_accounts": 325255,
+      "equal_count": 325255,
+      "conflict_count": 0,
+      "null_comparison_count": 0,
+      "concordance_rate": 1.0,
+      "comparison_rule": "exact date equality",
+      "authority": "ZENODO_CORE",
+      "action": "CORE_WINS"
+    },
+    {
+      "field": "loan_amnt",
+      "matched_accounts": 325255,
+      "comparable_accounts": 325255,
+      "equal_count": 325255,
+      "conflict_count": 0,
+      "null_comparison_count": 0,
+      "concordance_rate": 1.0,
+      "comparison_rule": "absolute tolerance <= 0.01",
+      "authority": "ZENODO_CORE",
+      "action": "CORE_WINS"
+    },
+    {
+      "field": "purpose",
+      "matched_accounts": 325255,
+      "comparable_accounts": 325255,
+      "equal_count": 325255,
+      "conflict_count": 0,
+      "null_comparison_count": 0,
+      "concordance_rate": 1.0,
+      "comparison_rule": "trim + lower equality",
+      "authority": "ZENODO_CORE",
+      "action": "CORE_WINS"
+    },
+    {
+      "field": "addr_state",
+      "matched_accounts": 325255,
+      "comparable_accounts": 325255,
+      "equal_count": 325255,
+      "conflict_count": 0,
+      "null_comparison_count": 0,
+      "concordance_rate": 1.0,
+      "comparison_rule": "trim + upper equality",
+      "authority": "ZENODO_CORE",
+      "action": "CORE_WINS"
+    },
+    {
+      "field": "fico",
+      "matched_accounts": 325255,
+      "comparable_accounts": 325255,
+      "equal_count": 325255,
+      "conflict_count": 0,
+      "null_comparison_count": 0,
+      "concordance_rate": 1.0,
+      "comparison_rule": "FICO midpoint, absolute tolerance <= 0.01",
+      "authority": "ZENODO_CORE",
+      "action": "CORE_WINS"
+    },
+    {
+      "field": "home_ownership",
+      "matched_accounts": 325255,
+      "comparable_accounts": 324466,
+      "equal_count": 324391,
+      "conflict_count": 75,
+      "null_comparison_count": 789,
+      "concordance_rate": 0.999768851,
+      "comparison_rule": "trim + upper equality",
+      "authority": "ZENODO_CORE",
+      "action": "CORE_WINS"
+    },
+    {
+      "field": "revenue",
+      "matched_accounts": 325255,
+      "comparable_accounts": 325255,
+      "equal_count": 318681,
+      "conflict_count": 6574,
+      "null_comparison_count": 0,
+      "concordance_rate": 0.9797881662,
+      "comparison_rule": "absolute tolerance <= 0.01",
+      "authority": "ZENODO_CORE",
+      "action": "CORE_WINS"
+    },
+    {
+      "field": "dti",
+      "matched_accounts": 325255,
+      "comparable_accounts": 325255,
+      "equal_count": 323701,
+      "conflict_count": 1554,
+      "null_comparison_count": 0,
+      "concordance_rate": 0.9952222103,
+      "comparison_rule": "absolute tolerance <= 0.0001",
+      "authority": "ZENODO_CORE",
+      "action": "CORE_WINS"
+    }
+  ]
+}

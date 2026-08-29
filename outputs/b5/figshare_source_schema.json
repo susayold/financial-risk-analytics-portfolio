@@ -1,0 +1,361 @@
+{
+  "source": "FIGSHARE_22121477_V4",
+  "role": "supplemental_only",
+  "counts": {
+    "train": 236846,
+    "test": 95019,
+    "combined": 331865,
+    "train_test_id_overlap": 0,
+    "train_duplicate_ids": 0,
+    "test_duplicate_ids": 0
+  },
+  "train": {
+    "table": "raw.figshare_train",
+    "row_count": 236846,
+    "columns": [
+      {
+        "raw_name": "issue_d",
+        "data_type": "DATE",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "sub_grade",
+        "data_type": "VARCHAR",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "term",
+        "data_type": "VARCHAR",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "home_ownership",
+        "data_type": "VARCHAR",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "fico_range_low",
+        "data_type": "DOUBLE",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "total_acc",
+        "data_type": "DOUBLE",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "pub_rec",
+        "data_type": "DOUBLE",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "revol_util",
+        "data_type": "DOUBLE",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "annual_inc",
+        "data_type": "DOUBLE",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "int_rate",
+        "data_type": "DOUBLE",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "dti",
+        "data_type": "DOUBLE",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "purpose",
+        "data_type": "VARCHAR",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "mort_acc",
+        "data_type": "DOUBLE",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "loan_amnt",
+        "data_type": "DOUBLE",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "application_type",
+        "data_type": "VARCHAR",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "installment",
+        "data_type": "DOUBLE",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "verification_status",
+        "data_type": "VARCHAR",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "pub_rec_bankruptcies",
+        "data_type": "DOUBLE",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "addr_state",
+        "data_type": "VARCHAR",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "initial_list_status",
+        "data_type": "VARCHAR",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "fico_range_high",
+        "data_type": "DOUBLE",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "revol_bal",
+        "data_type": "DOUBLE",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "id",
+        "data_type": "BIGINT",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "open_acc",
+        "data_type": "DOUBLE",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "emp_length",
+        "data_type": "DOUBLE",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "loan_status",
+        "data_type": "BIGINT",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "time_to_earliest_cr_line",
+        "data_type": "DOUBLE",
+        "non_null_count": 236846,
+        "semantic_role": "supplemental/raw audit"
+      }
+    ]
+  },
+  "test": {
+    "table": "raw.figshare_test",
+    "row_count": 95019,
+    "columns": [
+      {
+        "raw_name": "issue_d",
+        "data_type": "DATE",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "sub_grade",
+        "data_type": "VARCHAR",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "term",
+        "data_type": "VARCHAR",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "home_ownership",
+        "data_type": "VARCHAR",
+        "non_null_count": 94193,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "fico_range_low",
+        "data_type": "DOUBLE",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "total_acc",
+        "data_type": "DOUBLE",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "pub_rec",
+        "data_type": "DOUBLE",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "revol_util",
+        "data_type": "DOUBLE",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "annual_inc",
+        "data_type": "DOUBLE",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "int_rate",
+        "data_type": "DOUBLE",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "dti",
+        "data_type": "DOUBLE",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "purpose",
+        "data_type": "VARCHAR",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "mort_acc",
+        "data_type": "DOUBLE",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "loan_amnt",
+        "data_type": "DOUBLE",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "application_type",
+        "data_type": "VARCHAR",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "installment",
+        "data_type": "DOUBLE",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "verification_status",
+        "data_type": "VARCHAR",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "pub_rec_bankruptcies",
+        "data_type": "DOUBLE",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "addr_state",
+        "data_type": "VARCHAR",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "initial_list_status",
+        "data_type": "VARCHAR",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "fico_range_high",
+        "data_type": "DOUBLE",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "revol_bal",
+        "data_type": "DOUBLE",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "id",
+        "data_type": "BIGINT",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "open_acc",
+        "data_type": "DOUBLE",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "emp_length",
+        "data_type": "DOUBLE",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "loan_status",
+        "data_type": "DOUBLE",
+        "non_null_count": 93607,
+        "semantic_role": "supplemental/raw audit"
+      },
+      {
+        "raw_name": "time_to_earliest_cr_line",
+        "data_type": "DOUBLE",
+        "non_null_count": 95019,
+        "semantic_role": "supplemental/raw audit"
+      }
+    ]
+  },
+  "planned_mappings": {
+    "id": "account_id join key",
+    "issue_d": "issue_d_supp",
+    "loan_amnt": "loan_amnt_supp",
+    "annual_inc": "revenue_supp",
+    "dti": "dti_supp",
+    "fico_range_low/high": "fico_supp midpoint",
+    "purpose": "purpose_supp",
+    "home_ownership": "home_ownership_supp",
+    "addr_state": "addr_state_supp",
+    "sub_grade": "benchmark_only",
+    "int_rate/installment/term": "economics_only"
+  }
+}

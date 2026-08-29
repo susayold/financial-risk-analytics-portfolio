@@ -1,0 +1,91 @@
+{
+  "table": "mart.mart_rejected_context",
+  "version": "B5_REJECTED_v1.0",
+  "role": "context_only",
+  "columns": [
+    {
+      "name": "rejected_record_id",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "source_file",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "source_row_number",
+      "type": "BIGINT"
+    },
+    {
+      "name": "application_date",
+      "type": "DATE"
+    },
+    {
+      "name": "application_year",
+      "type": "INTEGER"
+    },
+    {
+      "name": "application_month",
+      "type": "DATE"
+    },
+    {
+      "name": "amount_requested",
+      "type": "DECIMAL(18,2)"
+    },
+    {
+      "name": "loan_title",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "risk_score",
+      "type": "DECIMAL(10,2)"
+    },
+    {
+      "name": "dti_rejected",
+      "type": "DECIMAL(10,4)"
+    },
+    {
+      "name": "zip_code_rejected",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "state_rejected",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "employment_length_rejected",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "policy_code",
+      "type": "DECIMAL(18,2)"
+    },
+    {
+      "name": "source_population",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "outcome_observed",
+      "type": "BOOLEAN"
+    },
+    {
+      "name": "model_target_eligible",
+      "type": "BOOLEAN"
+    },
+    {
+      "name": "champion_merge_eligible",
+      "type": "BOOLEAN"
+    },
+    {
+      "name": "source_version",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "rejected_mart_version",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "rejected_build_ts",
+      "type": "TIMESTAMP WITH TIME ZONE"
+    }
+  ]
+}

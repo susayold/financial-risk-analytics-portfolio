@@ -1,0 +1,305 @@
+{
+  "block": "B5",
+  "gate_status": "PASS",
+  "tests": [
+    {
+      "id": "B5T01",
+      "name": "FIGSHARE_SOURCE",
+      "status": "PASS",
+      "observed": {
+        "train": 236846,
+        "test": 95019,
+        "combined": 331865,
+        "train_test_id_overlap": 0
+      },
+      "expected": {
+        "train": 236846,
+        "test": 95019,
+        "combined": 331865,
+        "train_test_id_overlap": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "B5T02",
+      "name": "FIGSHARE_KEY",
+      "status": "PASS",
+      "observed": {
+        "rows": 331865,
+        "distinct_account_id": 331865,
+        "null_account_id": 0,
+        "duplicates": 0
+      },
+      "expected": {
+        "rows": 331865,
+        "distinct_account_id": 331865,
+        "null_account_id": 0,
+        "duplicates": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "B5T03",
+      "name": "BRIDGE_COUNTS",
+      "status": "PASS",
+      "observed": {
+        "FIGSHARE_ONLY": 6610,
+        "MATCHED": 325255,
+        "CORE_ONLY": 1022426
+      },
+      "expected": {
+        "MATCHED": 325255,
+        "FIGSHARE_ONLY": 6610,
+        "CORE_ONLY": 1022426
+      },
+      "note": "Match rate 98.00822624%; core coverage 24.13442053%."
+    },
+    {
+      "id": "B5T04",
+      "name": "BRIDGE_GRAIN",
+      "status": "PASS",
+      "observed": {
+        "rows": 1354291,
+        "distinct_account_id": 1354291,
+        "duplicates": 0
+      },
+      "expected": {
+        "rows": 1354291,
+        "distinct_account_id": 1354291,
+        "duplicates": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "B5T05",
+      "name": "FIELD_CONCORDANCE",
+      "status": "PASS",
+      "observed": {
+        "issue_d": [
+          325255,
+          0,
+          0
+        ],
+        "loan_amnt": [
+          325255,
+          0,
+          0
+        ],
+        "purpose": [
+          325255,
+          0,
+          0
+        ],
+        "addr_state": [
+          325255,
+          0,
+          0
+        ],
+        "fico": [
+          325255,
+          0,
+          0
+        ],
+        "home_ownership": [
+          324391,
+          75,
+          789
+        ],
+        "revenue": [
+          318681,
+          6574,
+          0
+        ],
+        "dti": [
+          323701,
+          1554,
+          0
+        ]
+      },
+      "expected": {
+        "issue_d": [
+          325255,
+          0,
+          0
+        ],
+        "loan_amnt": [
+          325255,
+          0,
+          0
+        ],
+        "purpose": [
+          325255,
+          0,
+          0
+        ],
+        "addr_state": [
+          325255,
+          0,
+          0
+        ],
+        "fico": [
+          325255,
+          0,
+          0
+        ],
+        "home_ownership": [
+          324391,
+          75,
+          789
+        ],
+        "revenue": [
+          318681,
+          6574,
+          0
+        ],
+        "dti": [
+          323701,
+          1554,
+          0
+        ]
+      },
+      "note": "Null comparisons are excluded from the concordance denominator; core wins conflicts."
+    },
+    {
+      "id": "B5T06",
+      "name": "CORE_AUTHORITY",
+      "status": "PASS",
+      "observed": {
+        "governed_field_mismatches": 0
+      },
+      "expected": {
+        "governed_field_mismatches": 0
+      },
+      "note": "Zenodo/B4 values are selected explicitly; supplemental values remain suffixed or separate."
+    },
+    {
+      "id": "B5T07",
+      "name": "PRICING_MART",
+      "status": "PASS",
+      "observed": {
+        "rows": 325255,
+        "distinct_account_id": 325255,
+        "duplicates": 0
+      },
+      "expected": {
+        "rows": 325255,
+        "distinct_account_id": 325255,
+        "duplicates": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "B5T08",
+      "name": "PRICING_FEATURE_BOUNDARY",
+      "status": "PASS",
+      "observed": {
+        "forbidden_core_fields": [],
+        "pricing_fields_present": [
+          "grade_derived",
+          "installment",
+          "int_rate",
+          "sub_grade",
+          "term"
+        ]
+      },
+      "expected": {
+        "forbidden_core_fields": [],
+        "pricing_fields_present": [
+          "grade_derived",
+          "installment",
+          "int_rate",
+          "sub_grade",
+          "term"
+        ]
+      },
+      "note": ""
+    },
+    {
+      "id": "B5T09",
+      "name": "REJECTED_SCHEMA",
+      "status": "PASS",
+      "observed": {
+        "rows": 27648741,
+        "distinct_keys": 27648741,
+        "missing_required_fields": []
+      },
+      "expected": {
+        "stable_key": true,
+        "missing_required_fields": []
+      },
+      "note": ""
+    },
+    {
+      "id": "B5T10",
+      "name": "REJECTED_OUTCOME_BOUNDARY",
+      "status": "PASS",
+      "observed": {
+        "forbidden_outcome_columns": [],
+        "true_boundary_flags": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": {
+        "forbidden_outcome_columns": [],
+        "true_boundary_flags": [
+          0,
+          0,
+          0
+        ]
+      },
+      "note": "No rejected default rate, PD, loss or reject inference is computed."
+    },
+    {
+      "id": "B5T11",
+      "name": "CORE_NONMUTATION",
+      "status": "PASS",
+      "observed": {
+        "core": [
+          1347681,
+          1347681,
+          269249,
+          1078432,
+          139
+        ],
+        "splits": {
+          "Development": 829347,
+          "Historical Shadow": 56160,
+          "Validation": 293057,
+          "OOT": 169117
+        }
+      },
+      "expected": {
+        "core": [
+          1347681,
+          1347681,
+          269249,
+          1078432,
+          139
+        ],
+        "splits": {
+          "Development": 829347,
+          "Validation": 293057,
+          "OOT": 169117,
+          "Historical Shadow": 56160
+        }
+      },
+      "note": ""
+    },
+    {
+      "id": "B5T12",
+      "name": "LINEAGE_METADATA",
+      "status": "PASS",
+      "observed": {
+        "pricing_rows_with_metadata": 325255,
+        "rejected_rows_with_metadata": 27648741
+      },
+      "expected": {
+        "pricing_rows": 325255,
+        "rejected_rows": 27648741
+      },
+      "note": ""
+    }
+  ]
+}

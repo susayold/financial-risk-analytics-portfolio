@@ -1,0 +1,9 @@
+field,matched_accounts,comparable_accounts,equal_count,conflict_count,null_comparison_count,concordance_rate,comparison_rule,authority,action
+issue_d,325255,325255,325255,0,0,1.0,exact date equality,ZENODO_CORE,CORE_WINS
+loan_amnt,325255,325255,325255,0,0,1.0,absolute tolerance <= 0.01,ZENODO_CORE,CORE_WINS
+purpose,325255,325255,325255,0,0,1.0,trim + lower equality,ZENODO_CORE,CORE_WINS
+addr_state,325255,325255,325255,0,0,1.0,trim + upper equality,ZENODO_CORE,CORE_WINS
+fico,325255,325255,325255,0,0,1.0,"FICO midpoint, absolute tolerance <= 0.01",ZENODO_CORE,CORE_WINS
+home_ownership,325255,324466,324391,75,789,0.999768851,trim + upper equality,ZENODO_CORE,CORE_WINS
+revenue,325255,325255,318681,6574,0,0.9797881662,absolute tolerance <= 0.01,ZENODO_CORE,CORE_WINS
+dti,325255,325255,323701,1554,0,0.9952222103,absolute tolerance <= 0.0001,ZENODO_CORE,CORE_WINS
