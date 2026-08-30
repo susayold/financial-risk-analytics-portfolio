@@ -4,7 +4,7 @@
   "tests": [
     {
       "id": "B9T01",
-      "name": "COHORT_COUNT",
+      "name": "EXECUTABLE_COHORT_DATE_RANGE",
       "status": "PASS",
       "observed": {
         "rows": 139,
@@ -14,8 +14,8 @@
       },
       "expected": {
         "cohorts": 139,
-        "min": "2007-06",
-        "max": "2018-12"
+        "min": "2007-06-01",
+        "max": "2018-12-01"
       }
     },
     {
@@ -64,44 +64,72 @@
     },
     {
       "id": "B9T04",
-      "name": "SPLIT_RECONCILIATION",
+      "name": "EXACT_SPLIT_BAD_COUNTS_RATES_DATES",
       "status": "PASS",
       "observed": {
         "Development": {
           "accounts": 829347,
+          "bad_accounts": 153062,
           "bad_rate": 0.1845572480517805,
           "min": "2007-06-01",
           "max": "2015-12-01"
         },
         "Validation": {
           "accounts": 293057,
+          "bad_accounts": 68229,
           "bad_rate": 0.23281818895300233,
           "min": "2016-01-01",
           "max": "2016-12-01"
         },
         "OOT": {
           "accounts": 169117,
+          "bad_accounts": 39112,
           "bad_rate": 0.23127184138791487,
           "min": "2017-01-01",
           "max": "2017-12-01"
         },
         "Historical Shadow": {
           "accounts": 56160,
+          "bad_accounts": 8846,
           "bad_rate": 0.15751424501424502,
           "min": "2018-01-01",
           "max": "2018-12-01"
         }
       },
       "expected": {
-        "Development": 829347,
-        "Validation": 293057,
-        "OOT": 169117,
-        "Historical Shadow": 56160
+        "Development": {
+          "accounts": 829347,
+          "bad_accounts": 153062,
+          "bad_rate": 0.1845572480517805,
+          "min": "2007-06-01",
+          "max": "2015-12-01"
+        },
+        "Validation": {
+          "accounts": 293057,
+          "bad_accounts": 68229,
+          "bad_rate": 0.23281818895300233,
+          "min": "2016-01-01",
+          "max": "2016-12-01"
+        },
+        "OOT": {
+          "accounts": 169117,
+          "bad_accounts": 39112,
+          "bad_rate": 0.23127184138791487,
+          "min": "2017-01-01",
+          "max": "2017-12-01"
+        },
+        "Historical Shadow": {
+          "accounts": 56160,
+          "bad_accounts": 8846,
+          "bad_rate": 0.15751424501424502,
+          "min": "2018-01-01",
+          "max": "2018-12-01"
+        }
       }
     },
     {
       "id": "B9T05",
-      "name": "DATE_VALIDITY",
+      "name": "ISSUE_DATE_VALIDITY",
       "status": "PASS",
       "observed": {
         "invalid_issue_dates": 0
@@ -112,37 +140,57 @@
     },
     {
       "id": "B9T06",
-      "name": "TEMPORAL_AUTHORITY",
+      "name": "TEMPORAL_AUTHORITY_SQL_SOURCE",
       "status": "PASS",
       "observed": {
-        "authority": "issue_d"
+        "issue_d_present": true,
+        "unsupported_authority_tokens": []
       },
       "expected": {
-        "authority": "issue_d"
+        "authority": "issue_d",
+        "unsupported_authority_tokens": []
       }
     },
     {
       "id": "B9T07",
-      "name": "RIGHT_TRUNCATION_CAVEAT",
+      "name": "RIGHT_TRUNCATION_CAVEAT_CONTENT",
       "status": "PASS",
       "observed": {
-        "caveat_present": true
+        "caveat_found": true
       },
       "expected": {
-        "caveat_present": true
+        "2018_right_truncation_caveat": true
       }
     },
     {
       "id": "B9T08",
-      "name": "CLAIM_BOUNDARY",
+      "name": "CLAIM_BOUNDARY_CONTENT",
       "status": "PASS",
       "observed": {
-        "causal_claims": false,
-        "live_monitoring_claims": false
+        "boundary_found": true
       },
       "expected": {
-        "causal_claims": false,
-        "live_monitoring_claims": false
+        "descriptive_and_non_live": true
+      }
+    },
+    {
+      "id": "B9T09",
+      "name": "ANNUAL_COMPOSITION_RECONCILIATION",
+      "status": "PASS",
+      "observed": {
+        "year_dimension_rows": 24,
+        "dimensions": [
+          "home_ownership_n",
+          "purpose"
+        ],
+        "all_shares_sum_one": true
+      },
+      "expected": {
+        "dimensions": [
+          "home_ownership_n",
+          "purpose"
+        ],
+        "shares_sum_one_per_year_dimension": true
       }
     }
   ],

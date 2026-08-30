@@ -1,0 +1,228 @@
+{
+  "stage": "BLOCK_B_FINAL_QA",
+  "gate_status": "PASS",
+  "test_count": 15,
+  "tests": [
+    {
+      "id": "BBF01",
+      "name": "B4_PRIOR_GATE",
+      "status": "PASS",
+      "observed": {
+        "gate_status": "PASS"
+      },
+      "expected": {
+        "gate_status": "PASS"
+      }
+    },
+    {
+      "id": "BBF02",
+      "name": "B5_PRIOR_GATE",
+      "status": "PASS",
+      "observed": {
+        "gate_status": "PASS"
+      },
+      "expected": {
+        "gate_status": "PASS"
+      }
+    },
+    {
+      "id": "BBF03",
+      "name": "B4_B5_CLOSURE_STATIC",
+      "status": "PASS",
+      "observed": {
+        "status": "PASS"
+      },
+      "expected": {
+        "status": "PASS"
+      }
+    },
+    {
+      "id": "BBF04",
+      "name": "B6_GATE",
+      "status": "PASS",
+      "observed": {
+        "gate_status": "PASS",
+        "test_count": 8
+      },
+      "expected": {
+        "gate_status": "PASS",
+        "test_count": 8
+      }
+    },
+    {
+      "id": "BBF05",
+      "name": "B7_GATE",
+      "status": "PASS",
+      "observed": {
+        "gate_status": "PASS",
+        "test_count": 12
+      },
+      "expected": {
+        "gate_status": "PASS",
+        "test_count": 12
+      }
+    },
+    {
+      "id": "BBF06",
+      "name": "B8_GATE",
+      "status": "PASS",
+      "observed": {
+        "gate_status": "PASS",
+        "test_count": 9
+      },
+      "expected": {
+        "gate_status": "PASS",
+        "test_count": 9
+      }
+    },
+    {
+      "id": "BBF07",
+      "name": "B9_GATE",
+      "status": "PASS",
+      "observed": {
+        "gate_status": "PASS",
+        "test_count": 9
+      },
+      "expected": {
+        "gate_status": "PASS",
+        "test_count": 9
+      }
+    },
+    {
+      "id": "BBF08",
+      "name": "CORE_POPULATION_LOCK",
+      "status": "PASS",
+      "observed": {
+        "accounts": 1347681,
+        "bad": 269249,
+        "good": 1078432,
+        "cohorts": 139,
+        "total_amount": 19417698475,
+        "bad_amount": 4186020700
+      },
+      "expected": {
+        "accounts": 1347681,
+        "bad": 269249,
+        "good": 1078432,
+        "cohorts": 139,
+        "total_amount": 19417698475.0,
+        "bad_amount": 4186020700.0
+      }
+    },
+    {
+      "id": "BBF09",
+      "name": "TARGET_AND_TEMPORAL_AUTHORITY",
+      "status": "PASS",
+      "observed": {
+        "min_issue_d": "2007-06-01",
+        "max_issue_d": "2018-12-01",
+        "null_issue_d": 0
+      },
+      "expected": {
+        "min_issue_d": "2007-06-01",
+        "max_issue_d": "2018-12-01",
+        "null_issue_d": 0
+      }
+    },
+    {
+      "id": "BBF10",
+      "name": "TEMPORAL_SPLIT_LOCK",
+      "status": "PASS",
+      "observed": {
+        "split_counts": {
+          "OOT": 169117,
+          "Development": 829347,
+          "Historical Shadow": 56160,
+          "Validation": 293057
+        }
+      },
+      "expected": {
+        "split_counts": {
+          "Development": 829347,
+          "Validation": 293057,
+          "OOT": 169117,
+          "Historical Shadow": 56160
+        }
+      }
+    },
+    {
+      "id": "BBF11",
+      "name": "B5_POPULATIONS_LOCK",
+      "status": "PASS",
+      "observed": {
+        "core": {
+          "rows": 1347681,
+          "distinct_account_id": 1347681,
+          "bad": 269249,
+          "good": 1078432,
+          "issue_cohorts": 139
+        },
+        "bridge_counts": {
+          "FIGSHARE_ONLY": 6610,
+          "CORE_ONLY": 1022426,
+          "MATCHED": 325255
+        },
+        "rejected_rows": 27648741
+      },
+      "expected": {
+        "matched": 325255,
+        "figshare_only": 6610,
+        "core_only": 1022426,
+        "rejected_context": 27648741
+      }
+    },
+    {
+      "id": "BBF12",
+      "name": "B7_SEMANTICS_LOCK",
+      "status": "PASS",
+      "observed": {
+        "primary_rule_violations": 0,
+        "bad_share_sum_violations": 0
+      },
+      "expected": {
+        "violations": 0
+      }
+    },
+    {
+      "id": "BBF13",
+      "name": "B8_INFORMATIVENESS_LOCK",
+      "status": "PASS",
+      "observed": {
+        "quasi_constant_profiles": 1,
+        "experience_audit_only_rows": 2
+      },
+      "expected": {
+        "experience_audit_only": true
+      }
+    },
+    {
+      "id": "BBF14",
+      "name": "CLAIM_BOUNDARY_LOCK",
+      "status": "PASS",
+      "observed": {
+        "validator_returncode": 0
+      },
+      "expected": {
+        "validator_returncode": 0
+      }
+    },
+    {
+      "id": "BBF15",
+      "name": "PUBLIC_EVIDENCE_PRIVACY_WEBSITE",
+      "status": "PASS",
+      "observed": {
+        "missing_files": [],
+        "privacy_bad_tracked_files": [],
+        "website_consistent": true
+      },
+      "expected": {
+        "all_required_files_present": true,
+        "no_raw_tracked": true,
+        "website_consistent": true
+      }
+    }
+  ],
+  "pre_closure_commit": "e325d7f",
+  "baseline_change": false,
+  "target_state": "BLOCK B = FINAL REVIEWED / LOCKED"
+}

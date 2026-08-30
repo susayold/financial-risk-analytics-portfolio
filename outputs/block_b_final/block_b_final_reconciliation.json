@@ -1,0 +1,23 @@
+{
+  "stage": "BLOCK_B_FINAL_QA",
+  "status": "PASS",
+  "pre_closure_commit": "e325d7f",
+  "baseline_change": false,
+  "core_baseline": {
+    "accounts": 1347681,
+    "bad": 269249,
+    "good": 1078432,
+    "cohorts": 139,
+    "total_amount": 19417698475.0,
+    "bad_amount": 4186020700.0
+  },
+  "gates": {
+    "B4": "PASS",
+    "B5": "PASS",
+    "closure": "PASS",
+    "B6": "PASS",
+    "B7": "PASS",
+    "B8": "PASS",
+    "B9": "PASS"
+  }
+}

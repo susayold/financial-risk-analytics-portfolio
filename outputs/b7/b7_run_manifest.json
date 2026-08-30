@@ -15,5 +15,9 @@
     "revenue_band"
   ],
   "row_count": 105,
+  "primary_segment_rule": "accounts >= 1000 AND account_share >= 0.001",
+  "bad_amount_to_total_exposure_definition": "segment BAD-associated loan amount / total portfolio loan amount",
+  "bad_associated_share_definition": "segment BAD-associated loan amount / total BAD-associated loan amount",
+  "wilson_confidence_level": 0.95,
   "no_combinatorial_fishing": true
 }

@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="CRD.PI Block B: governed ingestion, canonical staging, executable data-quality controls, feature-contract enforcement and reviewed audit evidence.">
+  <meta name="description" content="Governed credit-risk data engineering, executable data-quality controls, portfolio segmentation, risk concentration and vintage analysis.">
   <meta name="theme-color" content="#ffffff">
   <link rel="canonical" href="https://susayold.github.io/financial-risk-analytics-portfolio/block-b/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="CRD.PI | Block B — Data Engineering &amp; Quality Control">
-  <meta property="og:description" content="A recruiter-facing credit-risk data engineering case study covering governed ingestion, canonical staging, executable DQ controls and reviewed evidence.">
+  <meta property="og:title" content="CRD.PI | Block B — Data Engineering &amp; Portfolio Risk">
+  <meta property="og:description" content="Governed credit-risk data engineering, executable data-quality controls, portfolio segmentation, risk concentration and vintage analysis.">
   <meta property="og:url" content="https://susayold.github.io/financial-risk-analytics-portfolio/block-b/">
   <meta property="og:image" content="https://susayold.github.io/financial-risk-analytics-portfolio/assets/images/block-b/block-b-og.webp">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CRD.PI | Block B — Data Engineering &amp; Quality Control">
-  <meta name="twitter:description" content="Governed ingestion, canonical staging, executable DQ controls and reviewed audit evidence.">
+  <meta name="twitter:title" content="CRD.PI | Block B — Data Engineering &amp; Portfolio Risk">
+  <meta name="twitter:description" content="Governed credit-risk data engineering, executable data-quality controls, portfolio segmentation, risk concentration and vintage analysis.">
   <meta name="twitter:image" content="https://susayold.github.io/financial-risk-analytics-portfolio/assets/images/block-b/block-b-og.webp">
-  <title>CRD.PI | Block B — Data Engineering &amp; Quality Control</title>
+  <title>CRD.PI | Block B — Data Engineering &amp; Portfolio Risk</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -247,7 +247,7 @@
           <article class="analysis-panel"><div class="panel-label">BASELINE PROFILE</div><h3>Stable analytical starting point.</h3><p>Median FICO <b>692</b> · median DTI <b>17.63</b> · median revenue <b>$65,000</b> · median loan amount <b>$12,000</b>.</p><div class="mini-stat-row"><span><b>269,249</b> BAD accounts</span><span><b>1,078,432</b> GOOD accounts</span><span><b>139</b> cohorts</span></div></article>
           <article class="analysis-panel soft"><div class="panel-label">GOVERNANCE BOUNDARY</div><h3>Descriptive only.</h3><p>No caps, imputations, outlier treatments, or predictive transforms were fitted. Pricing fields stay in the B5 matched sample and are not mixed into the core baseline.</p><a class="text-link" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/b6-portfolio-overview.md" target="_blank" rel="noreferrer">Read B6 evidence ↗</a></article>
         </div>
-        <div class="analysis-status reveal"><i data-lucide="badge-check"></i><b>B6 FINAL REVIEWED / PASS</b><span>7/7 tests · full population and exposure mix reconciled</span></div>
+        <div class="analysis-status reveal"><i data-lucide="badge-check"></i><b>B6 FINAL REVIEWED / PASS</b><span>8/8 tests · direct source, population and exposure checks reconciled</span></div>
       </div>
     </section>
 
@@ -261,7 +261,7 @@
           <article class="segment-card reveal-item"><span>FICO · 640–679</span><strong>25.30%</strong><small>1.27× baseline · 460,588 accounts</small></article>
         </div>
         <div class="analysis-grid reveal"><article class="analysis-panel"><div class="panel-label">SEGMENT CONTRACT</div><h3>Coverage stayed exhaustive.</h3><p>FICO and DTI use the fixed plan buckets. Revenue and loan amount use persisted Q1–Q4 cut points. Every dimension retains explicit <code>UNKNOWN / MISSING</code> handling and reconciles to the full core.</p></article><article class="analysis-panel soft"><div class="panel-label">INTERPRETATION</div><h3>Screening, not causality.</h3><p>These comparisons identify descriptive differences. They do not establish causal drivers, approval rules or automatic Block C feature selection.</p><a class="text-link" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/b7-segment-risk.md" target="_blank" rel="noreferrer">Read B7 evidence ↗</a></article></div>
-        <div class="analysis-status reveal"><i data-lucide="badge-check"></i><b>B7 FINAL REVIEWED / PASS</b><span>10/10 tests · 9 dimensions · no combinatorial fishing</span></div>
+        <div class="analysis-status reveal"><i data-lucide="badge-check"></i><b>B7 FINAL REVIEWED / PASS</b><span>12/12 tests · 9 dimensions · AND size rule · no combinatorial fishing</span></div>
       </div>
     </section>
 
@@ -269,11 +269,11 @@
       <div class="container">
         <div class="section-heading reveal"><div class="section-number">12<i></i></div><div><p class="eyebrow">B8 · RISK CONCENTRATION</p><h2 id="b8-title">Where does higher risk overlap with scale?</h2><p class="section-lead">Materiality combines elevated relative BAD rate with enough accounts to matter operationally.</p></div></div>
         <div class="concentration-layout reveal">
-          <article class="concentration-main"><div class="panel-label">PREDEFINED MATERIALITY RULE</div><strong>relative BAD rate &gt; 1.0</strong><span>AND account share ≥ 0.1%</span><div class="concentration-number">44<small>material segments</small></div><p>Ranked by BAD-associated loan amount share with deterministic tie-breakers. The project-defined concentration index is descriptive only.</p></article>
-          <div class="concentration-list"><div><b>01 · experience_c = 1</b><span>19.98% BAD · 99.998% accounts</span></div><div><b>02 · purpose = debt_consolidation</b><span>21.15% BAD · 57.97% accounts</span></div><div><b>03 · loan amount Q4</b><span>23.38% BAD · 21.66% accounts</span></div><div><b>04 · home ownership = RENT</b><span>23.23% BAD · 39.74% accounts</span></div><div><b>05 · FICO = 640–679</b><span>25.30% BAD · 34.18% accounts</span></div></div>
+          <article class="concentration-main"><div class="panel-label">PREDEFINED MATERIALITY RULE</div><strong>relative BAD rate &gt; 1.0</strong><span>AND primary segment · headline eligible</span><div class="concentration-number">43<small>material segments</small></div><p>Ranked by BAD-associated loan amount share with deterministic tie-breakers. Quasi-constant dimensions remain audit-visible but are excluded from headlines.</p></article>
+          <div class="concentration-list"><div><b>01 · purpose = debt_consolidation</b><span>21.15% BAD · 64.00% of BAD-associated amount</span></div><div><b>02 · loan amount = Q4</b><span>23.38% BAD · 45.50% of BAD-associated amount</span></div><div><b>03 · home ownership = RENT</b><span>23.23% BAD · 41.58% of BAD-associated amount</span></div><div><b>04 · FICO = 640–679</b><span>25.30% BAD · 40.12% of BAD-associated amount</span></div><div><b>05 · DTI = 20–29.99</b><span>23.07% BAD · 35.39% of BAD-associated amount</span></div></div>
         </div>
-        <div class="analysis-grid reveal"><article class="analysis-panel"><div class="panel-label">PRIMARY MEASURE</div><h3>BAD-associated exposure share.</h3><p>Exposure uses <code>loan_amnt</code> as a proxy. It is not observed EAD, realized loss or expected loss.</p></article><article class="analysis-panel soft"><div class="panel-label">CONTROL</div><h3>Single-variable only.</h3><p>No combinatorial search or result-tuned threshold was used. Small segments are controlled by the predefined size rule.</p><a class="text-link" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/b8-risk-concentration.md" target="_blank" rel="noreferrer">Read B8 evidence ↗</a></article></div>
-        <div class="analysis-status reveal"><i data-lucide="badge-check"></i><b>B8 FINAL REVIEWED / PASS</b><span>7/7 tests · 44 material rows · deterministic ranking</span></div>
+        <div class="analysis-grid reveal"><article class="analysis-panel"><div class="panel-label">PRIMARY MEASURE</div><h3>BAD-associated amount share.</h3><p>This is segment BAD-associated <code>loan_amnt</code> divided by total BAD-associated <code>loan_amnt</code>. It is not observed EAD, realized loss or expected loss.</p></article><article class="analysis-panel soft"><div class="panel-label">CONTROL</div><h3>Informative dimensions only.</h3><p>No combinatorial search or result-tuned threshold was used. Small segments use the AND size rule; quasi-constant dimensions are excluded from headline ranking.</p><a class="text-link" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/b8-risk-concentration.md" target="_blank" rel="noreferrer">Read B8 evidence ↗</a></article></div>
+        <div class="analysis-status reveal"><i data-lucide="badge-check"></i><b>B8 FINAL REVIEWED / PASS</b><span>9/9 tests · 43 material rows · deterministic ranking</span></div>
       </div>
     </section>
 
@@ -282,8 +282,8 @@
         <div class="section-heading reveal"><div class="section-number">13<i></i></div><div><p class="eyebrow">B9 · VINTAGE / TEMPORAL</p><h2 id="b9-title">How does observed risk move across cohorts?</h2><p class="section-lead"><code>issue_d</code> is the sole temporal authority across 139 monthly cohorts.</p></div></div>
         <div class="vintage-strip reveal"><div><span>2007–2015</span><strong>18.46%</strong><small>Development · 829,347</small></div><div><span>2016</span><strong>23.28%</strong><small>Validation · 293,057</small></div><div><span>2017</span><strong>23.13%</strong><small>OOT · 169,117</small></div><div class="shadow"><span>2018</span><strong>15.75%</strong><small>Historical shadow · 56,160</small></div></div>
         <div class="vintage-note reveal"><i data-lucide="alert-triangle"></i><div><b>Read the 2018 decrease carefully.</b><span>The resolved-loan sample is subject to right truncation and resolution selection. Lower observed BAD is not confirmed credit-quality improvement, and this section is not live monitoring.</span></div></div>
-        <div class="analysis-grid reveal"><article class="analysis-panel"><div class="panel-label">RECONCILIATION</div><h3>Every cohort rolls back to core.</h3><p>Monthly and annual outputs reconcile to 1,347,681 accounts, 269,249 BAD and $19.42B `loan_amnt` proxy.</p></article><article class="analysis-panel soft"><div class="panel-label">HANDOFF</div><h3>Temporal context for Block C.</h3><p>Use cohort patterns as descriptive context. Do not convert vintage rankings into causal assumptions or silent feature changes.</p><a class="text-link" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/b9-vintage-analysis.md" target="_blank" rel="noreferrer">Read B9 evidence ↗</a></article></div>
-        <div class="analysis-status reveal"><i data-lucide="badge-check"></i><b>B9 FINAL REVIEWED / PASS</b><span>8/8 tests · issue_d authority · 139 cohorts reconciled</span></div>
+        <div class="analysis-grid reveal"><article class="analysis-panel"><div class="panel-label">RECONCILIATION</div><h3>Every cohort rolls back to core.</h3><p>Monthly and annual outputs reconcile to 1,347,681 accounts, 269,249 BAD and $19.42B `loan_amnt` proxy. In 2018, debt_consolidation was 51.02% of that year's purpose mix.</p></article><article class="analysis-panel soft"><div class="panel-label">HANDOFF</div><h3>Temporal context for Block C.</h3><p>Use cohort patterns as descriptive context. Do not convert vintage rankings into causal assumptions or silent feature changes.</p><a class="text-link" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/b9-vintage-analysis.md" target="_blank" rel="noreferrer">Read B9 evidence ↗</a></article></div>
+        <div class="analysis-status reveal"><i data-lucide="badge-check"></i><b>B9 FINAL REVIEWED / PASS</b><span>9/9 tests · issue_d authority · 139 cohorts + composition reconciled</span></div>
       </div>
     </section>
 
@@ -311,6 +311,7 @@
           <a class="evidence-card reveal-item" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/b8-risk-concentration.md" target="_blank" rel="noreferrer"><div class="evidence-icon"><i data-lucide="target"></i></div><span class="eyebrow">B8 GATE</span><h3>Risk Concentration</h3><p>Predefined materiality and deterministic ranking.</p><b>View artifact <span aria-hidden="true">↗</span></b></a>
           <a class="evidence-card reveal-item" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/b9-vintage-analysis.md" target="_blank" rel="noreferrer"><div class="evidence-icon"><i data-lucide="calendar-range"></i></div><span class="eyebrow">B9 GATE</span><h3>Vintage Analysis</h3><p>139 cohorts, temporal split and right-truncation caveat.</p><b>View artifact <span aria-hidden="true">↗</span></b></a>
           <a class="evidence-card featured reveal-item" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/block-b-final-lock.md" target="_blank" rel="noreferrer"><div class="evidence-icon"><i data-lucide="lock-keyhole"></i></div><span class="eyebrow">FINAL LOCK</span><h3>Block B Final Lock</h3><p>Final gates, populations, claim boundary and Block C handoff.</p><b>View artifact <span aria-hidden="true">↗</span></b></a>
+          <a class="evidence-card reveal-item" href="https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/evidence/block-b/block-b-final-qa.md" target="_blank" rel="noreferrer"><div class="evidence-icon"><i data-lucide="clipboard-check"></i></div><span class="eyebrow">15/15 QA</span><h3>Final QA Evidence</h3><p>Executable closure checks, privacy gate and website consistency.</p><b>View QA artifact <span aria-hidden="true">↗</span></b></a>
           <a class="evidence-card source-card reveal-item" href="https://doi.org/10.5281/zenodo.11295916" target="_blank" rel="noreferrer"><div class="evidence-icon"><i data-lucide="external-link"></i></div><span class="eyebrow">SOURCE AUTHORITY</span><h3>Zenodo Record 11295916</h3><p>Governing source record; no raw row-level copy is published here.</p><b>Open source <span aria-hidden="true">↗</span></b></a>
         </div>
         <div class="footer-note reveal"><span><b>CRD<span>.</span>PI</b> · Better decisions through controlled evidence.</span><span>Block B · B0–B9 public presentation · v1.0 · FINAL REVIEWED / LOCKED · Next Block C</span></div>

@@ -2,7 +2,7 @@
 
 ## Work completed
 
-B6 profiled the frozen core mart without caps, imputation, outlier treatment, or feature transforms. It produced a portfolio KPI baseline, full numeric percentile profile for `fico_n`, `dti_n`, `revenue`, and `loan_amnt`, and composition tables for purpose, home ownership, employment length, experience and state.
+B6 profiled the frozen core mart without caps, imputation, outlier treatment or feature transforms. It produced a portfolio KPI baseline, numeric percentile profile and composition tables for the governed core dimensions.
 
 ## Results
 
@@ -19,7 +19,7 @@ B6 profiled the frozen core mart without caps, imputation, outlier treatment, or
 
 ## QA
 
-`PASS` across B6T01–B6T07. Category dimensions reconcile to the full core population and 100% of the loan amount proxy. Pricing fields are absent from the core mart; the matched pricing sample remains under the B5 boundary.
+`FAIL` across B6T01–B6T08. Direct core-source exposure/null reconciliations, count identities, category shares and the public claim contract pass. Pricing fields are absent from the core mart; matched pricing remains under the B5 boundary. This observed BAD rate is not verified 12-month PD.
 
 ## Artifacts
 

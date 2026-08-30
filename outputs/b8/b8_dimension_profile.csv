@@ -1,0 +1,10 @@
+dimension,segment_count,dominant_segment,dominant_segment_accounts,dominant_segment_account_share,dimension_status,headline_eligible
+addr_state,51,CA,196805,0.14603233257721968,INFORMATIVE,True
+dti_band,7,10–19.99,563230,0.4179253102180709,INFORMATIVE,True
+emp_length,12,10+ years,442667,0.328465712583319,INFORMATIVE,True
+experience_c,2,1,1347656,0.9999814496160442,QUASI_CONSTANT,False
+fico_band,7,680–719,608501,0.4515170875006771,INFORMATIVE,True
+home_ownership_n,4,MORTGAGE,666594,0.49462298570655816,INFORMATIVE,True
+loan_amount_band,4,Q3 (>50th–75th percentile),369729,0.27434459638445596,INFORMATIVE,True
+purpose,14,debt_consolidation,781206,0.5796668499444602,INFORMATIVE,True
+revenue_band,4,Q2 (>25th–50th percentile),348634,0.25869178240251217,INFORMATIVE,True

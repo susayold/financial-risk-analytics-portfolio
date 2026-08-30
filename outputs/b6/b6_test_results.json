@@ -9,12 +9,14 @@
       "observed": {
         "rows": 1347681,
         "distinct_ids": 1347681,
-        "null_ids": 0
+        "null_ids": 0,
+        "invalid_targets": 0
       },
       "expected": {
         "rows": 1347681,
         "distinct_ids": 1347681,
-        "null_ids": 0
+        "null_ids": 0,
+        "invalid_targets": 0
       }
     },
     {
@@ -25,42 +27,60 @@
         "bad": 269249,
         "good": 1078432,
         "bad_rate": 0.19978689318911522,
-        "unknown": 0
+        "invalid_targets": 0
       },
       "expected": {
         "bad": 269249,
         "good": 1078432,
-        "bad_rate": 0.199786893,
-        "unknown": 0
+        "bad_rate": 0.19978689318911522,
+        "invalid_targets": 0
       }
     },
     {
       "id": "B6T03",
-      "name": "EXPOSURE_RECONCILIATION",
+      "name": "DIRECT_SOURCE_EXPOSURE_EQUALITY",
       "status": "PASS",
       "observed": {
-        "total_loan_amount": 19417698475.0,
-        "bad_associated_loan_amount": 4186020700.0,
-        "bad_associated_exposure_share": 0.21557759305972538
+        "direct_core": [
+          19417698475,
+          4186020700,
+          0.21557759305972538
+        ],
+        "portfolio_overview": [
+          19417698475.0,
+          4186020700.0,
+          0.21557759305972538
+        ]
       },
       "expected": {
-        "total_positive": true,
-        "bad_nonnegative": true,
-        "share_between_0_and_1": true
+        "same_values": true
       }
     },
     {
       "id": "B6T04",
-      "name": "NULL_PROFILE",
+      "name": "DIRECT_SOURCE_NULL_COUNTS",
       "status": "PASS",
       "observed": {
-        "numeric_field_null_cells": 0
+        "direct_core": {
+          "fico_n": 0,
+          "dti_n": 0,
+          "revenue": 0,
+          "loan_amnt": 0
+        },
+        "numeric_profile": {
+          "dti_n": 0,
+          "revenue": 0,
+          "fico_n": 0,
+          "loan_amnt": 0
+        }
       },
-      "note": "Descriptive only; no imputation or capping."
+      "expected": {
+        "each_field_equal": true
+      }
     },
     {
       "id": "B6T05",
-      "name": "NUMERIC_SANITY",
+      "name": "NUMERIC_PROFILE_SANITY",
       "status": "PASS",
       "observed": {
         "invalid_profile_rows": 0
@@ -71,33 +91,39 @@
     },
     {
       "id": "B6T06",
-      "name": "CATEGORY_SHARE_SUM",
+      "name": "ACCOUNT_AND_EXPOSURE_SHARE_SUM",
       "status": "PASS",
       "observed": {
-        "emp_length": {
-          "accounts": 1347681,
-          "exposure_share": 1.0
-        },
-        "purpose": {
-          "accounts": 1347681,
-          "exposure_share": 1.0000000000000002
-        },
         "addr_state": {
           "accounts": 1347681,
+          "account_share": 1.0,
           "exposure_share": 1.0000000000000004
+        },
+        "emp_length": {
+          "accounts": 1347681,
+          "account_share": 1.0,
+          "exposure_share": 1.0
         },
         "experience_c": {
           "accounts": 1347681,
+          "account_share": 1.0,
           "exposure_share": 1.0
         },
         "home_ownership_n": {
           "accounts": 1347681,
+          "account_share": 1.0,
           "exposure_share": 1.0
+        },
+        "purpose": {
+          "accounts": 1347681,
+          "account_share": 1.0,
+          "exposure_share": 1.0000000000000002
         }
       },
       "expected": {
-        "accounts": 1347681,
-        "exposure_share": 1.0
+        "accounts_per_dimension": 1347681,
+        "account_share_per_dimension": 1.0,
+        "exposure_share_per_dimension": 1.0
       }
     },
     {
@@ -109,8 +135,32 @@
       },
       "expected": {
         "pricing_fields_in_core": 0
+      }
+    },
+    {
+      "id": "B6T08",
+      "name": "CLAIM_CONTRACT_STATIC_SOURCE",
+      "status": "PASS",
+      "observed": {
+        "status": "PASS",
+        "files_checked": [
+          "block-b\\index.html",
+          "docs\\B6_RUN_REPORT.md",
+          "docs\\B7_RUN_REPORT.md",
+          "docs\\B8_RUN_REPORT.md",
+          "docs\\B9_RUN_REPORT.md"
+        ],
+        "missing_files": [],
+        "required_boundary_checks": {
+          "not_12_month_pd": true,
+          "descriptive_not_causal": true,
+          "issue_d_authority": true,
+          "pricing_boundary": true
+        }
       },
-      "note": "Matched pricing sample remains B5-controlled and is not mixed into core baseline metrics."
+      "expected": {
+        "status": "PASS"
+      }
     }
   ],
   "claim_boundary": "Descriptive portfolio composition and observed final-resolution BAD baseline; not 12-month PD."

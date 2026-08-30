@@ -6,7 +6,12 @@
   "tables": [
     "analytics.vintage_monthly",
     "analytics.vintage_annual",
-    "analytics.vintage_split"
+    "analytics.vintage_split",
+    "analytics.vintage_composition_annual"
+  ],
+  "composition_dimensions": [
+    "purpose",
+    "home_ownership_n"
   ],
   "causal_claims": false,
   "live_monitoring_claims": false

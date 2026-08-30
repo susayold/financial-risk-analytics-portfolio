@@ -5,7 +5,10 @@
 `B0–B3 = REVIEWED / PASS`  
 `B4 = REVIEWED / PASS`
 `B5 = FINAL REVIEWED / PASS`
-`B6–B9 = FINAL REVIEWED / PASS`
+`B6 = FINAL REVIEWED / PASS`
+`B7 = FINAL REVIEWED / PASS`
+`B8 = FINAL REVIEWED / PASS`
+`B9 = FINAL REVIEWED / PASS`
 `Block B overall = FINAL REVIEWED / LOCKED`
 `Next gate = Block C — Credit Risk Modeling`
 
@@ -24,7 +27,7 @@ This public evidence index contains sanitized aggregate and audit metadata only.
 ## B4 core mart
 
 - `mart.mart_credit_application_core` is a reproducible one-account analytical mart with 1,347,681 rows.
-- Population, key, target, temporal, schema, feature-boundary and descriptive null-profile tests pass 7/7.
+- Population, key, target, temporal, schema, feature-boundary and descriptive null-profile tests pass 8/8.
 - Public B4 evidence is available in [b4-status](b4-status.md), [b4-reconciliation](b4-reconciliation.md), [b4-mart-schema](b4-mart-schema.md) and [b4-run-report](b4-run-report.md).
 - The B4 mart is not a model, a verified 12-month PD dataset, a pricing table or a production underwriting decision artifact.
 
@@ -41,8 +44,9 @@ This public evidence index contains sanitized aggregate and audit metadata only.
 
 - B6 covers 1,347,681 core accounts, 269,249 BAD, 1,078,432 GOOD, 19.9787% observed final-resolution BAD rate and $19.42B `loan_amnt` exposure proxy.
 - B7 covers fixed FICO/DTI bands, persisted revenue/loan quantile cuts and categorical dimensions; each dimension reconciles to the full core.
-- B8 uses the predefined rule `relative_bad_rate > 1.0 AND account_share >= 0.1%`; it reports 44 material single-variable segments with deterministic ranking.
-- B9 uses `issue_d` and reconciles 139 monthly cohorts, annual cohorts and the four temporal splits. The 2018 historical shadow is right-truncated/resolution-selected and is not live monitoring.
+- B8 uses `headline_eligible AND relative_bad_rate > 1.0 AND primary_segment`; it reports 43 material single-variable segments with deterministic ranking. `experience_c` is quasi-constant and audit-only.
+- B9 uses `issue_d` and reconciles 139 monthly cohorts, annual cohorts, four temporal splits and annual composition for `purpose`/`home_ownership_n`. The 2018 historical shadow is right-truncated/resolution-selected and is not live monitoring.
+- Final closure QA passes 15/15 with `baseline_change: false`.
 - B6–B9 are descriptive findings only. They do not claim PD, model performance, expected loss, causal drivers, reject inference or production policy.
 
 ## Claim boundary
@@ -67,5 +71,6 @@ This public evidence index contains sanitized aggregate and audit metadata only.
 - [B7 segment risk](b7-segment-risk.md)
 - [B8 risk concentration](b8-risk-concentration.md)
 - [B9 vintage analysis](b9-vintage-analysis.md)
+- [Block B final QA](block-b-final-qa.md)
 - [Block B final lock](block-b-final-lock.md)
 - [Zenodo source record](https://doi.org/10.5281/zenodo.11295916)

@@ -37,47 +37,65 @@
         "fico_band": {
           "accounts": 1347681,
           "bad_accounts": 269249,
-          "loan_amount_share": 1.0
+          "loan_amount_share": 1.0,
+          "bad_amount_to_total_exposure": 0.21557759305972538,
+          "bad_associated_share": 1.0
         },
         "dti_band": {
           "accounts": 1347681,
           "bad_accounts": 269249,
-          "loan_amount_share": 0.9999999999999999
+          "loan_amount_share": 0.9999999999999999,
+          "bad_amount_to_total_exposure": 0.21557759305972538,
+          "bad_associated_share": 0.9999999999999999
         },
         "revenue_band": {
           "accounts": 1347681,
           "bad_accounts": 269249,
-          "loan_amount_share": 1.0
+          "loan_amount_share": 1.0,
+          "bad_amount_to_total_exposure": 0.21557759305972538,
+          "bad_associated_share": 1.0
         },
         "loan_amount_band": {
           "accounts": 1347681,
           "bad_accounts": 269249,
-          "loan_amount_share": 0.9999999999999999
+          "loan_amount_share": 0.9999999999999999,
+          "bad_amount_to_total_exposure": 0.21557759305972538,
+          "bad_associated_share": 1.0
         },
         "purpose": {
           "accounts": 1347681,
           "bad_accounts": 269249,
-          "loan_amount_share": 1.0000000000000002
+          "loan_amount_share": 1.0000000000000002,
+          "bad_amount_to_total_exposure": 0.21557759305972538,
+          "bad_associated_share": 1.0000000000000002
         },
         "home_ownership_n": {
           "accounts": 1347681,
           "bad_accounts": 269249,
-          "loan_amount_share": 1.0
+          "loan_amount_share": 1.0,
+          "bad_amount_to_total_exposure": 0.21557759305972535,
+          "bad_associated_share": 1.0
         },
         "experience_c": {
           "accounts": 1347681,
           "bad_accounts": 269249,
-          "loan_amount_share": 1.0
+          "loan_amount_share": 1.0,
+          "bad_amount_to_total_exposure": 0.21557759305972538,
+          "bad_associated_share": 1.0
         },
         "emp_length": {
           "accounts": 1347681,
           "bad_accounts": 269249,
-          "loan_amount_share": 1.0
+          "loan_amount_share": 1.0,
+          "bad_amount_to_total_exposure": 0.21557759305972538,
+          "bad_associated_share": 0.9999999999999999
         },
         "addr_state": {
           "accounts": 1347681,
           "bad_accounts": 269249,
-          "loan_amount_share": 1.0000000000000004
+          "loan_amount_share": 1.0000000000000004,
+          "bad_amount_to_total_exposure": 0.21557759305972538,
+          "bad_associated_share": 1.0
         }
       },
       "expected": {
@@ -130,21 +148,122 @@
       "name": "MISSING_EXPLICIT",
       "status": "PASS",
       "observed": {
-        "unknown_missing_segment_rows": 0
+        "categorical": {
+          "purpose": {
+            "source_missing": 0,
+            "output_unknown_missing": 0
+          },
+          "home_ownership_n": {
+            "source_missing": 0,
+            "output_unknown_missing": 0
+          },
+          "experience_c": {
+            "source_missing": 0,
+            "output_unknown_missing": 0
+          },
+          "emp_length": {
+            "source_missing": 0,
+            "output_unknown_missing": 0
+          },
+          "addr_state": {
+            "source_missing": 0,
+            "output_unknown_missing": 0
+          }
+        },
+        "numeric": {
+          "fico_band": {
+            "source_missing": 0,
+            "output_unknown_missing": 0
+          },
+          "dti_band": {
+            "source_missing": 0,
+            "output_unknown_missing": 0
+          },
+          "revenue_band": {
+            "source_missing": 0,
+            "output_unknown_missing": 0
+          },
+          "loan_amount_band": {
+            "source_missing": 0,
+            "output_unknown_missing": 0
+          }
+        }
       },
-      "note": "Missing values are explicit, never silently dropped."
+      "expected": "source NULL/blank counts equal UNKNOWN / MISSING accounts"
     },
     {
       "id": "B7T06",
-      "name": "FIXED_BAND_DEFINITIONS",
+      "name": "EXACT_BAND_DEFINITIONS",
       "status": "PASS",
       "observed": {
-        "fico_dti_bands": 7,
-        "quantile_bands": 4
+        "labels": {
+          "fico_band": [
+            "600–639",
+            "640–679",
+            "680–719",
+            "720–759",
+            "760–799",
+            "800+",
+            "<600"
+          ],
+          "dti_band": [
+            "100+",
+            "10–19.99",
+            "20–29.99",
+            "30–39.99",
+            "40–59.99",
+            "60–99.99",
+            "<10"
+          ],
+          "revenue_band": [
+            "Q1 (≤25th percentile)",
+            "Q2 (>25th–50th percentile)",
+            "Q3 (>50th–75th percentile)",
+            "Q4 (>75th percentile)"
+          ],
+          "loan_amount_band": [
+            "Q1 (≤25th percentile)",
+            "Q2 (>25th–50th percentile)",
+            "Q3 (>50th–75th percentile)",
+            "Q4 (>75th percentile)"
+          ]
+        },
+        "cuts": [
+          46600.0,
+          65000.0,
+          92000.0,
+          7975.0,
+          12000.0,
+          20000.0
+        ]
       },
       "expected": {
-        "fico_dti_bands": 7,
-        "quantile_bands": 4
+        "fico": [
+          "<600",
+          "600–639",
+          "640–679",
+          "680–719",
+          "720–759",
+          "760–799",
+          "800+"
+        ],
+        "dti": [
+          "<10",
+          "10–19.99",
+          "20–29.99",
+          "30–39.99",
+          "40–59.99",
+          "60–99.99",
+          "100+"
+        ],
+        "quantile_cuts": [
+          46600.0,
+          65000.0,
+          92000.0,
+          7975.0,
+          12000.0,
+          20000.0
+        ]
       }
     },
     {
@@ -154,7 +273,9 @@
       "observed": {
         "accounts": 1347681,
         "bad_accounts": 269249,
-        "loan_amount_share": 1.0000000000000002
+        "loan_amount_share": 1.0000000000000002,
+        "bad_amount_to_total_exposure": 0.21557759305972538,
+        "bad_associated_share": 1.0000000000000002
       }
     },
     {
@@ -165,17 +286,23 @@
         "home_ownership_n": {
           "accounts": 1347681,
           "bad_accounts": 269249,
-          "loan_amount_share": 1.0
+          "loan_amount_share": 1.0,
+          "bad_amount_to_total_exposure": 0.21557759305972535,
+          "bad_associated_share": 1.0
         },
         "experience_c": {
           "accounts": 1347681,
           "bad_accounts": 269249,
-          "loan_amount_share": 1.0
+          "loan_amount_share": 1.0,
+          "bad_amount_to_total_exposure": 0.21557759305972538,
+          "bad_associated_share": 1.0
         },
         "emp_length": {
           "accounts": 1347681,
           "bad_accounts": 269249,
-          "loan_amount_share": 1.0
+          "loan_amount_share": 1.0,
+          "bad_amount_to_total_exposure": 0.21557759305972538,
+          "bad_associated_share": 0.9999999999999999
         }
       }
     },
@@ -186,7 +313,9 @@
       "observed": {
         "accounts": 1347681,
         "bad_accounts": 269249,
-        "loan_amount_share": 1.0000000000000004
+        "loan_amount_share": 1.0000000000000004,
+        "bad_amount_to_total_exposure": 0.21557759305972538,
+        "bad_associated_share": 1.0
       }
     },
     {
@@ -194,10 +323,33 @@
       "name": "PRIMARY_SIZE_RULE",
       "status": "PASS",
       "observed": {
-        "primary_segments_violating_rule": 0
+        "rule_violations": 0
+      },
+      "expected": "accounts >= 1000 AND account_share >= 0.001"
+    },
+    {
+      "id": "B7T11",
+      "name": "BAD_SHARE_RECONCILIATION",
+      "status": "PASS",
+      "observed": {
+        "expected_bad_amount": 4186020700.0,
+        "expected_exposure_ratio": 0.21557759305972538,
+        "dimension_count": 9
       },
       "expected": {
-        "primary_segments_violating_rule": 0
+        "bad_associated_share_per_dimension": 1.0,
+        "bad_amount_to_total_exposure_per_dimension": 0.21557759305972538
+      }
+    },
+    {
+      "id": "B7T12",
+      "name": "WILSON_CI",
+      "status": "PASS",
+      "observed": {
+        "invalid_ci_rows": 0
+      },
+      "expected": {
+        "invalid_ci_rows": 0
       }
     }
   ],

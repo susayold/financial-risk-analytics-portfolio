@@ -4,41 +4,114 @@
   "tests": [
     {
       "id": "B8T01",
-      "name": "INPUT_LOCK",
+      "name": "INPUT_AND_PROFILE_LOCK",
       "status": "PASS",
-      "observed": [
-        "addr_state",
-        "dti_band",
-        "emp_length",
-        "experience_c",
-        "fico_band",
-        "home_ownership_n",
-        "loan_amount_band",
-        "purpose",
-        "revenue_band"
-      ],
-      "expected": [
-        "addr_state",
-        "dti_band",
-        "emp_length",
-        "experience_c",
-        "fico_band",
-        "home_ownership_n",
-        "loan_amount_band",
-        "purpose",
-        "revenue_band"
-      ]
+      "observed": {
+        "risk_dimensions": [
+          "addr_state",
+          "dti_band",
+          "emp_length",
+          "experience_c",
+          "fico_band",
+          "home_ownership_n",
+          "loan_amount_band",
+          "purpose",
+          "revenue_band"
+        ],
+        "profile_dimensions": [
+          "addr_state",
+          "dti_band",
+          "emp_length",
+          "experience_c",
+          "fico_band",
+          "home_ownership_n",
+          "loan_amount_band",
+          "purpose",
+          "revenue_band"
+        ]
+      },
+      "expected": {
+        "dimensions": [
+          "addr_state",
+          "dti_band",
+          "emp_length",
+          "experience_c",
+          "fico_band",
+          "home_ownership_n",
+          "loan_amount_band",
+          "purpose",
+          "revenue_band"
+        ],
+        "profile_present": true
+      }
     },
     {
       "id": "B8T02",
-      "name": "ACCOUNT_EXPOSURE_RECONCILIATION",
+      "name": "ACCOUNT_EXPOSURE_BAD_SHARE_RECONCILIATION",
       "status": "PASS",
       "observed": {
-        "dimensions": 9,
-        "all_share_sums_one": true
+        "addr_state": {
+          "accounts": 1347681,
+          "account_share": 0.9999999999999999,
+          "exposure_share": 1.0000000000000002,
+          "bad_associated_share": 1.0
+        },
+        "dti_band": {
+          "accounts": 1347681,
+          "account_share": 0.9999999999999999,
+          "exposure_share": 1.0,
+          "bad_associated_share": 1.0
+        },
+        "emp_length": {
+          "accounts": 1347681,
+          "account_share": 1.0,
+          "exposure_share": 1.0,
+          "bad_associated_share": 1.0
+        },
+        "experience_c": {
+          "accounts": 1347681,
+          "account_share": 1.0,
+          "exposure_share": 1.0,
+          "bad_associated_share": 1.0
+        },
+        "fico_band": {
+          "accounts": 1347681,
+          "account_share": 1.0,
+          "exposure_share": 1.0,
+          "bad_associated_share": 1.0
+        },
+        "home_ownership_n": {
+          "accounts": 1347681,
+          "account_share": 1.0,
+          "exposure_share": 1.0,
+          "bad_associated_share": 1.0
+        },
+        "loan_amount_band": {
+          "accounts": 1347681,
+          "account_share": 1.0,
+          "exposure_share": 0.9999999999999999,
+          "bad_associated_share": 1.0
+        },
+        "purpose": {
+          "accounts": 1347681,
+          "account_share": 1.0,
+          "exposure_share": 1.0,
+          "bad_associated_share": 1.0000000000000002
+        },
+        "revenue_band": {
+          "accounts": 1347681,
+          "account_share": 1.0,
+          "exposure_share": 1.0,
+          "bad_associated_share": 1.0
+        }
       },
       "expected": {
-        "account_and_exposure_share_sum_per_dimension": 1.0
+        "each_dimension_sums": {
+          "accounts": 1347681,
+          "account_share": 1.0,
+          "exposure_share": 1.0,
+          "bad_associated_share": 1.0
+        }
       }
     },
     {
@@ -49,7 +122,7 @@
         "rule_violations": 0
       },
       "expected": {
-        "rule_violations": 0
+        "rule": "headline_eligible AND relative_bad_rate > 1.0 AND primary_segment AND accounts > 0"
       }
     },
     {
@@ -57,19 +130,100 @@
       "name": "RANK_REPRODUCIBILITY",
       "status": "PASS",
       "observed": {
-        "material_rows": 44,
-        "contiguous_rank": true
+        "material_rows": 43,
+        "first_rows": [
+          [
+            1,
+            0.6399970501818111,
+            "purpose",
+            "debt_consolidation"
+          ],
+          [
+            2,
+            0.45500701895716855,
+            "loan_amount_band",
+            "Q4 (>75th percentile)"
+          ],
+          [
+            3,
+            0.41584225204619746,
+            "home_ownership_n",
+            "RENT"
+          ],
+          [
+            4,
+            0.40121608810964554,
+            "fico_band",
+            "640\u2013679"
+          ],
+          [
+            5,
+            0.3538886943392325,
+            "dti_band",
+            "20\u201329.99"
+          ]
+        ]
       },
       "expected": {
+        "contiguous_rank": true,
         "ordered_by": "bad_associated_share DESC"
       }
     },
     {
       "id": "B8T05",
-      "name": "BAD_AMOUNT_RECONCILIATION",
+      "name": "BAD_AMOUNT_SHARE_RECONCILIATION",
       "status": "PASS",
       "observed": {
-        "dimensions_checked": 9
+        "addr_state": {
+          "bad_amount": 4186020700.0,
+          "exposure_ratio": 0.21557759305972538,
+          "bad_associated_share": 1.0
+        },
+        "dti_band": {
+          "bad_amount": 4186020700.0,
+          "exposure_ratio": 0.21557759305972535,
+          "bad_associated_share": 1.0
+        },
+        "emp_length": {
+          "bad_amount": 4186020700.0,
+          "exposure_ratio": 0.2155775930597254,
+          "bad_associated_share": 1.0
+        },
+        "experience_c": {
+          "bad_amount": 4186020700.0,
+          "exposure_ratio": 0.21557759305972538,
+          "bad_associated_share": 1.0
+        },
+        "fico_band": {
+          "bad_amount": 4186020700.0,
+          "exposure_ratio": 0.21557759305972538,
+          "bad_associated_share": 1.0
+        },
+        "home_ownership_n": {
+          "bad_amount": 4186020700.0,
+          "exposure_ratio": 0.21557759305972538,
+          "bad_associated_share": 1.0
+        },
+        "loan_amount_band": {
+          "bad_amount": 4186020700.0,
+          "exposure_ratio": 0.21557759305972538,
+          "bad_associated_share": 1.0
+        },
+        "purpose": {
+          "bad_amount": 4186020700.0,
+          "exposure_ratio": 0.21557759305972538,
+          "bad_associated_share": 1.0000000000000002
+        },
+        "revenue_band": {
+          "bad_amount": 4186020700.0,
+          "exposure_ratio": 0.21557759305972538,
+          "bad_associated_share": 1.0
+        }
+      },
+      "expected": {
+        "bad_amount": 4186020700.0,
+        "exposure_ratio": 0.21557759305972538,
+        "bad_associated_share": 1.0
       }
     },
     {
@@ -77,10 +231,10 @@
       "name": "SMALL_SEGMENT_CONTROL",
       "status": "PASS",
       "observed": {
-        "material_tiny_segments": 0
+        "material_small_segments": 0
       },
       "expected": {
-        "material_tiny_segments": 0
+        "material_small_segments": 0
       }
     },
     {
@@ -93,7 +247,50 @@
       "expected": {
         "material_rows_without_rank": 0
       }
+    },
+    {
+      "id": "B8T08",
+      "name": "DIMENSION_INFORMATIVENESS",
+      "status": "PASS",
+      "observed": {
+        "quasi_constant_dimensions": [
+          [
+            "experience_c",
+            0.9999814496160442,
+            "QUASI_CONSTANT",
+            false
+          ]
+        ]
+      },
+      "expected": {
+        "threshold": "> 0.995",
+        "status": "QUASI_CONSTANT",
+        "headline_eligible": false
+      }
+    },
+    {
+      "id": "B8T09",
+      "name": "TOP_RANK_SEMANTIC_ELIGIBILITY",
+      "status": "PASS",
+      "observed": {
+        "experience_c_1": [
+          false,
+          null,
+          "QUASI_CONSTANT",
+          false
+        ],
+        "rank_1": [
+          "purpose",
+          "debt_consolidation",
+          1,
+          true
+        ]
+      },
+      "expected": {
+        "experience_not_ranked": true,
+        "rank_1_headline_eligible": true
+      }
     }
   ],
-  "claim_boundary": "Concentration is descriptive and single-variable; primary metric is BAD-associated exposure share, not realized loss."
+  "claim_boundary": "Concentration is descriptive and single-variable; primary metric is BAD-associated loan amount share, not realized loss."
 }

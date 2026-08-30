@@ -57,3 +57,39 @@ SELECT
 FROM mart.mart_credit_application_core
 GROUP BY split_name
 ORDER BY CASE split_name WHEN 'Development' THEN 1 WHEN 'Validation' THEN 2 WHEN 'OOT' THEN 3 WHEN 'Historical Shadow' THEN 4 ELSE 5 END;
+
+-- Annual composition is normalized within each issue year and dimension.
+-- It is descriptive only and uses issue_d-derived issue_year as temporal authority.
+CREATE OR REPLACE TABLE analytics.vintage_composition_annual AS
+WITH segments AS (
+    SELECT issue_year, 'purpose' AS dimension,
+           COALESCE(NULLIF(TRIM(CAST(purpose AS VARCHAR)), ''), 'UNKNOWN / MISSING') AS segment,
+           loan_amnt, actual_default
+    FROM mart.mart_credit_application_core
+    UNION ALL
+    SELECT issue_year, 'home_ownership_n',
+           COALESCE(NULLIF(TRIM(CAST(home_ownership_n AS VARCHAR)), ''), 'UNKNOWN / MISSING'),
+           loan_amnt, actual_default
+    FROM mart.mart_credit_application_core
+), grouped AS (
+    SELECT issue_year, dimension, segment,
+           COUNT(*)::BIGINT AS accounts,
+           SUM(loan_amnt)::DOUBLE AS loan_amount,
+           COUNT(*) FILTER (WHERE actual_default = 1)::BIGINT AS bad_accounts,
+           SUM(accounts) OVER (PARTITION BY issue_year, dimension)::DOUBLE AS year_accounts,
+           SUM(loan_amount) OVER (PARTITION BY issue_year, dimension)::DOUBLE AS year_loan_amount
+    FROM segments
+    GROUP BY issue_year, dimension, segment
+)
+SELECT
+    issue_year,
+    dimension,
+    segment,
+    accounts,
+    accounts / NULLIF(year_accounts, 0) AS account_share_within_year,
+    loan_amount,
+    loan_amount / NULLIF(year_loan_amount, 0) AS exposure_share_within_year,
+    bad_accounts,
+    bad_accounts / NULLIF(accounts, 0)::DOUBLE AS bad_rate
+FROM grouped
+ORDER BY issue_year, dimension, segment;

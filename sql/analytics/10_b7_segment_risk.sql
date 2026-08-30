@@ -62,7 +62,11 @@ WITH base AS (
     UNION ALL SELECT 'emp_length', COALESCE(NULLIF(TRIM(CAST(emp_length AS VARCHAR)), ''), 'UNKNOWN / MISSING'), loan_amnt, actual_default FROM base
     UNION ALL SELECT 'addr_state', COALESCE(NULLIF(TRIM(CAST(addr_state AS VARCHAR)), ''), 'UNKNOWN / MISSING'), loan_amnt, actual_default FROM base
 ), totals AS (
-    SELECT COUNT(*)::DOUBLE AS total_accounts, SUM(loan_amnt)::DOUBLE AS total_loan_amount FROM base
+    SELECT
+        COUNT(*)::DOUBLE AS total_accounts,
+        SUM(loan_amnt)::DOUBLE AS total_loan_amount,
+        SUM(loan_amnt) FILTER (WHERE actual_default = 1)::DOUBLE AS total_bad_associated_loan_amount
+    FROM base
 ), scored AS (
     SELECT
         dimension, segment,
@@ -73,17 +77,32 @@ WITH base AS (
         SUM(loan_amnt)::DOUBLE AS loan_amount,
         SUM(loan_amnt) / NULLIF(totals.total_loan_amount, 0)::DOUBLE AS loan_amount_share,
         SUM(loan_amnt) FILTER (WHERE actual_default = 1)::DOUBLE AS bad_associated_loan_amount,
-        SUM(loan_amnt) FILTER (WHERE actual_default = 1) / NULLIF(totals.total_loan_amount, 0)::DOUBLE AS bad_associated_share,
+        SUM(loan_amnt) FILTER (WHERE actual_default = 1) / NULLIF(totals.total_loan_amount, 0)::DOUBLE AS bad_amount_to_total_exposure,
+        SUM(loan_amnt) FILTER (WHERE actual_default = 1) / NULLIF(totals.total_bad_associated_loan_amount, 0)::DOUBLE AS bad_associated_share,
         COUNT(*) / totals.total_accounts AS account_share
     FROM segments CROSS JOIN totals
-    GROUP BY dimension, segment, totals.total_accounts, totals.total_loan_amount
+    GROUP BY dimension, segment, totals.total_accounts, totals.total_loan_amount, totals.total_bad_associated_loan_amount
 )
 SELECT
-    *,
+    dimension, segment, accounts, good_accounts, bad_accounts, bad_rate,
+    loan_amount, loan_amount_share, bad_associated_loan_amount,
+    bad_amount_to_total_exposure, bad_associated_share, account_share,
     bad_rate / NULLIF((SELECT AVG(actual_default) FROM base), 0)::DOUBLE AS relative_bad_rate,
-    accounts >= 1000 OR account_share >= 0.001 AS primary_segment,
-    CASE WHEN bad_rate >= 0 THEN NULL ELSE NULL END::DOUBLE AS wilson_lower_95,
-    CASE WHEN bad_rate >= 0 THEN NULL ELSE NULL END::DOUBLE AS wilson_upper_95
+    accounts >= 1000 AND account_share >= 0.001 AS primary_segment,
+    CASE WHEN accounts = 0 THEN NULL ELSE
+        ((bad_rate + POWER(1.959963984540054, 2) / (2 * accounts)) /
+         (1 + POWER(1.959963984540054, 2) / accounts)) -
+        (1.959963984540054 * SQRT(
+            bad_rate * (1 - bad_rate) / accounts +
+            POWER(1.959963984540054, 2) / (4 * POWER(accounts, 2))
+        ) / (1 + POWER(1.959963984540054, 2) / accounts)) END::DOUBLE AS wilson_lower_95,
+    CASE WHEN accounts = 0 THEN NULL ELSE
+        ((bad_rate + POWER(1.959963984540054, 2) / (2 * accounts)) /
+         (1 + POWER(1.959963984540054, 2) / accounts)) +
+        (1.959963984540054 * SQRT(
+            bad_rate * (1 - bad_rate) / accounts +
+            POWER(1.959963984540054, 2) / (4 * POWER(accounts, 2))
+        ) / (1 + POWER(1.959963984540054, 2) / accounts)) END::DOUBLE AS wilson_upper_95
 FROM scored
 ORDER BY dimension, accounts DESC, segment;
 
@@ -91,17 +110,17 @@ ORDER BY dimension, accounts DESC, segment;
 INSERT INTO analytics.segment_risk
     (dimension, segment, accounts, good_accounts, bad_accounts, bad_rate,
      loan_amount, loan_amount_share, bad_associated_loan_amount,
-     bad_associated_share, account_share, relative_bad_rate, primary_segment,
+     bad_amount_to_total_exposure, bad_associated_share, account_share, relative_bad_rate, primary_segment,
      wilson_lower_95, wilson_upper_95)
-SELECT 'fico_band', x.segment, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, FALSE, NULL, NULL
+SELECT 'fico_band', x.segment, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, FALSE, NULL, NULL
 FROM (VALUES ('<600'),('600–639'),('640–679'),('680–719'),('720–759'),('760–799'),('800+')) x(segment)
 WHERE NOT EXISTS (SELECT 1 FROM analytics.segment_risk s WHERE s.dimension='fico_band' AND s.segment=x.segment);
 
 INSERT INTO analytics.segment_risk
     (dimension, segment, accounts, good_accounts, bad_accounts, bad_rate,
      loan_amount, loan_amount_share, bad_associated_loan_amount,
-     bad_associated_share, account_share, relative_bad_rate, primary_segment,
+     bad_amount_to_total_exposure, bad_associated_share, account_share, relative_bad_rate, primary_segment,
      wilson_lower_95, wilson_upper_95)
-SELECT 'dti_band', x.segment, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, FALSE, NULL, NULL
+SELECT 'dti_band', x.segment, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, FALSE, NULL, NULL
 FROM (VALUES ('<10'),('10–19.99'),('20–29.99'),('30–39.99'),('40–59.99'),('60–99.99'),('100+')) x(segment)
 WHERE NOT EXISTS (SELECT 1 FROM analytics.segment_risk s WHERE s.dimension='dti_band' AND s.segment=x.segment);

@@ -1,6 +1,6 @@
 # B6 Status — Portfolio Overview
 
-- **Gate:** `B6 = FINAL REVIEWED / PASS`
+- **Gate:** `B6 = FINAL REVIEWED / FAIL`
 - **Source:** locked `mart.mart_credit_application_core`
 - **Grain:** one row per granted-loan application/account
 - **Accounts:** 1,347,681
@@ -8,6 +8,6 @@
 - **Observed final-resolution BAD rate:** 19.98%
 - **Total loan amount proxy:** $19,417,698,475
 - **BAD-associated loan amount:** $4,186,020,700 (21.56%)
-- **Tests:** 7/7 PASS
+- **Tests:** 8/8 FAIL
 
 B6 is descriptive. `loan_amnt` is an exposure proxy, not observed EAD; BAD-associated loan amount is not realized loss; the BAD rate is not verified 12-month PD.

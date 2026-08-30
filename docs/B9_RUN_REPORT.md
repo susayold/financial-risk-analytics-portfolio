@@ -2,7 +2,7 @@
 
 ## Work completed
 
-B9 used `issue_d` as the sole temporal authority and generated monthly cohort, annual cohort and split summaries. Monthly and annual aggregations reconcile exactly to the frozen core.
+B9 used `issue_d` as the sole temporal authority and generated monthly cohort, annual cohort, split and annual composition summaries. Monthly and annual aggregations reconcile exactly to the frozen core.
 
 ## Split baseline
 
@@ -30,6 +30,10 @@ B9 used `issue_d` as the sole temporal authority and generated monthly cohort, a
 | 2017 | 169,117 | 23.13% | $618,130,600 |
 | 2018 | 56,160 | 15.75% | $150,517,475 |
 
+## Composition insight
+
+In 2018, `debt_consolidation` was the largest purpose segment at 51.02% of that year's accounts, with an observed BAD rate of 16.14%. This is descriptive composition, not a causal or policy conclusion.
+
 ## Interpretation boundary
 
-Temporal shifts may be described as associated, coincident or co-moving. They are not treated as causal. The 2018 cohort is a historical shadow/resolved-loan sample and not a live performance-monitoring window.
+Temporal shifts may be described as associated, coincident or co-moving. They are not treated as causal. The 2018 cohort is a historical shadow/resolved-loan sample and not a live performance-monitoring window. This is not predictive PD or live monitoring.

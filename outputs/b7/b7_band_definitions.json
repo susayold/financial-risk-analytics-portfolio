@@ -38,5 +38,5 @@
     "loan_amnt_q75": 20000.0
   },
   "missing_label": "UNKNOWN / MISSING",
-  "primary_segment_rule": "accounts >= 1,000 OR account_share >= 0.001"
+  "primary_segment_rule": "accounts >= 1,000 AND account_share >= 0.001"
 }

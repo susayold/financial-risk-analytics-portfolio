@@ -2,8 +2,8 @@
 
 - **Gate:** `B7 = FINAL REVIEWED / PASS`
 - **Dimensions:** 9
-- **Dimensions covered:** `fico_band`, `dti_band`, `revenue_band`, `loan_amount_band`, `purpose`, `home_ownership_n`, `experience_c`, `emp_length`, `addr_state`
-- **Segment rows:** 105, including empty fixed buckets where required
-- **Tests:** 10/10 PASS
+- **Segment rows:** 105, including fixed buckets where required
+- **Primary-segment rule:** `accounts >= 1,000 AND account_share >= 0.1%`
+- **Tests:** 12/12 PASS
 
 B7 reports single-variable descriptive observed BAD segmentation only. It does not select model features or claim predictive performance.

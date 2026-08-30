@@ -1,6 +1,6 @@
 # CRD.PI — Block B White Slide Website
 
-Recruiter-facing static HTML presentation for **Block B — Data Engineering & Quality Control**.
+Recruiter-facing static HTML presentation for **Block B — Data Engineering & Portfolio Risk**.
 
 ## Scope
 
@@ -16,8 +16,9 @@ This page covers the reviewed and locked B0–B9 engineering and portfolio-risk 
 - B5 controlled pricing enrichment and rejected-context boundary;
 - B6 portfolio overview and descriptive baseline;
 - B7 single-variable segment risk;
-- B8 material risk concentration screening;
-- B9 vintage/temporal analysis with right-truncation caveat.
+- B8 material risk concentration screening with dimension-informativeness control;
+- B9 vintage/temporal analysis with annual composition and right-truncation caveat;
+- final closure QA: 15/15 PASS, baseline unchanged.
 
 It does not claim a production pipeline, verified 12-month PD, calibrated model, ROC-AUC/KS/Gini, LGD/EAD, ECL, optimized approval policy, causal reject inference or live monitoring.
 
@@ -32,7 +33,8 @@ It does not claim a production pipeline, verified 12-month PD, calibrated model,
 - `../docs/B4_RUN_REPORT.md` and `../evidence/block-b/b4-*.md` — sanitized B4 handoff evidence.
 - `../docs/B6_RUN_REPORT.md` through `../docs/B9_RUN_REPORT.md` — aggregate analytical reports.
 - `../docs/BLOCK_B_ANALYTICAL_FINDINGS.md` and `../docs/BLOCK_B_FINAL_LOCK.md` — findings and final lock.
-- `../evidence/block-b/b6-*.md` through `../evidence/block-b/block-b-final-lock.md` — public aggregate evidence.
+- `../docs/BLOCK_B_FINAL_CLOSURE_REMEDIATION.md` — closure change control and result.
+- `../evidence/block-b/b6-*.md` through `../evidence/block-b/block-b-final-qa.md` — public aggregate evidence.
 
 ## Local preview
 
