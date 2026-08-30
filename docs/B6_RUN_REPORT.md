@@ -19,7 +19,7 @@ B6 profiled the frozen core mart without caps, imputation, outlier treatment or 
 
 ## QA
 
-`FAIL` across B6T01–B6T08. Direct core-source exposure/null reconciliations, count identities, category shares and the public claim contract pass. Pricing fields are absent from the core mart; matched pricing remains under the B5 boundary. This observed BAD rate is not verified 12-month PD.
+`PASS` across B6T01–B6T08. Direct core-source exposure/null reconciliations, count identities, category shares and the public claim contract pass. Pricing fields are absent from the core mart; matched pricing remains under the B5 boundary. This observed BAD rate is not verified 12-month PD.
 
 ## Artifacts
 

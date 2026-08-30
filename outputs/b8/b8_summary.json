@@ -4,7 +4,7 @@
   "material_segments": 43,
   "material_bad_associated_share_sum": 4.119502628116483,
   "max_materiality_rank": 43,
-  "quasi_constant_dimensions": 2,
+  "quasi_constant_dimensions": 1,
   "materiality_rule": "headline_eligible AND relative_bad_rate > 1.0 AND primary_segment = TRUE",
   "dimension_rule": "dominant_segment_account_share > 0.995 => QUASI_CONSTANT",
   "concentration_index_definition": "relative_bad_rate \u00d7 loan_amount_share; descriptive only",

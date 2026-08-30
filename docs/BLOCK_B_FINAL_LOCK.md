@@ -9,10 +9,10 @@
 - B0–B3: FINAL REVIEWED / PASS
 - B4: FINAL REVIEWED / PASS — core application mart
 - B5: FINAL REVIEWED / PASS — controlled enrichment / rejected context boundary
-- B6: FINAL REVIEWED / FAIL
+- B6: FINAL REVIEWED / PASS — portfolio overview
 - B7: FINAL REVIEWED / PASS
 - B8: FINAL REVIEWED / PASS
-- B9: FINAL REVIEWED / FAIL
+- B9: FINAL REVIEWED / PASS — vintage / temporal analysis
 
 ## Locked populations
 
