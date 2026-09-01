@@ -8,6 +8,14 @@ Drive contains upstream Block C packages, but the available objects are not
 equivalent to a complete D1 Development score mart. D1 remains
 `REVIEW_REQUIRED`.
 
+The available persisted score files were independently audited on 2026-09-02.
+Validation 2016 contains 83,664 unique scored accounts with 14,190 BAD cases;
+OOT 2017 contains 44,221 unique scored accounts with 5,892 BAD cases. The
+recomputed AUCs are 0.8219379569 and 0.8557777505 respectively, with zero
+cross-split account-ID overlap. See
+`D1_AVAILABLE_SCORE_ARTIFACT_AUDIT.md`. These checks validate the files, not
+their coverage of the governed core.
+
 ## Evidence inventory
 
 | Object | Drive evidence | What it proves | What it does not prove |
@@ -33,4 +41,3 @@ pricing bridge: term, int_rate, installment, sub_grade, grade_derived
 The materialized output must then pass account-grain uniqueness, row-count,
 coverage, target-concordance and no-leakage checks. Until that occurs, D1 has
 no account-level metrics, decile cutpoints or full Development/OOT mart claim.
-

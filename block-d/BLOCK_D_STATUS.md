@@ -26,6 +26,9 @@ Block D is not complete. The governance foundation is implemented and reviewed, 
 
 - Contract, risk bands, deterministic build script and QA schema created.
 - Source packages inspected without retraining C8E or tuning OOT.
+- Persisted C8E Validation and C9 OOT score files independently audited:
+  required columns, account uniqueness, target/score validity, expected row
+  counts and zero cross-split ID overlap all pass.
 - D1 build is ready for C8E Validation + C9 OOT persisted score outputs.
 - The currently available score evidence covers 83,664 Validation and 44,221 OOT rows.
 - Development score output and pricing fields are not present in the materialized input available to the runtime.
