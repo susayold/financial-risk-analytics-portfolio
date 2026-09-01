@@ -4,7 +4,7 @@ Updated: 2026-09-01
 
 ## Current status
 
-`D0 PASS` · `D1 PASS_WITH_LIMITATIONS` · `D2 BLOCKED_PENDING_SOURCE` · `D3–D9 NOT STARTED`
+`D0 PASS` · `D1 PASS_WITH_LIMITATIONS` · `D2 BLOCKED_PENDING_SOURCE` · `D3 PASS_WITH_LIMITATIONS` · `D4–D9 NOT STARTED`
 
 Block D is not complete. The governance foundation is implemented and reviewed, but the downstream economics stages must not be fabricated from summary metrics.
 
@@ -30,6 +30,14 @@ Block D is not complete. The governance foundation is implemented and reviewed, 
 - The currently available score evidence covers 83,664 Validation and 44,221 OOT rows.
 - Development score output and pricing fields are not present in the materialized input available to the runtime.
 
+### D3 — EAD Framework
+
+- Contractual amortization scenarios executed on the 331,865-row accepted/pricing source.
+- 331,761 rows have valid non-increasing schedules.
+- 104 schedule anomalies are retained as `EXCLUDED_DATA_ERROR`; their timing scenarios are not used.
+- Origination EAD proxy reconciles exactly to `loan_amnt`.
+- QA: **8/8 gates PASS** within the declared P2 scope.
+
 ## Not claimed
 
 - No full D1 account mart has been claimed until the Development score artifact is available.
@@ -39,7 +47,7 @@ Block D is not complete. The governance foundation is implemented and reviewed, 
 ## Blocking inputs
 
 1. Persisted C8E Development predictions/scores joined to the governed Development population.
-2. Validated pricing enrichment bridge containing `term`, `int_rate`, `installment`, `sub_grade` and `grade_derived`.
+2. Validated C8E score-to-pricing bridge containing `term`, `int_rate`, `installment`, `sub_grade` and `grade_derived`.
 3. Accepted full-source loss/recovery bridge for D2, with field definitions, timing, coverage, reconciliation and anomaly treatment.
 
 The available private C9 closure package contains the frozen model, C9 OOT predictions and C8E Validation predictions, but does not by itself provide all three inputs above.

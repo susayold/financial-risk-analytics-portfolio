@@ -1,0 +1,12 @@
+field,definition,timing,is_post_outcome,missing_rate,zero_rate,min,median,mean,max,allowed_block_d_use
+funded_amnt,original funded principal,T0,false,1.0,,,,,false
+funded_amnt_inv,investor funded principal,T0,false,1.0,,,,,false
+total_rec_prncp,total principal recovered,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY
+total_rec_int,total interest recovered,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY
+total_rec_late_fee,total late fee recovered,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY
+recoveries,recovery amount,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY
+collection_recovery_fee,collection fee associated with recovery,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY
+total_pymnt,total payment received,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY
+last_pymnt_d,last payment date,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY
+last_pymnt_amnt,last payment amount,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY
+out_prncp,outstanding principal after reporting history,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY

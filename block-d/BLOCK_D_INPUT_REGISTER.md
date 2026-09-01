@@ -10,6 +10,10 @@
 | Pricing enrichment bridge | D3/D7 | Not yet available to D runtime | Figshare enrichment, subject to bridge QA |
 | Full accepted source loss/recovery fields | D2/D4 | Not located in current Drive project folder | Must be supplied/materialized |
 
+## D3 execution evidence
+
+The accepted/pricing fallback was sufficient to execute D3 contractual scenarios. The account-level output is stored in the private Drive Block D folder and excluded from GitHub; only sanitized contracts and QA summaries are public.
+
 ## Evidence rule
 
 Summary metrics from Block C can freeze the upstream model and its claim boundary, but they cannot substitute for account-level inputs required to calculate D1–D8. No downstream number is published until its population and field-level evidence are present.

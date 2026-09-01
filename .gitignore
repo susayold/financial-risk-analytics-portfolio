@@ -2,5 +2,6 @@
 _b4_runtime/
 _b5_runtime/
 _analysis_runtime/
+outputs/block_d/
 **/__pycache__/
 *.py[cod]
