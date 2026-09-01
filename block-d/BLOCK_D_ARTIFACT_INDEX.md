@@ -1,7 +1,7 @@
 # CRD.PI Block D — Artifact Index
 
 Updated: 2026-09-02  
-Git commit: `PENDING_COMMIT`
+Git commit: `ab7a62c`
 
 ## Overall state
 
