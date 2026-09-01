@@ -4,7 +4,7 @@ Updated: 2026-09-02
 
 ## Current status
 
-`D0 PASS` · `D1 PASS_WITH_LIMITATIONS` · `D2 REVIEW_REQUIRED_BRIDGE_PENDING` · `D3 PASS_WITH_LIMITATIONS` · `D4–D9 NOT STARTED`
+`D0 PASS` · `D1 PASS_WITH_LIMITATIONS` · `D2 REVIEW_REQUIRED_BRIDGE_PENDING` · `D3 PASS_WITH_LIMITATIONS` · `D4 SCENARIO_ONLY_REVIEW_REQUIRED` · `D5–D9 NOT STARTED`
 
 Block D is not complete. The governance foundation is implemented and reviewed, but the downstream economics stages must not be fabricated from summary metrics.
 
@@ -47,10 +47,18 @@ Block D is not complete. The governance foundation is implemented and reviewed, 
 - The exact bridge to the governed **1,347,681-row core** is still pending because the governed-core ID list is not materialized in the D runtime.
 - QA: **7 PASS / 2 FAIL / 1 PENDING**; status remains **REVIEW_REQUIRED_BRIDGE_PENDING**.
 
+### D4 — LGD Scenario Evidence
+
+- Source-level Q25/Q50/Q75/Q90 LGD anchors were generated from **262,479** resolved BAD rows with issue year through 2017.
+- The 2018 shadow cohort (**8,874** rows) is retained as monitor-only and excluded from primary anchors because of documented final-resolution/truncation concerns.
+- No `p_bad_final` or C8E score is used; this is not an empirical C8E LGD model.
+- QA: **7 PASS / 0 FAIL / 2 PENDING**; status remains **SCENARIO_ONLY_REVIEW_REQUIRED** until D1/D2 bridges pass.
+
 ## Not claimed
 
 - No full D1 account mart has been claimed until the Development score artifact is available.
 - No LGD, EAD timing, Expected Loss, decision policy, pricing adequacy or stress result has been calculated.
+- D4 scenario anchors are not approved main-case LGD inputs and must not be combined with `p_bad_final`.
 - No regulatory PD/LGD/EAD/ECL or realized profit/loss claim is made.
 
 ## Blocking inputs
@@ -69,4 +77,4 @@ Materialize the missing inputs into the D runtime on Drive/D storage, then rerun
 python src/build_block_d_d1_mart.py --cumulative-c7 <path> --c8e <path> --c9 <path> --output-dir <D-runtime-output>
 ```
 
-Only after D1 coverage and the governed-core D2 bridge reconcile should empirical D4 LGD work proceed. Scenario-only work is permitted only under the explicit fallback boundary in the D2 stop report.
+Only after D1 coverage and the governed-core D2 bridge reconcile should empirical D4 LGD work proceed. The current D4 output is scenario-only under the explicit fallback boundary in `D4_LGD_SCENARIO_CONTRACT.md`.

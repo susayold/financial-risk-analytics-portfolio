@@ -9,6 +9,7 @@
 | C8E Development predictions | D1 | Missing from available score package | Must be supplied/materialized |
 | Pricing enrichment bridge | D3/D7 | Not yet available to D runtime | Figshare enrichment, subject to bridge QA |
 | Full accepted source loss/recovery fields | D2/D4 | Source-level full audit complete; exact governed-core ID bridge pending | D2 full-source audit; governed-core bridge must be supplied/materialized |
+| Source-level LGD scenario anchors | D4 fallback | Generated from 262,479 BAD rows through issue year 2017; 2018 monitor-only | D4 scenario output; not approved empirical C8E LGD |
 
 ## D3 execution evidence
 
