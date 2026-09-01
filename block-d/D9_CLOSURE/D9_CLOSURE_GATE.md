@@ -1,0 +1,26 @@
+# D9 — Block D Closure Gate
+
+## Status
+
+`HOLD_UPSTREAM_EVIDENCE` — closure checklist prepared; Block D is not locked.
+
+## Closure conditions
+
+1. D0 governance QA remains PASS and upstream snapshot is frozen.
+2. D1 full score mart and split diagnostics pass.
+3. D2 governed-core loss/recovery bridge passes with reconciliation and
+   anomaly treatment.
+4. D3 limitations are accepted for its declared source scope.
+5. D4 LGD is either approved for the governed population or explicitly
+   retained as scenario-only with no downstream EL claim.
+6. D5 expected-loss proxy passes with population, timing and formula audit.
+7. D6 decision policy and D7 pricing controls have owner sign-off.
+8. D8 stress/sensitivity evidence is reproducible and bounded.
+9. Final artifact index, run manifests, claim boundary and owner sign-off are
+   complete.
+
+## Current decision
+
+Conditions 2, 3 and 5–8 are not met. Therefore the only valid status is
+`NOT_LOCKED / REVIEW_REQUIRED`; this document does not declare completion.
+

@@ -4,7 +4,7 @@ Updated: 2026-09-02
 
 ## Current status
 
-`D0 PASS` · `D1 REVIEW_REQUIRED` · `D2 REVIEW_REQUIRED_BRIDGE_PENDING` · `D3 PASS_WITH_LIMITATIONS` · `D4 SCENARIO_ONLY_REVIEW_REQUIRED` · `D5–D9 NOT STARTED`
+`D0 PASS` · `D1 REVIEW_REQUIRED` · `D2 REVIEW_REQUIRED_BRIDGE_PENDING` · `D3 PASS_WITH_LIMITATIONS` · `D4 SCENARIO_ONLY_REVIEW_REQUIRED` · `D5–D9 GATED_HOLD`
 
 Block D is not complete. The governance foundation is implemented and reviewed, but the downstream economics stages must not be fabricated from summary metrics.
 
@@ -60,6 +60,14 @@ Block D is not complete. The governance foundation is implemented and reviewed, 
 - No LGD, EAD timing, Expected Loss, decision policy, pricing adequacy or stress result has been calculated.
 - D4 scenario anchors are not approved main-case LGD inputs and must not be combined with `p_bad_final`.
 - No regulatory PD/LGD/EAD/ECL or realized profit/loss claim is made.
+
+### D5–D9 downstream gates
+
+The contracts and gate manifests for D5 Expected Loss, D6 Decision Policy, D7
+Pricing Adequacy, D8 Stress/Sensitivity and D9 Closure are now recorded. Their
+controlled status is `HOLD_UPSTREAM_EVIDENCE`; none of these stages has been
+executed and no downstream numeric or production claim is made. See
+`D5_D9_DOWNSTREAM_GATE_REGISTER.md` and `D5_D9_GATE_QA.json`.
 
 ## Blocking inputs
 

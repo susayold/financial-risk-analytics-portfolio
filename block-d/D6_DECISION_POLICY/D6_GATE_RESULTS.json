@@ -1,0 +1,14 @@
+{
+  "stage": "D6",
+  "title": "Decision Policy Gate",
+  "status": "HOLD_UPSTREAM_EVIDENCE",
+  "executed": false,
+  "numeric_output_claimed": false,
+  "required_upstream": ["D1_PASS", "D5_PASS", "D0_CLAIM_BOUNDARY", "OWNER_SIGNOFF"],
+  "blocked_checks": [
+    "D1 risk cutpoints and full score coverage are pending",
+    "D5 expected-loss gate is not open",
+    "Action thresholds and overrides have no owner approval"
+  ],
+  "claims_forbidden": ["production approve/decline policy", "approved override limits"]
+}

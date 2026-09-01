@@ -1,0 +1,27 @@
+{
+  "run_name": "block_d_downstream_gate_qa",
+  "run_date": "2026-09-02",
+  "status": "CONTROLLED_HOLD",
+  "numeric_outputs_claimed": false,
+  "stages": {
+    "D5": "HOLD_UPSTREAM_EVIDENCE",
+    "D6": "HOLD_UPSTREAM_EVIDENCE",
+    "D7": "HOLD_UPSTREAM_EVIDENCE",
+    "D8": "HOLD_UPSTREAM_EVIDENCE",
+    "D9": "HOLD_UPSTREAM_EVIDENCE"
+  },
+  "control_checks": {
+    "no_unapproved_el_number": "PASS",
+    "no_production_policy_claim": "PASS",
+    "no_pricing_profitability_claim": "PASS",
+    "no_stress_result_claim": "PASS",
+    "closure_not_locked": "PASS"
+  },
+  "open_inputs": [
+    "D1 Development score artifact",
+    "D1 score-to-pricing bridge",
+    "D2 governed-core ID bridge",
+    "D4 approved LGD population and timing",
+    "owner sign-offs"
+  ]
+}

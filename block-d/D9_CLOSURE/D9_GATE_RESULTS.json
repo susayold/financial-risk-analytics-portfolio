@@ -1,0 +1,12 @@
+{
+  "stage": "D9",
+  "title": "Block D Closure Gate",
+  "status": "HOLD_UPSTREAM_EVIDENCE",
+  "executed": false,
+  "numeric_output_claimed": false,
+  "closure_decision": "NOT_LOCKED",
+  "required_stage_passes": ["D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8"],
+  "open_stage_gates": ["D1", "D2", "D4", "D5", "D6", "D7", "D8"],
+  "required_signoffs": ["data_owner", "model_owner", "risk_owner"],
+  "claims_forbidden": ["Block D LOCKED", "production economics approval"]
+}

@@ -1,0 +1,15 @@
+{
+  "stage": "D7",
+  "title": "Pricing Adequacy Gate",
+  "status": "HOLD_UPSTREAM_EVIDENCE",
+  "executed": false,
+  "numeric_output_claimed": false,
+  "required_pricing_fields": ["term", "int_rate", "installment", "sub_grade", "grade_derived"],
+  "required_upstream": ["D1_PASS", "D5_PASS", "PRICING_BRIDGE_PASS"],
+  "blocked_checks": [
+    "Exact C8E score-to-pricing bridge is not materialized",
+    "D5 economics output is not available",
+    "Cost, fee and realized profitability evidence is not in scope"
+  ],
+  "claims_forbidden": ["price adequacy", "risk-adjusted margin", "realized profitability"]
+}
