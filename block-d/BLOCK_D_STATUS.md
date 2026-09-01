@@ -1,10 +1,10 @@
 # BLOCK D STATUS
 
-Updated: 2026-09-01
+Updated: 2026-09-02
 
 ## Current status
 
-`D0 PASS` · `D1 PASS_WITH_LIMITATIONS` · `D2 BLOCKED_PENDING_SOURCE` · `D3 PASS_WITH_LIMITATIONS` · `D4–D9 NOT STARTED`
+`D0 PASS` · `D1 PASS_WITH_LIMITATIONS` · `D2 REVIEW_REQUIRED_BRIDGE_PENDING` · `D3 PASS_WITH_LIMITATIONS` · `D4–D9 NOT STARTED`
 
 Block D is not complete. The governance foundation is implemented and reviewed, but the downstream economics stages must not be fabricated from summary metrics.
 
@@ -38,6 +38,15 @@ Block D is not complete. The governance foundation is implemented and reviewed, 
 - Origination EAD proxy reconciles exactly to `loan_amnt`.
 - QA: **8/8 gates PASS** within the declared P2 scope.
 
+### D2 — Loss & Recovery Evidence
+
+- The full accepted LendingClub source was audited in streaming mode: **2,275,739 source rows**.
+- Resolved final outcomes: **1,356,914 rows** = **271,353 BAD** and **1,085,561 GOOD**.
+- Required retrospective recovery fields are present and their timing/role is documented.
+- Loss-quality treatment is explicit: **1,355,773 VALID** and **1,141 CLIPPED_FOR_MODELING**; no silent clipping is permitted.
+- The exact bridge to the governed **1,347,681-row core** is still pending because the governed-core ID list is not materialized in the D runtime.
+- QA: **7 PASS / 2 FAIL / 1 PENDING**; status remains **REVIEW_REQUIRED_BRIDGE_PENDING**.
+
 ## Not claimed
 
 - No full D1 account mart has been claimed until the Development score artifact is available.
@@ -48,7 +57,7 @@ Block D is not complete. The governance foundation is implemented and reviewed, 
 
 1. Persisted C8E Development predictions/scores joined to the governed Development population.
 2. Validated C8E score-to-pricing bridge containing `term`, `int_rate`, `installment`, `sub_grade` and `grade_derived`.
-3. Accepted full-source loss/recovery bridge for D2, with field definitions, timing, coverage, reconciliation and anomaly treatment.
+3. Accepted full-source loss/recovery bridge for D2, with field definitions, timing, coverage, reconciliation and anomaly treatment. The source-level audit is complete; governed-core ID reconciliation remains pending.
 
 The available private C9 closure package contains the frozen model, C9 OOT predictions and C8E Validation predictions, but does not by itself provide all three inputs above.
 
@@ -60,4 +69,4 @@ Materialize the missing inputs into the D runtime on Drive/D storage, then rerun
 python src/build_block_d_d1_mart.py --cumulative-c7 <path> --c8e <path> --c9 <path> --output-dir <D-runtime-output>
 ```
 
-Only after D1 coverage and bridges reconcile should execution proceed to D2/D3 and then the strict D4–D9 sequence.
+Only after D1 coverage and the governed-core D2 bridge reconcile should empirical D4 LGD work proceed. Scenario-only work is permitted only under the explicit fallback boundary in the D2 stop report.

@@ -2,31 +2,16 @@
 
 ## Status
 
-`BLOCKED_PENDING_FULL_ACCEPTED_SOURCE`
+`REVIEW_REQUIRED_BRIDGE_PENDING`
 
-The available accepted-source fallback was inspected at field level. It contains 27 origination/pricing fields, including `loan_amnt`, `term`, `int_rate`, `installment`, `issue_d`, `id` and `loan_status`, but it does not contain the required retrospective recovery/loss fields.
+The full accepted-source file was recovered on the D runtime and audited in streaming mode. It contains the required retrospective recovery/loss fields. The audit covered 2,275,739 source rows, of which 1,356,914 have resolved outcomes: 271,353 BAD and 1,085,561 GOOD.
 
-Missing required evidence fields:
-
-```text
-funded_amnt
-funded_amnt_inv
-total_rec_prncp
-total_rec_int
-total_rec_late_fee
-recoveries
-collection_recovery_fee
-total_pymnt
-last_pymnt_d
-last_pymnt_amnt
-out_prncp
-```
-
-Because the full-source bridge and post-outcome semantics cannot be verified from the available input, D2 does not construct a retrospective LGD proxy and does not impute or invent recovery values.
+The exact bridge to the 1,347,681-row governed core is still pending because the governed-core ID list is not materialized in the current D runtime. Therefore the loss output is source-level retrospective evidence and is not yet an empirical LGD for the C8E population.
 
 ## Consequence for downstream stages
 
-- Empirical D4 LGD challenger: stopped.
+- Empirical D4 LGD challenger: not yet opened for the C8E population; exact bridge remains a gate.
+- Source-level loss evidence is available for retrospective distribution and anomaly review.
 - Fallback permitted by the plan: scenario LGD only, subject to explicit assumptions and approval.
-- D5 Expected Loss cannot be frozen until a scenario LGD method is formally registered and approved.
-- The inspected 27-field source remains a temporary D-runtime input and is not committed to GitHub or uploaded as raw data.
+- D5 Expected Loss cannot be frozen until D1 scores and the D4 LGD method are both approved.
+- The 1.6 GB raw source is temporary D-runtime input and is not committed to GitHub or uploaded as raw data.

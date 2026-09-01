@@ -8,7 +8,7 @@
 | Governed Development population | D1 bridge | Available in prior cumulative package, but not currently materialized in runtime | [Block C root](https://drive.google.com/drive/folders/15T6gKbJVk3Y93eorRhTSC1yjdzn7p3W_) |
 | C8E Development predictions | D1 | Missing from available score package | Must be supplied/materialized |
 | Pricing enrichment bridge | D3/D7 | Not yet available to D runtime | Figshare enrichment, subject to bridge QA |
-| Full accepted source loss/recovery fields | D2/D4 | Not located in current Drive project folder | Must be supplied/materialized |
+| Full accepted source loss/recovery fields | D2/D4 | Source-level full audit complete; exact governed-core ID bridge pending | D2 full-source audit; governed-core bridge must be supplied/materialized |
 
 ## D3 execution evidence
 

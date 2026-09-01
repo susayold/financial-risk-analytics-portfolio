@@ -1,12 +1,12 @@
 field,definition,timing,is_post_outcome,missing_rate,zero_rate,min,median,mean,max,allowed_block_d_use
-funded_amnt,original funded principal,T0,false,1.0,,,,,false
-funded_amnt_inv,investor funded principal,T0,false,1.0,,,,,false
-total_rec_prncp,total principal recovered,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY
-total_rec_int,total interest recovered,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY
-total_rec_late_fee,total late fee recovered,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY
-recoveries,recovery amount,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY
-collection_recovery_fee,collection fee associated with recovery,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY
-total_pymnt,total payment received,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY
-last_pymnt_d,last payment date,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY
-last_pymnt_amnt,last payment amount,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY
-out_prncp,outstanding principal after reporting history,post-outcome,true,1.0,,,,,OUTCOME_EVIDENCE_ONLY
+funded_amnt,original funded principal,T0/funding,false,0.0,0.0,500.0,12000.0,14396.666719482591,40000.0,EAD_PROXY_INPUT_ONLY
+funded_amnt_inv,investor funded principal,T0/funding,false,0.0,0.00017171316678875743,0.0,12000.0,14369.161410582423,40000.0,EAD_PROXY_INPUT_ONLY
+total_rec_prncp,total principal recovered,post-outcome,true,0.0,0.0018320984233341244,0.0,10000.0,12165.583862470281,40000.0,OUTCOME_EVIDENCE_ONLY
+total_rec_int,total interest recovered,post-outcome,true,0.0,0.0018932666329627376,0.0,1567.19,2394.389728,28192.5,OUTCOME_EVIDENCE_ONLY
+total_rec_late_fee,total late fee recovered,post-outcome,true,0.0,0.9554665955248454,-5.1e-09,0.0,1.5907917281680928,1188.83,OUTCOME_EVIDENCE_ONLY
+recoveries,recovery amount,post-outcome,true,0.0,0.8624356444107733,0.0,0.0,241.5024588020264,39859.55,OUTCOME_EVIDENCE_ONLY
+collection_recovery_fee,collection fee associated with recovery,post-outcome,true,0.0,0.8686409013393627,0.0,0.0,40.26408229591689,7174.719,OUTCOME_EVIDENCE_ONLY
+total_pymnt,total payment received,post-outcome,true,0.0,0.0006286323230506871,0.0,12108.244474059302,14803.066713245493,63296.877916990896,OUTCOME_EVIDENCE_ONLY
+last_pymnt_d,last payment date,post-outcome,true,,,,,,,OUTCOME_EVIDENCE_ONLY
+last_pymnt_amnt,last payment amount,post-outcome,true,0.0,0.0020664537325136303,0.0,2045.935,5424.791915363829,42192.05,OUTCOME_EVIDENCE_ONLY
+out_prncp,outstanding principal after reporting history,post-outcome,true,0.0,0.9999705213447573,0.0,0.0,0.2822088135283444,28222.01,OUTCOME_EVIDENCE_ONLY
