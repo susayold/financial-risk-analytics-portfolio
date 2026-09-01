@@ -45,7 +45,7 @@
     "loss_rate_gt_one": 0
   },
   "tests": [
-    {"test_id":"D2-G01","description":"ID bridge reconciles","observed":"governed core ID list not materialized","expected":"exact core-to-full-source bridge","pass":false},
+    {"test_id":"D2-G01","description":"ID bridge reconciles","observed":"governed core ID list not materialized; available loss proxy contains 1,993 exact duplicate account rows and requires account-grain deduplication","expected":"exact core-to-full-source bridge","pass":false},
     {"test_id":"D2-G02","description":"target concordance checked","observed":"full-source status mapping computed; governed target bridge pending","expected":"target concordance","pass":false},
     {"test_id":"D2-G03","description":"loan amount concordance checked","observed":"full-source loss fields audited; core bridge pending","expected":"loan amount reconciliation","pass":null},
     {"test_id":"D2-G04","description":"post-outcome fields tagged","observed":"loss field dictionary tags timing and role","expected":"outcome-only role","pass":true},
@@ -57,4 +57,12 @@
     {"test_id":"D2-G10","description":"public outputs sanitized","observed":"raw source not exported to repo","expected":"no raw data in public package","pass":true}
   ],
   "fallback": "scenario LGD only until exact governed bridge is available"
+  ,"score_to_loss_subaudit": {
+    "status": "PASS_WITH_LIMITATIONS",
+    "scored_bad_rows": 20082,
+    "matched_scored_bad_rows": 20082,
+    "target_mismatch_rows": 0,
+    "exact_duplicate_loss_proxy_rows": 1993,
+    "note": "BAD-only score-to-loss check; does not prove GOOD-row coverage or governed-core bridge"
+  }
 }

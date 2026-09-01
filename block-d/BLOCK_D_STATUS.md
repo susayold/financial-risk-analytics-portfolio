@@ -47,6 +47,9 @@ Block D is not complete. The governance foundation is implemented and reviewed, 
 - Resolved final outcomes: **1,356,914 rows** = **271,353 BAD** and **1,085,561 GOOD**.
 - Required retrospective recovery fields are present and their timing/role is documented.
 - Loss-quality treatment is explicit: **1,355,773 VALID** and **1,141 CLIPPED_FOR_MODELING**; no silent clipping is permitted.
+- Bounded score-to-loss sub-audit covers **20,082/20,082 scored-BAD rows** with
+  zero target mismatches after exact-row deduplication; **1,993** duplicate
+  loss-proxy rows are recorded as a bridge-quality issue.
 - The exact bridge to the governed **1,347,681-row core** is still pending because the governed-core ID list is not materialized in the D runtime.
 - QA: **7 PASS / 2 FAIL / 1 PENDING**; status remains **REVIEW_REQUIRED_BRIDGE_PENDING**.
 

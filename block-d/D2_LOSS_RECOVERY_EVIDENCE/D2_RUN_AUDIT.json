@@ -8,10 +8,10 @@
   "model_versions": {"frozen_risk_model":"C8E_RICH_BUREAU_CATBOOST_79F"},
   "assumption_version": "D0.1",
   "random_seed": 42,
-  "row_counts": {"source_rows":2275739,"resolved_rows":1356914,"bad_rows":271353,"good_rows":1085561},
+  "row_counts": {"source_rows":2275739,"resolved_rows":1356914,"bad_rows":271353,"good_rows":1085561,"exact_duplicate_loss_proxy_rows":1993,"unique_loss_proxy_rows_after_dedup":269360,"scored_bad_rows_bridged":20082},
   "tests_passed": 7,
   "tests_failed": 2,
   "tests_pending": 1,
-  "outputs":["retrospective_loss_proxy.csv","loss_field_quality.csv","recovery_reconciliation.csv","full_source_bridge_audit.csv","D2_TEST_RESULTS.json","D2_RUN_AUDIT.json"],
+  "outputs":["retrospective_loss_proxy.csv","loss_field_quality.csv","recovery_reconciliation.csv","full_source_bridge_audit.csv","D2_TEST_RESULTS.json","D2_RUN_AUDIT.json","D2_SCORE_TO_LOSS_SUBAUDIT.md","D2_SCORE_TO_LOSS_SUBAUDIT.json"],
   "claim_boundary":["retrospective loss evidence only","exact governed-core bridge pending","no regulatory LGD","no silent clipping"]
 }
