@@ -5,7 +5,7 @@ Git commit: `0cc6279`
 
 ## Overall state
 
-`D0 PASS` · `D1 PASS_WITH_LIMITATIONS` · `D2 REVIEW_REQUIRED_BRIDGE_PENDING` · `D3 PASS_WITH_LIMITATIONS` · `D4 SCENARIO_ONLY_REVIEW_REQUIRED` · `D5–D9 NOT STARTED`
+`D0 PASS` · `D1 REVIEW_REQUIRED` · `D2 REVIEW_REQUIRED_BRIDGE_PENDING` · `D3 PASS_WITH_LIMITATIONS` · `D4 SCENARIO_ONLY_REVIEW_REQUIRED` · `D5–D9 NOT STARTED`
 
 Block D is not closed. The current downstream outputs are deliberately bounded
 by missing Development scores and the missing governed-core loss bridge.
@@ -22,7 +22,7 @@ by missing Development scores and the missing governed-core loss bridge.
 | Stage | Current result | Key evidence | Claim boundary |
 |---|---|---|---|
 | D0 | PASS, 10/10 gates | Governance contract, population contract, role matrix, assumptions and run audit | Frozen upstream model and roles only |
-| D1 | PASS_WITH_LIMITATIONS | Risk-score mart contract and risk-band contract | No full account mart until Development score artifact is materialized |
+| D1 | REVIEW_REQUIRED | Risk-score mart contract and risk-band contract | No full account mart until Development score artifact is materialized |
 | D2 | REVIEW_REQUIRED_BRIDGE_PENDING | Full-source audit, loss dictionary, retrospective loss proxy, bridge audit, tests | Source-level retrospective evidence; not C8E empirical LGD |
 | D3 | PASS_WITH_LIMITATIONS | EAD contract, account EAD proxy, sensitivity, term view, anomaly audit and tests | 331,865-row pricing-source scope; `loan_amnt` origination proxy only |
 | D4 | SCENARIO_ONLY_REVIEW_REQUIRED | LGD scenario contract, Q25/Q50/Q75/Q90 anchors, issue-year diagnostics, tests and run audit | No `p_bad_final` join; no approved C8E LGD or D5 input |
