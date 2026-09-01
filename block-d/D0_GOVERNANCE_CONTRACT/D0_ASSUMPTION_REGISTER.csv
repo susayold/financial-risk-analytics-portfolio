@@ -1,0 +1,14 @@
+assumption_id,parameter,scenario_name,value,unit,source_type,source_reference,rationale,population_scope,effective_version,sensitivity_required,approved_for_main_case,notes
+D0-A01,model_version,MAIN,C8E_RICH_BUREAU_CATBOOST_79F,text,OBSERVED_DATA,Block C C8E/C9 closure,freeze the upstream risk signal,C8E_MATCHED,D0.1,false,true,do not retrain or tune on OOT
+D0-A02,primary_probability_name,MAIN,p_bad_final,text,DERIVED_DATA,Block C C8E/C9 contract,retain non-regulatory target naming,C8E_MATCHED,D0.1,false,true,not pd_12m
+D0-A03,target_semantics,MAIN,observed final-resolution BAD/GOOD,text,OBSERVED_DATA,Block C closure,prevents fixed-horizon overclaim,FULL_CORE_AND_MATCHED,D0.1,false,true,not verified 12-month PD
+D0-A04,ead_method,MAIN,loan_amnt,field,OBSERVED_DATA,Zenodo primary core,transparent origination exposure proxy,FULL_CORE_AND_MATCHED,D0.1,true,true,called ead_origination_proxy
+D0-A05,lgd_method,BASE,PENDING_D4_SELECTION,text,PROJECT_ASSUMPTION,Block D plan,LGD method must be selected after D2 evidence and D4 validation,C8E_MATCHED,D0.1,true,false,do not invent a numeric base LGD in D0
+D0-A06,pricing_population,MAIN,MATCHED_ENRICHED_SUBSET,text,OBSERVED_DATA,Block C population contract,pricing fields are not full-core universal,C8E_MATCHED,D0.1,false,true,all pricing outputs carry population_scope
+D0-A07,loss_population,MAIN,PENDING_D2_BRIDGE,text,PROJECT_ASSUMPTION,loss evidence requires source bridge and field audit,P3_LOSS_EVIDENCE_MATCHED,D0.1,true,false,stop D2 if bridge/semantics fail
+D0-A08,funding_cost_rate,MAIN,PENDING_D7_ASSUMPTION,text,PROJECT_ASSUMPTION,not observed in upstream evidence,MATCHED_PRICING_SUBSET,D0.1,true,false,register source before D7 main case
+D0-A09,operating_cost_per_account,MAIN,PENDING_D7_ASSUMPTION,text,PROJECT_ASSUMPTION,not observed in upstream evidence,MATCHED_PRICING_SUBSET,D0.1,true,false,register source before D7 main case
+D0-A10,servicing_cost_rate,MAIN,PENDING_D7_ASSUMPTION,text,PROJECT_ASSUMPTION,not observed in upstream evidence,MATCHED_PRICING_SUBSET,D0.1,true,false,register source before D7 main case
+D0-A11,capital_cost_rate,MAIN,PENDING_D7_ASSUMPTION,text,PROJECT_ASSUMPTION,not observed in upstream evidence,MATCHED_PRICING_SUBSET,D0.1,true,false,register source before D7 main case
+D0-A12,hurdle_rate,MAIN,PENDING_D7_ASSUMPTION,text,PROJECT_ASSUMPTION,not observed in upstream evidence,MATCHED_PRICING_SUBSET,D0.1,true,false,register source before D7 main case
+D0-A13,probability_stress_delta,MILD_ADVERSE_SEVERE,PENDING_D8_SCENARIO,text,STRESS_SCENARIO,Block D plan,stress values must be explicitly registered before use,FULL_CORE_AND_MATCHED,D0.1,true,false,no macro forecast claim

@@ -1,0 +1,50 @@
+{
+  "block": "D",
+  "snapshot_version": "D0.1",
+  "upstream_status": {
+    "block_a": "LOCKED",
+    "block_b": "LOCKED",
+    "block_c": "CLOSED_WITH_MONITORING"
+  },
+  "frozen_model": {
+    "model_id": "C8E_RICH_BUREAU_CATBOOST_79F",
+    "feature_count": 79,
+    "fit_boundary": "development_only",
+    "oot_early_stopping": false,
+    "validation_roc_auc_c8e": 0.821938,
+    "validation_roc_auc_c9_reproduction": 0.821963,
+    "oot_2017_roc_auc": 0.855778,
+    "oot_bootstrap_auc_ci_95": [0.850576, 0.861032],
+    "calibration_slope": 1.250707,
+    "calibration_monitoring_item": true
+  },
+  "target": {
+    "name": "actual_default",
+    "score_name": "p_bad_final",
+    "semantics": "observed final-resolution BAD/GOOD outcome",
+    "fixed_horizon_12m_verified": false,
+    "regulatory_pd": false
+  },
+  "population": {
+    "full_core_accounts": 1347681,
+    "full_core_bad": 269249,
+    "full_core_good": 1078432,
+    "c8e_matched_accounts": 310066,
+    "c8e_matched_development": 182181,
+    "c8e_matched_validation": 83664,
+    "c8e_matched_oot_2017": 44221,
+    "c8e_performance_generalizes_to_full_core": false
+  },
+  "source_authority": {
+    "primary_core": "Zenodo governed core",
+    "model_evidence": "Block C C8E/C9 frozen evidence",
+    "pricing_enrichment": "Figshare matched enrichment",
+    "retrospective_loss_evidence": "Full accepted LendingClub source, subject to D2 bridge audit",
+    "historical_shadow_2018_clean_holdout": false
+  },
+  "source_references": {
+    "block_c_root": "https://drive.google.com/drive/folders/15T6gKbJVk3Y93eorRhTSC1yjdzn7p3W_",
+    "block_c_closure": "https://drive.google.com/file/d/14BKhTvmtehYlC6ADcNHnfG5nWrKUIKoB/view?usp=drivesdk",
+    "c9_gate_results": "https://drive.google.com/file/d/1Bmsf6ml5nsdbZBVqGHXGqdCwdGWRse1r/view?usp=drivesdk"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "contract_version": "D0.1",
+  "lanes": {
+    "lane_a": "Frozen C8E Economics Lane",
+    "lane_b": "Full-Core Governance Benchmark"
+  },
+  "populations": [
+    {
+      "population_id": "P0_FULL_CORE",
+      "description": "Zenodo governed primary core",
+      "source": "Zenodo primary core",
+      "row_count": 1347681,
+      "bad_count": 269249,
+      "date_range": "2012-01 to 2018-12 per governed chronology",
+      "eligible_stages": ["D0", "D1", "D3 descriptive benchmark", "D6 sensitivity only", "D8 mix sensitivity"],
+      "generalization_limit": "C8E/C9 performance does not automatically generalize to all P0 rows"
+    },
+    {
+      "population_id": "P1_C8E_MATCHED",
+      "description": "C8E/C9 enriched matched population used for final model performance",
+      "source": "Block C C8E/C9 matched enriched evidence",
+      "row_count": 310066,
+      "bad_count": null,
+      "date_range": "Development / Validation / OOT 2017 split; exact source date bounds carried by C9 artifacts",
+      "eligible_stages": ["D1", "D3", "D4", "D5", "D6", "D8"],
+      "generalization_limit": "Final C8E/C9 AUC claims are limited to matched enriched rows"
+    },
+    {
+      "population_id": "P2_PRICING_MATCHED",
+      "description": "Rows with validated term, int_rate and installment enrichment",
+      "source": "Figshare enrichment bridged to governed core",
+      "row_count": null,
+      "bad_count": null,
+      "date_range": null,
+      "eligible_stages": ["D3", "D5 sensitivity", "D7"],
+      "generalization_limit": "Pricing results are matched-subset only; row count must be populated by D1/D7 bridge"
+    },
+    {
+      "population_id": "P3_LOSS_EVIDENCE_MATCHED",
+      "description": "Rows bridged to accepted source with valid retrospective loss/recovery fields",
+      "source": "Full accepted LendingClub source subject to D2 bridge audit",
+      "row_count": null,
+      "bad_count": null,
+      "date_range": null,
+      "eligible_stages": ["D2", "D4"],
+      "generalization_limit": "No empirical LGD claim until bridge, coverage and anomalies are quantified"
+    },
+    {
+      "population_id": "P4_DEFAULTED_LOSS_SAMPLE",
+      "description": "Actual BAD rows with valid outcome-only loss evidence",
+      "source": "P3_LOSS_EVIDENCE_MATCHED filtered actual_default = 1",
+      "row_count": null,
+      "bad_count": null,
+      "date_range": null,
+      "eligible_stages": ["D4"],
+      "generalization_limit": "Retrospective LGD proxy only; no regulatory LGD claim"
+    }
+  ]
+}

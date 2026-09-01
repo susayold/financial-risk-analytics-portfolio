@@ -1,0 +1,23 @@
+field_name,source,availability_stage,upstream_role,block_d_role,model_input_allowed,economics_input_allowed,loss_target_allowed,policy_input_allowed,stress_input_allowed,public_output_allowed,claim_boundary,rationale,version
+account_id,Zenodo primary core,D0,KEY,KEY,true,true,false,true,true,true,identifier only,one-account grain key,D0.1
+issue_d,Zenodo primary core,D0,TEMPORAL_ONLY,TEMPORAL_ONLY,false,true,false,true,true,true,origination time only,chronology and split authority,D0.1
+actual_default,Zenodo primary core,D0,TARGET_ONLY,TARGET_ONLY,false,false,true,false,false,true,observed final-resolution outcome only,used for retrospective evaluation not projected probability,D0.1
+p_bad_final,Block C C8E/C9 score output,D1,DECISION_SCORE,DECISION_SCORE,true,true,false,true,true,true,analytical score for final-resolution BAD probability,primary frozen risk signal,D0.1
+loan_amnt,Zenodo primary core,D1,ECONOMICS_INPUT,EAD_PROXY,false,true,false,true,true,true,origination EAD proxy,main EAD proxy,D0.1
+term,Figshare pricing enrichment / C8E contract,D1,ECONOMICS_ONLY,MODEL_INPUT,true,true,false,true,true,true,contractual term input and economics field,explicit Block B to C re-contract; versioned exception,D0.1
+int_rate,Figshare pricing enrichment / C8E contract,D1,ECONOMICS_ONLY,MODEL_INPUT,true,true,false,true,true,true,observed contractual rate and model input,explicit Block B to C re-contract; repricing remains static sensitivity,D0.1
+installment,Figshare pricing enrichment / C8E contract,D1,ECONOMICS_ONLY,MODEL_INPUT,true,true,false,true,true,true,observed contractual installment and model input,explicit Block B to C re-contract; contractual interest proxy input,D0.1
+sub_grade,Figshare pricing enrichment,D1,ECONOMICS_ONLY,ECONOMICS_INPUT,false,true,false,true,true,true,benchmark segmentation only,not a new champion predictor,D0.1
+grade_derived,Figshare pricing enrichment,D1,ECONOMICS_ONLY,ECONOMICS_INPUT,false,true,false,true,true,true,benchmark segmentation only,derived pricing context,D0.1
+recoveries,Full accepted LendingClub source,D2,OUTCOME_EVIDENCE_ONLY,OUTCOME_EVIDENCE_ONLY,false,false,true,false,false,true,retrospective recovery evidence only,post-outcome field forbidden in underwriting X,D0.1
+collection_recovery_fee,Full accepted LendingClub source,D2,OUTCOME_EVIDENCE_ONLY,OUTCOME_EVIDENCE_ONLY,false,false,true,false,false,true,retrospective recovery evidence only,post-outcome field forbidden in underwriting X,D0.1
+total_rec_prncp,Full accepted LendingClub source,D2,OUTCOME_EVIDENCE_ONLY,OUTCOME_EVIDENCE_ONLY,false,false,true,false,false,true,retrospective repayment evidence only,post-outcome field forbidden in underwriting X,D0.1
+total_pymnt,Full accepted LendingClub source,D2,OUTCOME_EVIDENCE_ONLY,OUTCOME_EVIDENCE_ONLY,false,false,true,false,false,true,retrospective repayment evidence only,post-outcome field forbidden in underwriting X,D0.1
+last_pymnt_d,Full accepted LendingClub source,D2,OUTCOME_EVIDENCE_ONLY,OUTCOME_EVIDENCE_ONLY,false,false,true,false,false,true,retrospective timing evidence only,post-outcome field forbidden in underwriting X,D0.1
+last_pymnt_amnt,Full accepted LendingClub source,D2,OUTCOME_EVIDENCE_ONLY,OUTCOME_EVIDENCE_ONLY,false,false,true,false,false,true,retrospective repayment evidence only,post-outcome field forbidden in underwriting X,D0.1
+out_prncp,Full accepted LendingClub source,D2,OUTCOME_EVIDENCE_ONLY,OUTCOME_EVIDENCE_ONLY,false,false,true,false,false,true,retrospective balance evidence only,post-outcome field forbidden in underwriting X,D0.1
+last_fico_range_high,Full accepted LendingClub source,D2,OUTCOME_EVIDENCE_ONLY,OUTCOME_EVIDENCE_ONLY,false,false,true,false,false,true,retrospective outcome evidence only,post-outcome field forbidden in underwriting X,D0.1
+last_fico_range_low,Full accepted LendingClub source,D2,OUTCOME_EVIDENCE_ONLY,OUTCOME_EVIDENCE_ONLY,false,false,true,false,false,true,retrospective outcome evidence only,post-outcome field forbidden in underwriting X,D0.1
+lgd_scenario,D4 assumption register,D4,SCENARIO_ASSUMPTION,SCENARIO_ASSUMPTION,false,true,false,true,true,true,scenario LGD only,not observed regulatory LGD,D0.1
+ead_origination_proxy,Derived from loan_amnt,D3,EAD_PROXY,EAD_PROXY,false,true,false,true,true,true,origination EAD proxy only,not observed balance at default,D0.1
+ead_12m_scenario,D3 assumption register,D3,SCENARIO_ASSUMPTION,SCENARIO_ASSUMPTION,false,true,false,true,true,true,contractual timing scenario only,not observed EAD at default,D0.1

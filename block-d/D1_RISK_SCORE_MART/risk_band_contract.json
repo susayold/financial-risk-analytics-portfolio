@@ -1,0 +1,17 @@
+{
+  "contract_version": "D1.1",
+  "status": "PENDING_SCORE_MATERIALIZATION",
+  "model_version": "C8E_RICH_BUREAU_CATBOOST_79F",
+  "score_field": "p_bad_final",
+  "reference_population": "P1_C8E_MATCHED",
+  "decile_convention": {"D01":"lowest risk","D10":"highest risk"},
+  "decile_cutpoints": null,
+  "band_contract": [
+    {"band":"R1","label":"VERY_LOW","percentile_min":0.0,"percentile_max":0.2},
+    {"band":"R2","label":"LOW","percentile_min":0.2,"percentile_max":0.4},
+    {"band":"R3","label":"MEDIUM","percentile_min":0.4,"percentile_max":0.6},
+    {"band":"R4","label":"HIGH","percentile_min":0.6,"percentile_max":0.8},
+    {"band":"R5","label":"VERY_HIGH","percentile_min":0.8,"percentile_max":1.0}
+  ],
+  "note": "Percentile band labels are reporting bands, not approval rules. Numeric score cutpoints are not invented before complete score input is materialized."
+}

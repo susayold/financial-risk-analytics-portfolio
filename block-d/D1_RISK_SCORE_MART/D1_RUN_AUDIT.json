@@ -1,0 +1,17 @@
+{
+  "stage": "D1",
+  "run_timestamp_utc": "2026-09-01T00:00:00Z",
+  "status": "REVIEW_REQUIRED",
+  "input_files": ["D0 governance contract", "private C9 closure package on Drive"],
+  "input_checksums": {},
+  "upstream_versions": {"block_a":"LOCKED","block_b":"LOCKED","block_c":"CLOSED_WITH_MONITORING"},
+  "model_versions": {"frozen_risk_model":"C8E_RICH_BUREAU_CATBOOST_79F"},
+  "assumption_version": "D0.1",
+  "random_seed": 42,
+  "row_counts": {"account_mart":null,"eligible_score_input":null},
+  "tests_passed": 3,
+  "tests_failed": 0,
+  "tests_pending": 7,
+  "outputs": ["D1_MART_CONTRACT.md","risk_band_contract.json","D1_TEST_RESULTS.json"],
+  "claim_boundary": ["no account-level D1 metrics claimed until score input is materialized","C8E matched scope required"]
+}

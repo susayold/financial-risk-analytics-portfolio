@@ -1,0 +1,18 @@
+{
+  "stage": "D0",
+  "status": "PASS",
+  "tests_passed": 10,
+  "tests_failed": 0,
+  "tests": [
+    {"test_id":"D0-G01","description":"upstream status frozen","observed":"A LOCKED; B LOCKED; C CLOSED_WITH_MONITORING","expected":"all upstream statuses explicitly captured","pass":true},
+    {"test_id":"D0-G02","description":"C8E model identity frozen","observed":"C8E_RICH_BUREAU_CATBOOST_79F","expected":"exact frozen model ID","pass":true},
+    {"test_id":"D0-G03","description":"target semantics unchanged","observed":"actual_default = observed final-resolution BAD/GOOD outcome","expected":"not silently converted to fixed-horizon PD","pass":true},
+    {"test_id":"D0-G04","description":"no pd_12m variable","observed":"primary score is p_bad_final; no pd_12m field in D0 matrix","expected":"no pd_12m naming","pass":true},
+    {"test_id":"D0-G05","description":"no regulatory LGD/EAD claim","observed":"proxy/scenario wording in claim boundary","expected":"no Basel/IFRS9 upgrade","pass":true},
+    {"test_id":"D0-G06","description":"populations explicitly defined","observed":"P0 through P4 and Lane A/Lane B defined","expected":"population lanes and limits explicit","pass":true},
+    {"test_id":"D0-G07","description":"pricing re-contract documented","observed":"Block B ECONOMICS_ONLY and Block C explicit re-contract both retained","expected":"versioned auditable exception","pass":true},
+    {"test_id":"D0-G08","description":"economics variables have roles","observed":"mandatory fields mapped in D0_DATA_ROLE_MATRIX.csv","expected":"role and allowed-use flags present","pass":true},
+    {"test_id":"D0-G09","description":"assumptions have source and rationale","observed":"D0_ASSUMPTION_REGISTER.csv includes source_type, source_reference and rationale","expected":"no unregistered assumption","pass":true},
+    {"test_id":"D0-G10","description":"post-outcome variables forbidden as underwriting predictors","observed":"outcome fields have model_input_allowed=false and claim boundary restriction","expected":"evidence-only use","pass":true}
+  ]
+}
