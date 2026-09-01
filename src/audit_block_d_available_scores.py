@@ -82,6 +82,7 @@ def main() -> int:
     parser.add_argument("--validation", type=Path, required=True)
     parser.add_argument("--oot", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--mart-output", type=Path, required=False)
     args = parser.parse_args()
 
     validation, validation_ids = inspect(args.validation, "Validation")
@@ -105,6 +106,43 @@ def main() -> int:
             "row_total": validation["rows"] + oot["rows"],
         },
     }
+    if args.mart_output:
+        val_df = pd.read_parquet(args.validation)[
+            ["account_id", "actual_default", "final_prediction"]
+        ].rename(columns={"final_prediction": "p_bad_final"})
+        val_df.insert(0, "split_name", "Validation")
+        oot_df = pd.read_parquet(args.oot)[
+            ["account_id", "actual_default", "prediction"]
+        ].rename(columns={"prediction": "p_bad_final"})
+        oot_df.insert(0, "split_name", "OOT")
+        score_mart = pd.concat([val_df, oot_df], ignore_index=True)
+        score_mart["model_version"] = "C8E_RICH_BUREAU_CATBOOST_79F"
+        score_mart["economics_version"] = "D0.1"
+        score_mart["population_scope"] = "P1_C8E_PERSISTED_SCORE_ARTIFACTS_ONLY"
+        score_mart["pricing_match_flag"] = pd.NA
+        score_mart["loss_evidence_match_flag"] = pd.NA
+        score_mart = score_mart[
+            [
+                "account_id",
+                "split_name",
+                "actual_default",
+                "p_bad_final",
+                "model_version",
+                "economics_version",
+                "population_scope",
+                "pricing_match_flag",
+                "loss_evidence_match_flag",
+            ]
+        ].sort_values(["split_name", "account_id"])
+        args.mart_output.parent.mkdir(parents=True, exist_ok=True)
+        score_mart.to_csv(args.mart_output, index=False)
+        result["materialized_score_only_mart"] = {
+            "file": args.mart_output.name,
+            "rows": int(len(score_mart)),
+            "columns": score_mart.columns.tolist(),
+            "pricing_match_flag": "UNASSESSED",
+            "loss_evidence_match_flag": "UNASSESSED",
+        }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2), encoding="utf-8")
     print(

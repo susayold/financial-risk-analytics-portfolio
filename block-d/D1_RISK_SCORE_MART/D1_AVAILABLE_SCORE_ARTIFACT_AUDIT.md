@@ -13,6 +13,10 @@ required columns, non-null/non-blank account IDs, account-level uniqueness,
 binary target values, finite scores in `[0, 1]`, expected row counts, and ID
 overlap across splits.
 
+The two files were also materialized into the private derived
+`D1_AVAILABLE_SCORE_MART.csv` (127,885 rows). Its scope is explicitly
+score-only; pricing and loss-evidence flags are `UNASSESSED`, not mismatches.
+
 | Split | Artifact | Rows | BAD | BAD rate | Recomputed ROC-AUC | Result |
 |---|---|---:|---:|---:|---:|---|
 | Validation 2016 | `07_validation_2016_predictions.parquet` | 83,664 | 14,190 | 16.9557% | 0.8219379569 | PASS |
