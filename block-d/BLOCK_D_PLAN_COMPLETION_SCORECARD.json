@@ -1,0 +1,89 @@
+{
+  "scorecard_name": "block_d_plan_completion",
+  "scorecard_version": "1.1",
+  "run_date": "2026-09-03",
+  "scope": "controlled analytical review; no production or regulatory claim",
+  "execution_coverage_pct": 100.0,
+  "closure_readiness_pct": 73.5,
+  "technical_qa": {
+    "status": "PASS",
+    "checks_passed": 47,
+    "checks_failed": 0
+  },
+  "d9": {
+    "manifest_status": "NOT_LOCKED_REVIEW_REQUIRED",
+    "numeric_output_claimed": false,
+    "checksum_entries": 13
+  },
+  "stages": [
+    {
+      "stage": "D0",
+      "recorded_status": "PASS",
+      "execution_coverage_pct": 100.0,
+      "closure_readiness_pct": 100.0
+    },
+    {
+      "stage": "D1",
+      "recorded_status": "PASS_WITH_LIMITATIONS",
+      "execution_coverage_pct": 100.0,
+      "closure_readiness_pct": 90.0
+    },
+    {
+      "stage": "D2",
+      "recorded_status": "PASS_WITH_LIMITATIONS",
+      "execution_coverage_pct": 100.0,
+      "closure_readiness_pct": 90.0
+    },
+    {
+      "stage": "D3",
+      "recorded_status": "PASS_WITH_LIMITATIONS",
+      "execution_coverage_pct": 100.0,
+      "closure_readiness_pct": 90.0
+    },
+    {
+      "stage": "D4",
+      "recorded_status": "BRIDGE_RECONCILED_APPROVAL_PENDING",
+      "execution_coverage_pct": 100.0,
+      "closure_readiness_pct": 75.0
+    },
+    {
+      "stage": "D5",
+      "recorded_status": "CONTROLLED_HOLD",
+      "execution_coverage_pct": 100.0,
+      "closure_readiness_pct": 60.0
+    },
+    {
+      "stage": "D6",
+      "recorded_status": "CONTROLLED_HOLD",
+      "execution_coverage_pct": 100.0,
+      "closure_readiness_pct": 60.0
+    },
+    {
+      "stage": "D7",
+      "recorded_status": "CONTROLLED_HOLD",
+      "execution_coverage_pct": 100.0,
+      "closure_readiness_pct": 60.0
+    },
+    {
+      "stage": "D8",
+      "recorded_status": "CONTROLLED_HOLD",
+      "execution_coverage_pct": 100.0,
+      "closure_readiness_pct": 60.0
+    },
+    {
+      "stage": "D9",
+      "recorded_status": "NOT_LOCKED_REVIEW_REQUIRED",
+      "execution_coverage_pct": 100.0,
+      "closure_readiness_pct": 50.0
+    }
+  ],
+  "conversion": {
+    "PASS": 100.0,
+    "PASS_WITH_LIMITATIONS": 90.0,
+    "BRIDGE_RECONCILED_APPROVAL_PENDING": 75.0,
+    "CONTROLLED_HOLD": 60.0,
+    "NOT_LOCKED_REVIEW_REQUIRED": 50.0
+  },
+  "formula": "simple average of the ten closure_readiness_pct values",
+  "caveat": "This is a management readiness conversion, not a model metric or approval."
+}

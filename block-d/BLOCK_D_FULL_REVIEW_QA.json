@@ -3,7 +3,7 @@
   "run_date": "2026-09-03",
   "scope": "controlled analytical review; no production or regulatory claim",
   "status": "PASS",
-  "checks_passed": 44,
+  "checks_passed": 47,
   "checks_failed": 0,
   "checks": [
     {
@@ -403,6 +403,27 @@
       ],
       "pass": true,
       "evidence": "test_block_d_owner_decisions.py"
+    },
+    {
+      "check_id": "D9_SCORECARD_STAGE_COUNT",
+      "observed": 10,
+      "expected": 10,
+      "pass": true,
+      "evidence": "BLOCK_D_PLAN_COMPLETION_SCORECARD.json"
+    },
+    {
+      "check_id": "D9_SCORECARD_EXECUTION_COVERAGE",
+      "observed": 100.0,
+      "expected": 100.0,
+      "pass": true,
+      "evidence": "BLOCK_D_PLAN_COMPLETION_SCORECARD.json"
+    },
+    {
+      "check_id": "D9_SCORECARD_CLOSURE_READINESS",
+      "observed": 73.5,
+      "expected": 73.5,
+      "pass": true,
+      "evidence": "BLOCK_D_PLAN_COMPLETION_SCORECARD.json"
     }
   ],
   "overall_block_status": "NOT_LOCKED_REVIEW_REQUIRED",

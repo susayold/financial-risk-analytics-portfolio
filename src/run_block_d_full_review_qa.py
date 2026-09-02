@@ -7,6 +7,7 @@ from datetime import date
 from pathlib import Path
 
 from validate_block_d_owner_decisions import run_validator_self_tests, validate_register
+from build_block_d_completion_scorecard import build_scorecard
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -110,6 +111,10 @@ check("D9_REGISTER_SCHEMA_VALID", approval_validation.get("validation_status"), 
 check("D9_REGISTER_NOT_READY_UNTIL_APPROVAL", approval_validation.get("ready_for_d9_rerun"), False, approval_validation.get("ready_for_d9_rerun") is False, "D9_APPROVAL_VALIDATION.json")
 self_tests = run_validator_self_tests(approval_register)
 check("D9_VALIDATOR_SELF_TESTS", [self_tests.get("tests_passed"), self_tests.get("tests_failed")], [3, 0], self_tests.get("tests_passed") == 3 and self_tests.get("tests_failed") == 0, "test_block_d_owner_decisions.py")
+scorecard = build_scorecard()
+check("D9_SCORECARD_STAGE_COUNT", len(scorecard.get("stages", [])), 10, len(scorecard.get("stages", [])) == 10, "BLOCK_D_PLAN_COMPLETION_SCORECARD.json")
+check("D9_SCORECARD_EXECUTION_COVERAGE", scorecard.get("execution_coverage_pct"), 100.0, scorecard.get("execution_coverage_pct") == 100.0, "BLOCK_D_PLAN_COMPLETION_SCORECARD.json")
+check("D9_SCORECARD_CLOSURE_READINESS", scorecard.get("closure_readiness_pct"), 73.5, scorecard.get("closure_readiness_pct") == 73.5, "BLOCK_D_PLAN_COMPLETION_SCORECARD.json")
 
 passed = sum(1 for item in checks if item["pass"])
 failed = len(checks) - passed

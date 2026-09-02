@@ -37,6 +37,7 @@ def main() -> int:
     approval_decision_pack = out / "BLOCK_D_APPROVAL_DECISION_PACK.md"
     approval_register = out / "D9_APPROVAL_REGISTER.json"
     approval_validation = out / "D9_APPROVAL_VALIDATION.json"
+    completion_scorecard = block_dir / "BLOCK_D_PLAN_COMPLETION_SCORECARD.json"
     manifest = {
         "stage": "D9", "status": "NOT_LOCKED_REVIEW_REQUIRED", "run_timestamp_utc": datetime.now(timezone.utc).isoformat(), "executed": True, "numeric_output_claimed": False,
         "upstream_status": {"D0": "PASS", "D1": audits["D1"].get("status"), "D2": audits["D2"].get("status"), "D3": "PASS_WITH_LIMITATIONS", "D4": audits["D4"].get("status"), "D5": audits["D5"].get("status"), "D6": audits["D6"].get("status"), "D7": audits["D7"].get("status"), "D8": audits["D8"].get("status")},
@@ -51,6 +52,7 @@ def main() -> int:
             "APPROVAL_DECISION_PACK": {"file": approval_decision_pack.relative_to(block_dir).as_posix(), "sha256": sha256(approval_decision_pack)},
             "APPROVAL_REGISTER": {"file": str(approval_register.relative_to(block_dir)).replace("\\", "/"), "sha256": sha256(approval_register)},
             "APPROVAL_VALIDATION": {"file": str(approval_validation.relative_to(block_dir)).replace("\\", "/"), "sha256": sha256(approval_validation)},
+            "PLAN_COMPLETION_SCORECARD": {"file": completion_scorecard.relative_to(block_dir).as_posix(), "sha256": sha256(completion_scorecard)},
         },
         "claim_boundary": ["Block D is not locked", "D5/D8 values are analytical scenario outputs only", "no production decision policy", "no pricing profitability result", "no regulatory PD/LGD/EAD/ECL claim"],
     }

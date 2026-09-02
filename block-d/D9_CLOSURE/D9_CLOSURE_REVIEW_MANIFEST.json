@@ -1,7 +1,7 @@
 {
   "stage": "D9",
   "status": "NOT_LOCKED_REVIEW_REQUIRED",
-  "run_timestamp_utc": "2026-09-02T18:21:17.644208+00:00",
+  "run_timestamp_utc": "2026-09-02T18:37:06.334886+00:00",
   "executed": true,
   "numeric_output_claimed": false,
   "upstream_status": {
@@ -71,7 +71,7 @@
     },
     "FULL_REVIEW_QA": {
       "file": "BLOCK_D_FULL_REVIEW_QA.json",
-      "sha256": "9f3581fb947de8433bbe29e3a66c2d9cc29f9711ec814ae024c5083b0f698eb2"
+      "sha256": "389f3efd65a27220fe244486e7f1f1b4c340c3a08d7a331bea63a49a19403b75"
     },
     "APPROVAL_DECISION_PACK": {
       "file": "D9_CLOSURE/BLOCK_D_APPROVAL_DECISION_PACK.md",
@@ -84,6 +84,10 @@
     "APPROVAL_VALIDATION": {
       "file": "D9_CLOSURE/D9_APPROVAL_VALIDATION.json",
       "sha256": "d91da9a90c6b3c166193d0ea3a835fb35d8fc7c28d7bb4f36b1158641c922523"
+    },
+    "PLAN_COMPLETION_SCORECARD": {
+      "file": "BLOCK_D_PLAN_COMPLETION_SCORECARD.json",
+      "sha256": "4a154c3eafe9c3a1ca3b3f4eb50de6f536629601907ef63424201eae6741aa30"
     }
   },
   "claim_boundary": [
