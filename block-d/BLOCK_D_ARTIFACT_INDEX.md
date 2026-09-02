@@ -25,7 +25,7 @@ D5–D9 remain bounded by scenario approval and owner-controlled policy gates.
 | Stage | Current result | Key evidence | Claim boundary |
 |---|---|---|---|
 | D0 | PASS, 10/10 gates | Governance contract, population contract, role matrix, assumptions and run audit | Frozen upstream model and roles only |
-| D1 | PASS_WITH_LIMITATIONS | Frozen C8E Development replay, Validation/OOT score audit, 310,066-row mart, pricing bridge and 10/10 QA | C8E matched scored subset only; no full-governed score coverage claim |
+| D1 | PASS_WITH_LIMITATIONS | Frozen C8E Development replay, Validation/OOT score audit, 310,066-row mart, materialized Validation risk-band contract/cutpoints, pricing bridge and 10/10 QA | C8E matched scored subset only; no full-governed score coverage claim |
 | D2 | PASS_WITH_LIMITATIONS | Full-source audit, exact governed-core bridge, target/loan amount reconciliation, governed BAD-only evidence and anomaly treatment | Retrospective BAD-only loss evidence; not regulatory LGD and no GOOD-row loss recovery claim |
 | D3 | PASS_WITH_LIMITATIONS | EAD contract, account EAD proxy, sensitivity, term view, anomaly audit and tests | 331,865-row pricing-source scope; `loan_amnt` origination proxy only |
 | D4 | BRIDGE_RECONCILED_APPROVAL_PENDING | Governed BAD-only Q25/Q50/Q75/Q90 anchors, descriptive score-to-loss linkage and 2018 monitor-only diagnostic | Scenario assumptions remain unapproved main-case LGD |

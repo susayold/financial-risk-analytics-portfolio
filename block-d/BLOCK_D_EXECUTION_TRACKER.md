@@ -15,7 +15,7 @@ decisions are not recorded.
 | Stage | Result | What was done | Evidence |
 |---|---|---|---|
 | D0 | PASS | Preserved frozen model, population lanes, target semantics and claim boundary | `D0_GOVERNANCE_CONTRACT/` |
-| D1 | PASS_WITH_LIMITATIONS | Replayed frozen C8E 79-feature model for 182,181 Development rows; built 310,066-row Development/Validation/OOT score mart; matched pricing fields 100%; reconciled core + Shadow population | `D1_RISK_SCORE_MART/`, Drive `D1_full_20260902.zip` |
+| D1 | PASS_WITH_LIMITATIONS | Replayed frozen C8E 79-feature model for 182,181 Development rows; built 310,066-row Development/Validation/OOT score mart; materialized Validation risk-band cutpoints; matched pricing fields 100%; reconciled core + Shadow population | `D1_RISK_SCORE_MART/`, Drive `D1_full_20260902.zip` |
 | D2 | PASS_WITH_LIMITATIONS | Scanned 2,260,701 accepted-source rows; bridged 1,347,681/1,347,681 governed IDs; target and loan amount concordance 100%; filtered 269,249 governed BAD loss rows | `D2_LOSS_RECOVERY_EVIDENCE/`, Drive `D2_governed_core_bridge_20260902.zip` |
 | D3 | PASS_WITH_LIMITATIONS | Retained contractual EAD proxy and timing scope on accepted/pricing source | `D3_EAD_FRAMEWORK/` and private D3 evidence |
 | D4 | BRIDGE_RECONCILED_APPROVAL_PENDING | Generated Q25/Q50/Q75/Q90 governed BAD-only LGD anchors; 2018 Shadow monitor-only; explicit approval boundary retained | `D4_LGD_FRAMEWORK/`, Drive D4 files |
