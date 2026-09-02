@@ -102,11 +102,14 @@ check("D9_MANIFEST_PATHS_PORTABLE", [path for path in manifest_paths if "\\" in 
 d1_contract = (BLOCK / "D1_RISK_SCORE_MART/D1_MART_CONTRACT.md").read_text(encoding="utf-8")
 d1_availability = (BLOCK / "D1_RISK_SCORE_MART/D1_INPUT_AVAILABILITY_AUDIT.md").read_text(encoding="utf-8")
 approval_pack = (BLOCK / "D9_CLOSURE/BLOCK_D_APPROVAL_DECISION_PACK.md").read_text(encoding="utf-8")
+validation_report = (BLOCK / "BLOCK_D_VALIDATION_REPORT.md").read_text(encoding="utf-8")
 approval_pack_normalized = " ".join(approval_pack.split())
 check("D1_CONTRACT_NOT_STALE", "SCORE_ARTIFACT_NOT_MATERIALIZED" in d1_contract, False, "SCORE_ARTIFACT_NOT_MATERIALIZED" not in d1_contract, "D1_MART_CONTRACT.md")
 check("D1_AVAILABILITY_UPDATED", "310,066-row matched scored mart" in d1_availability, True, "310,066-row matched scored mart" in d1_availability, "D1_INPUT_AVAILABILITY_AUDIT.md")
 check("D9_APPROVAL_PACK_PRESENT", "# Block D — Approval Decision Pack" in approval_pack, True, "# Block D — Approval Decision Pack" in approval_pack, "BLOCK_D_APPROVAL_DECISION_PACK.md")
 check("D9_APPROVAL_PACK_BOUNDED", all(token in approval_pack_normalized for token in ["analytical", "not an approved main-case", "PENDING", "Q25", "Q50", "Q75", "Q90"]), True, all(token in approval_pack_normalized for token in ["analytical", "not an approved main-case", "PENDING", "Q25", "Q50", "Q75", "Q90"]), "BLOCK_D_APPROVAL_DECISION_PACK.md")
+check("D9_VALIDATION_REPORT_PRESENT", "# CRD.PI Block D — Validation Report" in validation_report, True, "# CRD.PI Block D — Validation Report" in validation_report, "BLOCK_D_VALIDATION_REPORT.md")
+check("D9_VALIDATION_REPORT_BOUNDED", all(token in validation_report for token in ["SHARE WITH CAVEATS", "NOT READY TO LOCK", "not regulatory", "PENDING_OWNER_INPUT"]), True, all(token in validation_report for token in ["SHARE WITH CAVEATS", "NOT READY TO LOCK", "not regulatory", "PENDING_OWNER_INPUT"]), "BLOCK_D_VALIDATION_REPORT.md")
 decision_statuses = [item.get("status") for item in approval_register.get("decisions", {}).values()]
 signoff_statuses = [item.get("status") for item in approval_register.get("owner_signoff", {}).values()]
 check("D9_STRUCTURED_REGISTER_PENDING", approval_register.get("status"), "PENDING_OWNER_INPUT", approval_register.get("status") == "PENDING_OWNER_INPUT" and len(decision_statuses) == 6 and all(status == "PENDING" for status in decision_statuses), "D9_APPROVAL_REGISTER.json")
@@ -119,6 +122,7 @@ scorecard = build_scorecard()
 check("D9_SCORECARD_STAGE_COUNT", len(scorecard.get("stages", [])), 10, len(scorecard.get("stages", [])) == 10, "BLOCK_D_PLAN_COMPLETION_SCORECARD.json")
 check("D9_SCORECARD_EXECUTION_COVERAGE", scorecard.get("execution_coverage_pct"), 100.0, scorecard.get("execution_coverage_pct") == 100.0, "BLOCK_D_PLAN_COMPLETION_SCORECARD.json")
 check("D9_SCORECARD_CLOSURE_READINESS", scorecard.get("closure_readiness_pct"), 73.5, scorecard.get("closure_readiness_pct") == 73.5, "BLOCK_D_PLAN_COMPLETION_SCORECARD.json")
+check("D9_MANIFEST_CHECKSUM_COUNT", len(d9_manifest.get("evidence_checksums", {})), 15, len(d9_manifest.get("evidence_checksums", {})) == 15, "D9_CLOSURE_REVIEW_MANIFEST.json")
 
 passed = sum(1 for item in checks if item["pass"])
 failed = len(checks) - passed

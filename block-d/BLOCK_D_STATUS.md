@@ -11,8 +11,8 @@ Block D is not locked. The governance foundation and controlled analytical packs
 ## Progress scorecard
 
 - Planned stages with executed evidence: **10/10 = 100%**.
-- Full-review technical QA: **50/50 PASS**.
-- D9 manifest evidence checksums: **14/14 PASS**.
+- Full-review technical QA: **53/53 PASS**.
+- D9 manifest evidence checksums: **15/15 PASS**.
 - Closure readiness toward a fully approved `LOCKED` state: **73.5%** under
   the documented conversion in `BLOCK_D_PLAN_COMPLETION_SCORECARD.md`.
 - Final status: **`NOT_LOCKED_REVIEW_REQUIRED`**. The percentage does not imply
@@ -119,6 +119,8 @@ and owner thresholds are approved; no downstream production claim is made. See
 - The validator self-test is **3/3 PASS**, including rejection of an approved
   LGD row without a selected option and acceptance of a complete synthetic
   register for rerun readiness.
+- The independent validation report is recorded and bounded to
+  `SHARE WITH CAVEATS — NOT READY TO LOCK`.
 - The current controls do not change the approval register and do not infer any
   owner decision.
 

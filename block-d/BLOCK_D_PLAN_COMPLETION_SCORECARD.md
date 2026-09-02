@@ -7,7 +7,7 @@ Scope: controlled analytical review; no production or regulatory claim
 
 Block D has **100% execution coverage**: every stage from D0 through D9 has a
 run artifact, a bounded result, and is covered by the current full-review QA.
-The current technical QA is **50/50 checks passed**.
+The current technical QA is **53/53 checks passed**.
 
 Block D has **73.5% closure readiness** toward a fully approved and locked
 state. This lower figure is intentional: D4–D9 still require explicit owner
@@ -65,7 +65,7 @@ scores: `(100 + 90 + 90 + 90 + 75 + 60 + 60 + 60 + 60 + 50) / 10 = 73.5%`.
 | Measure | Result | Interpretation |
 |---|---:|---|
 | Planned stages with executed evidence | **10/10 = 100%** | D0–D9 analytical/review packs exist and are recorded |
-| Full-review technical QA | **50/50 = 100%** | No current QA failure in the controlled review scope |
+| Full-review technical QA | **53/53 = 100%** | No current QA failure in the controlled review scope |
 | Stages fully passed without limitation | **1/10 = 10%** | Only D0 is a clean `PASS` stage |
 | Stages with limitation, pending approval or hold | **9/10 = 90%** | These are governance/claim-boundary items, not automatically technical defects |
 | Closure readiness toward `LOCKED` | **73.5%** | Current management score using the documented conversion above |

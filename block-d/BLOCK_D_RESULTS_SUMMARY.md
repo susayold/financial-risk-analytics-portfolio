@@ -45,6 +45,8 @@ source data and private model binaries are not in GitHub or Drive.
 
 ## Evidence locations
 
+- `BLOCK_D_VALIDATION_REPORT.md` — artifact-level validation and claim-boundary review.
+
 - [Block D Drive folder](https://drive.google.com/drive/folders/1xutm72gqys_QruCtCx5Rd9xmQ0YVOud-)
 - [Block D execution tracker](https://drive.google.com/file/d/1jFgmmxySbCMObhsznxsMKBYk1q439sw4/view?usp=drivesdk)
 - [D1 full pack](https://drive.google.com/file/d/1A2laFU3d9e5UHAegKfIzKaAegLNpBlRy/view?usp=drivesdk)
