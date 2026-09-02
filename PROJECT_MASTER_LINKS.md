@@ -28,3 +28,12 @@ This file only indexes links. The Drive root is the single storage location; Git
 - [Block D machine-readable scorecard](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_PLAN_COMPLETION_SCORECARD.json)
 - [Block D full review QA](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_FULL_REVIEW_QA.json)
 - [Block D D9 approval register](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/D9_CLOSURE/D9_APPROVAL_REGISTER.json)
+
+### Block D Drive checkpoint artifacts
+
+- [Block D scorecard — JSON](https://drive.google.com/file/d/1iP6G5fN-HVPQTbOShz81KQOQReEtJ8_Z/view?usp=drivesdk)
+- [Block D full-review QA](https://drive.google.com/file/d/13qXEdFccHbhzES8lVoHRD2Fs8GLN17J7/view?usp=drivesdk)
+- [D3 contract audit](https://drive.google.com/file/d/1ff0WQq3YIxDgJQEYWsElXIIaYsSpW9EJ/view?usp=drivesdk)
+- [D9 closure manifest](https://drive.google.com/file/d/1TdOVbCwPDEs2fJzu6qrYMsG8ZyKloGJD/view?usp=drivesdk)
+- [D9 approval register](https://drive.google.com/file/d/1732Er0qo9IkhdkS2V37hsY9cZUvPsSFq/view?usp=drivesdk)
+- [D9 owner decision intake](https://drive.google.com/file/d/1FlyvenJIKHSbhTHB896_yCRjSbTYxkcB/view?usp=drivesdk)
