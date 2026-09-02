@@ -4,11 +4,11 @@
   "status": "CONTROLLED_HOLD",
   "numeric_outputs_claimed": false,
   "stages": {
-    "D5": "HOLD_UPSTREAM_EVIDENCE",
-    "D6": "HOLD_UPSTREAM_EVIDENCE",
-    "D7": "HOLD_UPSTREAM_EVIDENCE",
-    "D8": "HOLD_UPSTREAM_EVIDENCE",
-    "D9": "HOLD_UPSTREAM_EVIDENCE"
+    "D5": "CONTROLLED_HOLD",
+    "D6": "CONTROLLED_HOLD",
+    "D7": "CONTROLLED_HOLD",
+    "D8": "CONTROLLED_HOLD",
+    "D9": "CONTROLLED_HOLD"
   },
   "control_checks": {
     "no_unapproved_el_number": "PASS",
@@ -18,10 +18,7 @@
     "closure_not_locked": "PASS"
   },
   "open_inputs": [
-    "D1 Development score artifact",
-    "D1 score-to-pricing bridge",
-    "D2 governed-core ID bridge",
     "D4 approved LGD population and timing",
-    "owner sign-offs"
+    "D5-D8 approval boundaries and owner sign-offs"
   ]
 }

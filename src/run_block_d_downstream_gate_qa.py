@@ -20,7 +20,7 @@ def main() -> int:
         errors.append("numeric_outputs_claimed must be false")
     for stage in STAGES:
         status = payload.get("stages", {}).get(stage)
-        if status != "HOLD_UPSTREAM_EVIDENCE":
+        if status != "CONTROLLED_HOLD":
             errors.append(f"{stage} status is {status!r}")
         stage_file = ROOT / "block-d" / {
             "D5": "D5_EXPECTED_LOSS",

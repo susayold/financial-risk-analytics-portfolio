@@ -1,14 +1,15 @@
 {
   "stage": "D8",
   "title": "Stress and Sensitivity Gate",
-  "status": "HOLD_UPSTREAM_EVIDENCE",
+  "status": "CONTROLLED_HOLD",
   "executed": false,
   "numeric_output_claimed": false,
+  "analytical_pack_executed": true,
   "required_upstream": ["D5_PASS", "D4_APPROVED_LGD", "D3_PASS_WITH_DECLARED_SCOPE"],
   "blocked_checks": [
     "No passed D5 baseline exists",
     "D4 anchors remain scenario-only",
-    "D1/D2 population bridges remain unresolved"
+    "D1 remains a matched scored subset and D4 approval is pending"
   ],
   "claims_forbidden": ["stress loss forecast", "capital adequacy", "regulatory stress result"]
 }
