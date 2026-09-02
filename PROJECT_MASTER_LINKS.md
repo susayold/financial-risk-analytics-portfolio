@@ -39,3 +39,4 @@ This file only indexes links. The Drive root is the single storage location; Git
 - [D9 owner decision intake](https://drive.google.com/file/d/1FlyvenJIKHSbhTHB896_yCRjSbTYxkcB/view?usp=drivesdk)
 - [Block D validation report](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_VALIDATION_REPORT.md)
 - [Block D validation report on Drive](https://drive.google.com/file/d/1p_0-dhraDD2vIAFz2bRSaxtG9QK4BGbA/view?usp=drivesdk)
+- [Block D README checkpoint on Drive](https://drive.google.com/file/d/1yNE2P3z2z1efOm9lJNolxiLpkenBfjVM/view?usp=drivesdk)
