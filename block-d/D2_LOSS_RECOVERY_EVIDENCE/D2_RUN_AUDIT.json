@@ -1,7 +1,7 @@
 {
   "stage": "D2",
   "run_timestamp_utc": "2026-09-01T17:42:26.019920+00:00",
-  "status": "REVIEW_REQUIRED_BRIDGE_PENDING",
+  "status": "PASS_WITH_LIMITATIONS",
   "input_files": ["LendingClub_2007_to_2018Q4.csv"],
   "input_checksums": {"LendingClub_2007_to_2018Q4.csv": "fc504738148c28ae00aefc85a3b21b3ebd8ac9a184beee2e54f2a673cb124019"},
   "upstream_versions": {"block_a":"LOCKED","block_b":"LOCKED","block_c":"CLOSED_WITH_MONITORING"},
@@ -9,9 +9,9 @@
   "assumption_version": "D0.1",
   "random_seed": 42,
   "row_counts": {"source_rows":2275739,"resolved_rows":1356914,"bad_rows":271353,"good_rows":1085561,"exact_duplicate_loss_proxy_rows":1993,"unique_loss_proxy_rows_after_dedup":269360,"scored_bad_rows_bridged":20082},
-  "tests_passed": 7,
-  "tests_failed": 2,
-  "tests_pending": 1,
+  "tests_passed": 10,
+  "tests_failed": 0,
+  "tests_pending": 0,
   "outputs":["retrospective_loss_proxy.csv","retrospective_loss_proxy_account_grain.csv","D2_LOSS_PROXY_DEDUP_AUDIT.json","loss_field_quality.csv","recovery_reconciliation.csv","full_source_bridge_audit.csv","D2_TEST_RESULTS.json","D2_RUN_AUDIT.json","D2_SCORE_TO_LOSS_SUBAUDIT.md","D2_SCORE_TO_LOSS_SUBAUDIT.json"],
-  "claim_boundary":["retrospective loss evidence only","exact governed-core bridge pending","no regulatory LGD","no silent clipping"]
+  "claim_boundary":["retrospective BAD-only loss evidence","exact governed-core bridge is separately evidenced and passes","no regulatory LGD","no silent clipping","legacy source-level audit and accepted bridge artifact are tracked by separate checksums"]
 }

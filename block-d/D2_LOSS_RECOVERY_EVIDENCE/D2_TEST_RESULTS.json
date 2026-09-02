@@ -1,9 +1,9 @@
 {
   "stage": "D2",
-  "status": "REVIEW_REQUIRED_BRIDGE_PENDING",
-  "tests_passed": 7,
-  "tests_failed": 2,
-  "tests_pending": 1,
+  "status": "PASS_WITH_LIMITATIONS",
+  "tests_passed": 10,
+  "tests_failed": 0,
+  "tests_pending": 0,
   "row_counts": {
     "source_rows": 2275739,
     "resolved_rows": 1356914,
@@ -45,18 +45,18 @@
     "loss_rate_gt_one": 0
   },
   "tests": [
-    {"test_id":"D2-G01","description":"ID bridge reconciles","observed":"governed core ID list not materialized; available loss proxy contains 1,993 exact duplicate account rows and requires account-grain deduplication","expected":"exact core-to-full-source bridge","pass":false},
-    {"test_id":"D2-G02","description":"target concordance checked","observed":"full-source status mapping computed; governed target bridge pending","expected":"target concordance","pass":false},
-    {"test_id":"D2-G03","description":"loan amount concordance checked","observed":"full-source loss fields audited; core bridge pending","expected":"loan amount reconciliation","pass":null},
+    {"test_id":"D2-G01","description":"ID bridge reconciles","observed":"1,347,681/1,347,681 governed IDs matched accepted bridge artifact","expected":"exact core-to-source bridge","pass":true},
+    {"test_id":"D2-G02","description":"target concordance checked","observed":"1,347,681/1,347,681 target labels concordant","expected":"target concordance","pass":true},
+    {"test_id":"D2-G03","description":"loan amount concordance checked","observed":"1,347,681/1,347,681 loan amounts concordant","expected":"loan amount reconciliation","pass":true},
     {"test_id":"D2-G04","description":"post-outcome fields tagged","observed":"loss field dictionary tags timing and role","expected":"outcome-only role","pass":true},
     {"test_id":"D2-G05","description":"no outcome fields admitted to underwriting X","observed":"D0 role matrix forbids outcome fields","expected":false,"pass":true},
     {"test_id":"D2-G06","description":"anomaly rates quantified","observed":"anomaly counts persisted in this run","expected":"all required anomaly counts","pass":true},
     {"test_id":"D2-G07","description":"treatment policy versioned","observed":"VALID / CLIPPED_FOR_MODELING / EXCLUDED_DATA_ERROR / MISSING","expected":"no silent clipping","pass":true},
     {"test_id":"D2-G08","description":"BAD-sample coverage quantified","observed":271353,"expected":"defaulted loss sample count","pass":true},
-    {"test_id":"D2-G09","description":"population limitations documented","observed":"bridge_status=PENDING_GOVERNED_ID_LIST","expected":"limitations explicit","pass":true},
+    {"test_id":"D2-G09","description":"population limitations documented","observed":"bridge_status=PASS; retrospective BAD-only and legacy/current source artifacts tracked separately","expected":"limitations explicit","pass":true},
     {"test_id":"D2-G10","description":"public outputs sanitized","observed":"raw source not exported to repo","expected":"no raw data in public package","pass":true}
   ],
-  "fallback": "scenario LGD only until exact governed bridge is available",
+  "fallback": "scenario LGD remains until main-case D4 approval; exact governed bridge is available",
   "deduplicated_loss_proxy": {
     "status": "PASS_WITH_LIMITATIONS",
     "output": "retrospective_loss_proxy_account_grain.csv",
@@ -74,5 +74,14 @@
     "target_mismatch_rows": 0,
     "exact_duplicate_loss_proxy_rows": 1993,
     "note": "BAD-only score-to-loss check; does not prove GOOD-row coverage or governed-core bridge"
+  },
+  "governed_core_bridge": {
+    "status": "PASS_WITH_LIMITATIONS",
+    "audit": "D2_GOVERNED_CORE_BRIDGE_AUDIT.json",
+    "governed_core_rows": 1347681,
+    "matched_ids": 1347681,
+    "target_mismatch_ids": 0,
+    "loan_amount_mismatch_ids": 0,
+    "bad_loss_evidence_matched": 269249
   }
 }

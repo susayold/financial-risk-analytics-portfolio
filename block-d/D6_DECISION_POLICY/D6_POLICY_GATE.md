@@ -2,8 +2,8 @@
 
 ## Status
 
-`HOLD_UPSTREAM_EVIDENCE` — policy contract defined; no production decision
-policy is approved.
+`CONTROLLED_HOLD` — proposed analytical policy pack exists; no production
+decision policy is approved.
 
 ## Purpose
 
@@ -31,6 +31,6 @@ the D1 cutpoints are fitted on the declared reference population.
 
 ## Current decision
 
-D6 is not opened. Any accept/refer/decline recommendation would be premature
-until D1 coverage and the D5 economics gate are resolved.
-
+D6 has a proposed non-production mapping for review. Any accept/refer/decline
+recommendation remains premature until owner thresholds and overrides are
+approved.

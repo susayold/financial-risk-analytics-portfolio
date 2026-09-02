@@ -158,7 +158,7 @@ def main() -> int:
         "scope": "ACCOUNT_GRAIN_DEDUPLICATED_BAD_EVIDENCE_SCENARIO_ONLY",
         "tests_passed": 9 if bridge_pass else 8,
         "tests_failed": 0,
-        "tests_pending": 2,
+        "tests_pending": 1 if bridge_pass else 2,
         "row_counts": {
             "source_rows": int(len(df)),
             "source_rows_before_exact_dedup": int(len(df_raw)),

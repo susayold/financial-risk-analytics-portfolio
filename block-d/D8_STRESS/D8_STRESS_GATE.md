@@ -2,7 +2,7 @@
 
 ## Status
 
-`HOLD_UPSTREAM_EVIDENCE` — scenario design is defined; no stress result is
+`CONTROLLED_HOLD` — illustrative sensitivity pack exists; no stress result is
 approved.
 
 ## Required scenario dimensions
@@ -24,6 +24,6 @@ approved.
 
 ## Current decision
 
-D8 is not opened. The current D4 anchors may inform a future scenario design,
-but cannot be combined with `p_bad_final` as an approved expected-loss result.
-
+D8 has an illustrative sensitivity pack for review. It is not a passed D5
+baseline or an approved stress result, and must not be interpreted as realized
+portfolio loss.

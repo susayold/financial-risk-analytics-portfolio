@@ -3,8 +3,8 @@
 ## What was done
 
 - Read the D2 retrospective loss proxy output.
-- Removed 1,993 exact duplicate rows and generated account-grain Q25/Q50/Q75/Q90
-  severity anchors from 269,360 retained BAD evidence rows.
+- Used the governed-core-only BAD evidence and generated account-grain
+  Q25/Q50/Q75/Q90 severity anchors from 269,249 retained BAD evidence rows.
 - Excluded the 2018 shadow cohort from primary anchors because of documented
   final-resolution/truncation concerns; retained it as monitor-only evidence.
 - Produced an issue-year diagnostic table.
@@ -14,8 +14,6 @@
 ## What this means
 
 This is a governed-population `SCENARIO_ONLY` analysis, not a finished empirical
-LGD model. The
-governed-core bridge is still pending, so the output cannot be used to claim
-LGD for the C8E matched population or to freeze D5 Expected Loss. The exact D2
-governed-core bridge passes; explicit main-case LGD/timing approval remains
-required.
+LGD model. The exact D2 governed-core bridge passes, but the output cannot be
+used to claim score-conditional LGD for the C8E matched population or to freeze
+D5 Expected Loss. Explicit main-case LGD/timing approval remains required.

@@ -2,8 +2,8 @@
 
 ## Status
 
-`HOLD_UPSTREAM_EVIDENCE` — pricing bridge and adequacy contract defined; no
-price, margin or profitability result is claimed.
+`CONTROLLED_HOLD` — pricing diagnostic pack exists; no price, margin or
+profitability result is claimed.
 
 ## Required pricing bridge
 
@@ -30,6 +30,6 @@ explicit exception and must remain visible in the lineage.
 
 ## Current decision
 
-D7 remains closed because the validated score-to-pricing bridge and D5
-economics output are not materialized.
-
+D7 remains closed for adequacy/profitability approval. The score-to-pricing
+bridge and descriptive diagnostic are materialized, but costs, fees and owner
+pricing assumptions are not evidenced.

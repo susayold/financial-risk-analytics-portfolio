@@ -2,7 +2,7 @@
 
 ## Status
 
-`HOLD_UPSTREAM_EVIDENCE` — closure checklist prepared; Block D is not locked.
+`CONTROLLED_HOLD` — closure review manifest prepared; Block D is not locked.
 
 ## Closure conditions
 

@@ -33,7 +33,7 @@ bridge or LGD aggregation.
   mart have corresponding retrospective loss evidence after exact-deduplication.
 - The proxy contains resolved BAD rows only; it cannot prove loss coverage for
   GOOD rows or full-population D1 coverage.
-- The governed-core ID list is still not materialized, so D2 remains
-  `REVIEW_REQUIRED_BRIDGE_PENDING`.
+- The governed-core ID and target/loan amount bridge pass in the companion
+  audit; this sub-audit itself remains limited to scored BAD rows.
 - No empirical C8E LGD, Expected Loss, pricing, stress, or production claim is
   authorized from this sub-audit.
