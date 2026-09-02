@@ -67,6 +67,8 @@ Reconciled follow-up evidence:
 - [D2 reconciled test results v2](https://drive.google.com/file/d/1noV377hFURVdJx76CUUzC5UzmCY3WSar/view?usp=drivesdk)
 - [D4 reconciled run audit v2](https://drive.google.com/file/d/1OEG0OQELLVxKdXo5-_S9BBcYTCD_pb7j/view?usp=drivesdk)
 - [D4 reconciled test results v2](https://drive.google.com/file/d/1cbUkD2vXsgQZf4kOh6nngkBd7iPqZ121/view?usp=drivesdk)
+- [D4 descriptive score-to-loss linkage](https://drive.google.com/file/d/1DNksoMZTjHhIrIchGHjyxRO-UMwRTmZ3/view?usp=drivesdk)
+- [D4 score-to-loss linkage audit](https://drive.google.com/file/d/1SxLMmVoGjUbyDVx4BXTRbqROhoGzDzFh/view?usp=drivesdk)
 
 Run the deterministic downstream control check:
 
