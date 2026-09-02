@@ -1,6 +1,6 @@
 {
   "run_name": "block_d_full_review_qa",
-  "run_date": "2026-09-02",
+  "run_date": "2026-09-03",
   "scope": "controlled analytical review; no production or regulatory claim",
   "status": "PASS",
   "checks_passed": 42,

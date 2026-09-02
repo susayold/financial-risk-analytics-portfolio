@@ -1,6 +1,6 @@
 {
   "run_name": "block_d_owner_decision_validation",
-  "run_date": "2026-09-02",
+  "run_date": "2026-09-03",
   "scope": "D9 owner-input validation; no approval is inferred",
   "validation_status": "VALID_PENDING",
   "schema_valid": true,

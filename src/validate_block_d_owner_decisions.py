@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from datetime import date
 from pathlib import Path
 
 
@@ -148,7 +149,7 @@ def validate_register(register: dict) -> dict:
 
     return {
         "run_name": "block_d_owner_decision_validation",
-        "run_date": "2026-09-02",
+        "run_date": date.today().isoformat(),
         "scope": "D9 owner-input validation; no approval is inferred",
         "validation_status": "INVALID" if not schema_valid else ("READY_FOR_D9_RERUN" if ready else "VALID_PENDING"),
         "schema_valid": schema_valid,

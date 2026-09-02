@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from datetime import date
 from pathlib import Path
 
 from validate_block_d_owner_decisions import validate_register
@@ -110,7 +111,7 @@ passed = sum(1 for item in checks if item["pass"])
 failed = len(checks) - passed
 result = {
     "run_name": "block_d_full_review_qa",
-    "run_date": "2026-09-02",
+    "run_date": date.today().isoformat(),
     "scope": "controlled analytical review; no production or regulatory claim",
     "status": "PASS" if failed == 0 else "FAIL",
     "checks_passed": passed,
