@@ -1,0 +1,65 @@
+{
+  "stage": "D9",
+  "status": "PENDING_OWNER_INPUT",
+  "updated": "2026-09-02",
+  "purpose": "Structured owner decisions for D4-D9 closure; no approval is implied by this file.",
+  "decisions": {
+    "D4_main_case_lgd": {
+      "status": "PENDING",
+      "options": [
+        {"option": "Q25", "lgd": 0.48967010746551115},
+        {"option": "Q50", "lgd": 0.667384888},
+        {"option": "Q75", "lgd": 0.7902973489584245},
+        {"option": "Q90", "lgd": 0.865786}
+      ],
+      "selected_option": null,
+      "evidence": "D4_LGD_FRAMEWORK/D4_RUN_AUDIT.json"
+    },
+    "D4_timing_boundary": {
+      "status": "PENDING",
+      "proposed_reference": "issue_year <= 2017",
+      "shadow_treatment": "2018 monitor-only",
+      "approved": null,
+      "evidence": "D4_LGD_FRAMEWORK/D4_LGD_SCENARIO_CONTRACT.md"
+    },
+    "D5_analytical_proxy": {
+      "status": "PENDING",
+      "formula": "p_bad_final * LGD assumption * declared EAD scenario",
+      "approved": null,
+      "claim_boundary": "analytical proxy only; not regulatory or realized loss",
+      "evidence": "D5_EXPECTED_LOSS/D5_ANALYTICAL_SCENARIO_AUDIT.json"
+    },
+    "D6_action_policy": {
+      "status": "PENDING",
+      "proposed_mapping": "R1/R2 STANDARD_REVIEW; R3 MANUAL_REVIEW; R4/R5 ENHANCED_REVIEW",
+      "thresholds_approved": null,
+      "overrides_approved": null,
+      "evidence": "D6_DECISION_POLICY/D6_ANALYTICAL_PACK_AUDIT.json"
+    },
+    "D7_pricing_scope": {
+      "status": "PENDING",
+      "options": [
+        "DESCRIPTIVE_ONLY",
+        "PROVIDE_APPROVED_COST_FEE_TIMING_INPUTS_FOR_ADEQUACY_ANALYSIS"
+      ],
+      "selected_option": null,
+      "evidence": "D7_PRICING/D7_DIAGNOSTIC_AUDIT.json"
+    },
+    "D8_stress_policy": {
+      "status": "PENDING",
+      "proposed_shocks": {
+        "pd_pct": [0, 10, 25],
+        "lgd_additive": [0, 0.1],
+        "ead_pct": [0, 5]
+      },
+      "approved": null,
+      "evidence": "D8_STRESS/D8_ILLUSTRATIVE_SENSITIVITY_AUDIT.json"
+    }
+  },
+  "owner_signoff": {
+    "data_owner": {"status": "PENDING", "name": null, "date": null, "reference": null},
+    "model_owner": {"status": "PENDING", "name": null, "date": null, "reference": null},
+    "risk_owner": {"status": "PENDING", "name": null, "date": null, "reference": null}
+  },
+  "unlock_rule": "All required decisions and all three owner sign-offs must be recorded before D9 can be rerun for LOCKED review."
+}

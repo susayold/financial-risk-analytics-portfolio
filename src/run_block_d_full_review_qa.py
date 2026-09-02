@@ -39,6 +39,7 @@ d2_tests = load("D2_LOSS_RECOVERY_EVIDENCE/D2_TEST_RESULTS.json")
 d4 = load("D4_LGD_FRAMEWORK/D4_RUN_AUDIT.json")
 d4_tests = load("D4_LGD_FRAMEWORK/D4_TEST_RESULTS.json")
 d9_manifest = load("D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json")
+approval_register = load("D9_CLOSURE/D9_APPROVAL_REGISTER.json")
 
 check("D0_STATUS", d0.get("status"), "PASS", d0.get("status") == "PASS", "D0_TEST_RESULTS.json")
 check("D0_TEST_COUNT", [d0.get("tests_passed"), d0.get("tests_failed")], [10, 0], d0.get("tests_passed") == 10 and d0.get("tests_failed") == 0, "D0_TEST_RESULTS.json")
@@ -95,6 +96,10 @@ check("D1_CONTRACT_NOT_STALE", "SCORE_ARTIFACT_NOT_MATERIALIZED" in d1_contract,
 check("D1_AVAILABILITY_UPDATED", "310,066-row matched scored mart" in d1_availability, True, "310,066-row matched scored mart" in d1_availability, "D1_INPUT_AVAILABILITY_AUDIT.md")
 check("D9_APPROVAL_PACK_PRESENT", "# Block D — Approval Decision Pack" in approval_pack, True, "# Block D — Approval Decision Pack" in approval_pack, "BLOCK_D_APPROVAL_DECISION_PACK.md")
 check("D9_APPROVAL_PACK_BOUNDED", all(token in approval_pack_normalized for token in ["analytical", "not an approved main-case", "PENDING", "Q25", "Q50", "Q75", "Q90"]), True, all(token in approval_pack_normalized for token in ["analytical", "not an approved main-case", "PENDING", "Q25", "Q50", "Q75", "Q90"]), "BLOCK_D_APPROVAL_DECISION_PACK.md")
+decision_statuses = [item.get("status") for item in approval_register.get("decisions", {}).values()]
+signoff_statuses = [item.get("status") for item in approval_register.get("owner_signoff", {}).values()]
+check("D9_STRUCTURED_REGISTER_PENDING", approval_register.get("status"), "PENDING_OWNER_INPUT", approval_register.get("status") == "PENDING_OWNER_INPUT" and len(decision_statuses) == 6 and all(status == "PENDING" for status in decision_statuses), "D9_APPROVAL_REGISTER.json")
+check("D9_OWNER_SIGNOFFS_PENDING", signoff_statuses, ["PENDING", "PENDING", "PENDING"], len(signoff_statuses) == 3 and all(status == "PENDING" for status in signoff_statuses), "D9_APPROVAL_REGISTER.json")
 
 passed = sum(1 for item in checks if item["pass"])
 failed = len(checks) - passed

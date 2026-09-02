@@ -3,7 +3,7 @@
   "run_date": "2026-09-02",
   "scope": "controlled analytical review; no production or regulatory claim",
   "status": "PASS",
-  "checks_passed": 38,
+  "checks_passed": 40,
   "checks_failed": 0,
   "checks": [
     {
@@ -347,6 +347,28 @@
       "expected": true,
       "pass": true,
       "evidence": "BLOCK_D_APPROVAL_DECISION_PACK.md"
+    },
+    {
+      "check_id": "D9_STRUCTURED_REGISTER_PENDING",
+      "observed": "PENDING_OWNER_INPUT",
+      "expected": "PENDING_OWNER_INPUT",
+      "pass": true,
+      "evidence": "D9_APPROVAL_REGISTER.json"
+    },
+    {
+      "check_id": "D9_OWNER_SIGNOFFS_PENDING",
+      "observed": [
+        "PENDING",
+        "PENDING",
+        "PENDING"
+      ],
+      "expected": [
+        "PENDING",
+        "PENDING",
+        "PENDING"
+      ],
+      "pass": true,
+      "evidence": "D9_APPROVAL_REGISTER.json"
     }
   ],
   "overall_block_status": "NOT_LOCKED_REVIEW_REQUIRED",

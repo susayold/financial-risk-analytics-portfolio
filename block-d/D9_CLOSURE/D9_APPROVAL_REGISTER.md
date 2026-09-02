@@ -2,7 +2,8 @@
 
 Updated: 2026-09-02  
 Purpose: record explicit owner decisions without fabricating approval. Use
-`BLOCK_D_APPROVAL_DECISION_PACK.md` for the quantitative option comparison.
+`BLOCK_D_APPROVAL_DECISION_PACK.md` for the quantitative option comparison and
+`D9_APPROVAL_REGISTER.json` for the structured input record.
 
 All rows below are currently **PENDING**. The proposed values are review
 options derived from the executed analytical packs; they are not approved
