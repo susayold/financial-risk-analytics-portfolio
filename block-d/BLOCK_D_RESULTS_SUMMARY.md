@@ -10,6 +10,10 @@ not missing calculations.
 
 `D0 PASS` · `D1 PASS_WITH_LIMITATIONS` · `D2 PASS_WITH_LIMITATIONS` · `D3 PASS_WITH_LIMITATIONS` · `D4 BRIDGE_RECONCILED_APPROVAL_PENDING` · `D5–D9 CONTROLLED_HOLD`
 
+Execution coverage is **100% (10/10 stages)**, while closure readiness toward
+`LOCKED` is **73.5%** under the documented scorecard conversion. See
+`BLOCK_D_PLAN_COMPLETION_SCORECARD.md` for the stage-by-stage basis.
+
 ## Verified results
 
 | Stage | Verified output |
