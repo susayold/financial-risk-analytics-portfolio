@@ -33,6 +33,7 @@ def check(check_id: str, observed, expected, passed: bool, evidence: str) -> Non
 d0 = load("D0_GOVERNANCE_CONTRACT/D0_TEST_RESULTS.json")
 d1 = load("D1_RISK_SCORE_MART/D1_RUN_AUDIT.json")
 d1_tests = load("D1_RISK_SCORE_MART/D1_TEST_RESULTS.json")
+d1_band_contract = load("D1_RISK_SCORE_MART/risk_band_contract.json")
 d2 = load("D2_LOSS_RECOVERY_EVIDENCE/D2_GOVERNED_CORE_BRIDGE_AUDIT.json")
 d2_tests = load("D2_LOSS_RECOVERY_EVIDENCE/D2_TEST_RESULTS.json")
 d4 = load("D4_LGD_FRAMEWORK/D4_RUN_AUDIT.json")
@@ -43,6 +44,10 @@ check("D0_TEST_COUNT", [d0.get("tests_passed"), d0.get("tests_failed")], [10, 0]
 check("D1_STATUS", d1.get("status"), "PASS_WITH_LIMITATIONS", d1.get("status") == "PASS_WITH_LIMITATIONS", "D1_RUN_AUDIT.json")
 check("D1_SCORE_ROWS", d1.get("row_counts", {}).get("d1_mart"), 310066, d1.get("row_counts", {}).get("d1_mart") == 310066, "D1_RUN_AUDIT.json")
 check("D1_TEST_COUNT", [d1_tests.get("tests_passed"), d1_tests.get("tests_failed"), d1_tests.get("tests_pending")], [10, 0, 0], d1_tests.get("tests_passed") == 10 and d1_tests.get("tests_failed") == 0 and d1_tests.get("tests_pending") == 0, "D1_TEST_RESULTS.json")
+band_cutpoints = d1_band_contract.get("decile_cutpoints") or {}
+expected_cutpoint_keys = [f"D{i:02d}_upper" for i in range(1, 10)]
+check("D1_BAND_CONTRACT_MATERIALIZED", d1_band_contract.get("status"), "MATERIALIZED_REVIEW_ONLY", d1_band_contract.get("status") == "MATERIALIZED_REVIEW_ONLY" and d1_band_contract.get("cutpoint_reference_population") == "P1_C8E_VALIDATION_SCORED", "risk_band_contract.json")
+check("D1_BAND_CUTPOINTS_PRESENT", sorted(band_cutpoints), expected_cutpoint_keys, sorted(band_cutpoints) == expected_cutpoint_keys, "risk_band_contract.json")
 check("D2_STATUS", d2.get("status"), "PASS_WITH_LIMITATIONS", d2.get("status") == "PASS_WITH_LIMITATIONS", "D2_GOVERNED_CORE_BRIDGE_AUDIT.json")
 check("D2_GOVERNED_ID_BRIDGE", d2.get("row_counts", {}).get("matched_governed_ids"), 1347681, d2.get("row_counts", {}).get("matched_governed_ids") == 1347681 and d2.get("row_counts", {}).get("governed_core_rows") == 1347681, "D2_GOVERNED_CORE_BRIDGE_AUDIT.json")
 d2_checks = {item.get("check_id"): item for item in d2.get("checks", [])}
