@@ -22,7 +22,7 @@ This file only indexes links. The Drive root is the single storage location; Git
 - Status: **D0 PASS; D1–D3 PASS_WITH_LIMITATIONS; D4 APPROVAL_PENDING; D5–D9 CONTROLLED_HOLD**.
 - Execution coverage: **100% (10/10 stages)**.
 - Closure readiness toward `LOCKED`: **73.5%** under the documented scorecard conversion.
-- Technical review: **43/43 QA checks PASS; 12/12 D9 manifest checksums PASS**.
+- Technical review: **44/44 QA checks PASS; 12/12 D9 manifest checksums PASS**.
 - [Block D status](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_STATUS.md)
 - [Block D plan completion scorecard](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_PLAN_COMPLETION_SCORECARD.md)
 - [Block D full review QA](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_FULL_REVIEW_QA.json)

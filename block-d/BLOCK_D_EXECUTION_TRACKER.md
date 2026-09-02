@@ -12,7 +12,7 @@ decisions are not recorded.
 
 Execution coverage is **100% (10/10 stages)**. Closure readiness toward a
 fully approved `LOCKED` state is **73.5%** under the documented conversion in
-`BLOCK_D_PLAN_COMPLETION_SCORECARD.md`. The latest controls are **43/43
+`BLOCK_D_PLAN_COMPLETION_SCORECARD.md`. The latest controls are **44/44
 full-review QA checks PASS**, **12/12 D9 checksum entries PASS** and **3/3
 owner-register validator self-tests PASS**.
 

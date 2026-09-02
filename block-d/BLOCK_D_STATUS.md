@@ -11,7 +11,7 @@ Block D is not locked. The governance foundation and controlled analytical packs
 ## Progress scorecard
 
 - Planned stages with executed evidence: **10/10 = 100%**.
-- Full-review technical QA: **43/43 PASS**.
+- Full-review technical QA: **44/44 PASS**.
 - D9 manifest evidence checksums: **12/12 PASS**.
 - Closure readiness toward a fully approved `LOCKED` state: **73.5%** under
   the documented conversion in `BLOCK_D_PLAN_COMPLETION_SCORECARD.md`.
