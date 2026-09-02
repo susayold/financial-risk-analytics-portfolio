@@ -44,7 +44,7 @@ def main() -> int:
         "required_follow_up": ["Record explicit D4 main-case LGD and timing approval", "Record D5 analytical proxy acceptance boundary", "Record D6 action thresholds and override owner approval", "Record D7 pricing cost/fee assumptions if profitability is required", "Record D8 approved baseline/shock policy", "Record data/model/risk owner sign-off", "Then rerun final gate QA and update D9 only after review"],
         "evidence_checksums": {
             **{stage: {"file": path.name, "sha256": sha256(path)} for stage, path in [("D1", args.d1_audit), ("D2", args.d2_audit), ("D4", args.d4_audit), ("D5", args.d5_audit), ("D6", args.d6_audit), ("D7", args.d7_audit), ("D8", args.d8_audit)]},
-            "D1_BAND_CONTRACT": {"file": str(d1_band_contract.relative_to(block_dir)), "sha256": sha256(d1_band_contract)},
+            "D1_BAND_CONTRACT": {"file": d1_band_contract.relative_to(block_dir).as_posix(), "sha256": sha256(d1_band_contract)},
             "FULL_REVIEW_QA": {"file": full_review_qa.name, "sha256": sha256(full_review_qa)},
             "APPROVAL_DECISION_PACK": {"file": str(approval_decision_pack.relative_to(block_dir)), "sha256": sha256(approval_decision_pack)},
         },
