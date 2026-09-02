@@ -48,7 +48,10 @@ Block D is not complete. The governance foundation is implemented and reviewed, 
 
 ### D2 — Loss & Recovery Evidence
 
-- The full accepted LendingClub source was audited in streaming mode: **2,275,739 source rows**.
+- The legacy source-level LendingClub loss audit covered **2,275,739 rows**;
+  the separately checksummed accepted bridge artifact used for exact ID
+  reconciliation contains **2,260,701 rows**. These artifacts are tracked
+  separately and are not conflated.
 - Resolved final outcomes: **1,356,914 rows** = **271,353 BAD** and **1,085,561 GOOD**.
 - Required retrospective recovery fields are present and their timing/role is documented.
 - Loss-quality treatment is explicit: **1,355,773 VALID** and **1,141 CLIPPED_FOR_MODELING**; no silent clipping is permitted.

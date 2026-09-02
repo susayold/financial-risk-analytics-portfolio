@@ -4,12 +4,18 @@
 
 `BRIDGE_RECONCILED / PASS_WITH_LIMITATIONS`
 
-The full accepted-source file was recovered on the D runtime and audited in streaming mode. It contains the required retrospective recovery/loss fields. The audit covered 2,275,739 source rows, of which 1,356,914 have resolved outcomes: 271,353 BAD and 1,085,561 GOOD.
+The legacy source-level loss audit covered the artifact
+`LendingClub_2007_to_2018Q4.csv` (2,275,739 rows; 1,356,914 resolved rows,
+271,353 BAD and 1,085,561 GOOD). The exact governed bridge was then run against
+the separately checksummed accepted bridge artifact
+`accepted_2007_to_2018Q4.csv` (2,260,701 rows). These are distinct source
+artifacts and are not combined into one row-count claim.
 
 The exact bridge is now complete. All 1,347,681 governed account IDs match the
-accepted source; source targets and loan amounts reconcile 100%, with no source
-duplicate-ID groups or conflicts. The loss output remains retrospective
-BAD-only evidence and is not a regulatory or empirical C8E LGD model.
+accepted bridge artifact; source targets and loan amounts reconcile 100%, with
+no source duplicate-ID groups or conflicts. The loss output remains
+retrospective BAD-only evidence and is not a regulatory or empirical C8E LGD
+model.
 
 A bounded score-to-loss sub-audit found 1,993 exact duplicate rows in the BAD-only loss proxy. After exact-row deduplication, all 20,082 scored-BAD accounts in the available Validation/OOT score mart matched loss evidence with zero target mismatches. This does not establish GOOD-row coverage or the governed-core bridge.
 
