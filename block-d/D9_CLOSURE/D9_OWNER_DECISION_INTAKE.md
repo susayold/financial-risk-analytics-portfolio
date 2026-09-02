@@ -23,6 +23,10 @@ into approvals.
 | D8 stress | Set `approved=true` for the documented baseline/shock policy |
 | Owner sign-offs | Data, model and risk owner each need status, name, date and approval reference |
 
+Every D4–D8 decision row also carries `decision_owner`, `decision_date`,
+`decision_reference` and `conditions`. These remain `null` while pending and
+are mandatory when that individual decision is marked `APPROVED`.
+
 ## Validation commands
 
 From the repository root:

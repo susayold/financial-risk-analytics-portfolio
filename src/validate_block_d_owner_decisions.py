@@ -57,12 +57,19 @@ def validate_register(register: dict) -> dict:
         if not isinstance(item, dict):
             errors.append(f"{key} must be an object")
             return None
+        for field in ("decision_owner", "decision_date", "decision_reference", "conditions"):
+            if field not in item:
+                errors.append(f"{key}.{field} is required; use null while pending")
         status = item.get("status")
         if status not in DECISION_STATUSES:
             errors.append(f"{key}.status must be PENDING or APPROVED")
             return status
         if status == "PENDING":
             pending.append(key)
+        if status == "APPROVED" and not all(
+            item.get(field) for field in ("decision_owner", "decision_date", "decision_reference")
+        ):
+            errors.append(f"approved {key} requires decision_owner, decision_date and decision_reference")
         return status
 
     statuses = {key: decision_status(key) for key in DECISION_KEYS}
@@ -193,6 +200,10 @@ def run_validator_self_tests(register: dict | None = None) -> dict:
 
     ready_register = deepcopy(register)
     ready_register["status"] = "READY_FOR_D9_RERUN"
+    for key in DECISION_KEYS:
+        ready_register["decisions"][key].update(
+            decision_owner="Test owner", decision_date="2026-09-03", decision_reference=f"TEST-{key}", conditions=None
+        )
     ready_register["decisions"]["D4_main_case_lgd"].update(status="APPROVED", selected_option="Q50")
     ready_register["decisions"]["D4_timing_boundary"].update(status="APPROVED", approved=True)
     ready_register["decisions"]["D5_analytical_proxy"].update(status="APPROVED", approved=True)

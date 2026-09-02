@@ -13,6 +13,10 @@
         {"option": "Q90", "lgd": 0.865786}
       ],
       "selected_option": null,
+      "decision_owner": null,
+      "decision_date": null,
+      "decision_reference": null,
+      "conditions": null,
       "evidence": "D4_LGD_FRAMEWORK/D4_RUN_AUDIT.json"
     },
     "D4_timing_boundary": {
@@ -20,6 +24,10 @@
       "proposed_reference": "issue_year <= 2017",
       "shadow_treatment": "2018 monitor-only",
       "approved": null,
+      "decision_owner": null,
+      "decision_date": null,
+      "decision_reference": null,
+      "conditions": null,
       "evidence": "D4_LGD_FRAMEWORK/D4_LGD_SCENARIO_CONTRACT.md"
     },
     "D5_analytical_proxy": {
@@ -27,6 +35,10 @@
       "formula": "p_bad_final * LGD assumption * declared EAD scenario",
       "approved": null,
       "claim_boundary": "analytical proxy only; not regulatory or realized loss",
+      "decision_owner": null,
+      "decision_date": null,
+      "decision_reference": null,
+      "conditions": null,
       "evidence": "D5_EXPECTED_LOSS/D5_ANALYTICAL_SCENARIO_AUDIT.json"
     },
     "D6_action_policy": {
@@ -34,6 +46,10 @@
       "proposed_mapping": "R1/R2 STANDARD_REVIEW; R3 MANUAL_REVIEW; R4/R5 ENHANCED_REVIEW",
       "thresholds_approved": null,
       "overrides_approved": null,
+      "decision_owner": null,
+      "decision_date": null,
+      "decision_reference": null,
+      "conditions": null,
       "evidence": "D6_DECISION_POLICY/D6_ANALYTICAL_PACK_AUDIT.json"
     },
     "D7_pricing_scope": {
@@ -43,6 +59,10 @@
         "PROVIDE_APPROVED_COST_FEE_TIMING_INPUTS_FOR_ADEQUACY_ANALYSIS"
       ],
       "selected_option": null,
+      "decision_owner": null,
+      "decision_date": null,
+      "decision_reference": null,
+      "conditions": null,
       "evidence": "D7_PRICING/D7_DIAGNOSTIC_AUDIT.json"
     },
     "D8_stress_policy": {
@@ -53,6 +73,10 @@
         "ead_pct": [0, 5]
       },
       "approved": null,
+      "decision_owner": null,
+      "decision_date": null,
+      "decision_reference": null,
+      "conditions": null,
       "evidence": "D8_STRESS/D8_ILLUSTRATIVE_SENSITIVITY_AUDIT.json"
     }
   },
