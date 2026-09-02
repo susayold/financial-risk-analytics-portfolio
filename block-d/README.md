@@ -22,6 +22,23 @@ The D0 contract freezes:
 
 Raw CSV, DuckDB, model binaries and private source data are intentionally excluded from the public repository.
 
+## Current review checkpoint
+
+- Execution coverage: **100% (10/10 planned stages)**.
+- Full-review technical QA: **53/53 PASS**.
+- D9 manifest integrity: **15/15 checksums PASS**.
+- Closure readiness: **73.5%** under the documented management conversion.
+- Final state: **`NOT_LOCKED_REVIEW_REQUIRED`**; owner approvals are not inferred.
+
+Review files:
+
+- `BLOCK_D_PLAN_TRACEABILITY.md` — requirement-to-evidence matrix.
+- `BLOCK_D_PLAN_COMPLETION_SCORECARD.md` — stage score and remaining conditions.
+- `BLOCK_D_VALIDATION_REPORT.md` — methodology, calculation spot-checks and claim boundary.
+- `BLOCK_D_FULL_REVIEW_QA.json` — deterministic full-review QA output.
+- `D9_CLOSURE/D9_APPROVAL_REGISTER.json` — structured owner decision intake.
+- `D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json` — closure evidence and checksums.
+
 The D5–D9 downstream gate register is present. Controlled analytical packs are
 materialized for review, but all five production gates remain held because D4
 main-case approval and owner policy decisions are not available. No production
