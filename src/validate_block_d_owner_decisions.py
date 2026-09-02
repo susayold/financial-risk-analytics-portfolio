@@ -8,6 +8,7 @@ to unlock D9, and never invents an approval.
 from __future__ import annotations
 
 import argparse
+from copy import deepcopy
 import json
 from datetime import date
 from pathlib import Path
@@ -162,12 +163,74 @@ def validate_register(register: dict) -> dict:
     }
 
 
+def run_validator_self_tests(register: dict | None = None) -> dict:
+    """Exercise pending, malformed and fully-approved register paths."""
+
+    if register is None:
+        register = json.loads(DEFAULT_REGISTER.read_text(encoding="utf-8"))
+    results: list[dict] = []
+
+    pending = validate_register(register)
+    results.append(
+        {
+            "name": "pending_register_is_valid_but_not_ready",
+            "pass": pending["validation_status"] == "VALID_PENDING"
+            and pending["schema_valid"] is True
+            and pending["ready_for_d9_rerun"] is False,
+        }
+    )
+
+    malformed_register = deepcopy(register)
+    malformed_register["decisions"]["D4_main_case_lgd"]["status"] = "APPROVED"
+    malformed = validate_register(malformed_register)
+    results.append(
+        {
+            "name": "approved_lgd_without_selection_is_rejected",
+            "pass": malformed["validation_status"] == "INVALID"
+            and malformed["schema_valid"] is False,
+        }
+    )
+
+    ready_register = deepcopy(register)
+    ready_register["status"] = "READY_FOR_D9_RERUN"
+    ready_register["decisions"]["D4_main_case_lgd"].update(status="APPROVED", selected_option="Q50")
+    ready_register["decisions"]["D4_timing_boundary"].update(status="APPROVED", approved=True)
+    ready_register["decisions"]["D5_analytical_proxy"].update(status="APPROVED", approved=True)
+    ready_register["decisions"]["D6_action_policy"].update(
+        status="APPROVED", thresholds_approved=True, overrides_approved=True
+    )
+    ready_register["decisions"]["D7_pricing_scope"].update(status="APPROVED", selected_option="DESCRIPTIVE_ONLY")
+    ready_register["decisions"]["D8_stress_policy"].update(status="APPROVED", approved=True)
+    for role, item in ready_register["owner_signoff"].items():
+        item.update(status="APPROVED", name=f"Test {role}", date="2026-09-03", reference=f"TEST-{role}")
+    ready = validate_register(ready_register)
+    results.append(
+        {
+            "name": "complete_register_is_ready_for_d9_rerun",
+            "pass": ready["validation_status"] == "READY_FOR_D9_RERUN"
+            and ready["schema_valid"] is True
+            and ready["ready_for_d9_rerun"] is True,
+        }
+    )
+
+    passed = sum(1 for result in results if result["pass"])
+    return {"tests_run": len(results), "tests_passed": passed, "tests_failed": len(results) - passed, "tests": results}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--register", type=Path, default=DEFAULT_REGISTER)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--require-ready", action="store_true")
+    parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
+
+    if args.self_test:
+        result = run_validator_self_tests()
+        print(f"OWNER DECISION VALIDATOR SELF-TEST {result['tests_passed']}/{result['tests_run']} pass")
+        for test in result["tests"]:
+            print(f"{'PASS' if test['pass'] else 'FAIL'}: {test['name']}")
+        return 0 if result["tests_failed"] == 0 else 1
 
     register = json.loads(args.register.read_text(encoding="utf-8"))
     result = validate_register(register)

@@ -54,6 +54,7 @@ only contracts, sanitized manifests and reproducible code are public.
 - `D5_D9_GATE_QA.json`
 - `BLOCK_D_EXECUTION_TRACKER.md`
 - `src/validate_block_d_owner_decisions.py`
+- `src/test_block_d_owner_decisions.py`
 - `src/validate_block_d_d9_checksums.py`
 
 ## Latest private Drive packs

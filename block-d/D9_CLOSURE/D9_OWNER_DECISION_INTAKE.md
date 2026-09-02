@@ -30,6 +30,8 @@ From the repository root:
 ```text
 python src/validate_block_d_owner_decisions.py
 python src/validate_block_d_owner_decisions.py --require-ready
+python src/validate_block_d_owner_decisions.py --self-test
+python src/test_block_d_owner_decisions.py
 python src/validate_block_d_d9_checksums.py
 ```
 

@@ -3,7 +3,7 @@
   "run_date": "2026-09-03",
   "scope": "controlled analytical review; no production or regulatory claim",
   "status": "PASS",
-  "checks_passed": 42,
+  "checks_passed": 43,
   "checks_failed": 0,
   "checks": [
     {
@@ -383,6 +383,19 @@
       "expected": false,
       "pass": true,
       "evidence": "D9_APPROVAL_VALIDATION.json"
+    },
+    {
+      "check_id": "D9_VALIDATOR_SELF_TESTS",
+      "observed": [
+        3,
+        0
+      ],
+      "expected": [
+        3,
+        0
+      ],
+      "pass": true,
+      "evidence": "test_block_d_owner_decisions.py"
     }
   ],
   "overall_block_status": "NOT_LOCKED_REVIEW_REQUIRED",

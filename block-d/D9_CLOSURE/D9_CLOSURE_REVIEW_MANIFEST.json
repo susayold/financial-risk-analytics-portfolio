@@ -1,7 +1,7 @@
 {
   "stage": "D9",
   "status": "NOT_LOCKED_REVIEW_REQUIRED",
-  "run_timestamp_utc": "2026-09-02T17:05:58.150610+00:00",
+  "run_timestamp_utc": "2026-09-02T17:18:19.856548+00:00",
   "executed": true,
   "numeric_output_claimed": false,
   "upstream_status": {
@@ -71,7 +71,7 @@
     },
     "FULL_REVIEW_QA": {
       "file": "BLOCK_D_FULL_REVIEW_QA.json",
-      "sha256": "df4e3df0996ad45bf56cd14fe5e6dc640e89a910551f9b5d831c148bc903a7b5"
+      "sha256": "bb393e866e4faecce6a19ec76f6091d2393075e4e29747f9ce417ee6a906a5e0"
     },
     "APPROVAL_DECISION_PACK": {
       "file": "D9_CLOSURE\\BLOCK_D_APPROVAL_DECISION_PACK.md",
