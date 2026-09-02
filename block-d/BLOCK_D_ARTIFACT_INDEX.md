@@ -23,9 +23,9 @@ by missing Development scores and the missing governed-core loss bridge.
 |---|---|---|---|
 | D0 | PASS, 10/10 gates | Governance contract, population contract, role matrix, assumptions and run audit | Frozen upstream model and roles only |
 | D1 | REVIEW_REQUIRED | Risk-score mart contract, available-score artifact audit, input availability audit and risk-band contract | Persisted Validation/OOT files pass structural checks; no full account mart until Development score artifact and bridges are materialized |
-| D2 | REVIEW_REQUIRED_BRIDGE_PENDING | Full-source audit, loss dictionary, retrospective loss proxy, score-to-loss sub-audit, bridge audit, tests | Source-level retrospective evidence; 1,993 exact proxy duplicates require account-grain deduplication; not C8E empirical LGD |
+| D2 | REVIEW_REQUIRED_BRIDGE_PENDING | Full-source audit, loss dictionary, retrospective loss proxy, account-grain dedup artifact, score-to-loss sub-audit, bridge audit, tests | Source-level retrospective evidence; exact duplicate treatment is persisted; governed-core bridge and GOOD-row coverage remain open; not C8E empirical LGD |
 | D3 | PASS_WITH_LIMITATIONS | EAD contract, account EAD proxy, sensitivity, term view, anomaly audit and tests | 331,865-row pricing-source scope; `loan_amnt` origination proxy only |
-| D4 | SCENARIO_ONLY_REVIEW_REQUIRED | LGD scenario contract, Q25/Q50/Q75/Q90 anchors, issue-year diagnostics, tests and run audit | No `p_bad_final` join; no approved C8E LGD or D5 input |
+| D4 | SCENARIO_ONLY_REVIEW_REQUIRED | Account-grain LGD scenario contract, Q25/Q50/Q75/Q90 anchors, duplicate audit, issue-year diagnostics, tests and run audit | No `p_bad_final` join; no approved C8E LGD or D5 input |
 | D5 | GATED_HOLD | `D5_EXPECTED_LOSS/D5_EXPECTED_LOSS_GATE.md`, `D5_GATE_RESULTS.json` | No EL number until D1/D2 bridges and approved D4 input pass |
 | D6 | GATED_HOLD | `D6_DECISION_POLICY/D6_POLICY_GATE.md`, `D6_GATE_RESULTS.json` | No production policy until D1/D5 and owner thresholds pass |
 | D7 | GATED_HOLD | `D7_PRICING/D7_PRICING_GATE.md`, `D7_GATE_RESULTS.json` | No pricing adequacy or profitability claim |

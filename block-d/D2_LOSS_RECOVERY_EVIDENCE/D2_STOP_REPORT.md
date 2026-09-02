@@ -10,6 +10,11 @@ The exact bridge to the 1,347,681-row governed core is still pending because the
 
 A bounded score-to-loss sub-audit found 1,993 exact duplicate rows in the BAD-only loss proxy. After exact-row deduplication, all 20,082 scored-BAD accounts in the available Validation/OOT score mart matched loss evidence with zero target mismatches. This does not establish GOOD-row coverage or the governed-core bridge.
 
+The deduplicated account-grain proxy is now persisted as
+`retrospective_loss_proxy_account_grain.csv` with its own audit manifest. D4
+uses this account-grain view for LGD scenario aggregation; the D4 bridge and
+approval boundary remain open.
+
 ## Consequence for downstream stages
 
 - Empirical D4 LGD challenger: not yet opened for the C8E population; exact bridge remains a gate.

@@ -12,6 +12,6 @@
   "tests_passed": 7,
   "tests_failed": 2,
   "tests_pending": 1,
-  "outputs":["retrospective_loss_proxy.csv","loss_field_quality.csv","recovery_reconciliation.csv","full_source_bridge_audit.csv","D2_TEST_RESULTS.json","D2_RUN_AUDIT.json","D2_SCORE_TO_LOSS_SUBAUDIT.md","D2_SCORE_TO_LOSS_SUBAUDIT.json"],
+  "outputs":["retrospective_loss_proxy.csv","retrospective_loss_proxy_account_grain.csv","D2_LOSS_PROXY_DEDUP_AUDIT.json","loss_field_quality.csv","recovery_reconciliation.csv","full_source_bridge_audit.csv","D2_TEST_RESULTS.json","D2_RUN_AUDIT.json","D2_SCORE_TO_LOSS_SUBAUDIT.md","D2_SCORE_TO_LOSS_SUBAUDIT.json"],
   "claim_boundary":["retrospective loss evidence only","exact governed-core bridge pending","no regulatory LGD","no silent clipping"]
 }

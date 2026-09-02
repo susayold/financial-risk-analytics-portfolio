@@ -56,7 +56,17 @@
     {"test_id":"D2-G09","description":"population limitations documented","observed":"bridge_status=PENDING_GOVERNED_ID_LIST","expected":"limitations explicit","pass":true},
     {"test_id":"D2-G10","description":"public outputs sanitized","observed":"raw source not exported to repo","expected":"no raw data in public package","pass":true}
   ],
-  "fallback": "scenario LGD only until exact governed bridge is available"
+  "fallback": "scenario LGD only until exact governed bridge is available",
+  "deduplicated_loss_proxy": {
+    "status": "PASS_WITH_LIMITATIONS",
+    "output": "retrospective_loss_proxy_account_grain.csv",
+    "audit_output": "D2_LOSS_PROXY_DEDUP_AUDIT.json",
+    "rows_before": 271353,
+    "rows_after": 269360,
+    "exact_duplicate_rows_removed": 1993,
+    "conflicting_actual_default_ids": 0,
+    "claim_boundary": "BAD-only evidence; not full governed population or empirical C8E LGD"
+  }
   ,"score_to_loss_subaudit": {
     "status": "PASS_WITH_LIMITATIONS",
     "scored_bad_rows": 20082,

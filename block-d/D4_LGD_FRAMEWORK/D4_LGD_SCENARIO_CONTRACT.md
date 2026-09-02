@@ -16,7 +16,11 @@ It does not create an empirical LGD estimate for C8E and does not use
 
 ## Input and formula
 
-The input is the D2 `retrospective_loss_proxy.csv` output. The model LGD value is
+The input is the D2 `retrospective_loss_proxy.csv` output. Before aggregation,
+the run removes exact full-row duplicates and verifies that no non-exact
+duplicate `account_id` rows remain. The resulting evidence is account-grain;
+the deduplication audit records 271,353 input rows, 1,993 exact duplicates
+removed and 269,360 retained rows. The model LGD value is
 the D2 governed proxy:
 
 ```text

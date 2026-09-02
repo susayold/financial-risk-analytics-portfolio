@@ -3,7 +3,8 @@
 ## What was done
 
 - Read the D2 retrospective loss proxy output.
-- Generated Q25/Q50/Q75/Q90 severity anchors from source-level BAD rows.
+- Removed 1,993 exact duplicate rows and generated account-grain Q25/Q50/Q75/Q90
+  severity anchors from 269,360 retained BAD evidence rows.
 - Excluded the 2018 shadow cohort from primary anchors because of documented
   final-resolution/truncation concerns; retained it as monitor-only evidence.
 - Produced an issue-year diagnostic table.

@@ -48,17 +48,17 @@ Block D is not complete. The governance foundation is implemented and reviewed, 
 - Required retrospective recovery fields are present and their timing/role is documented.
 - Loss-quality treatment is explicit: **1,355,773 VALID** and **1,141 CLIPPED_FOR_MODELING**; no silent clipping is permitted.
 - Bounded score-to-loss sub-audit covers **20,082/20,082 scored-BAD rows** with
-  zero target mismatches after exact-row deduplication; **1,993** duplicate
-  loss-proxy rows are recorded as a bridge-quality issue.
+  zero target mismatches after exact-row deduplication; a canonical account-grain
+  proxy retains **269,360** rows after removing **1,993** exact duplicates.
 - The exact bridge to the governed **1,347,681-row core** is still pending because the governed-core ID list is not materialized in the D runtime.
 - QA: **7 PASS / 2 FAIL / 1 PENDING**; status remains **REVIEW_REQUIRED_BRIDGE_PENDING**.
 
 ### D4 — LGD Scenario Evidence
 
-- Source-level Q25/Q50/Q75/Q90 LGD anchors were generated from **262,479** resolved BAD rows with issue year through 2017.
+- Account-grain Q25/Q50/Q75/Q90 LGD anchors were generated from **260,486** retained BAD rows with issue year through 2017 after exact duplicate removal.
 - The 2018 shadow cohort (**8,874** rows) is retained as monitor-only and excluded from primary anchors because of documented final-resolution/truncation concerns.
 - No `p_bad_final` or C8E score is used; this is not an empirical C8E LGD model.
-- QA: **7 PASS / 0 FAIL / 2 PENDING**; status remains **SCENARIO_ONLY_REVIEW_REQUIRED** until D1/D2 bridges pass.
+- QA: **8 PASS / 0 FAIL / 2 PENDING**; status remains **SCENARIO_ONLY_REVIEW_REQUIRED** until D1/D2 bridges pass.
 
 ## Not claimed
 
