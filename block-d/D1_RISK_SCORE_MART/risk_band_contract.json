@@ -1,11 +1,23 @@
 {
-  "contract_version": "D1.1",
-  "status": "PENDING_SCORE_MATERIALIZATION",
+  "contract_version": "D1.2",
+  "status": "MATERIALIZED_REVIEW_ONLY",
   "model_version": "C8E_RICH_BUREAU_CATBOOST_79F",
   "score_field": "p_bad_final",
   "reference_population": "P1_C8E_MATCHED",
   "decile_convention": {"D01":"lowest risk","D10":"highest risk"},
-  "decile_cutpoints": null,
+  "decile_cutpoints": {
+    "D01_upper": 0.02164269230889038,
+    "D02_upper": 0.03349045168371287,
+    "D03_upper": 0.04713356750200824,
+    "D04_upper": 0.06360944048234445,
+    "D05_upper": 0.08515207601719339,
+    "D06_upper": 0.11547320448209004,
+    "D07_upper": 0.1625668200995762,
+    "D08_upper": 0.2417021366212471,
+    "D09_upper": 0.4000101651733103
+  },
+  "cutpoint_reference_population": "P1_C8E_VALIDATION_SCORED",
+  "cutpoint_direction": "lower p_bad_final = lower risk",
   "band_contract": [
     {"band":"R1","label":"VERY_LOW","percentile_min":0.0,"percentile_max":0.2},
     {"band":"R2","label":"LOW","percentile_min":0.2,"percentile_max":0.4},
@@ -13,5 +25,5 @@
     {"band":"R4","label":"HIGH","percentile_min":0.6,"percentile_max":0.8},
     {"band":"R5","label":"VERY_HIGH","percentile_min":0.8,"percentile_max":1.0}
   ],
-  "note": "Percentile band labels are reporting bands, not approval rules. Numeric score cutpoints are not invented before complete score input is materialized."
+  "note": "Cutpoints are materialized from the declared Validation reference population and reused across the matched Development/Validation/OOT mart. Bands remain reporting labels only, not approval rules or production cutoffs."
 }
