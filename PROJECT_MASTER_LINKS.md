@@ -25,5 +25,6 @@ This file only indexes links. The Drive root is the single storage location; Git
 - Technical review: **44/44 QA checks PASS; 12/12 D9 manifest checksums PASS**.
 - [Block D status](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_STATUS.md)
 - [Block D plan completion scorecard](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_PLAN_COMPLETION_SCORECARD.md)
+- [Block D machine-readable scorecard](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_PLAN_COMPLETION_SCORECARD.json)
 - [Block D full review QA](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_FULL_REVIEW_QA.json)
 - [Block D D9 approval register](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/D9_CLOSURE/D9_APPROVAL_REGISTER.json)
