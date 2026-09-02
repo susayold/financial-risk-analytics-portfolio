@@ -2,9 +2,15 @@
 
 ## Status
 
-`REVIEW_REQUIRED — SCORE_ARTIFACT_NOT_MATERIALIZED`
+`PASS_WITH_LIMITATIONS — MATCHED_SCORE_MART_MATERIALIZED`
 
-D0 is PASS. D1 is contract-ready but the account-level C9 score artifact has not been materialized into the D runtime, so no account mart, decile cutpoints or coverage result is claimed yet. The available source is the private C9 Drive closure package; this D1 contract deliberately does not copy it into GitHub.
+D0 is PASS. D1 has now materialized a 310,066-row matched scored mart: frozen
+C8E replay for 182,181 Development rows plus persisted C8E Validation and C9
+OOT scores. The mart includes reusable risk cutpoints, split diagnostics and a
+complete pricing bridge within the matched scored subset. This does not claim
+score coverage for every one of the 1,347,681 governed accounts. The account
+mart and raw model inputs remain private; only sanitized contracts and audits
+are tracked in GitHub.
 
 ## Grain
 
@@ -36,7 +42,9 @@ Risk decile cutpoints must be fitted once on a declared reference population and
 
 `R1 VERY_LOW`, `R2 LOW`, `R3 MEDIUM`, `R4 HIGH`, `R5 VERY_HIGH`.
 
-No independent split-level `qcut` is permitted. Cutpoints remain pending until the complete eligible score population is available.
+No independent split-level `qcut` is permitted. Cutpoints are fitted on the
+declared Validation reference population and reused across Development and
+OOT; the matched-subset scope remains explicit.
 
 ## Required diagnostics
 

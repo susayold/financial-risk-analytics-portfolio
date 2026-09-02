@@ -4,9 +4,12 @@ Updated: 2026-09-02
 
 ## Finding
 
-Drive contains upstream Block C packages, but the available objects are not
-equivalent to a complete D1 Development score mart. D1 remains
-`REVIEW_REQUIRED`.
+The initial availability gap has been resolved at controlled review scope.
+Drive contains the upstream Block C packages, and the runtime has now
+materialized a D1 Development replay and combined it with the persisted
+Validation/OOT artifacts into a 310,066-row matched scored mart. D1 remains
+`PASS_WITH_LIMITATIONS` because the scored lane is not the full governed
+population.
 
 The available persisted score files were independently audited on 2026-09-02.
 Validation 2016 contains 83,664 unique scored accounts with 14,190 BAD cases;
@@ -25,19 +28,21 @@ their coverage of the governed core.
 | C8E result package | [C8E results](https://drive.google.com/file/d/1v0KmPsCkRAKGVfubn2u27T9QRDrg5laa/view?usp=drivesdk) | Validation 2016 result files, including validation predictions and feature contract, are available | It does not contain the required full Development score mart |
 | C9 closure folder | [C9 folder](https://drive.google.com/drive/folders/1Z_ORctxmgWkDTMXfw-1SDPMC1IcMg70x) | Frozen model, feature contract and OOT 2017 predictions are available | OOT evidence cannot substitute for Development coverage or pricing bridge |
 
-## D1 opening decision
+## D1 opening decision and completion evidence
 
-The C8 self-run package is a valid candidate input for a controlled
-materialization run. It is not treated as proof that D1 has passed. Before
-opening D1, the runtime must materialize and checksum:
+The C8 self-run package was used only as a candidate input for a controlled
+materialization run. The following opening requirements are now complete and
+are recorded in the D1 run audit:
 
 ```text
-governed Development IDs
-C8E Development predictions/scores
-model_version = C8E_RICH_BUREAU_CATBOOST_79F
-pricing bridge: term, int_rate, installment, sub_grade, grade_derived
+1. Governed Development IDs were joined to a frozen C8E replay.
+2. `model_version = C8E_RICH_BUREAU_CATBOOST_79F` was preserved.
+3. The required pricing bridge (`term`, `int_rate`, `installment`,
+   `sub_grade`, `grade_derived`) is complete for all 310,066 scored rows.
+4. Account-grain uniqueness, score/target validity, expected split counts,
+   cross-split ID overlap and population reconciliation passed.
 ```
 
-The materialized output must then pass account-grain uniqueness, row-count,
-coverage, target-concordance and no-leakage checks. Until that occurs, D1 has
-no account-level metrics, decile cutpoints or full Development/OOT mart claim.
+The resulting D1 status is `PASS_WITH_LIMITATIONS`: account-level metrics and
+cutpoints exist for the matched scored subset, while no full governed
+Development/OOT score-coverage claim is made.

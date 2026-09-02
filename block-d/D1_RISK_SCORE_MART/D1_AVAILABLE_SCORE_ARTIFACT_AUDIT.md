@@ -16,9 +16,13 @@ required columns, non-null/non-blank account IDs, account-level uniqueness,
 binary target values, finite scores in `[0, 1]`, expected row counts, and ID
 overlap across splits.
 
-The two files were also materialized into the private derived
-`D1_AVAILABLE_SCORE_MART.csv` (127,885 rows). Its scope is explicitly
-score-only; pricing and loss-evidence flags are `UNASSESSED`, not mismatches.
+The initial two-file score-only audit was also materialized into the private
+derived `D1_AVAILABLE_SCORE_MART.csv` (127,885 rows). That artifact is retained
+as historical score-only evidence; it must not be confused with the current
+310,066-row D1 decision mart, whose Development replay and pricing bridge are
+audited separately. The initial score-only artifact has
+`pricing_match_flag` and `loss_evidence_match_flag` as `UNASSESSED`, not
+mismatches.
 
 | Split | Artifact | Rows | BAD | BAD rate | Recomputed ROC-AUC | Result |
 |---|---|---:|---:|---:|---:|---|
