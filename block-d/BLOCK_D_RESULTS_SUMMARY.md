@@ -16,7 +16,7 @@ not missing calculations.
 |---|---|
 | D1 | 310,066 unique scored accounts: Development 182,181; Validation 83,664; OOT 44,221. Pricing bridge complete for all scored rows. Full governed population reconciliation: 1,347,681 = 1,291,521 modeling core + 56,160 Historical Shadow. |
 | D2 | 1,347,681/1,347,681 governed IDs matched the accepted bridge artifact; target concordance 100%; loan amount concordance 100%; zero duplicate-ID groups/conflicts; 269,249/269,249 governed BAD rows matched loss evidence. The legacy source audit is tracked separately by source checksum. |
-| D4 | Q25 LGD 48.9670%; Q50 66.7385%; Q75 79.0297%; Q90 86.5786%. Anchors use issue years through 2017; 2018 Shadow is monitor-only (8,846 BAD rows in the governed evidence). |
+| D4 | Q25 LGD 48.9670%; Q50 66.7385%; Q75 79.0297%; Q90 86.5786%. Anchors use issue years through 2017; 2018 Shadow is monitor-only (8,846 BAD rows in the governed evidence). The separate descriptive score-to-loss linkage covers 49,049/49,049 scored-BAD rows; D4 remains approval-pending. |
 | D5 | 1,240,264 account-scenario rows and 60 split/band summaries. At 12-month EAD scenario, EL proxy rates are Q25 9.2663%, Q50 12.6292%, Q75 14.9552%, Q90 16.3837%. These are analytical scenario values, not approved EL. |
 | D6 | 310,066 proposed policy assignments across five D1 risk bands. Labels are proposed/non-production and do not grant approve/decline authority. |
 | D7 | 310,066 pricing diagnostics; required `term`, `int_rate`, `installment`, `sub_grade`, `grade_derived`, `loan_amnt` and `p_bad_final` bridge fields are complete. Profitability is not evaluated because costs/fees are not evidenced. |

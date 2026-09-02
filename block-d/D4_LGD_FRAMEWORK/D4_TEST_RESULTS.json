@@ -2,9 +2,9 @@
   "stage": "D4",
   "status": "BRIDGE_RECONCILED_APPROVAL_PENDING",
   "scope": "ACCOUNT_GRAIN_DEDUPLICATED_BAD_EVIDENCE_SCENARIO_ONLY",
-  "tests_passed": 9,
+  "tests_passed": 10,
   "tests_failed": 0,
-  "tests_pending": 1,
+  "tests_pending": 0,
   "row_counts": {
     "source_rows": 269249,
     "source_rows_before_exact_dedup": 269249,
@@ -67,10 +67,10 @@
     },
     {
       "test_id": "D4-G09",
-      "description": "C8E score-to-loss empirical linkage",
-      "observed": "not materialized",
-      "pass": null
+      "description": "descriptive C8E score-to-loss linkage",
+      "observed": "49,049/49,049 current scored-BAD rows matched; 31 split/band/decile groups; descriptive only",
+      "pass": true
     }
   ],
-  "fallback_boundary": "Do not present these anchors as approved main-case LGD or regulatory LGD; bridge reconciliation does not replace owner approval or create score-conditional severity."
+  "fallback_boundary": "Do not present these anchors or the descriptive linkage as approved main-case LGD, an empirical C8E LGD model or regulatory LGD; bridge reconciliation does not replace owner approval or a timing decision."
 }

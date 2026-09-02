@@ -75,9 +75,9 @@ Block D is not locked. The governance foundation and controlled analytical packs
   the anchors remain scenario assumptions pending explicit main-case approval;
   they are not an empirical C8E LGD model.
 - No `p_bad_final` or C8E score is used; this is not an empirical C8E LGD model.
-- QA: **9 PASS / 0 FAIL / 1 PENDING** in the D4 run audit; the remaining
-  pending item is the score-conditional empirical-linkage/main-case approval
-  boundary, not missing ID evidence.
+- QA: **10 PASS / 0 FAIL / 0 PENDING** in the D4 run audit. A separate
+  descriptive score-to-loss linkage covers 49,049/49,049 current scored-BAD
+  rows; main-case LGD/timing approval remains pending.
 
 ## Not claimed
 

@@ -10,8 +10,10 @@ This D4 run uses the exact governed-core BAD evidence bridge. It creates
 source-level severity anchors from resolved BAD rows only. The
 primary anchor reference ends at issue year 2017; the 2018 shadow cohort is
 monitor-only because Block C documented truncation/final-resolution concerns.
-It does not create an empirical LGD estimate for C8E and does not use
-`p_bad_final`.
+The primary anchor calculation does not create an empirical LGD estimate for
+C8E and does not use `p_bad_final`. A separate descriptive score-to-loss
+linkage is materialized for review, but it is not an empirical LGD model or an
+approved main-case input.
 
 ## Input and formula
 
@@ -54,5 +56,6 @@ explicit owner decision on LGD/timing.
 - No D5 Expected Loss or D6 policy output may use these anchors as approved
   main-case inputs.
 - No regulatory, IFRS 9, Basel, realized-profit or realized-loss claim is made.
-- The exact governed-core ID bridge and target concordance pass in D2; owner
-  approval and score-conditional severity remain open governance boundaries.
+- The exact governed-core ID bridge and target concordance pass in D2. The
+  descriptive score-conditional linkage does not replace owner approval,
+  score-conditional LGD modeling or the main-case timing decision.

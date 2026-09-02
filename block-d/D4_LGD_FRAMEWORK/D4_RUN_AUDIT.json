@@ -26,13 +26,15 @@
     "exact_duplicate_rows_removed": 0,
     "usable_lgd_rows": 269249
   },
-  "tests_passed": 9,
+  "tests_passed": 10,
   "tests_failed": 0,
-  "tests_pending": 1,
+  "tests_pending": 0,
   "outputs": [
     "lgd_scenario_anchors.csv",
     "lgd_scenario_summary.csv",
     "lgd_by_issue_year.csv",
+    "D4_SCORE_CONDITIONAL_LOSS_LINKAGE.csv",
+    "D4_SCORE_CONDITIONAL_LINKAGE_AUDIT.json",
     "D4_TEST_RESULTS.json",
     "D4_RUN_AUDIT.json"
   ],
@@ -40,7 +42,8 @@
     "account-grain governed BAD-only scenario anchors",
     "not score-conditional empirical C8E LGD",
     "no p_bad_final join",
-    "main-case approval remains pending",
+    "main-case LGD/timing approval remains pending",
+    "descriptive score-to-loss linkage is not an empirical LGD model",
     "no regulatory LGD"
   ]
 }

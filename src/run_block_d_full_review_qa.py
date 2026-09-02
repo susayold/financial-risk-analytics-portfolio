@@ -49,8 +49,10 @@ d2_checks = {item.get("check_id"): item for item in d2.get("checks", [])}
 check("D2_TARGET_AMOUNT_CONCORDANCE", [d2_checks.get("D2-B04", {}).get("status"), d2_checks.get("D2-B05", {}).get("status")], ["PASS", "PASS"], d2_checks.get("D2-B04", {}).get("status") == "PASS" and d2_checks.get("D2-B05", {}).get("status") == "PASS", "D2_GOVERNED_CORE_BRIDGE_AUDIT.json")
 check("D2_TEST_COUNT", [d2_tests.get("tests_passed"), d2_tests.get("tests_failed"), d2_tests.get("tests_pending")], [10, 0, 0], d2_tests.get("tests_passed") == 10 and d2_tests.get("tests_failed") == 0 and d2_tests.get("tests_pending") == 0, "D2_TEST_RESULTS.json")
 check("D4_STATUS", d4.get("status"), "BRIDGE_RECONCILED_APPROVAL_PENDING", d4.get("status") == "BRIDGE_RECONCILED_APPROVAL_PENDING", "D4_RUN_AUDIT.json")
-check("D4_COUNTS", [d4.get("row_counts", {}).get("usable_lgd_rows"), d4.get("tests_passed"), d4.get("tests_failed"), d4.get("tests_pending")], [269249, 9, 0, 1], d4.get("row_counts", {}).get("usable_lgd_rows") == 269249 and d4.get("tests_passed") == 9 and d4.get("tests_failed") == 0 and d4.get("tests_pending") == 1, "D4_RUN_AUDIT.json")
-check("D4_TEST_COUNT", [d4_tests.get("tests_passed"), d4_tests.get("tests_failed"), d4_tests.get("tests_pending")], [9, 0, 1], d4_tests.get("tests_passed") == 9 and d4_tests.get("tests_failed") == 0 and d4_tests.get("tests_pending") == 1, "D4_TEST_RESULTS.json")
+check("D4_COUNTS", [d4.get("row_counts", {}).get("usable_lgd_rows"), d4.get("tests_passed"), d4.get("tests_failed"), d4.get("tests_pending")], [269249, 10, 0, 0], d4.get("row_counts", {}).get("usable_lgd_rows") == 269249 and d4.get("tests_passed") == 10 and d4.get("tests_failed") == 0 and d4.get("tests_pending") == 0, "D4_RUN_AUDIT.json")
+check("D4_TEST_COUNT", [d4_tests.get("tests_passed"), d4_tests.get("tests_failed"), d4_tests.get("tests_pending")], [10, 0, 0], d4_tests.get("tests_passed") == 10 and d4_tests.get("tests_failed") == 0 and d4_tests.get("tests_pending") == 0, "D4_TEST_RESULTS.json")
+d4_g09 = next((item for item in d4_tests.get("tests", []) if item.get("test_id") == "D4-G09"), {})
+check("D4_SCORE_LOSS_LINKAGE", d4_g09.get("observed"), "49,049/49,049 current scored-BAD rows matched", d4_g09.get("pass") is True and "49,049/49,049" in d4_g09.get("observed", ""), "D4_TEST_RESULTS.json")
 
 downstream = {
     "D5": "D5_EXPECTED_LOSS/D5_GATE_RESULTS.json",

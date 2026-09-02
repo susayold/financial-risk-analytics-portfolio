@@ -3,7 +3,7 @@
   "run_date": "2026-09-02",
   "scope": "controlled analytical review; no production or regulatory claim",
   "status": "PASS",
-  "checks_passed": 29,
+  "checks_passed": 30,
   "checks_failed": 0,
   "checks": [
     {
@@ -108,15 +108,15 @@
       "check_id": "D4_COUNTS",
       "observed": [
         269249,
-        9,
+        10,
         0,
-        1
+        0
       ],
       "expected": [
         269249,
-        9,
+        10,
         0,
-        1
+        0
       ],
       "pass": true,
       "evidence": "D4_RUN_AUDIT.json"
@@ -124,15 +124,22 @@
     {
       "check_id": "D4_TEST_COUNT",
       "observed": [
-        9,
+        10,
         0,
-        1
+        0
       ],
       "expected": [
-        9,
+        10,
         0,
-        1
+        0
       ],
+      "pass": true,
+      "evidence": "D4_TEST_RESULTS.json"
+    },
+    {
+      "check_id": "D4_SCORE_LOSS_LINKAGE",
+      "observed": "49,049/49,049 current scored-BAD rows matched; 31 split/band/decile groups; descriptive only",
+      "expected": "49,049/49,049 current scored-BAD rows matched",
       "pass": true,
       "evidence": "D4_TEST_RESULTS.json"
     },
