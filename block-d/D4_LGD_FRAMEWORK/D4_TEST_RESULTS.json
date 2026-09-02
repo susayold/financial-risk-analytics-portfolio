@@ -68,7 +68,7 @@
     {
       "test_id": "D4-G09",
       "description": "descriptive C8E score-to-loss linkage",
-      "observed": "49,049/49,049 current scored-BAD rows matched; 31 split/band/decile groups; descriptive only",
+      "observed": "49,049/49,049 current scored-BAD rows matched; descriptive only",
       "pass": true
     }
   ],

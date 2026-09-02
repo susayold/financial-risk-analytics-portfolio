@@ -138,7 +138,7 @@
     },
     {
       "check_id": "D4_SCORE_LOSS_LINKAGE",
-      "observed": "49,049/49,049 current scored-BAD rows matched; 31 split/band/decile groups; descriptive only",
+      "observed": "49,049/49,049 current scored-BAD rows matched; descriptive only",
       "expected": "49,049/49,049 current scored-BAD rows matched",
       "pass": true,
       "evidence": "D4_TEST_RESULTS.json"

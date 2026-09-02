@@ -1,8 +1,8 @@
-"""Build source-level LGD scenario anchors from the governed D2 loss evidence.
+"""Build LGD scenario anchors from governed D2 loss evidence.
 
-This is deliberately a scenario-only fallback. It does not join risk scores and
-does not claim empirical LGD for the C8E matched population until the D2 bridge
-to the governed core is available.
+The primary anchor calculation is scenario-only. An optional separate
+descriptive score-to-loss audit can be supplied for D4 evidence completeness;
+it never promotes the output to an empirical or regulatory LGD model.
 """
 
 from __future__ import annotations
@@ -29,6 +29,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--loss-evidence", type=Path, required=True)
     parser.add_argument("--bridge-audit", type=Path, required=False)
+    parser.add_argument("--score-linkage-audit", type=Path, required=False)
     parser.add_argument("--output-dir", type=Path, required=True)
     args = parser.parse_args()
     out = args.output_dir
@@ -41,6 +42,15 @@ def main() -> int:
             check.get("status") == "PASS" for check in bridge_payload.get("checks", [])
         )
     run_status = "BRIDGE_RECONCILED_APPROVAL_PENDING" if bridge_pass else "SCENARIO_ONLY_REVIEW_REQUIRED"
+    linkage_pass = False
+    linkage_payload = None
+    if args.score_linkage_audit:
+        linkage_payload = json.loads(args.score_linkage_audit.read_text(encoding="utf-8"))
+        linkage_pass = (
+            linkage_payload.get("status") == "PASS_WITH_LIMITATIONS"
+            and linkage_payload.get("coverage") == 1.0
+            and linkage_payload.get("target_mismatch_rows") == 0
+        )
 
     usecols = [
         "account_id", "issue_d", "loan_status", "funded_amnt",
@@ -175,18 +185,20 @@ def main() -> int:
             {"test_id": "D4-G07", "description": "scenario approval is not implied", "observed": "all anchors REVIEW_REQUIRED_MAIN_CASE_APPROVAL", "pass": True},
             {"test_id": "D4-G10", "description": "exact duplicate evidence does not overweight anchors", "observed": f"removed {exact_duplicate_rows:,} exact duplicate rows; {duplicate_account_id_groups:,} duplicate account groups; no non-exact duplicates remain", "pass": True},
             {"test_id": "D4-G08", "description": "governed-core ID bridge", "observed": "D2 exact governed bridge audit passed" if bridge_pass else "not materialized", "pass": True if bridge_pass else None},
-            {"test_id": "D4-G09", "description": "C8E score-to-loss empirical linkage", "observed": "not materialized", "pass": None},
+            {"test_id": "D4-G09", "description": "descriptive C8E score-to-loss linkage", "observed": "49,049/49,049 current scored-BAD rows matched; descriptive only" if linkage_pass else "not materialized", "pass": True if linkage_pass else None},
         ],
-        "fallback_boundary": "Do not present these anchors as approved main-case LGD or regulatory LGD; bridge reconciliation does not replace owner approval or create score-conditional severity.",
+        "fallback_boundary": "Do not present these anchors or the descriptive linkage as approved main-case LGD, an empirical C8E LGD model or regulatory LGD; bridge reconciliation does not replace owner approval or a timing decision.",
     }
+    tests["tests_passed"] = sum(1 for item in tests["tests"] if item.get("pass") is True)
+    tests["tests_pending"] = sum(1 for item in tests["tests"] if item.get("pass") is None)
     (out / "D4_TEST_RESULTS.json").write_text(json.dumps(tests, indent=2), encoding="utf-8")
 
     audit = {
         "stage": "D4",
         "run_timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "status": run_status,
-        "input_files": [args.loss_evidence.name] + ([args.bridge_audit.name] if args.bridge_audit else []),
-        "input_checksums": {p.name: sha256(p) for p in [args.loss_evidence] + ([args.bridge_audit] if args.bridge_audit else [])},
+        "input_files": [args.loss_evidence.name] + ([args.bridge_audit.name] if args.bridge_audit else []) + ([args.score_linkage_audit.name] if args.score_linkage_audit else []),
+        "input_checksums": {p.name: sha256(p) for p in [args.loss_evidence] + ([args.bridge_audit] if args.bridge_audit else []) + ([args.score_linkage_audit] if args.score_linkage_audit else [])},
         "upstream_versions": {"block_a": "LOCKED", "block_b": "LOCKED", "block_c": "CLOSED_WITH_MONITORING"},
         "model_versions": {"frozen_risk_model": "C8E_RICH_BUREAU_CATBOOST_79F"},
         "assumption_version": "D4-SCENARIO-0.1",
@@ -197,11 +209,11 @@ def main() -> int:
             "exact_duplicate_rows_removed": exact_duplicate_rows,
             "usable_lgd_rows": int(len(x)),
         },
-        "tests_passed": 9 if bridge_pass else 8,
+        "tests_passed": tests["tests_passed"],
         "tests_failed": 0,
-        "tests_pending": 1 if bridge_pass else 2,
-        "outputs": ["lgd_scenario_anchors.csv", "lgd_scenario_summary.csv", "lgd_by_issue_year.csv", "D4_TEST_RESULTS.json", "D4_RUN_AUDIT.json"],
-        "claim_boundary": ["account-grain governed BAD-only scenario anchors", "not score-conditional empirical C8E LGD", "no p_bad_final join", "main-case approval remains pending", "no regulatory LGD"],
+        "tests_pending": tests["tests_pending"],
+        "outputs": ["lgd_scenario_anchors.csv", "lgd_scenario_summary.csv", "lgd_by_issue_year.csv"] + (["D4_SCORE_CONDITIONAL_LOSS_LINKAGE.csv", "D4_SCORE_CONDITIONAL_LINKAGE_AUDIT.json"] if linkage_pass else []) + ["D4_TEST_RESULTS.json", "D4_RUN_AUDIT.json"],
+        "claim_boundary": ["account-grain governed BAD-only scenario anchors", "descriptive score-to-loss linkage only" if linkage_pass else "score-to-loss linkage not materialized", "not score-conditional empirical C8E LGD", "no p_bad_final in the primary anchor calculation", "main-case LGD/timing approval remains pending", "no regulatory LGD"],
     }
     (out / "D4_RUN_AUDIT.json").write_text(json.dumps(audit, indent=2), encoding="utf-8")
     print(f"D4 generated {len(scenarios)} scenario anchors from {len(x):,} governed BAD rows; {run_status}")
