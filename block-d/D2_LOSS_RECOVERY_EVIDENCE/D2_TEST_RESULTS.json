@@ -69,11 +69,14 @@
   }
   ,"score_to_loss_subaudit": {
     "status": "PASS_WITH_LIMITATIONS",
-    "scored_bad_rows": 20082,
-    "matched_scored_bad_rows": 20082,
+    "score_mart_rows": 310066,
+    "scored_bad_rows": 49049,
+    "matched_scored_bad_rows": 49049,
+    "scored_bad_to_loss_coverage": 1.0,
     "target_mismatch_rows": 0,
-    "exact_duplicate_loss_proxy_rows": 1993,
-    "note": "BAD-only score-to-loss check; does not prove GOOD-row coverage or governed-core bridge"
+    "matched_loss_quality_status": {"VALID": 48917, "CLIPPED_FOR_MODELING": 132},
+    "legacy_score_only_audit": {"score_mart_rows": 127885, "scored_bad_rows": 20082, "exact_duplicate_loss_proxy_rows": 1993},
+    "note": "Current BAD-only score-to-loss check; does not prove GOOD-row coverage or full-governed score coverage"
   },
   "governed_core_bridge": {
     "status": "PASS_WITH_LIMITATIONS",

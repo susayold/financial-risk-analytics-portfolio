@@ -55,9 +55,11 @@ Block D is not locked. The governance foundation and controlled analytical packs
 - Resolved final outcomes: **1,356,914 rows** = **271,353 BAD** and **1,085,561 GOOD**.
 - Required retrospective recovery fields are present and their timing/role is documented.
 - Loss-quality treatment is explicit: **1,355,773 VALID** and **1,141 CLIPPED_FOR_MODELING**; no silent clipping is permitted.
-- Bounded score-to-loss sub-audit covers **20,082/20,082 scored-BAD rows** with
-  zero target mismatches after exact-row deduplication; a canonical account-grain
-  proxy retains **269,360** rows after removing **1,993** exact duplicates.
+- The current score-to-loss sub-audit covers **49,049/49,049 scored-BAD rows**
+  from the 310,066-row D1 mart with zero target mismatches; the historical
+  20,082-row score-only audit remains separately retained. The canonical
+  account-grain proxy retains **269,360** rows after removing **1,993** exact
+  duplicates from the legacy source-level proxy.
 - The exact governed bridge is now materialized and audited: **1,347,681 / 1,347,681** IDs match the accepted source, target concordance is 100%, loan amount concordance is 100%, and there are no source duplicate-ID groups or target conflicts.
 - All **269,249** governed BAD rows have account-grain retrospective loss
   evidence. A governed-core-only BAD evidence file is separated from the

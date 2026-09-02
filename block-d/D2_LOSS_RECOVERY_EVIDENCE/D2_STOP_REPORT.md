@@ -17,7 +17,11 @@ no source duplicate-ID groups or conflicts. The loss output remains
 retrospective BAD-only evidence and is not a regulatory or empirical C8E LGD
 model.
 
-A bounded score-to-loss sub-audit found 1,993 exact duplicate rows in the BAD-only loss proxy. After exact-row deduplication, all 20,082 scored-BAD accounts in the available Validation/OOT score mart matched loss evidence with zero target mismatches. This does not establish GOOD-row coverage or the governed-core bridge.
+A historical score-only sub-audit found 1,993 exact duplicate rows in the
+BAD-only loss proxy. The current D1 decision mart now bridges all 49,049
+scored-BAD accounts to governed loss evidence with zero target mismatches; the
+historical 20,082-row result remains retained for provenance. This does not
+establish GOOD-row coverage or full-governed score coverage.
 
 The deduplicated account-grain proxy is now persisted as
 `retrospective_loss_proxy_account_grain.csv` with its own audit manifest. D4
