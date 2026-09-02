@@ -48,7 +48,7 @@ def main() -> int:
             **{stage: {"file": path.relative_to(block_dir).as_posix(), "sha256": sha256(path)} for stage, path in [("D1", args.d1_audit), ("D2", args.d2_audit), ("D4", args.d4_audit), ("D5", args.d5_audit), ("D6", args.d6_audit), ("D7", args.d7_audit), ("D8", args.d8_audit)]},
             "D1_BAND_CONTRACT": {"file": d1_band_contract.relative_to(block_dir).as_posix(), "sha256": sha256(d1_band_contract)},
             "FULL_REVIEW_QA": {"file": full_review_qa.name, "sha256": sha256(full_review_qa)},
-            "APPROVAL_DECISION_PACK": {"file": str(approval_decision_pack.relative_to(block_dir)), "sha256": sha256(approval_decision_pack)},
+            "APPROVAL_DECISION_PACK": {"file": approval_decision_pack.relative_to(block_dir).as_posix(), "sha256": sha256(approval_decision_pack)},
             "APPROVAL_REGISTER": {"file": str(approval_register.relative_to(block_dir)).replace("\\", "/"), "sha256": sha256(approval_register)},
             "APPROVAL_VALIDATION": {"file": str(approval_validation.relative_to(block_dir)).replace("\\", "/"), "sha256": sha256(approval_validation)},
         },

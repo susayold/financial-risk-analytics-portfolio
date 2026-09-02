@@ -91,6 +91,8 @@ for stage, rel in downstream.items():
 check("D9_MANIFEST_NOT_LOCKED", d9_manifest.get("status"), "NOT_LOCKED_REVIEW_REQUIRED", d9_manifest.get("status") == "NOT_LOCKED_REVIEW_REQUIRED" and d9_manifest.get("numeric_output_claimed") is False, "D9_CLOSURE_REVIEW_MANIFEST.json")
 check("D9_FOLLOW_UP_REGISTERED", len(d9_manifest.get("required_follow_up", [])), 7, len(d9_manifest.get("required_follow_up", [])) == 7, "D9_CLOSURE_REVIEW_MANIFEST.json")
 check("D9_MANIFEST_PORTABLE_PATH", d9_manifest.get("evidence_checksums", {}).get("D1_BAND_CONTRACT", {}).get("file"), "D1_RISK_SCORE_MART/risk_band_contract.json", d9_manifest.get("evidence_checksums", {}).get("D1_BAND_CONTRACT", {}).get("file") == "D1_RISK_SCORE_MART/risk_band_contract.json", "D9_CLOSURE_REVIEW_MANIFEST.json")
+manifest_paths = [item.get("file", "") for item in d9_manifest.get("evidence_checksums", {}).values()]
+check("D9_MANIFEST_PATHS_PORTABLE", [path for path in manifest_paths if "\\" in path], [], all("\\" not in path for path in manifest_paths), "D9_CLOSURE_REVIEW_MANIFEST.json")
 
 d1_contract = (BLOCK / "D1_RISK_SCORE_MART/D1_MART_CONTRACT.md").read_text(encoding="utf-8")
 d1_availability = (BLOCK / "D1_RISK_SCORE_MART/D1_INPUT_AVAILABILITY_AUDIT.md").read_text(encoding="utf-8")

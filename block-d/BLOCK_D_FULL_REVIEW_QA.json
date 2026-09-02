@@ -3,7 +3,7 @@
   "run_date": "2026-09-03",
   "scope": "controlled analytical review; no production or regulatory claim",
   "status": "PASS",
-  "checks_passed": 43,
+  "checks_passed": 44,
   "checks_failed": 0,
   "checks": [
     {
@@ -317,6 +317,13 @@
       "check_id": "D9_MANIFEST_PORTABLE_PATH",
       "observed": "D1_RISK_SCORE_MART/risk_band_contract.json",
       "expected": "D1_RISK_SCORE_MART/risk_band_contract.json",
+      "pass": true,
+      "evidence": "D9_CLOSURE_REVIEW_MANIFEST.json"
+    },
+    {
+      "check_id": "D9_MANIFEST_PATHS_PORTABLE",
+      "observed": [],
+      "expected": [],
       "pass": true,
       "evidence": "D9_CLOSURE_REVIEW_MANIFEST.json"
     },
