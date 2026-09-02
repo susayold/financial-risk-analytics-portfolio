@@ -11,8 +11,8 @@ Block D is not locked. The governance foundation and controlled analytical packs
 ## Progress scorecard
 
 - Planned stages with executed evidence: **10/10 = 100%**.
-- Full-review technical QA: **44/44 PASS**.
-- D9 manifest evidence checksums: **12/12 PASS**.
+- Full-review technical QA: **50/50 PASS**.
+- D9 manifest evidence checksums: **14/14 PASS**.
 - Closure readiness toward a fully approved `LOCKED` state: **73.5%** under
   the documented conversion in `BLOCK_D_PLAN_COMPLETION_SCORECARD.md`.
 - Final status: **`NOT_LOCKED_REVIEW_REQUIRED`**. The percentage does not imply
@@ -54,6 +54,8 @@ Block D is not locked. The governance foundation and controlled analytical packs
 - 331,761 rows have valid non-increasing schedules.
 - 104 schedule anomalies are retained as `EXCLUDED_DATA_ERROR`; their timing scenarios are not used.
 - Origination EAD proxy reconciles exactly to `loan_amnt`.
+- Public D3 contract audit: **8/8 checks PASS**; private schedule calculations
+  remain bounded to the declared P2 scope.
 - QA: **8/8 gates PASS** within the declared P2 scope. The resulting schedules are contractual scenarios, not approved regulatory EAD.
 
 ### D2 — Loss & Recovery Evidence

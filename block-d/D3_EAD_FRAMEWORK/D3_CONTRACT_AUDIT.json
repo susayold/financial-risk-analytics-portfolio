@@ -1,0 +1,55 @@
+{
+  "stage": "D3",
+  "audit_type": "contract_control_review",
+  "run_date": "2026-09-03",
+  "status": "PASS_WITH_LIMITATIONS",
+  "executed": true,
+  "numeric_output_claimed": false,
+  "tests_passed": 8,
+  "tests_failed": 0,
+  "tests": [
+    {
+      "test_id": "D3-C01",
+      "description": "declared status is pass with limitations",
+      "pass": true
+    },
+    {
+      "test_id": "D3-C02",
+      "description": "origination proxy is loan_amnt",
+      "pass": true
+    },
+    {
+      "test_id": "D3-C03",
+      "description": "proxy is explicitly non-regulatory",
+      "pass": true
+    },
+    {
+      "test_id": "D3-C04",
+      "description": "contract formula defines P, r, PMT and balance_k",
+      "pass": true
+    },
+    {
+      "test_id": "D3-C05",
+      "description": "zero-rate branch is specified",
+      "pass": true
+    },
+    {
+      "test_id": "D3-C06",
+      "description": "balances are floored and bounded by term",
+      "pass": true
+    },
+    {
+      "test_id": "D3-C07",
+      "description": "required scenario points and 60-month rule are specified",
+      "pass": true
+    },
+    {
+      "test_id": "D3-C08",
+      "description": "declared source scope and no score insertion are explicit",
+      "pass": true
+    }
+  ],
+  "scope": "public contract and declared-run metadata; not a recalculation of private EAD schedules",
+  "claim_boundary": "loan_amnt is an origination exposure proxy; not regulatory EAD",
+  "source_file": "D3_EAD_CONTRACT.md"
+}

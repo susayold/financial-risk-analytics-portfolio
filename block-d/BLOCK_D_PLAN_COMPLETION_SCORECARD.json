@@ -7,13 +7,13 @@
   "closure_readiness_pct": 73.5,
   "technical_qa": {
     "status": "PASS",
-    "checks_passed": 47,
+    "checks_passed": 50,
     "checks_failed": 0
   },
   "d9": {
     "manifest_status": "NOT_LOCKED_REVIEW_REQUIRED",
     "numeric_output_claimed": false,
-    "checksum_entries": 13
+    "checksum_entries": 14
   },
   "stages": [
     {

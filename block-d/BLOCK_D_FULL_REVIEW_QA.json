@@ -3,7 +3,7 @@
   "run_date": "2026-09-03",
   "scope": "controlled analytical review; no production or regulatory claim",
   "status": "PASS",
-  "checks_passed": 47,
+  "checks_passed": 50,
   "checks_failed": 0,
   "checks": [
     {
@@ -147,6 +147,33 @@
       ],
       "pass": true,
       "evidence": "D2_TEST_RESULTS.json"
+    },
+    {
+      "check_id": "D3_STATUS",
+      "observed": "PASS_WITH_LIMITATIONS",
+      "expected": "PASS_WITH_LIMITATIONS",
+      "pass": true,
+      "evidence": "D3_CONTRACT_AUDIT.json"
+    },
+    {
+      "check_id": "D3_TEST_COUNT",
+      "observed": [
+        8,
+        0
+      ],
+      "expected": [
+        8,
+        0
+      ],
+      "pass": true,
+      "evidence": "D3_CONTRACT_AUDIT.json"
+    },
+    {
+      "check_id": "D3_NO_NUMERIC_CLAIM",
+      "observed": false,
+      "expected": false,
+      "pass": true,
+      "evidence": "D3_CONTRACT_AUDIT.json"
     },
     {
       "check_id": "D4_STATUS",

@@ -37,6 +37,17 @@ claim is made.
 - `D0_GOVERNANCE_CONTRACT/D0_TEST_RESULTS.json`
 - `D0_GOVERNANCE_CONTRACT/D0_RUN_AUDIT.json`
 
+## D3 contract audit
+
+- `D3_EAD_FRAMEWORK/D3_EAD_CONTRACT.md`
+- `D3_EAD_FRAMEWORK/D3_CONTRACT_AUDIT.json`
+
+Run the deterministic public D3 contract check from the repository root:
+
+```text
+python src/audit_block_d_d3_contract.py
+```
+
 Run the deterministic D0 check from the repository root:
 
 ```text
