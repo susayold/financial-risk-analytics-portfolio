@@ -1,5 +1,7 @@
 # CRD.PI Block A–F Project Links
 
+Updated: 2026-09-03
+
 | Block / scope | Data or project | Google Drive | GitHub |
 |---|---|---|---|
 | A–F umbrella | CRD.PI project root | [Drive root folder](https://drive.google.com/drive/folders/1Y9X6hEcoa7PVpg-o827vY3w0lUQIWYM0) | [Portfolio repository](https://github.com/susayold/financial-risk-analytics-portfolio) |
@@ -14,3 +16,14 @@
 | Outside A–F / legacy | Project 5 and C06 fraud checkpoint | [Legacy fraud folder](https://drive.google.com/drive/folders/1NS64ojSQm0ZE8o1zCeFxy0yVy5HkIHwK) | [GitHub repository](https://github.com/susayold/fraud-operational-risk) |
 
 This file only indexes links. The Drive root is the single storage location; GitHub holds public code and website files.
+
+## Current Block D checkpoint
+
+- Status: **D0 PASS; D1–D3 PASS_WITH_LIMITATIONS; D4 APPROVAL_PENDING; D5–D9 CONTROLLED_HOLD**.
+- Execution coverage: **100% (10/10 stages)**.
+- Closure readiness toward `LOCKED`: **73.5%** under the documented scorecard conversion.
+- Technical review: **43/43 QA checks PASS; 12/12 D9 manifest checksums PASS**.
+- [Block D status](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_STATUS.md)
+- [Block D plan completion scorecard](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_PLAN_COMPLETION_SCORECARD.md)
+- [Block D full review QA](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_FULL_REVIEW_QA.json)
+- [Block D D9 approval register](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/D9_CLOSURE/D9_APPROVAL_REGISTER.json)
