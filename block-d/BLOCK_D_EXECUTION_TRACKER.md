@@ -1,6 +1,6 @@
 # Block D Execution Tracker
 
-Updated: 2026-09-02
+Updated: 2026-09-03
 
 ## Current position
 
@@ -9,6 +9,12 @@ Updated: 2026-09-02
 The evidence bridges are complete. The block is not locked because D4
 main-case LGD/timing approval, D6 owner policy approval and D7/D8 governance
 decisions are not recorded.
+
+Execution coverage is **100% (10/10 stages)**. Closure readiness toward a
+fully approved `LOCKED` state is **73.5%** under the documented conversion in
+`BLOCK_D_PLAN_COMPLETION_SCORECARD.md`. The latest controls are **43/43
+full-review QA checks PASS**, **12/12 D9 checksum entries PASS** and **3/3
+owner-register validator self-tests PASS**.
 
 ## Work completed in this execution
 
@@ -23,7 +29,7 @@ decisions are not recorded.
 | D6 | CONTROLLED HOLD | Generated 310,066 proposed policy assignments across five reporting bands; no production cutoff or override authority claimed | Drive `D6_policy_pack_20260902.zip` |
 | D7 | CONTROLLED HOLD | Generated 310,066 pricing diagnostics; required bridge fields complete; no cost/fee profitability claim | Drive `D7_pricing_pack_20260902.zip` |
 | D8 | CONTROLLED HOLD | Generated 720 explicit PD/LGD/EAD sensitivity cells by split and band; illustrative only | Drive D8 summary files |
-| D9 | CONTROLLED HOLD | Created closure manifest and listed remaining approvals; closure remains `NOT_LOCKED_REVIEW_REQUIRED` with no false lock | `D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json`, `D9_CLOSURE/D9_GATE_RESULTS.json` |
+| D9 | CONTROLLED HOLD | Created closure manifest, structured approval register, owner-input validator and checksum validator; closure remains `NOT_LOCKED_REVIEW_REQUIRED` with no false lock | `D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json`, `D9_CLOSURE/D9_GATE_RESULTS.json`, `D9_CLOSURE/D9_APPROVAL_VALIDATION.json` |
 
 ## Population reconciliation
 
@@ -48,3 +54,10 @@ decisions are not recorded.
 - [D5 scenario pack ZIP](https://drive.google.com/file/d/1i4TjiREQAzutHrEU3iYBK3sOk5woMpDm/view?usp=drivesdk)
 - [D6 policy pack ZIP](https://drive.google.com/file/d/1G5OLPz-NAvO1KLUynJc1DEJxnJrdYU2T/view?usp=drivesdk)
 - [D7 pricing pack ZIP](https://drive.google.com/file/d/1umRSK8tUFUscH4bLZi8hyhIOKhfqwvPl/view?usp=drivesdk)
+
+## Latest control artifacts
+
+- [Plan completion scorecard](BLOCK_D_PLAN_COMPLETION_SCORECARD.md)
+- [D9 owner decision intake](D9_CLOSURE/D9_OWNER_DECISION_INTAKE.md)
+- [D9 owner decision validation](D9_CLOSURE/D9_APPROVAL_VALIDATION.json)
+- [D9 closure manifest](D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json)
