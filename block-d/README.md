@@ -25,8 +25,8 @@ Raw CSV, DuckDB, model binaries and private source data are intentionally exclud
 ## Current review checkpoint
 
 - Execution coverage: **100% (10/10 planned stages)**.
-- Full-review technical QA: **53/53 PASS**.
-- D9 manifest integrity: **15/15 checksums PASS**.
+- Full-review technical QA: **55/55 PASS**.
+- D9 manifest integrity: **16/16 checksums PASS**.
 - Closure readiness: **73.5%** under the documented management conversion.
 - Final state: **`NOT_LOCKED_REVIEW_REQUIRED`**; owner approvals are not inferred.
 
@@ -37,6 +37,7 @@ Review files:
 - `BLOCK_D_VALIDATION_REPORT.md` — methodology, calculation spot-checks and claim boundary.
 - `BLOCK_D_FULL_REVIEW_QA.json` — deterministic full-review QA output.
 - `D9_CLOSURE/D9_APPROVAL_REGISTER.json` — structured owner decision intake.
+- `D9_CLOSURE/D9_DECISION_GAP_REGISTER.md` — nine open inputs and acceptance criteria.
 - `D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json` — closure evidence and checksums.
 
 The D5–D9 downstream gate register is present. Controlled analytical packs are

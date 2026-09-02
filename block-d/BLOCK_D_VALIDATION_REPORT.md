@@ -48,12 +48,12 @@ for this controlled artifact-level validation.
 | Check | Evidence | Result |
 |---|---|---|
 | Planned stage coverage | Completion scorecard | 10/10 stages executed = 100% execution coverage |
-| Full-review QA | `BLOCK_D_FULL_REVIEW_QA.json` | 53/53 checks pass, 0 fail |
+| Full-review QA | `BLOCK_D_FULL_REVIEW_QA.json` | 55/55 checks pass, 0 fail |
 | D0 governance | `D0_TEST_RESULTS.json` | 10/10 governance gates pass |
 | D2 population bridge | `D2_GOVERNED_CORE_BRIDGE_AUDIT.json` | 1,347,681/1,347,681 IDs reconcile; target and loan amount concordance pass |
 | D3 contract audit | `D3_CONTRACT_AUDIT.json` | 8/8 public contract checks pass; numeric output claim remains false |
 | D4 LGD evidence | `D4_RUN_AUDIT.json` and tests | 269,249 usable BAD rows; 10 pass, 0 fail, 0 pending; approval remains open |
-| D9 evidence integrity | `D9_CLOSURE_REVIEW_MANIFEST.json` | 15/15 SHA-256 entries pass |
+| D9 evidence integrity | `D9_CLOSURE_REVIEW_MANIFEST.json` | 16/16 SHA-256 entries pass |
 | Owner decision schema | `D9_APPROVAL_VALIDATION.json` and self-test | Valid pending register; 3/3 validator self-tests pass; not ready for rerun |
 
 The scorecard's 73.5% figure is a documented management readiness conversion,

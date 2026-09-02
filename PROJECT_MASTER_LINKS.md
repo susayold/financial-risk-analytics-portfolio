@@ -22,7 +22,7 @@ This file only indexes links. The Drive root is the single storage location; Git
 - Status: **D0 PASS; D1–D3 PASS_WITH_LIMITATIONS; D4 APPROVAL_PENDING; D5–D9 CONTROLLED_HOLD**.
 - Execution coverage: **100% (10/10 stages)**.
 - Closure readiness toward `LOCKED`: **73.5%** under the documented scorecard conversion.
-- Technical review: **53/53 QA checks PASS; 15/15 D9 manifest checksums PASS**.
+- Technical review: **55/55 QA checks PASS; 16/16 D9 manifest checksums PASS**.
 - [Block D status](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_STATUS.md)
 - [Block D plan completion scorecard](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_PLAN_COMPLETION_SCORECARD.md)
 - [Block D machine-readable scorecard](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_PLAN_COMPLETION_SCORECARD.json)
@@ -37,6 +37,8 @@ This file only indexes links. The Drive root is the single storage location; Git
 - [D9 closure manifest](https://drive.google.com/file/d/1TdOVbCwPDEs2fJzu6qrYMsG8ZyKloGJD/view?usp=drivesdk)
 - [D9 approval register](https://drive.google.com/file/d/1732Er0qo9IkhdkS2V37hsY9cZUvPsSFq/view?usp=drivesdk)
 - [D9 owner decision intake](https://drive.google.com/file/d/1FlyvenJIKHSbhTHB896_yCRjSbTYxkcB/view?usp=drivesdk)
+- [D9 decision gap register](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/D9_CLOSURE/D9_DECISION_GAP_REGISTER.md)
+- [D9 decision gap register on Drive](https://drive.google.com/file/d/1sz6j7M5U1DxRT-VgdiFQfHqXf27QXCUj/view?usp=drivesdk)
 - [Block D validation report](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_VALIDATION_REPORT.md)
 - [Block D validation report on Drive](https://drive.google.com/file/d/1p_0-dhraDD2vIAFz2bRSaxtG9QK4BGbA/view?usp=drivesdk)
 - [Block D README checkpoint on Drive](https://drive.google.com/file/d/1yNE2P3z2z1efOm9lJNolxiLpkenBfjVM/view?usp=drivesdk)
