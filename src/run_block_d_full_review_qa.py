@@ -88,8 +88,12 @@ check("D9_FOLLOW_UP_REGISTERED", len(d9_manifest.get("required_follow_up", [])),
 
 d1_contract = (BLOCK / "D1_RISK_SCORE_MART/D1_MART_CONTRACT.md").read_text(encoding="utf-8")
 d1_availability = (BLOCK / "D1_RISK_SCORE_MART/D1_INPUT_AVAILABILITY_AUDIT.md").read_text(encoding="utf-8")
+approval_pack = (BLOCK / "D9_CLOSURE/BLOCK_D_APPROVAL_DECISION_PACK.md").read_text(encoding="utf-8")
+approval_pack_normalized = " ".join(approval_pack.split())
 check("D1_CONTRACT_NOT_STALE", "SCORE_ARTIFACT_NOT_MATERIALIZED" in d1_contract, False, "SCORE_ARTIFACT_NOT_MATERIALIZED" not in d1_contract, "D1_MART_CONTRACT.md")
 check("D1_AVAILABILITY_UPDATED", "310,066-row matched scored mart" in d1_availability, True, "310,066-row matched scored mart" in d1_availability, "D1_INPUT_AVAILABILITY_AUDIT.md")
+check("D9_APPROVAL_PACK_PRESENT", "# Block D — Approval Decision Pack" in approval_pack, True, "# Block D — Approval Decision Pack" in approval_pack, "BLOCK_D_APPROVAL_DECISION_PACK.md")
+check("D9_APPROVAL_PACK_BOUNDED", all(token in approval_pack_normalized for token in ["analytical", "not an approved main-case", "PENDING", "Q25", "Q50", "Q75", "Q90"]), True, all(token in approval_pack_normalized for token in ["analytical", "not an approved main-case", "PENDING", "Q25", "Q50", "Q75", "Q90"]), "BLOCK_D_APPROVAL_DECISION_PACK.md")
 
 passed = sum(1 for item in checks if item["pass"])
 failed = len(checks) - passed

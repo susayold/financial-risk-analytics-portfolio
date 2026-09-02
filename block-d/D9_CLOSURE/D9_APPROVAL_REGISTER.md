@@ -1,7 +1,8 @@
 # Block D — Approval Register (D4–D9)
 
 Updated: 2026-09-02  
-Purpose: record explicit owner decisions without fabricating approval.
+Purpose: record explicit owner decisions without fabricating approval. Use
+`BLOCK_D_APPROVAL_DECISION_PACK.md` for the quantitative option comparison.
 
 All rows below are currently **PENDING**. The proposed values are review
 options derived from the executed analytical packs; they are not approved
@@ -11,7 +12,7 @@ assumptions, production policy or regulatory parameters.
 
 | Decision | Evidence to review | Current proposal/options | Status | Owner / date |
 |---|---|---|---|---|
-| D4 main-case LGD | D4 scenario anchors and score-to-loss linkage | Select Q25 48.9670%, Q50 66.7385%, Q75 79.0297% or Q90 86.5786%; timing reference `issue_year <= 2017`; 2018 remains monitor-only | PENDING | — |
+| D4 main-case LGD | D4 scenario anchors, score-to-loss linkage and approval decision pack | Select Q25 48.9670%, Q50 66.7385%, Q75 79.0297% or Q90 86.5786%; timing reference `issue_year <= 2017`; 2018 remains monitor-only | PENDING | — |
 | D4 timing boundary | D4 contract and 2018 truncation guard | Approve the reference cohort and whether any timing adjustment is required | PENDING | — |
 | D5 analytical proxy | D5 scenario audit | Accept only as `p_bad_final × LGD assumption × declared EAD scenario`; 12-month EAD view remains analytical proxy only | PENDING | — |
 | D6 action thresholds | D6 proposed policy assignments | Approve or revise the five-band mapping and action thresholds; define reason-coded overrides and monitoring limits | PENDING | — |

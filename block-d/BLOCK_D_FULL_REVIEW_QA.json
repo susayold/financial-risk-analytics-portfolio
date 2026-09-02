@@ -3,7 +3,7 @@
   "run_date": "2026-09-02",
   "scope": "controlled analytical review; no production or regulatory claim",
   "status": "PASS",
-  "checks_passed": 35,
+  "checks_passed": 37,
   "checks_failed": 0,
   "checks": [
     {
@@ -326,6 +326,20 @@
       "expected": true,
       "pass": true,
       "evidence": "D1_INPUT_AVAILABILITY_AUDIT.md"
+    },
+    {
+      "check_id": "D9_APPROVAL_PACK_PRESENT",
+      "observed": true,
+      "expected": true,
+      "pass": true,
+      "evidence": "BLOCK_D_APPROVAL_DECISION_PACK.md"
+    },
+    {
+      "check_id": "D9_APPROVAL_PACK_BOUNDED",
+      "observed": true,
+      "expected": true,
+      "pass": true,
+      "evidence": "BLOCK_D_APPROVAL_DECISION_PACK.md"
     }
   ],
   "overall_block_status": "NOT_LOCKED_REVIEW_REQUIRED",
