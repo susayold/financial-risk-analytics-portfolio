@@ -1,6 +1,6 @@
 # CRD.PI Block D — Plan Traceability
 
-Updated: 2026-09-02  
+Updated: 2026-09-03  
 Execution scope: controlled analytical review, not production approval
 
 This matrix records what was executed for the Block D plan, where the

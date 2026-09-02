@@ -1,6 +1,6 @@
 # Block D — Approval Register (D4–D9)
 
-Updated: 2026-09-02  
+Updated: 2026-09-03  
 Purpose: record explicit owner decisions without fabricating approval. Use
 `BLOCK_D_APPROVAL_DECISION_PACK.md` for the quantitative option comparison and
 `D9_APPROVAL_REGISTER.json` for the structured input record.

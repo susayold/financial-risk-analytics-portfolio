@@ -1,6 +1,6 @@
 # Block D — Approval Decision Pack
 
-Updated: 2026-09-02  
+Updated: 2026-09-03  
 Purpose: provide a compact, evidence-backed comparison for the pending D4–D8 owner decisions.
 
 ## Review boundary
