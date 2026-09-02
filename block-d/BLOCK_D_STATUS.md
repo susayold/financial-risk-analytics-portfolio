@@ -1,12 +1,22 @@
 # BLOCK D STATUS
 
-Updated: 2026-09-02
+Updated: 2026-09-03
 
 ## Current status
 
 `D0 PASS` · `D1 PASS_WITH_LIMITATIONS` · `D2 PASS_WITH_LIMITATIONS` · `D3 PASS_WITH_LIMITATIONS` · `D4 BRIDGE_RECONCILED_APPROVAL_PENDING` · `D5–D9 CONTROLLED_HOLD`
 
 Block D is not locked. The governance foundation and controlled analytical packs are implemented and reviewed; downstream outputs remain non-production until the declared assumptions and owner decisions are approved.
+
+## Progress scorecard
+
+- Planned stages with executed evidence: **10/10 = 100%**.
+- Full-review technical QA: **43/43 PASS**.
+- D9 manifest evidence checksums: **12/12 PASS**.
+- Closure readiness toward a fully approved `LOCKED` state: **73.5%** under
+  the documented conversion in `BLOCK_D_PLAN_COMPLETION_SCORECARD.md`.
+- Final status: **`NOT_LOCKED_REVIEW_REQUIRED`**. The percentage does not imply
+  owner approval, production readiness or a regulatory claim.
 
 ## Completed
 
@@ -98,6 +108,18 @@ controlled status remains `CONTROLLED_HOLD` until the D4 main-case assumption
 and owner thresholds are approved; no downstream production claim is made. See
 `D5_D9_DOWNSTREAM_GATE_REGISTER.md` and `D5_D9_GATE_QA.json`.
 
+### D9 — Closure controls
+
+- The closure manifest remains `NOT_LOCKED_REVIEW_REQUIRED` and
+  `numeric_output_claimed=false`.
+- The structured owner register is `VALID_PENDING`; six decisions and three
+  owner sign-offs remain blank/pending.
+- The validator self-test is **3/3 PASS**, including rejection of an approved
+  LGD row without a selected option and acceptance of a complete synthetic
+  register for rerun readiness.
+- The current controls do not change the approval register and do not infer any
+  owner decision.
+
 ## Blocking inputs
 
 1. Explicit approval of the D4 main-case LGD scenario/timing boundary.
@@ -113,5 +135,8 @@ The available private C9 closure package contains the frozen model, C9 OOT predi
 Record the D4 main-case decision, confirm the D5 proxy acceptance boundary,
 approve D6 thresholds/overrides and D8 shocks, and supply D7 cost/fee inputs if
 profitability is required. Then obtain owner sign-off and rerun the final D9
-closure gate. Until that happens, the current controlled analytical outputs
-must remain non-production.
+closure gate. Validate the register with
+`python src/validate_block_d_owner_decisions.py --require-ready` and verify
+manifest checksums with `python src/validate_block_d_d9_checksums.py`. Until
+that happens, the current controlled analytical outputs must remain
+non-production.
