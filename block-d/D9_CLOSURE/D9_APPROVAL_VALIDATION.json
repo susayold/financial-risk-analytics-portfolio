@@ -1,0 +1,34 @@
+{
+  "run_name": "block_d_owner_decision_validation",
+  "run_date": "2026-09-02",
+  "scope": "D9 owner-input validation; no approval is inferred",
+  "validation_status": "VALID_PENDING",
+  "schema_valid": true,
+  "ready_for_d9_rerun": false,
+  "decision_statuses": {
+    "D4_main_case_lgd": "PENDING",
+    "D4_timing_boundary": "PENDING",
+    "D5_analytical_proxy": "PENDING",
+    "D6_action_policy": "PENDING",
+    "D7_pricing_scope": "PENDING",
+    "D8_stress_policy": "PENDING"
+  },
+  "owner_signoff_statuses": {
+    "data_owner": "PENDING",
+    "model_owner": "PENDING",
+    "risk_owner": "PENDING"
+  },
+  "pending_items": [
+    "D4_main_case_lgd",
+    "D4_timing_boundary",
+    "D5_analytical_proxy",
+    "D6_action_policy",
+    "D7_pricing_scope",
+    "D8_stress_policy",
+    "data_owner",
+    "model_owner",
+    "risk_owner"
+  ],
+  "errors": [],
+  "unlock_rule": "All six decisions and all three owner sign-offs must be APPROVED before D9 rerun."
+}

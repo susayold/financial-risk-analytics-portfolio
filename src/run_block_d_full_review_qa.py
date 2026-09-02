@@ -5,6 +5,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from validate_block_d_owner_decisions import validate_register
+
 
 ROOT = Path(__file__).resolve().parents[1]
 BLOCK = ROOT / "block-d"
@@ -40,6 +42,7 @@ d4 = load("D4_LGD_FRAMEWORK/D4_RUN_AUDIT.json")
 d4_tests = load("D4_LGD_FRAMEWORK/D4_TEST_RESULTS.json")
 d9_manifest = load("D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json")
 approval_register = load("D9_CLOSURE/D9_APPROVAL_REGISTER.json")
+approval_validation = validate_register(approval_register)
 
 check("D0_STATUS", d0.get("status"), "PASS", d0.get("status") == "PASS", "D0_TEST_RESULTS.json")
 check("D0_TEST_COUNT", [d0.get("tests_passed"), d0.get("tests_failed")], [10, 0], d0.get("tests_passed") == 10 and d0.get("tests_failed") == 0, "D0_TEST_RESULTS.json")
@@ -100,6 +103,8 @@ decision_statuses = [item.get("status") for item in approval_register.get("decis
 signoff_statuses = [item.get("status") for item in approval_register.get("owner_signoff", {}).values()]
 check("D9_STRUCTURED_REGISTER_PENDING", approval_register.get("status"), "PENDING_OWNER_INPUT", approval_register.get("status") == "PENDING_OWNER_INPUT" and len(decision_statuses) == 6 and all(status == "PENDING" for status in decision_statuses), "D9_APPROVAL_REGISTER.json")
 check("D9_OWNER_SIGNOFFS_PENDING", signoff_statuses, ["PENDING", "PENDING", "PENDING"], len(signoff_statuses) == 3 and all(status == "PENDING" for status in signoff_statuses), "D9_APPROVAL_REGISTER.json")
+check("D9_REGISTER_SCHEMA_VALID", approval_validation.get("validation_status"), "VALID_PENDING", approval_validation.get("schema_valid") is True and approval_validation.get("validation_status") == "VALID_PENDING", "D9_APPROVAL_VALIDATION.json")
+check("D9_REGISTER_NOT_READY_UNTIL_APPROVAL", approval_validation.get("ready_for_d9_rerun"), False, approval_validation.get("ready_for_d9_rerun") is False, "D9_APPROVAL_VALIDATION.json")
 
 passed = sum(1 for item in checks if item["pass"])
 failed = len(checks) - passed

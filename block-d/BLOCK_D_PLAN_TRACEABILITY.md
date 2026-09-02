@@ -65,3 +65,8 @@ python src/run_block_d_downstream_gate_qa.py
 4. Provide D7 cost/fee inputs if profitability is in scope.
 5. Record data, model and risk owner sign-off.
 6. Rerun D9 and update the closure decision only if every upstream gate passes.
+
+The structured register can be checked with
+`python src/validate_block_d_owner_decisions.py`; the final manifest evidence
+paths and SHA-256 entries can be checked with
+`python src/validate_block_d_d9_checksums.py`.

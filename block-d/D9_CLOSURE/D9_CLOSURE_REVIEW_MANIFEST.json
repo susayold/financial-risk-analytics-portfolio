@@ -1,7 +1,7 @@
 {
   "stage": "D9",
   "status": "NOT_LOCKED_REVIEW_REQUIRED",
-  "run_timestamp_utc": "2026-09-02T15:59:49.645683+00:00",
+  "run_timestamp_utc": "2026-09-02T16:55:07.970730+00:00",
   "executed": true,
   "numeric_output_claimed": false,
   "upstream_status": {
@@ -38,31 +38,31 @@
   ],
   "evidence_checksums": {
     "D1": {
-      "file": "D1_RUN_AUDIT.json",
+      "file": "D1_RISK_SCORE_MART/D1_RUN_AUDIT.json",
       "sha256": "728bab698712e4daad098611e5aa0d8d530453fd609d4bc027d84ca748932ebd"
     },
     "D2": {
-      "file": "D2_GOVERNED_CORE_BRIDGE_AUDIT.json",
+      "file": "D2_LOSS_RECOVERY_EVIDENCE/D2_GOVERNED_CORE_BRIDGE_AUDIT.json",
       "sha256": "d56c77898a123df2d82654fb526cfbd51dd10249b1d33b990d68d645a365aa1b"
     },
     "D4": {
-      "file": "D4_RUN_AUDIT.json",
+      "file": "D4_LGD_FRAMEWORK/D4_RUN_AUDIT.json",
       "sha256": "700a3000381c8a7109d6a1b35e0482ed5d2bce82eae25fecff7d0b7715411e5d"
     },
     "D5": {
-      "file": "D5_RUN_AUDIT.json",
+      "file": "D5_EXPECTED_LOSS/D5_ANALYTICAL_SCENARIO_AUDIT.json",
       "sha256": "3ac0513dbaf064dee185f0f8a0124b5225a8323c918993f565c251d812f2a79d"
     },
     "D6": {
-      "file": "D6_RUN_AUDIT.json",
+      "file": "D6_DECISION_POLICY/D6_ANALYTICAL_PACK_AUDIT.json",
       "sha256": "92effec95ef32e7b77bee40cc86635e06c972ceb9543a60b68fb22be8ea82ff3"
     },
     "D7": {
-      "file": "D7_RUN_AUDIT.json",
+      "file": "D7_PRICING/D7_DIAGNOSTIC_AUDIT.json",
       "sha256": "99bed3e31155c35b6ff68a8746004d392333bad99fbc1ae536ff6dff7b85bfbc"
     },
     "D8": {
-      "file": "D8_RUN_AUDIT.json",
+      "file": "D8_STRESS/D8_ILLUSTRATIVE_SENSITIVITY_AUDIT.json",
       "sha256": "04fed4a49ddb94ccaafa492b6e6ee5be90805ea752097277a6cf71acfde8ada5"
     },
     "D1_BAND_CONTRACT": {
@@ -71,7 +71,7 @@
     },
     "FULL_REVIEW_QA": {
       "file": "BLOCK_D_FULL_REVIEW_QA.json",
-      "sha256": "cca39aa43527d13f57cb7f5c6a57bb0e54de2a3ad7625f85ced90691018b629a"
+      "sha256": "630ed9fa573398fc9870404b1df358f9a3d7d34cf78433fd8e26452238d1af88"
     },
     "APPROVAL_DECISION_PACK": {
       "file": "D9_CLOSURE\\BLOCK_D_APPROVAL_DECISION_PACK.md",
@@ -80,6 +80,10 @@
     "APPROVAL_REGISTER": {
       "file": "D9_CLOSURE/D9_APPROVAL_REGISTER.json",
       "sha256": "e87284e5121c402d189be82d6ac752b8be94990a04292fc27b77f5a4642841a6"
+    },
+    "APPROVAL_VALIDATION": {
+      "file": "D9_CLOSURE/D9_APPROVAL_VALIDATION.json",
+      "sha256": "46a401c4a44a77240e1147cd94912ba439dec2d463cfd73575ea2d88261ae853"
     }
   },
   "claim_boundary": [
