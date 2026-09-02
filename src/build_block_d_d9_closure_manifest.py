@@ -37,7 +37,7 @@ def main() -> int:
         "closure_checks": {
             "D0_governance": "PASS", "D1_score_mart": "PASS_WITH_LIMITATIONS", "D2_governed_bridge": "PASS_WITH_LIMITATIONS", "D3_ead": "PASS_WITH_LIMITATIONS", "D4_main_case_approval": "PENDING", "D5_expected_loss": "ANALYTICAL_ONLY_APPROVAL_PENDING", "D6_owner_policy": "PENDING", "D7_pricing_adequacy": "DESCRIPTIVE_ONLY", "D8_stress": "ILLUSTRATIVE_ONLY", "owner_signoff": "PENDING",
         },
-        "required_follow_up": ["Record explicit D4 main-case LGD and timing approval", "Record D6 action thresholds and override owner approval", "Record D7 pricing cost/fee assumptions if profitability is required", "Record D8 approved baseline/shock policy", "Then rerun final gate QA and update D9 only after review"],
+        "required_follow_up": ["Record explicit D4 main-case LGD and timing approval", "Record D5 analytical proxy acceptance boundary", "Record D6 action thresholds and override owner approval", "Record D7 pricing cost/fee assumptions if profitability is required", "Record D8 approved baseline/shock policy", "Record data/model/risk owner sign-off", "Then rerun final gate QA and update D9 only after review"],
         "evidence_checksums": {stage: {"file": path.name, "sha256": sha256(path)} for stage, path in [("D1", args.d1_audit), ("D2", args.d2_audit), ("D4", args.d4_audit), ("D5", args.d5_audit), ("D6", args.d6_audit), ("D7", args.d7_audit), ("D8", args.d8_audit)]},
         "claim_boundary": ["Block D is not locked", "D5/D8 values are analytical scenario outputs only", "no production decision policy", "no pricing profitability result", "no regulatory PD/LGD/EAD/ECL claim"],
     }

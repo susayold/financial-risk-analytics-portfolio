@@ -33,7 +33,7 @@ D5–D9 remain bounded by scenario approval and owner-controlled policy gates.
 | D6 | CONTROLLED_HOLD | `D6_DECISION_POLICY/D6_ANALYTICAL_PACK_AUDIT.json`, `D6_DECISION_POLICY/D6_POLICY_GATE.md`, `D6_DECISION_POLICY/D6_GATE_RESULTS.json` | Proposed non-production policy only; owner thresholds and overrides remain pending |
 | D7 | CONTROLLED_HOLD | `D7_PRICING/D7_DIAGNOSTIC_AUDIT.json`, `D7_PRICING/D7_PRICING_GATE.md`, `D7_PRICING/D7_GATE_RESULTS.json` | Diagnostic pricing context only; no pricing adequacy or profitability claim |
 | D8 | CONTROLLED_HOLD | `D8_STRESS/D8_ILLUSTRATIVE_SENSITIVITY_AUDIT.json`, `D8_STRESS/D8_STRESS_GATE.md`, `D8_STRESS/D8_GATE_RESULTS.json` | Illustrative sensitivity pack only; no approved stress result |
-| D9 | CONTROLLED_HOLD | `D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json`, `D9_CLOSURE/D9_CLOSURE_GATE.md`, `D9_CLOSURE/D9_GATE_RESULTS.json` | Closure remains `NOT_LOCKED` until all upstream gates and owner sign-off pass |
+| D9 | CONTROLLED_HOLD | `D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json`, `D9_CLOSURE/D9_APPROVAL_REGISTER.md`, `D9_CLOSURE/D9_CLOSURE_GATE.md`, `D9_CLOSURE/D9_GATE_RESULTS.json` | Closure remains `NOT_LOCKED` until all upstream gates and owner sign-off pass |
 
 ## Current blockers
 

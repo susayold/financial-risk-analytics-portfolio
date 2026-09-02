@@ -19,6 +19,9 @@
 9. Final artifact index, run manifests, claim boundary and owner sign-off are
    complete.
 
+The decision fields are staged in `D9_APPROVAL_REGISTER.md`; blank or
+`PENDING` fields are not treated as approval.
+
 ## Current decision
 
 Conditions 2 and 3 are now evidenced by the D1/D2 bridge audits. D4 has

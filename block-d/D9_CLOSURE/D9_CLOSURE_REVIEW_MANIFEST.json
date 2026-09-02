@@ -1,7 +1,7 @@
 {
   "stage": "D9",
   "status": "NOT_LOCKED_REVIEW_REQUIRED",
-  "run_timestamp_utc": "2026-09-02T06:37:37.866319+00:00",
+  "run_timestamp_utc": "2026-09-02T11:32:17.157321+00:00",
   "executed": true,
   "numeric_output_claimed": false,
   "upstream_status": {
@@ -29,15 +29,17 @@
   },
   "required_follow_up": [
     "Record explicit D4 main-case LGD and timing approval",
+    "Record D5 analytical proxy acceptance boundary",
     "Record D6 action thresholds and override owner approval",
     "Record D7 pricing cost/fee assumptions if profitability is required",
     "Record D8 approved baseline/shock policy",
+    "Record data/model/risk owner sign-off",
     "Then rerun final gate QA and update D9 only after review"
   ],
   "evidence_checksums": {
     "D1": {
       "file": "D1_RUN_AUDIT.json",
-      "sha256": "7a3bc095d837e5452fb4bb1aee82b13b4c03337f53b4b5acafb750c970d5cd0b"
+      "sha256": "728bab698712e4daad098611e5aa0d8d530453fd609d4bc027d84ca748932ebd"
     },
     "D2": {
       "file": "D2_GOVERNED_CORE_BRIDGE_AUDIT.json",
@@ -45,7 +47,7 @@
     },
     "D4": {
       "file": "D4_RUN_AUDIT.json",
-      "sha256": "65262b1b48bd01f6d57ed872a40096da593c48091649dbf2a4fcb49ba01bf13a"
+      "sha256": "700a3000381c8a7109d6a1b35e0482ed5d2bce82eae25fecff7d0b7715411e5d"
     },
     "D5": {
       "file": "D5_RUN_AUDIT.json",
