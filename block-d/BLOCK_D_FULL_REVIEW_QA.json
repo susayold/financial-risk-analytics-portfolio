@@ -1,0 +1,268 @@
+{
+  "run_name": "block_d_full_review_qa",
+  "run_date": "2026-09-02",
+  "scope": "controlled analytical review; no production or regulatory claim",
+  "status": "PASS",
+  "checks_passed": 29,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check_id": "D0_STATUS",
+      "observed": "PASS",
+      "expected": "PASS",
+      "pass": true,
+      "evidence": "D0_TEST_RESULTS.json"
+    },
+    {
+      "check_id": "D0_TEST_COUNT",
+      "observed": [
+        10,
+        0
+      ],
+      "expected": [
+        10,
+        0
+      ],
+      "pass": true,
+      "evidence": "D0_TEST_RESULTS.json"
+    },
+    {
+      "check_id": "D1_STATUS",
+      "observed": "PASS_WITH_LIMITATIONS",
+      "expected": "PASS_WITH_LIMITATIONS",
+      "pass": true,
+      "evidence": "D1_RUN_AUDIT.json"
+    },
+    {
+      "check_id": "D1_SCORE_ROWS",
+      "observed": 310066,
+      "expected": 310066,
+      "pass": true,
+      "evidence": "D1_RUN_AUDIT.json"
+    },
+    {
+      "check_id": "D1_TEST_COUNT",
+      "observed": [
+        10,
+        0,
+        0
+      ],
+      "expected": [
+        10,
+        0,
+        0
+      ],
+      "pass": true,
+      "evidence": "D1_TEST_RESULTS.json"
+    },
+    {
+      "check_id": "D2_STATUS",
+      "observed": "PASS_WITH_LIMITATIONS",
+      "expected": "PASS_WITH_LIMITATIONS",
+      "pass": true,
+      "evidence": "D2_GOVERNED_CORE_BRIDGE_AUDIT.json"
+    },
+    {
+      "check_id": "D2_GOVERNED_ID_BRIDGE",
+      "observed": 1347681,
+      "expected": 1347681,
+      "pass": true,
+      "evidence": "D2_GOVERNED_CORE_BRIDGE_AUDIT.json"
+    },
+    {
+      "check_id": "D2_TARGET_AMOUNT_CONCORDANCE",
+      "observed": [
+        "PASS",
+        "PASS"
+      ],
+      "expected": [
+        "PASS",
+        "PASS"
+      ],
+      "pass": true,
+      "evidence": "D2_GOVERNED_CORE_BRIDGE_AUDIT.json"
+    },
+    {
+      "check_id": "D2_TEST_COUNT",
+      "observed": [
+        10,
+        0,
+        0
+      ],
+      "expected": [
+        10,
+        0,
+        0
+      ],
+      "pass": true,
+      "evidence": "D2_TEST_RESULTS.json"
+    },
+    {
+      "check_id": "D4_STATUS",
+      "observed": "BRIDGE_RECONCILED_APPROVAL_PENDING",
+      "expected": "BRIDGE_RECONCILED_APPROVAL_PENDING",
+      "pass": true,
+      "evidence": "D4_RUN_AUDIT.json"
+    },
+    {
+      "check_id": "D4_COUNTS",
+      "observed": [
+        269249,
+        9,
+        0,
+        1
+      ],
+      "expected": [
+        269249,
+        9,
+        0,
+        1
+      ],
+      "pass": true,
+      "evidence": "D4_RUN_AUDIT.json"
+    },
+    {
+      "check_id": "D4_TEST_COUNT",
+      "observed": [
+        9,
+        0,
+        1
+      ],
+      "expected": [
+        9,
+        0,
+        1
+      ],
+      "pass": true,
+      "evidence": "D4_TEST_RESULTS.json"
+    },
+    {
+      "check_id": "D5_GATE_STATUS",
+      "observed": "CONTROLLED_HOLD",
+      "expected": "CONTROLLED_HOLD",
+      "pass": true,
+      "evidence": "D5_EXPECTED_LOSS/D5_GATE_RESULTS.json"
+    },
+    {
+      "check_id": "D5_NO_NUMERIC_CLAIM",
+      "observed": false,
+      "expected": false,
+      "pass": true,
+      "evidence": "D5_EXPECTED_LOSS/D5_GATE_RESULTS.json"
+    },
+    {
+      "check_id": "D5_REVIEW_PACK_EXECUTED",
+      "observed": true,
+      "expected": true,
+      "pass": true,
+      "evidence": "D5_EXPECTED_LOSS/D5_ANALYTICAL_SCENARIO_AUDIT.json"
+    },
+    {
+      "check_id": "D6_GATE_STATUS",
+      "observed": "CONTROLLED_HOLD",
+      "expected": "CONTROLLED_HOLD",
+      "pass": true,
+      "evidence": "D6_DECISION_POLICY/D6_GATE_RESULTS.json"
+    },
+    {
+      "check_id": "D6_NO_NUMERIC_CLAIM",
+      "observed": false,
+      "expected": false,
+      "pass": true,
+      "evidence": "D6_DECISION_POLICY/D6_GATE_RESULTS.json"
+    },
+    {
+      "check_id": "D6_REVIEW_PACK_EXECUTED",
+      "observed": true,
+      "expected": true,
+      "pass": true,
+      "evidence": "D6_DECISION_POLICY/D6_ANALYTICAL_PACK_AUDIT.json"
+    },
+    {
+      "check_id": "D7_GATE_STATUS",
+      "observed": "CONTROLLED_HOLD",
+      "expected": "CONTROLLED_HOLD",
+      "pass": true,
+      "evidence": "D7_PRICING/D7_GATE_RESULTS.json"
+    },
+    {
+      "check_id": "D7_NO_NUMERIC_CLAIM",
+      "observed": false,
+      "expected": false,
+      "pass": true,
+      "evidence": "D7_PRICING/D7_GATE_RESULTS.json"
+    },
+    {
+      "check_id": "D7_REVIEW_PACK_EXECUTED",
+      "observed": true,
+      "expected": true,
+      "pass": true,
+      "evidence": "D7_PRICING/D7_DIAGNOSTIC_AUDIT.json"
+    },
+    {
+      "check_id": "D8_GATE_STATUS",
+      "observed": "CONTROLLED_HOLD",
+      "expected": "CONTROLLED_HOLD",
+      "pass": true,
+      "evidence": "D8_STRESS/D8_GATE_RESULTS.json"
+    },
+    {
+      "check_id": "D8_NO_NUMERIC_CLAIM",
+      "observed": false,
+      "expected": false,
+      "pass": true,
+      "evidence": "D8_STRESS/D8_GATE_RESULTS.json"
+    },
+    {
+      "check_id": "D8_REVIEW_PACK_EXECUTED",
+      "observed": true,
+      "expected": true,
+      "pass": true,
+      "evidence": "D8_STRESS/D8_ILLUSTRATIVE_SENSITIVITY_AUDIT.json"
+    },
+    {
+      "check_id": "D9_GATE_STATUS",
+      "observed": "CONTROLLED_HOLD",
+      "expected": "CONTROLLED_HOLD",
+      "pass": true,
+      "evidence": "D9_CLOSURE/D9_GATE_RESULTS.json"
+    },
+    {
+      "check_id": "D9_NO_NUMERIC_CLAIM",
+      "observed": false,
+      "expected": false,
+      "pass": true,
+      "evidence": "D9_CLOSURE/D9_GATE_RESULTS.json"
+    },
+    {
+      "check_id": "D9_REVIEW_PACK_EXECUTED",
+      "observed": true,
+      "expected": true,
+      "pass": true,
+      "evidence": "D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json"
+    },
+    {
+      "check_id": "D1_CONTRACT_NOT_STALE",
+      "observed": false,
+      "expected": false,
+      "pass": true,
+      "evidence": "D1_MART_CONTRACT.md"
+    },
+    {
+      "check_id": "D1_AVAILABILITY_UPDATED",
+      "observed": true,
+      "expected": true,
+      "pass": true,
+      "evidence": "D1_INPUT_AVAILABILITY_AUDIT.md"
+    }
+  ],
+  "overall_block_status": "NOT_LOCKED_REVIEW_REQUIRED",
+  "open_inputs": [
+    "D4 main-case LGD and timing approval",
+    "D5 analytical proxy acceptance",
+    "D6 thresholds and overrides approval",
+    "D7 cost/fee assumptions if profitability is required",
+    "D8 baseline and shock policy",
+    "data/model/risk owner sign-off"
+  ]
+}
