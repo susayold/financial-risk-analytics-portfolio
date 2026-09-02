@@ -38,6 +38,7 @@ d2 = load("D2_LOSS_RECOVERY_EVIDENCE/D2_GOVERNED_CORE_BRIDGE_AUDIT.json")
 d2_tests = load("D2_LOSS_RECOVERY_EVIDENCE/D2_TEST_RESULTS.json")
 d4 = load("D4_LGD_FRAMEWORK/D4_RUN_AUDIT.json")
 d4_tests = load("D4_LGD_FRAMEWORK/D4_TEST_RESULTS.json")
+d9_manifest = load("D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json")
 
 check("D0_STATUS", d0.get("status"), "PASS", d0.get("status") == "PASS", "D0_TEST_RESULTS.json")
 check("D0_TEST_COUNT", [d0.get("tests_passed"), d0.get("tests_failed")], [10, 0], d0.get("tests_passed") == 10 and d0.get("tests_failed") == 0, "D0_TEST_RESULTS.json")
@@ -48,6 +49,8 @@ band_cutpoints = d1_band_contract.get("decile_cutpoints") or {}
 expected_cutpoint_keys = [f"D{i:02d}_upper" for i in range(1, 10)]
 check("D1_BAND_CONTRACT_MATERIALIZED", d1_band_contract.get("status"), "MATERIALIZED_REVIEW_ONLY", d1_band_contract.get("status") == "MATERIALIZED_REVIEW_ONLY" and d1_band_contract.get("cutpoint_reference_population") == "P1_C8E_VALIDATION_SCORED", "risk_band_contract.json")
 check("D1_BAND_CUTPOINTS_PRESENT", sorted(band_cutpoints), expected_cutpoint_keys, sorted(band_cutpoints) == expected_cutpoint_keys, "risk_band_contract.json")
+cutpoint_values = [band_cutpoints[key] for key in expected_cutpoint_keys]
+check("D1_BAND_CUTPOINTS_VALID", cutpoint_values, "strictly increasing values within [0, 1]", all(isinstance(value, (int, float)) and 0 <= value <= 1 for value in cutpoint_values) and all(left < right for left, right in zip(cutpoint_values, cutpoint_values[1:])), "risk_band_contract.json")
 check("D2_STATUS", d2.get("status"), "PASS_WITH_LIMITATIONS", d2.get("status") == "PASS_WITH_LIMITATIONS", "D2_GOVERNED_CORE_BRIDGE_AUDIT.json")
 check("D2_GOVERNED_ID_BRIDGE", d2.get("row_counts", {}).get("matched_governed_ids"), 1347681, d2.get("row_counts", {}).get("matched_governed_ids") == 1347681 and d2.get("row_counts", {}).get("governed_core_rows") == 1347681, "D2_GOVERNED_CORE_BRIDGE_AUDIT.json")
 d2_checks = {item.get("check_id"): item for item in d2.get("checks", [])}
@@ -79,6 +82,9 @@ for stage, rel in downstream.items():
     check(f"{stage}_NO_NUMERIC_CLAIM", item.get("numeric_output_claimed"), False, item.get("numeric_output_claimed") is False, rel)
     audit = load(audit_paths[stage])
     check(f"{stage}_REVIEW_PACK_EXECUTED", audit.get("executed"), True, audit.get("executed") is True, audit_paths[stage])
+
+check("D9_MANIFEST_NOT_LOCKED", d9_manifest.get("status"), "NOT_LOCKED_REVIEW_REQUIRED", d9_manifest.get("status") == "NOT_LOCKED_REVIEW_REQUIRED" and d9_manifest.get("numeric_output_claimed") is False, "D9_CLOSURE_REVIEW_MANIFEST.json")
+check("D9_FOLLOW_UP_REGISTERED", len(d9_manifest.get("required_follow_up", [])), 7, len(d9_manifest.get("required_follow_up", [])) == 7, "D9_CLOSURE_REVIEW_MANIFEST.json")
 
 d1_contract = (BLOCK / "D1_RISK_SCORE_MART/D1_MART_CONTRACT.md").read_text(encoding="utf-8")
 d1_availability = (BLOCK / "D1_RISK_SCORE_MART/D1_INPUT_AVAILABILITY_AUDIT.md").read_text(encoding="utf-8")

@@ -3,7 +3,7 @@
   "run_date": "2026-09-02",
   "scope": "controlled analytical review; no production or regulatory claim",
   "status": "PASS",
-  "checks_passed": 32,
+  "checks_passed": 35,
   "checks_failed": 0,
   "checks": [
     {
@@ -86,6 +86,23 @@
         "D08_upper",
         "D09_upper"
       ],
+      "pass": true,
+      "evidence": "risk_band_contract.json"
+    },
+    {
+      "check_id": "D1_BAND_CUTPOINTS_VALID",
+      "observed": [
+        0.02164269230889038,
+        0.03349045168371287,
+        0.04713356750200824,
+        0.06360944048234445,
+        0.08515207601719339,
+        0.11547320448209004,
+        0.1625668200995762,
+        0.2417021366212471,
+        0.4000101651733103
+      ],
+      "expected": "strictly increasing values within [0, 1]",
       "pass": true,
       "evidence": "risk_band_contract.json"
     },
@@ -281,6 +298,20 @@
       "expected": true,
       "pass": true,
       "evidence": "D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json"
+    },
+    {
+      "check_id": "D9_MANIFEST_NOT_LOCKED",
+      "observed": "NOT_LOCKED_REVIEW_REQUIRED",
+      "expected": "NOT_LOCKED_REVIEW_REQUIRED",
+      "pass": true,
+      "evidence": "D9_CLOSURE_REVIEW_MANIFEST.json"
+    },
+    {
+      "check_id": "D9_FOLLOW_UP_REGISTERED",
+      "observed": 7,
+      "expected": 7,
+      "pass": true,
+      "evidence": "D9_CLOSURE_REVIEW_MANIFEST.json"
     },
     {
       "check_id": "D1_CONTRACT_NOT_STALE",
