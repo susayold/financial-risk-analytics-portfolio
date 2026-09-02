@@ -26,11 +26,11 @@ D5–D9 remain bounded by scenario approval and owner-controlled policy gates.
 | D2 | PASS_WITH_LIMITATIONS | Full-source audit, exact governed-core bridge, target/loan amount reconciliation, governed BAD-only evidence and anomaly treatment | Retrospective BAD-only loss evidence; not regulatory LGD and no GOOD-row loss recovery claim |
 | D3 | PASS_WITH_LIMITATIONS | EAD contract, account EAD proxy, sensitivity, term view, anomaly audit and tests | 331,865-row pricing-source scope; `loan_amnt` origination proxy only |
 | D4 | BRIDGE_RECONCILED_APPROVAL_PENDING | Governed BAD-only Q25/Q50/Q75/Q90 anchors and 2018 monitor-only diagnostic | Scenario assumptions remain unapproved main-case LGD |
-| D5 | GATED_HOLD | `D5_EXPECTED_LOSS/D5_EXPECTED_LOSS_GATE.md`, `D5_GATE_RESULTS.json` | No EL number until D1/D2 bridges and approved D4 input pass |
-| D6 | GATED_HOLD | `D6_DECISION_POLICY/D6_POLICY_GATE.md`, `D6_GATE_RESULTS.json` | No production policy until D1/D5 and owner thresholds pass |
-| D7 | GATED_HOLD | `D7_PRICING/D7_PRICING_GATE.md`, `D7_GATE_RESULTS.json` | No pricing adequacy or profitability claim |
-| D8 | GATED_HOLD | `D8_STRESS/D8_STRESS_GATE.md`, `D8_GATE_RESULTS.json` | No stress result until passed D5 baseline exists |
-| D9 | GATED_HOLD | `D9_CLOSURE/D9_CLOSURE_GATE.md`, `D9_GATE_RESULTS.json` | Closure remains `NOT_LOCKED` until all upstream gates pass |
+| D5 | CONTROLLED_HOLD | `D5_EXPECTED_LOSS/D5_ANALYTICAL_SCENARIO_AUDIT.json`, `D5_EXPECTED_LOSS/D5_EXPECTED_LOSS_GATE.md`, `D5_EXPECTED_LOSS/D5_GATE_RESULTS.json` | Analytical scenario pack executed; no approved EL claim until D4 main-case approval |
+| D6 | CONTROLLED_HOLD | `D6_DECISION_POLICY/D6_ANALYTICAL_PACK_AUDIT.json`, `D6_DECISION_POLICY/D6_POLICY_GATE.md`, `D6_DECISION_POLICY/D6_GATE_RESULTS.json` | Proposed non-production policy only; owner thresholds and overrides remain pending |
+| D7 | CONTROLLED_HOLD | `D7_PRICING/D7_DIAGNOSTIC_AUDIT.json`, `D7_PRICING/D7_PRICING_GATE.md`, `D7_PRICING/D7_GATE_RESULTS.json` | Diagnostic pricing context only; no pricing adequacy or profitability claim |
+| D8 | CONTROLLED_HOLD | `D8_STRESS/D8_ILLUSTRATIVE_SENSITIVITY_AUDIT.json`, `D8_STRESS/D8_STRESS_GATE.md`, `D8_STRESS/D8_GATE_RESULTS.json` | Illustrative sensitivity pack only; no approved stress result |
+| D9 | CONTROLLED_HOLD | `D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json`, `D9_CLOSURE/D9_CLOSURE_GATE.md`, `D9_CLOSURE/D9_GATE_RESULTS.json` | Closure remains `NOT_LOCKED` until all upstream gates and owner sign-off pass |
 
 ## Current blockers
 
@@ -57,6 +57,13 @@ only contracts, sanitized manifests and reproducible code are public.
 - [D5 scenario pack ZIP](https://drive.google.com/file/d/1i4TjiREQAzutHrEU3iYBK3sOk5woMpDm/view?usp=drivesdk)
 - [D6 policy pack ZIP](https://drive.google.com/file/d/1G5OLPz-NAvO1KLUynJc1DEJxnJrdYU2T/view?usp=drivesdk)
 - [D7 pricing pack ZIP](https://drive.google.com/file/d/1umRSK8tUFUscH4bLZi8hyhIOKhfqwvPl/view?usp=drivesdk)
+
+Reconciled follow-up evidence:
+
+- [D2 reconciled run audit v2](https://drive.google.com/file/d/1Ztlr5790hp01uCE4pZ5-zd7TQJO-J2J0/view?usp=drivesdk)
+- [D2 reconciled test results v2](https://drive.google.com/file/d/1noV377hFURVdJx76CUUzC5UzmCY3WSar/view?usp=drivesdk)
+- [D4 reconciled run audit v2](https://drive.google.com/file/d/1OEG0OQELLVxKdXo5-_S9BBcYTCD_pb7j/view?usp=drivesdk)
+- [D4 reconciled test results v2](https://drive.google.com/file/d/1cbUkD2vXsgQZf4kOh6nngkBd7iPqZ121/view?usp=drivesdk)
 
 Run the deterministic downstream control check:
 
