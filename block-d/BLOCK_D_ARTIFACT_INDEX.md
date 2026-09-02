@@ -10,6 +10,8 @@ Git branch: `main` (latest pushed revision)
 Block D is not closed. D1 and D2 evidence bridges are now reconciled; D4 and
 D5–D9 remain bounded by scenario approval and owner-controlled policy gates.
 
+- [Plan traceability matrix on Drive](https://drive.google.com/file/d/1I5ldFx0L-YkU_iMG7e4a4Xz89NXgJpyT/view?usp=drivesdk)
+
 ## Drive locations
 
 - [Block D main folder](https://drive.google.com/drive/folders/1xutm72gqys_QruCtCx5Rd9xmQ0YVOud-)
