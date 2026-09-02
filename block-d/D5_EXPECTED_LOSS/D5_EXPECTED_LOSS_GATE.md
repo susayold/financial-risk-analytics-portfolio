@@ -2,8 +2,8 @@
 
 ## Status
 
-`HOLD_UPSTREAM_EVIDENCE` — gate definition complete; no approved expected-loss
-number has been calculated.
+`CONTROLLED_HOLD` — analytical scenario output exists for review; no approved
+or production expected-loss number is claimed.
 
 ## Purpose
 
@@ -21,10 +21,10 @@ IFRS 9 or Basel calculation.
 
 | Input | Required condition | Current state |
 |---|---|---|
-| D1 score mart | Full governed account grain with Development, Validation and OOT coverage | HOLD — Development scores not materialized |
-| D2 loss bridge | Exact governed-core ID bridge, target concordance and recovery reconciliation | HOLD — source-level audit complete; core bridge pending |
+| D1 score mart | Full governed account grain with Development, Validation and OOT coverage | AVAILABLE with limitations — 310,066 matched scored rows; not full-governed score coverage |
+| D2 loss bridge | Exact governed-core ID bridge, target concordance and recovery reconciliation | PASS_WITH_LIMITATIONS — exact 1,347,681-row bridge; retrospective BAD-only evidence |
 | D3 EAD | Declared EAD scope and valid timing/schedule treatment | AVAILABLE with limitations — 331,865-row pricing-source scope |
-| D4 LGD | Approved main-case LGD evidence linked to the same governed population | HOLD — current anchors are scenario-only |
+| D4 LGD | Approved main-case LGD evidence linked to the same governed population | HOLD — governed anchors exist but owner approval is pending |
 
 ## Gate checks before any D5 number
 
@@ -42,7 +42,7 @@ IFRS 9 or Basel calculation.
 
 ## Current decision
 
-No baseline, segment, band or split-level expected loss is reported. D5 cannot
-open until D1 and D2 bridges pass and D4 is promoted from scenario-only to an
-approved input under the same population contract.
-
+The controlled D5 scenario pack reports split/band/scenario proxies for review,
+but does not open the approved D5 gate. D4 must still be promoted to an
+approved main-case input under the same population contract before any
+production or regulatory interpretation.

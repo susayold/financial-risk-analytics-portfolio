@@ -21,6 +21,8 @@
 
 ## Current decision
 
-Conditions 2, 3 and 5–8 are not met. Therefore the only valid status is
-`NOT_LOCKED / REVIEW_REQUIRED`; this document does not declare completion.
-
+Conditions 2 and 3 are now evidenced by the D1/D2 bridge audits. D4 has
+population compatibility but remains scenario-only pending main-case approval;
+D5–D8 have controlled analytical packs but not approved production gates.
+Therefore the only valid status is `NOT_LOCKED / REVIEW_REQUIRED`; this
+document does not declare completion.

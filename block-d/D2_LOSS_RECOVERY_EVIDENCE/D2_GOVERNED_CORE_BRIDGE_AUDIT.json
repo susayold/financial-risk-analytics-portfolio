@@ -1,0 +1,85 @@
+{
+  "stage": "D2_GOVERNED_CORE_BRIDGE",
+  "run_timestamp_utc": "2026-09-02T05:16:47.629790+00:00",
+  "status": "PASS_WITH_LIMITATIONS",
+  "input_files": [
+    "c7_nested_20260902.zip",
+    "accepted_2007_to_2018Q4.csv",
+    "retrospective_loss_proxy_account_grain.csv"
+  ],
+  "input_checksums": {
+    "c7_nested_20260902.zip": "2f2a1b8779e891aead3fe224c0e9d9ff32e5b1a3775406aeb49f084e996be8ce",
+    "accepted_2007_to_2018Q4.csv": "3eae03c28fd9d2e8a076ebeb73507e8d4d0f44d90500decdb0936e0933d1f36a",
+    "retrospective_loss_proxy_account_grain.csv": "5d66ae007ec877cf319af52d7217e9b22fe98526e805624fdb5ba46f2c010ef6"
+  },
+  "row_counts": {
+    "governed_core_rows": 1347681,
+    "source_rows_scanned": 2260701,
+    "matched_source_rows": 1347681,
+    "matched_governed_ids": 1347681,
+    "resolved_source_ids": 1347681,
+    "core_bad_rows": 269249,
+    "bad_loss_matched": 269249
+  },
+  "duplicate_and_conflict_counts": {
+    "source_duplicate_id_groups": 0,
+    "conflicting_source_target_ids": 0,
+    "target_mismatch_ids": 0,
+    "source_duplicate_loan_amount_ids": 0
+  },
+  "checks": [
+    {
+      "check_id": "D2-B01",
+      "check": "full governed population row count",
+      "expected": 1347681,
+      "observed": 1347681,
+      "status": "PASS"
+    },
+    {
+      "check_id": "D2-B02",
+      "check": "governed IDs matched in accepted source",
+      "expected": 1347681,
+      "observed": 1347681,
+      "status": "PASS"
+    },
+    {
+      "check_id": "D2-B03",
+      "check": "source duplicate ID groups",
+      "expected": 0,
+      "observed": 0,
+      "status": "PASS"
+    },
+    {
+      "check_id": "D2-B04",
+      "check": "resolved source target concordance",
+      "expected": 1347681,
+      "observed": 1347681,
+      "status": "PASS"
+    },
+    {
+      "check_id": "D2-B05",
+      "check": "core/source loan amount concordance",
+      "expected": 1347681,
+      "observed": 1347681,
+      "status": "PASS"
+    },
+    {
+      "check_id": "D2-B06",
+      "check": "BAD core to loss evidence coverage",
+      "expected": 269249,
+      "observed": 269249,
+      "status": "PASS"
+    }
+  ],
+  "outputs": [
+    "D2_GOVERNED_CORE_BRIDGE.csv",
+    "D2_GOVERNED_CORE_BRIDGE_AUDIT.json",
+    "D2_GOVERNED_BAD_LOSS_EVIDENCE.csv"
+  ],
+  "claim_boundary": [
+    "exact ID bridge is at governed account grain",
+    "Historical Shadow is included for population reconciliation but is monitor-only",
+    "retrospective loss evidence is BAD-only",
+    "this bridge does not create a verified 12-month PD or regulatory LGD"
+  ]
+}

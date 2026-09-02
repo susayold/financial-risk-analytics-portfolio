@@ -2,13 +2,12 @@
 
 ## Status
 
-`REVIEW_REQUIRED_BRIDGE_PENDING`
+`BRIDGE_RECONCILED_APPROVAL_PENDING`
 
 ## Scope
 
-This D4 run is the plan-permitted fallback while the exact bridge from the full
-accepted loss source to the governed core and C8E matched population is pending.
-It creates source-level severity anchors from resolved BAD rows only. The
+This D4 run uses the exact governed-core BAD evidence bridge. It creates
+source-level severity anchors from resolved BAD rows only. The
 primary anchor reference ends at issue year 2017; the 2018 shadow cohort is
 monitor-only because Block C documented truncation/final-resolution concerns.
 It does not create an empirical LGD estimate for C8E and does not use
@@ -20,7 +19,8 @@ The input is the D2 `retrospective_loss_proxy.csv` output. Before aggregation,
 the run removes exact full-row duplicates and verifies that no non-exact
 duplicate `account_id` rows remain. The resulting evidence is account-grain;
 the deduplication audit records 271,353 input rows, 1,993 exact duplicates
-removed and 269,360 retained rows. The model LGD value is
+removed before the governed-core filter; 269,249 governed BAD rows are retained
+in the current run. The model LGD value is
 the D2 governed proxy:
 
 ```text
@@ -43,8 +43,9 @@ excluded from the primary anchors.
 | `LGD_ADVERSE_Q75` | Q75 | Adverse source-level severity anchor |
 | `LGD_SEVERE_Q90` | Q90 | Severe source-level severity anchor |
 
-The numeric anchors are persisted in `lgd_scenario_anchors.csv`; they are not
-approved main-case assumptions until the governed-core bridge passes review.
+The numeric anchors are persisted in `lgd_scenario_anchors.csv`; the governed
+bridge passes, but they remain unapproved main-case assumptions pending an
+explicit owner decision on LGD/timing.
 
 ## Required boundary
 
@@ -53,4 +54,5 @@ approved main-case assumptions until the governed-core bridge passes review.
 - No D5 Expected Loss or D6 policy output may use these anchors as approved
   main-case inputs.
 - No regulatory, IFRS 9, Basel, realized-profit or realized-loss claim is made.
-- The exact governed-core ID bridge and target concordance remain open gates.
+- The exact governed-core ID bridge and target concordance pass in D2; owner
+  approval and score-conditional severity remain open governance boundaries.

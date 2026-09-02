@@ -8,7 +8,7 @@ Execution is strictly sequenced:
 
 `D0 → D1 → D2 → D3 → D4 → D5 → D6 → D7 → D8 → D9`
 
-Current state: **D0 PASS / D1 REVIEW_REQUIRED / D2 REVIEW_REQUIRED_BRIDGE_PENDING / D3 PASS_WITH_LIMITATIONS / D4 SCENARIO_ONLY_REVIEW_REQUIRED / D5–D9 GATED_HOLD**.
+Current state: **D0 PASS / D1 PASS_WITH_LIMITATIONS / D2 PASS_WITH_LIMITATIONS / D3 PASS_WITH_LIMITATIONS / D4 BRIDGE_RECONCILED_APPROVAL_PENDING / D5–D9 CONTROLLED_HOLD**.
 
 The D0 contract freezes:
 
@@ -22,9 +22,10 @@ The D0 contract freezes:
 
 Raw CSV, DuckDB, model binaries and private source data are intentionally excluded from the public repository.
 
-The D5–D9 downstream gate register is present, but all five stages remain
-controlled holds because the D1/D2 bridges and approved D4 LGD input are not
-available. No downstream numeric or production claim is made.
+The D5–D9 downstream gate register is present. Controlled analytical packs are
+materialized for review, but all five production gates remain held because D4
+main-case approval and owner policy decisions are not available. No production
+claim is made.
 
 ## D0 artifacts
 

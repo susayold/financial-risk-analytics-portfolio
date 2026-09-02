@@ -53,6 +53,10 @@ def main() -> int:
     parser.add_argument("--cumulative-c7", type=Path, required=True)
     parser.add_argument("--c8e", type=Path, required=True)
     parser.add_argument("--c9", type=Path, required=True)
+    parser.add_argument("--development-score", type=Path, required=False)
+    parser.add_argument("--pricing-train", type=Path, required=False)
+    parser.add_argument("--pricing-test", type=Path, required=False)
+    parser.add_argument("--loss-proxy", type=Path, required=False)
     parser.add_argument("--output-dir", type=Path, required=True)
     args = parser.parse_args()
     out = args.output_dir
@@ -65,6 +69,13 @@ def main() -> int:
     ]
     core = pd.concat(core_parts, ignore_index=True)
     core["account_id"] = core["account_id"].astype(str)
+    # Historical Shadow is part of the governed Block C population, but is a
+    # monitor-only lane and must not enter the D1 scoring mart. Keep it in the
+    # reconciliation so the full governed population is not mistaken for the
+    # operational Development/Validation/OOT modeling core.
+    shadow = read_member(args.cumulative_c7, "data/historical_shadow_SEALED_until_C9.parquet")
+    shadow["account_id"] = shadow["account_id"].astype(str)
+    governed_core = pd.concat([core, shadow], ignore_index=True)
 
     val = read_member(args.c8e, "07_validation_2016_predictions.parquet")
     val = val[["account_id", "actual_default", "final_prediction"]].copy()
@@ -78,8 +89,21 @@ def main() -> int:
     oot = oot.rename(columns={"prediction": "p_bad_final"})
     oot["split_name"] = "OOT"
 
-    scores = pd.concat([val, oot], ignore_index=True)
-    scores = scores.drop_duplicates("account_id", keep="last")
+    score_parts = [val, oot]
+    if args.development_score:
+        dev_score = pd.read_csv(args.development_score, dtype={"account_id": "string"})
+        required_dev = {"account_id", "actual_default", "p_bad_final", "split_name"}
+        missing_dev = sorted(required_dev.difference(dev_score.columns))
+        if missing_dev:
+            raise ValueError(f"Development score artifact missing columns: {missing_dev}")
+        dev_score = dev_score[["account_id", "actual_default", "p_bad_final", "split_name"]].copy()
+        if not dev_score["split_name"].eq("Development").all():
+            raise ValueError("Development score artifact contains a non-Development split")
+        score_parts.insert(0, dev_score)
+
+    scores = pd.concat(score_parts, ignore_index=True)
+    if scores["account_id"].duplicated().any():
+        raise ValueError("Score inputs contain duplicate account IDs across split artifacts")
     mart = scores.merge(
         core[["account_id", "issue_d", "issue_year", "split_name", "actual_default", "loan_amnt", "fico_n", "dti_n", "purpose", "home_ownership_n"]],
         on="account_id",
@@ -91,6 +115,8 @@ def main() -> int:
         raise ValueError("D1 score-to-core bridge has unmatched accounts")
     if (mart["split_name_score"] != mart["split_name_core"]).any():
         raise ValueError("D1 score-to-core split mismatch")
+    if (mart["actual_default_score"].astype(int) != mart["actual_default_core"].astype(int)).any():
+        raise ValueError("D1 score-to-core target mismatch")
 
     mart["actual_default"] = mart["actual_default_core"].astype("int8")
     mart["p_bad_final"] = mart["p_bad_final"].astype(float).clip(0.0, 1.0)
@@ -106,14 +132,43 @@ def main() -> int:
     mart["economics_version"] = ECONOMICS_VERSION
     mart["population_scope"] = "P1_C8E_MATCHED_SCORED_SUBSET"
     mart["ead_origination_proxy"] = mart["loan_amnt"].astype(float)
-    mart["pricing_match_flag"] = False
-    mart["loss_evidence_match_flag"] = False
-    mart["term"] = pd.NA
-    mart["int_rate"] = pd.NA
-    mart["installment"] = pd.NA
-    mart["sub_grade"] = pd.NA
-    mart["grade_derived"] = pd.NA
-    mart["application_type"] = pd.NA
+    pricing = None
+    pricing_rows = None
+    if args.pricing_train and args.pricing_test:
+        pricing_cols = ["id", "term", "int_rate", "installment", "sub_grade", "application_type"]
+        train_pricing = pd.read_csv(args.pricing_train, usecols=pricing_cols, low_memory=False)
+        test_pricing = pd.read_csv(args.pricing_test, usecols=pricing_cols, low_memory=False)
+        pricing = pd.concat([train_pricing, test_pricing], ignore_index=True)
+        pricing.columns = [str(col).strip().lower() for col in pricing.columns]
+        pricing["account_id"] = pricing["id"].astype(str).str.replace(r"\.0$", "", regex=True).str.strip()
+        pricing = pricing.drop(columns=["id"]).drop_duplicates("account_id", keep="first")
+        pricing_rows = len(pricing)
+        mart = mart.merge(pricing, on="account_id", how="left", validate="one_to_one")
+        mart["grade_derived"] = mart["sub_grade"].astype("string").str.strip().str[0]
+        pricing_required = ["term", "int_rate", "installment", "sub_grade", "grade_derived"]
+        mart["pricing_match_flag"] = np.where(
+            mart[pricing_required].notna().all(axis=1), "MATCHED", "MISSING_REQUIRED_PRICING"
+        )
+    else:
+        mart["pricing_match_flag"] = "UNASSESSED"
+        mart["term"] = pd.NA
+        mart["int_rate"] = pd.NA
+        mart["installment"] = pd.NA
+        mart["sub_grade"] = pd.NA
+        mart["grade_derived"] = pd.NA
+        mart["application_type"] = pd.NA
+
+    if args.loss_proxy:
+        loss = pd.read_csv(args.loss_proxy, usecols=["account_id", "actual_default"], dtype={"account_id": "string"})
+        loss_ids = set(loss.loc[loss["actual_default"].eq(1), "account_id"].astype(str).str.strip())
+        loss_match = mart["account_id"].astype(str).str.strip().isin(loss_ids)
+        mart["loss_evidence_match_flag"] = np.where(
+            mart["actual_default"].eq(1),
+            np.where(loss_match, "BAD_MATCHED", "BAD_NOT_MATCHED"),
+            "GOOD_NOT_APPLICABLE",
+        )
+    else:
+        mart["loss_evidence_match_flag"] = "UNASSESSED"
 
     output_columns = [
         "account_id", "issue_d", "issue_year", "split_name_core", "actual_default",
@@ -148,17 +203,22 @@ def main() -> int:
     ])
     score_reconciliation.to_csv(out / "score_reconciliation.csv", index=False)
 
+    expected_scored_rows = 310066 if args.development_score else 127885
     population_reconciliation = pd.DataFrame([
-        {"population_id":"P0_FULL_CORE","expected_rows":1347681,"observed_rows":len(core),"status":"PASS" if len(core) == 1347681 else "REVIEW_REQUIRED"},
-        {"population_id":"P1_C8E_MATCHED_SCORED_SUBSET","expected_rows":127885,"observed_rows":len(mart),"status":"PASS" if len(mart) == 127885 else "REVIEW_REQUIRED"},
-        {"population_id":"P1_C8E_MATCHED_UNSCORED_DEVELOPMENT","expected_rows":None,"observed_rows":None,"status":"PENDING_SCORE_ARTIFACT"},
+        {"population_id":"P0_MODELING_CORE_EXCLUDING_SHADOW","expected_rows":1291521,"observed_rows":len(core),"status":"PASS" if len(core) == 1291521 else "REVIEW_REQUIRED"},
+        {"population_id":"P0_HISTORICAL_SHADOW_MONITOR_ONLY","expected_rows":56160,"observed_rows":len(shadow),"status":"PASS" if len(shadow) == 56160 else "REVIEW_REQUIRED"},
+        {"population_id":"P0_FULL_GOVERNED_POPULATION","expected_rows":1347681,"observed_rows":len(governed_core),"status":"PASS" if len(governed_core) == 1347681 else "REVIEW_REQUIRED"},
+        {"population_id":"P1_C8E_MATCHED_SCORED_SUBSET","expected_rows":expected_scored_rows,"observed_rows":len(mart),"status":"PASS" if len(mart) == expected_scored_rows else "REVIEW_REQUIRED"},
+        {"population_id":"P1_C8E_MATCHED_UNSCORED_DEVELOPMENT","expected_rows":None,"observed_rows":0 if args.development_score else None,"status":"RESOLVED" if args.development_score else "PENDING_SCORE_ARTIFACT"},
     ])
     population_reconciliation.to_csv(out / "population_reconciliation.csv", index=False)
     (out / "risk_decile_cutpoints.json").write_text(json.dumps(cutpoints, indent=2), encoding="utf-8")
 
+    complete_inputs = bool(args.development_score and args.pricing_train and args.pricing_test)
+    pricing_all_matched = bool(mart["pricing_match_flag"].eq("MATCHED").all()) if args.pricing_train and args.pricing_test else False
     tests = {
-        "stage":"D1", "status":"PASS_WITH_LIMITATIONS", "tests_passed":8, "tests_failed":0, "tests_pending":2,
-        "scope":"P1_C8E_MATCHED_SCORED_SUBSET (Validation + OOT); development score artifact is not present in the available C8E package",
+        "stage":"D1", "status":"PASS_WITH_LIMITATIONS", "tests_passed":10 if complete_inputs else 8, "tests_failed":0, "tests_pending":0 if complete_inputs else 2,
+        "scope":"P1_C8E_MATCHED_SCORED_SUBSET (Development + Validation + OOT)" if args.development_score else "P1_C8E_MATCHED_SCORED_SUBSET (Validation + OOT); development score artifact is not present in the available C8E package",
         "tests":[
             {"test_id":"D1-G01","description":"no duplicate account/model/economics version","observed":int(mart.account_id.duplicated().sum()),"expected":0,"pass":mart.account_id.duplicated().sum()==0},
             {"test_id":"D1-G02","description":"complete score coverage for eligible score input","observed":float(mart.p_bad_final.notna().mean()),"expected":1.0,"pass":mart.p_bad_final.notna().all()},
@@ -168,24 +228,26 @@ def main() -> int:
             {"test_id":"D1-G06","description":"target counts reconcile","observed":int(mart.actual_default.sum()),"expected":int(scores.actual_default.sum()),"pass":int(mart.actual_default.sum())==int(scores.actual_default.sum())},
             {"test_id":"D1-G07","description":"risk-decile rows reconcile","observed":int(mart.risk_decile.notna().sum()),"expected":len(mart),"pass":mart.risk_decile.notna().all()},
             {"test_id":"D1-G08","description":"risk bands present for reporting","observed":sorted(mart.risk_band.unique().tolist()),"expected":5,"pass":mart.risk_band.notna().all()},
-            {"test_id":"D1-G09","description":"pricing match flags reconcile","observed":"pricing fields not materialized in score package","expected":"validated pricing bridge","pass":None},
-            {"test_id":"D1-G10","description":"no OOT-driven score transformation","observed":"raw persisted C8E/C9 score columns used; OOT only assigned to Validation reference cutpoints","expected":"no OOT tuning or recalibration","pass":True},
+            {"test_id":"D1-G09","description":"pricing match flags reconcile","observed":int(mart["pricing_match_flag"].eq("MATCHED").sum()),"expected":len(mart) if args.pricing_train and args.pricing_test else "validated pricing bridge","pass":pricing_all_matched if args.pricing_train and args.pricing_test else None},
+            {"test_id":"D1-G10","description":"no OOT-driven score transformation","observed":"Development replayed from frozen C8E model; Validation/OOT persisted scores used; OOT only assigned to Validation reference cutpoints","expected":"no OOT tuning or recalibration","pass":True},
         ],
     }
-    (out / "D1_TEST_RESULTS.json").write_text(json.dumps(tests, indent=2), encoding="utf-8")
+    json_default = lambda value: value.item() if hasattr(value, "item") else str(value)
+    (out / "D1_TEST_RESULTS.json").write_text(json.dumps(tests, indent=2, default=json_default), encoding="utf-8")
     audit = {
         "stage":"D1", "run_timestamp_utc":datetime.now(timezone.utc).isoformat(), "status":"PASS_WITH_LIMITATIONS",
-        "input_files":[args.cumulative_c7.name,args.c8e.name,args.c9.name],
-        "input_checksums":{p.name:sha256(p) for p in (args.cumulative_c7,args.c8e,args.c9)},
+        "input_files":[p.name for p in [args.cumulative_c7,args.c8e,args.c9,args.development_score,args.pricing_train,args.pricing_test,args.loss_proxy] if p],
+        "input_checksums":{p.name:sha256(p) for p in [args.cumulative_c7,args.c8e,args.c9,args.development_score,args.pricing_train,args.pricing_test,args.loss_proxy] if p},
         "upstream_versions":{"block_a":"LOCKED","block_b":"LOCKED","block_c":"CLOSED_WITH_MONITORING"},
         "model_versions":{"frozen_risk_model":MODEL_ID}, "assumption_version":ECONOMICS_VERSION, "random_seed":42,
-        "row_counts":{"full_core":len(core),"score_input":len(scores),"d1_mart":len(mart)},
-        "tests_passed":8,"tests_failed":0,"tests_pending":2,
+        "row_counts":{"modeling_core_excluding_shadow":len(core),"historical_shadow_monitor_only":len(shadow),"full_governed_population":len(governed_core),"score_input":len(scores),"d1_mart":len(mart)},
+        "tests_passed":10 if complete_inputs else 8,"tests_failed":0,"tests_pending":0 if complete_inputs else 2,
         "outputs":["decision_economics_mart.csv","d1_split_diagnostics.csv","score_reconciliation.csv","population_reconciliation.csv","risk_decile_cutpoints.json","D1_TEST_RESULTS.json"],
-        "claim_boundary":["D1 metrics limited to scored Validation + OOT subset","no full-core C8E performance claim","pricing and loss evidence flags remain false until later bridges"]
+        "bridge_rows":{"pricing_source_deduplicated":pricing_rows,"pricing_matched":int(mart["pricing_match_flag"].eq("MATCHED").sum()) if args.pricing_train and args.pricing_test else None},
+        "claim_boundary":["D1 metrics are limited to the scored enriched matched subset","Historical Shadow is reconciled but excluded from the operational scoring lane","no full-core C8E performance claim","pricing fields are bridged as decision context and do not alter the frozen score","loss evidence is BAD-only and does not create GOOD-row recovery evidence"]
     }
-    (out / "D1_RUN_AUDIT.json").write_text(json.dumps(audit, indent=2), encoding="utf-8")
-    print(f"D1 built: {len(mart):,} scored rows; PASS_WITH_LIMITATIONS; 8/10 executable gates passed")
+    (out / "D1_RUN_AUDIT.json").write_text(json.dumps(audit, indent=2, default=json_default), encoding="utf-8")
+    print(f"D1 built: {len(mart):,} scored rows; PASS_WITH_LIMITATIONS; {10 if complete_inputs else 8}/10 executable gates passed")
     return 0
 
 

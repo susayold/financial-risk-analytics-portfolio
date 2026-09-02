@@ -5,10 +5,10 @@ Git branch: `main` (latest pushed revision)
 
 ## Overall state
 
-`D0 PASS` · `D1 REVIEW_REQUIRED` · `D2 REVIEW_REQUIRED_BRIDGE_PENDING` · `D3 PASS_WITH_LIMITATIONS` · `D4 SCENARIO_ONLY_REVIEW_REQUIRED` · `D5–D9 GATED_HOLD`
+`D0 PASS` · `D1 PASS_WITH_LIMITATIONS` · `D2 PASS_WITH_LIMITATIONS` · `D3 PASS_WITH_LIMITATIONS` · `D4 BRIDGE_RECONCILED_APPROVAL_PENDING` · `D5–D9 CONTROLLED_HOLD`
 
-Block D is not closed. The current downstream outputs are deliberately bounded
-by missing Development scores and the missing governed-core loss bridge.
+Block D is not closed. D1 and D2 evidence bridges are now reconciled; D4 and
+D5–D9 remain bounded by scenario approval and owner-controlled policy gates.
 
 ## Drive locations
 
@@ -22,10 +22,10 @@ by missing Development scores and the missing governed-core loss bridge.
 | Stage | Current result | Key evidence | Claim boundary |
 |---|---|---|---|
 | D0 | PASS, 10/10 gates | Governance contract, population contract, role matrix, assumptions and run audit | Frozen upstream model and roles only |
-| D1 | REVIEW_REQUIRED | Risk-score mart contract, available-score artifact audit, input availability audit and risk-band contract | Persisted Validation/OOT files pass structural checks; no full account mart until Development score artifact and bridges are materialized |
-| D2 | REVIEW_REQUIRED_BRIDGE_PENDING | Full-source audit, loss dictionary, retrospective loss proxy, account-grain dedup artifact, score-to-loss sub-audit, bridge audit, tests | Source-level retrospective evidence; exact duplicate treatment is persisted; governed-core bridge and GOOD-row coverage remain open; not C8E empirical LGD |
+| D1 | PASS_WITH_LIMITATIONS | Frozen C8E Development replay, Validation/OOT score audit, 310,066-row mart, pricing bridge and 10/10 QA | C8E matched scored subset only; no full-governed score coverage claim |
+| D2 | PASS_WITH_LIMITATIONS | Full-source audit, exact governed-core bridge, target/loan amount reconciliation, governed BAD-only evidence and anomaly treatment | Retrospective BAD-only loss evidence; not regulatory LGD and no GOOD-row loss recovery claim |
 | D3 | PASS_WITH_LIMITATIONS | EAD contract, account EAD proxy, sensitivity, term view, anomaly audit and tests | 331,865-row pricing-source scope; `loan_amnt` origination proxy only |
-| D4 | SCENARIO_ONLY_REVIEW_REQUIRED | Account-grain LGD scenario contract, Q25/Q50/Q75/Q90 anchors, duplicate audit, issue-year diagnostics, tests and run audit | No `p_bad_final` join; no approved C8E LGD or D5 input |
+| D4 | BRIDGE_RECONCILED_APPROVAL_PENDING | Governed BAD-only Q25/Q50/Q75/Q90 anchors and 2018 monitor-only diagnostic | Scenario assumptions remain unapproved main-case LGD |
 | D5 | GATED_HOLD | `D5_EXPECTED_LOSS/D5_EXPECTED_LOSS_GATE.md`, `D5_GATE_RESULTS.json` | No EL number until D1/D2 bridges and approved D4 input pass |
 | D6 | GATED_HOLD | `D6_DECISION_POLICY/D6_POLICY_GATE.md`, `D6_GATE_RESULTS.json` | No production policy until D1/D5 and owner thresholds pass |
 | D7 | GATED_HOLD | `D7_PRICING/D7_PRICING_GATE.md`, `D7_GATE_RESULTS.json` | No pricing adequacy or profitability claim |
@@ -34,12 +34,9 @@ by missing Development scores and the missing governed-core loss bridge.
 
 ## Current blockers
 
-1. Persisted C8E Development predictions/scores joined to the governed
-   Development population.
-2. Exact C8E score-to-pricing bridge with the required pricing fields.
-3. Governed-core ID bridge and target concordance between the 2,275,739-row
-   full source and the 1,347,681-row governed core.
-4. Owner decision on the approved LGD population and timing boundary.
+1. D4 main-case LGD/timing approval.
+2. D5 analytical expected-loss proxy formula and timing output.
+3. Owner decision on D6 action thresholds, D7 pricing assumptions and D8 shocks.
 
 ## Storage rule
 
@@ -51,6 +48,15 @@ only contracts, sanitized manifests and reproducible code are public.
 
 - `D5_D9_DOWNSTREAM_GATE_REGISTER.md`
 - `D5_D9_GATE_QA.json`
+- `BLOCK_D_EXECUTION_TRACKER.md`
+
+## Latest private Drive packs
+
+- [D1 full evidence ZIP](https://drive.google.com/file/d/1A2laFU3d9e5UHAegKfIzKaAegLNpBlRy/view?usp=drivesdk)
+- [D2 governed bridge ZIP](https://drive.google.com/file/d/1503zJkDmksZwx7AkIEg3-OHdCxk6TYq8/view?usp=drivesdk)
+- [D5 scenario pack ZIP](https://drive.google.com/file/d/1i4TjiREQAzutHrEU3iYBK3sOk5woMpDm/view?usp=drivesdk)
+- [D6 policy pack ZIP](https://drive.google.com/file/d/1G5OLPz-NAvO1KLUynJc1DEJxnJrdYU2T/view?usp=drivesdk)
+- [D7 pricing pack ZIP](https://drive.google.com/file/d/1umRSK8tUFUscH4bLZi8hyhIOKhfqwvPl/view?usp=drivesdk)
 
 Run the deterministic downstream control check:
 

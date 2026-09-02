@@ -4,7 +4,7 @@ Updated: 2026-09-02
 
 ## Current status
 
-`D0 PASS` · `D1 REVIEW_REQUIRED` · `D2 REVIEW_REQUIRED_BRIDGE_PENDING` · `D3 PASS_WITH_LIMITATIONS` · `D4 SCENARIO_ONLY_REVIEW_REQUIRED` · `D5–D9 GATED_HOLD`
+`D0 PASS` · `D1 PASS_WITH_LIMITATIONS` · `D2 PASS_WITH_LIMITATIONS` · `D3 PASS_WITH_LIMITATIONS` · `D4 BRIDGE_RECONCILED_APPROVAL_PENDING` · `D5–D9 CONTROLLED_HOLD`
 
 Block D is not complete. The governance foundation is implemented and reviewed, but the downstream economics stages must not be fabricated from summary metrics.
 
@@ -29,9 +29,14 @@ Block D is not complete. The governance foundation is implemented and reviewed, 
 - Persisted C8E Validation and C9 OOT score files independently audited:
   required columns, account uniqueness, target/score validity, expected row
   counts and zero cross-split ID overlap all pass.
-- D1 build is ready for C8E Validation + C9 OOT persisted score outputs.
-- The currently available score evidence covers 83,664 Validation and 44,221 OOT rows.
-- Development score output and pricing fields are not present in the materialized input available to the runtime.
+- Development scores were replayed from the frozen C8E 79-feature model without
+  refitting, OOT tuning or recalibration: 182,181 matched Development rows.
+- The scored decision mart contains **310,066** unique rows: 182,181
+  Development, 83,664 Validation and 44,221 OOT; score coverage and pricing
+  bridge are 100% within this matched scored subset.
+- D1 QA: **10/10 executable gates PASS**. Status remains
+  `PASS_WITH_LIMITATIONS` because this is the C8E matched scored subset, not a
+  claim that every governed account has a score.
 
 ### D3 — EAD Framework
 
@@ -50,19 +55,29 @@ Block D is not complete. The governance foundation is implemented and reviewed, 
 - Bounded score-to-loss sub-audit covers **20,082/20,082 scored-BAD rows** with
   zero target mismatches after exact-row deduplication; a canonical account-grain
   proxy retains **269,360** rows after removing **1,993** exact duplicates.
-- The exact bridge to the governed **1,347,681-row core** is still pending because the governed-core ID list is not materialized in the D runtime.
-- QA: **7 PASS / 2 FAIL / 1 PENDING**; status remains **REVIEW_REQUIRED_BRIDGE_PENDING**.
+- The exact governed bridge is now materialized and audited: **1,347,681 / 1,347,681** IDs match the accepted source, target concordance is 100%, loan amount concordance is 100%, and there are no source duplicate-ID groups or target conflicts.
+- All **269,249** governed BAD rows have account-grain retrospective loss
+  evidence. A governed-core-only BAD evidence file is separated from the
+  2,104 valid BAD source rows outside the core.
+- QA: governed bridge checks **6/6 PASS**. Status remains
+  `PASS_WITH_LIMITATIONS` because the evidence is retrospective BAD-only and
+  does not become regulatory LGD or GOOD-row recovery evidence.
 
 ### D4 — LGD Scenario Evidence
 
-- Account-grain Q25/Q50/Q75/Q90 LGD anchors were generated from **260,486** retained BAD rows with issue year through 2017 after exact duplicate removal.
-- The 2018 shadow cohort (**8,874** rows) is retained as monitor-only and excluded from primary anchors because of documented final-resolution/truncation concerns.
+- Account-grain Q25/Q50/Q75/Q90 LGD anchors were regenerated from **269,249** governed BAD rows; the 2018 shadow cohort remains monitor-only and excluded from primary anchors because of documented final-resolution/truncation concerns.
+- The D2 population bridge now passes. D4 is therefore bridge-reconciled, but
+  the anchors remain scenario assumptions pending explicit main-case approval;
+  they are not an empirical C8E LGD model.
 - No `p_bad_final` or C8E score is used; this is not an empirical C8E LGD model.
-- QA: **8 PASS / 0 FAIL / 2 PENDING**; status remains **SCENARIO_ONLY_REVIEW_REQUIRED** until D1/D2 bridges pass.
+- QA: **8 PASS / 0 FAIL / 2 PENDING** in the scenario contract; the two
+  pending items are now approval/empirical-linkage boundaries, not missing ID
+  evidence.
 
 ## Not claimed
 
-- No full D1 account mart has been claimed until the Development score artifact is available.
+- No full-governed-population score coverage is claimed; D1 is limited to the
+  310,066-row C8E matched scored subset.
 - No LGD, EAD timing, Expected Loss, decision policy, pricing adequacy or stress result has been calculated.
 - D4 scenario anchors are not approved main-case LGD inputs and must not be combined with `p_bad_final`.
 - No regulatory PD/LGD/EAD/ECL or realized profit/loss claim is made.
@@ -71,24 +86,28 @@ Block D is not complete. The governance foundation is implemented and reviewed, 
 
 The contracts and gate manifests for D5 Expected Loss, D6 Decision Policy, D7
 Pricing Adequacy, D8 Stress/Sensitivity and D9 Closure are now recorded. Their
-controlled status is `HOLD_UPSTREAM_EVIDENCE`; none of these stages has been
-executed and no downstream numeric or production claim is made. See
+controlled status remains `CONTROLLED_HOLD` until the D4 main-case assumption
+and owner thresholds are approved; no downstream production claim is made. See
 `D5_D9_DOWNSTREAM_GATE_REGISTER.md` and `D5_D9_GATE_QA.json`.
 
 ## Blocking inputs
 
-1. Persisted C8E Development predictions/scores joined to the governed Development population.
-2. Validated C8E score-to-pricing bridge containing `term`, `int_rate`, `installment`, `sub_grade` and `grade_derived`.
-3. Accepted full-source loss/recovery bridge for D2, with field definitions, timing, coverage, reconciliation and anomaly treatment. The source-level audit is complete; governed-core ID reconciliation remains pending.
+1. Explicit approval of the D4 main-case LGD scenario/timing boundary.
+2. D5 analytical expected-loss proxy execution and formula audit.
+3. Owner decision on D6 action thresholds, D7 pricing assumptions and D8 shock policy.
 
 The available private C9 closure package contains the frozen model, C9 OOT predictions and C8E Validation predictions, but does not by itself provide all three inputs above.
 
 ## Next valid action
 
-Materialize the missing inputs into the D runtime on Drive/D storage, then rerun:
+The D1 and D2 evidence bridges are now materialized. Next run the controlled
+D5 scenario output using the D1 mart, governed D4 anchors and declared D3 EAD
+scope; keep approval and production claims closed until owner decisions are
+recorded:
 
 ```text
 python src/build_block_d_d1_mart.py --cumulative-c7 <path> --c8e <path> --c9 <path> --output-dir <D-runtime-output>
 ```
 
-Only after D1 coverage and the governed-core D2 bridge reconcile should empirical D4 LGD work proceed. The current D4 output is scenario-only under the explicit fallback boundary in `D4_LGD_SCENARIO_CONTRACT.md`.
+The current D4 output is scenario-only under the explicit fallback boundary in
+`D4_LGD_SCENARIO_CONTRACT.md`; it is not silently promoted to regulatory LGD.

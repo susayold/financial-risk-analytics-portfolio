@@ -1,0 +1,74 @@
+{
+  "stage": "D9",
+  "status": "NOT_LOCKED_REVIEW_REQUIRED",
+  "run_timestamp_utc": "2026-09-02T06:37:37.866319+00:00",
+  "executed": true,
+  "numeric_output_claimed": false,
+  "upstream_status": {
+    "D0": "PASS",
+    "D1": "PASS_WITH_LIMITATIONS",
+    "D2": "PASS_WITH_LIMITATIONS",
+    "D3": "PASS_WITH_LIMITATIONS",
+    "D4": "BRIDGE_RECONCILED_APPROVAL_PENDING",
+    "D5": "ANALYTICAL_SCENARIO_OUTPUT_APPROVAL_PENDING",
+    "D6": "PROPOSED_NON_PRODUCTION_OWNER_APPROVAL_PENDING",
+    "D7": "DESCRIPTIVE_PRICING_CONTEXT_NO_PROFITABILITY_CLAIM",
+    "D8": "ILLUSTRATIVE_SENSITIVITY_APPROVAL_PENDING"
+  },
+  "closure_checks": {
+    "D0_governance": "PASS",
+    "D1_score_mart": "PASS_WITH_LIMITATIONS",
+    "D2_governed_bridge": "PASS_WITH_LIMITATIONS",
+    "D3_ead": "PASS_WITH_LIMITATIONS",
+    "D4_main_case_approval": "PENDING",
+    "D5_expected_loss": "ANALYTICAL_ONLY_APPROVAL_PENDING",
+    "D6_owner_policy": "PENDING",
+    "D7_pricing_adequacy": "DESCRIPTIVE_ONLY",
+    "D8_stress": "ILLUSTRATIVE_ONLY",
+    "owner_signoff": "PENDING"
+  },
+  "required_follow_up": [
+    "Record explicit D4 main-case LGD and timing approval",
+    "Record D6 action thresholds and override owner approval",
+    "Record D7 pricing cost/fee assumptions if profitability is required",
+    "Record D8 approved baseline/shock policy",
+    "Then rerun final gate QA and update D9 only after review"
+  ],
+  "evidence_checksums": {
+    "D1": {
+      "file": "D1_RUN_AUDIT.json",
+      "sha256": "7a3bc095d837e5452fb4bb1aee82b13b4c03337f53b4b5acafb750c970d5cd0b"
+    },
+    "D2": {
+      "file": "D2_GOVERNED_CORE_BRIDGE_AUDIT.json",
+      "sha256": "d56c77898a123df2d82654fb526cfbd51dd10249b1d33b990d68d645a365aa1b"
+    },
+    "D4": {
+      "file": "D4_RUN_AUDIT.json",
+      "sha256": "65262b1b48bd01f6d57ed872a40096da593c48091649dbf2a4fcb49ba01bf13a"
+    },
+    "D5": {
+      "file": "D5_RUN_AUDIT.json",
+      "sha256": "3ac0513dbaf064dee185f0f8a0124b5225a8323c918993f565c251d812f2a79d"
+    },
+    "D6": {
+      "file": "D6_RUN_AUDIT.json",
+      "sha256": "92effec95ef32e7b77bee40cc86635e06c972ceb9543a60b68fb22be8ea82ff3"
+    },
+    "D7": {
+      "file": "D7_RUN_AUDIT.json",
+      "sha256": "99bed3e31155c35b6ff68a8746004d392333bad99fbc1ae536ff6dff7b85bfbc"
+    },
+    "D8": {
+      "file": "D8_RUN_AUDIT.json",
+      "sha256": "04fed4a49ddb94ccaafa492b6e6ee5be90805ea752097277a6cf71acfde8ada5"
+    }
+  },
+  "claim_boundary": [
+    "Block D is not locked",
+    "D5/D8 values are analytical scenario outputs only",
+    "no production decision policy",
+    "no pricing profitability result",
+    "no regulatory PD/LGD/EAD/ECL claim"
+  ]
+}

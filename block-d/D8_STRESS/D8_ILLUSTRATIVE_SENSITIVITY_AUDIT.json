@@ -1,0 +1,28 @@
+{
+  "stage": "D8",
+  "run_timestamp_utc": "2026-09-02T06:34:09.560304+00:00",
+  "status": "ILLUSTRATIVE_SENSITIVITY_APPROVAL_PENDING",
+  "executed": true,
+  "numeric_output_claimed": false,
+  "input_files": [
+    "decision_economics_mart.csv",
+    "lgd_scenario_anchors.csv"
+  ],
+  "input_checksums": {
+    "decision_economics_mart.csv": "bb6c688924a93fb8bbfb999e4b9d7a73c0a61d167576a168f5563bdbc5c87938",
+    "lgd_scenario_anchors.csv": "2ccfda7170db83764eeda210b231f86e2b5de8182d63b6e7593c5184e84236ff"
+  },
+  "outputs": [
+    "D8_STRESS_SENSITIVITY_SUMMARY.csv",
+    "D8_STRESS_OVERALL_SUMMARY.csv",
+    "D8_TEST_RESULTS.json",
+    "D8_RUN_AUDIT.json"
+  ],
+  "claim_boundary": [
+    "illustrative sensitivity only",
+    "not a passed D5 baseline",
+    "not realized portfolio loss",
+    "no regulatory ECL/stress claim",
+    "owner approvals pending"
+  ]
+}

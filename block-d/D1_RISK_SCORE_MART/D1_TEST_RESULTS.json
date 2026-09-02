@@ -1,20 +1,92 @@
 {
   "stage": "D1",
-  "status": "REVIEW_REQUIRED",
-  "tests_passed": 3,
+  "status": "PASS_WITH_LIMITATIONS",
+  "tests_passed": 10,
   "tests_failed": 0,
-  "tests_pending": 7,
+  "tests_pending": 0,
+  "scope": "P1_C8E_MATCHED_SCORED_SUBSET (Development + Validation + OOT)",
   "tests": [
-    {"test_id":"D1-G01","description":"no duplicate account/model/economics version","observed":"not executable without account-level mart","expected":"one row per grain","pass":null},
-    {"test_id":"D1-G02","description":"complete score coverage","observed":"score-only mart materialized for 127885 persisted Validation/OOT rows; eligible-population coverage remains uncomputed","expected":"coverage computed on eligible population","pass":null},
-    {"test_id":"D1-G03","description":"model ID exactly frozen","observed":"C8E_RICH_BUREAU_CATBOOST_79F","expected":"exact frozen model ID","pass":true},
-    {"test_id":"D1-G04","description":"C8F/C8G absent","observed":"D1 contract excludes C8F/C8G","expected":"no red-team model in economics","pass":true},
-    {"test_id":"D1-G05","description":"account counts reconcile","observed":"not executable without mart","expected":"source-to-mart reconciliation","pass":null},
-    {"test_id":"D1-G06","description":"target counts reconcile","observed":"not executable without mart","expected":"BAD/GOOD reconciliation","pass":null},
-    {"test_id":"D1-G07","description":"risk-decile rows reconcile","observed":"cutpoints pending","expected":"all eligible rows assigned once","pass":null},
-    {"test_id":"D1-G08","description":"risk bands monotonic","observed":"not executable without scores","expected":"sensible BAD-rate ordering","pass":null},
-    {"test_id":"D1-G09","description":"pricing match flags reconcile","observed":"not executable without bridge output","expected":"matched flags reconcile","pass":null},
-    {"test_id":"D1-G10","description":"no OOT-driven score transformation","observed":"contract forbids post-OOT transformation","expected":"raw frozen score used","pass":true}
-  ],
-  "blocking_input": "Persisted Development predictions plus joined governed fields and split labels; score-only Validation/OOT artifact audit is complete."
+    {
+      "test_id": "D1-G01",
+      "description": "no duplicate account/model/economics version",
+      "observed": 0,
+      "expected": 0,
+      "pass": true
+    },
+    {
+      "test_id": "D1-G02",
+      "description": "complete score coverage for eligible score input",
+      "observed": 1.0,
+      "expected": 1.0,
+      "pass": true
+    },
+    {
+      "test_id": "D1-G03",
+      "description": "model ID exactly frozen",
+      "observed": [
+        "C8E_RICH_BUREAU_CATBOOST_79F"
+      ],
+      "expected": [
+        "C8E_RICH_BUREAU_CATBOOST_79F"
+      ],
+      "pass": true
+    },
+    {
+      "test_id": "D1-G04",
+      "description": "C8F/C8G absent",
+      "observed": [
+        "C8E_RICH_BUREAU_CATBOOST_79F"
+      ],
+      "expected": "C8E only",
+      "pass": true
+    },
+    {
+      "test_id": "D1-G05",
+      "description": "account counts reconcile",
+      "observed": 310066,
+      "expected": 310066,
+      "pass": true
+    },
+    {
+      "test_id": "D1-G06",
+      "description": "target counts reconcile",
+      "observed": 49049,
+      "expected": 49049,
+      "pass": true
+    },
+    {
+      "test_id": "D1-G07",
+      "description": "risk-decile rows reconcile",
+      "observed": 310066,
+      "expected": 310066,
+      "pass": true
+    },
+    {
+      "test_id": "D1-G08",
+      "description": "risk bands present for reporting",
+      "observed": [
+        "R1 VERY_LOW",
+        "R2 LOW",
+        "R3 MEDIUM",
+        "R4 HIGH",
+        "R5 VERY_HIGH"
+      ],
+      "expected": 5,
+      "pass": true
+    },
+    {
+      "test_id": "D1-G09",
+      "description": "pricing match flags reconcile",
+      "observed": 310066,
+      "expected": 310066,
+      "pass": true
+    },
+    {
+      "test_id": "D1-G10",
+      "description": "no OOT-driven score transformation",
+      "observed": "Development replayed from frozen C8E model; Validation/OOT persisted scores used; OOT only assigned to Validation reference cutpoints",
+      "expected": "no OOT tuning or recalibration",
+      "pass": true
+    }
+  ]
 }

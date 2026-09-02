@@ -13,6 +13,9 @@
 
 ## What this means
 
-This is a `SCENARIO_ONLY` fallback, not a finished empirical LGD model. The
+This is a governed-population `SCENARIO_ONLY` analysis, not a finished empirical
+LGD model. The
 governed-core bridge is still pending, so the output cannot be used to claim
-LGD for the C8E matched population or to freeze D5 Expected Loss.
+LGD for the C8E matched population or to freeze D5 Expected Loss. The exact D2
+governed-core bridge passes; explicit main-case LGD/timing approval remains
+required.

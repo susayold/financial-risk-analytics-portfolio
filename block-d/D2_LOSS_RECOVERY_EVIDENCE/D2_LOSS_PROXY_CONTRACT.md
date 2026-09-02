@@ -2,7 +2,7 @@
 
 ## Current status
 
-`REVIEW_REQUIRED_BRIDGE_PENDING`
+`BRIDGE_RECONCILED / PASS_WITH_LIMITATIONS`
 
 The full accepted LendingClub source contains retrospective payment and recovery fields. D2 derives these fields only for retrospective loss evidence:
 
@@ -19,4 +19,7 @@ Anomalies are not silently clipped. Rows are classified as `VALID`, `CLIPPED_FOR
 
 ## Claim boundary
 
-This run is source-level retrospective evidence. The exact bridge to the 1,347,681-row governed core is still pending because the governed-core ID list is not materialized in the D runtime. Until that bridge passes, the output must not be described as an empirical LGD for the C8E population.
+This run is retrospective BAD-only evidence. The exact bridge to the 1,347,681-row
+governed core now passes in `D2_GOVERNED_CORE_BRIDGE_AUDIT.json`: IDs, target
+labels and loan amounts reconcile 100%. The output still must not be described
+as regulatory LGD or score-conditional empirical LGD for C8E.

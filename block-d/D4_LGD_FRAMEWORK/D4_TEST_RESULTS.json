@@ -1,0 +1,76 @@
+{
+  "stage": "D4",
+  "status": "BRIDGE_RECONCILED_APPROVAL_PENDING",
+  "scope": "ACCOUNT_GRAIN_DEDUPLICATED_BAD_EVIDENCE_SCENARIO_ONLY",
+  "tests_passed": 9,
+  "tests_failed": 0,
+  "tests_pending": 2,
+  "row_counts": {
+    "source_rows": 269249,
+    "source_rows_before_exact_dedup": 269249,
+    "exact_duplicate_rows_removed": 0,
+    "usable_lgd_rows": 269249
+  },
+  "tests": [
+    {
+      "test_id": "D4-G01",
+      "description": "input schema present",
+      "pass": true
+    },
+    {
+      "test_id": "D4-G02",
+      "description": "LGD values bounded to [0,1]",
+      "observed": 269249,
+      "pass": true
+    },
+    {
+      "test_id": "D4-G03",
+      "description": "scenario quantile anchors generated",
+      "observed": 4,
+      "pass": true
+    },
+    {
+      "test_id": "D4-G04",
+      "description": "temporal source-level diagnostics generated",
+      "observed": 12,
+      "pass": true
+    },
+    {
+      "test_id": "D4-G05",
+      "description": "2018 truncation guard applied",
+      "observed": "anchors use issue_year <= 2017; 8,846 2018 rows monitor-only",
+      "pass": true
+    },
+    {
+      "test_id": "D4-G06",
+      "description": "no p_bad_final used",
+      "observed": "D4 input contains loss evidence only",
+      "pass": true
+    },
+    {
+      "test_id": "D4-G07",
+      "description": "scenario approval is not implied",
+      "observed": "all anchors REVIEW_REQUIRED_MAIN_CASE_APPROVAL",
+      "pass": true
+    },
+    {
+      "test_id": "D4-G10",
+      "description": "exact duplicate evidence does not overweight anchors",
+      "observed": "removed 0 exact duplicate rows; 0 duplicate account groups; no non-exact duplicates remain",
+      "pass": true
+    },
+    {
+      "test_id": "D4-G08",
+      "description": "governed-core ID bridge",
+      "observed": "D2 exact governed bridge audit passed",
+      "pass": true
+    },
+    {
+      "test_id": "D4-G09",
+      "description": "C8E score-to-loss empirical linkage",
+      "observed": "not materialized",
+      "pass": null
+    }
+  ],
+  "fallback_boundary": "Do not present these anchors as approved main-case LGD or regulatory LGD; bridge reconciliation does not replace owner approval or create score-conditional severity."
+}

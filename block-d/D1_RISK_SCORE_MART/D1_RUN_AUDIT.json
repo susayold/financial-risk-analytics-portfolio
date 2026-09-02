@@ -1,17 +1,62 @@
 {
   "stage": "D1",
-  "run_timestamp_utc": "2026-09-01T00:00:00Z",
-  "status": "REVIEW_REQUIRED",
-  "input_files": ["D0 governance contract", "private C8E Validation and C9 OOT score artifacts on Drive"],
-  "input_checksums": {},
-  "upstream_versions": {"block_a":"LOCKED","block_b":"LOCKED","block_c":"CLOSED_WITH_MONITORING"},
-  "model_versions": {"frozen_risk_model":"C8E_RICH_BUREAU_CATBOOST_79F"},
+  "run_timestamp_utc": "2026-09-02T06:43:27.153110+00:00",
+  "status": "PASS_WITH_LIMITATIONS",
+  "input_files": [
+    "c7_nested_20260902.zip",
+    "c8e_results_20260902.zip",
+    "c9_nested_20260902.zip",
+    "D1_DEVELOPMENT_C8E_SCORE_MART.csv",
+    "train_lending_club.csv",
+    "test_lending_club.csv",
+    "retrospective_loss_proxy_account_grain.csv"
+  ],
+  "input_checksums": {
+    "c7_nested_20260902.zip": "2f2a1b8779e891aead3fe224c0e9d9ff32e5b1a3775406aeb49f084e996be8ce",
+    "c8e_results_20260902.zip": "16ce4ec94d0dc0485f6a95dc2ddea7e5517bf037c9e76c3520b4c210ab5e4f79",
+    "c9_nested_20260902.zip": "e25536bbe9f2a92f4220e43966085cf96ba14c75ec218b4388bfc31fa26a2b3e",
+    "D1_DEVELOPMENT_C8E_SCORE_MART.csv": "dc2ff2c1e2364d6b722a489c38b123e95c26f939fcc2ccca057ee0506b2321cc",
+    "train_lending_club.csv": "8efebed1a9cbaba1edb511f9026732244c2a97497c73a8eb42d1f7864c77d8c1",
+    "test_lending_club.csv": "51dbe82c70c98a53802dfd585182f14842228a13061b29c3ebc21e880139805c",
+    "retrospective_loss_proxy_account_grain.csv": "5d66ae007ec877cf319af52d7217e9b22fe98526e805624fdb5ba46f2c010ef6"
+  },
+  "upstream_versions": {
+    "block_a": "LOCKED",
+    "block_b": "LOCKED",
+    "block_c": "CLOSED_WITH_MONITORING"
+  },
+  "model_versions": {
+    "frozen_risk_model": "C8E_RICH_BUREAU_CATBOOST_79F"
+  },
   "assumption_version": "D0.1",
   "random_seed": 42,
-  "row_counts": {"account_mart":null,"eligible_score_input":127885,"development_score_input":null},
-  "tests_passed": 3,
+  "row_counts": {
+    "modeling_core_excluding_shadow": 1291521,
+    "historical_shadow_monitor_only": 56160,
+    "full_governed_population": 1347681,
+    "score_input": 310066,
+    "d1_mart": 310066
+  },
+  "tests_passed": 10,
   "tests_failed": 0,
-  "tests_pending": 7,
-  "outputs": ["D1_MART_CONTRACT.md","risk_band_contract.json","D1_TEST_RESULTS.json","D1_AVAILABLE_SCORE_ARTIFACT_AUDIT.md","D1_AVAILABLE_SCORE_ARTIFACT_AUDIT.json","D1_AVAILABLE_SCORE_MART.csv"],
-  "claim_boundary": ["score-only Validation/OOT artifact audit is complete","no full account-level D1 metrics claimed until Development score input and governed-core bridge are materialized","pricing and loss evidence remain unassessed"]
+  "tests_pending": 0,
+  "outputs": [
+    "decision_economics_mart.csv",
+    "d1_split_diagnostics.csv",
+    "score_reconciliation.csv",
+    "population_reconciliation.csv",
+    "risk_decile_cutpoints.json",
+    "D1_TEST_RESULTS.json"
+  ],
+  "bridge_rows": {
+    "pricing_source_deduplicated": 331865,
+    "pricing_matched": 310066
+  },
+  "claim_boundary": [
+    "D1 metrics are limited to the scored enriched matched subset",
+    "Historical Shadow is reconciled but excluded from the operational scoring lane",
+    "no full-core C8E performance claim",
+    "pricing fields are bridged as decision context and do not alter the frozen score",
+    "loss evidence is BAD-only and does not create GOOD-row recovery evidence"
+  ]
 }

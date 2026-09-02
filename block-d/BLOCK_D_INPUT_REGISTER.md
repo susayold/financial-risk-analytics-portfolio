@@ -5,11 +5,11 @@
 | C8E frozen model and 79-feature contract | D0/D1 | Available in private C9 closure package | [C9 closure folder](https://drive.google.com/drive/folders/1Z_ORctxmgWkDTMXfw-1SDPMC1IcMg70x) |
 | C8E Validation predictions | D1 | Available; 83,664 rows | Private C8E results package |
 | C9 OOT predictions | D1 | Available; 44,221 rows | Private C9 closure package |
-| Governed Development population | D1 bridge | Referenced by the C8 self-run package, but not currently materialized in D runtime | [C8 self-run package](https://drive.google.com/file/d/1NhAA-gqwjuvzjTcprYft6g4L1g4EpZ57/view?usp=drivesdk) |
-| C8E Development predictions | D1 | No persisted Development score mart has been verified; C8 package is runnable input, not score evidence | Must be materialized and checked |
-| Pricing enrichment bridge | D3/D7 | Not yet available to D runtime | Figshare enrichment, subject to bridge QA |
-| Full accepted source loss/recovery fields | D2/D4 | Source-level full audit complete; exact governed-core ID bridge pending | D2 full-source audit; governed-core bridge must be supplied/materialized |
-| Account-grain LGD scenario anchors | D4 fallback | Generated from 260,486 account-grain BAD rows through issue year 2017 after 1,993 exact duplicates removed; 2018 monitor-only | D4 scenario output; not approved empirical C8E LGD |
+| Governed Development population | D1 bridge | Materialized in C7 cumulative package; 829,347 rows | [C7/C9 private package](https://drive.google.com/drive/folders/1Z_ORctxmgWkDTMXfw-1SDPMC1IcMg70x) |
+| C8E Development predictions | D1 | Replayed from frozen C8E 79-feature model for 182,181 matched Development rows; no refit | D1 development score audit |
+| Pricing enrichment bridge | D1/D3/D7 | 310,066/310,066 scored rows matched required pricing fields | D1 pricing bridge in private D evidence |
+| Full accepted source loss/recovery fields | D2/D4 | Exact governed-core bridge PASS: 1,347,681 IDs, targets and loan amounts reconcile | D2 governed bridge audit |
+| Account-grain LGD scenario anchors | D4 | Generated from 269,249 governed BAD rows; 2018 shadow monitor-only | D4 scenario output; approval still pending |
 
 ## D3 execution evidence
 
