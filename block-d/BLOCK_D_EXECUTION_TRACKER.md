@@ -23,7 +23,7 @@ decisions are not recorded.
 | D6 | CONTROLLED HOLD | Generated 310,066 proposed policy assignments across five reporting bands; no production cutoff or override authority claimed | Drive `D6_policy_pack_20260902.zip` |
 | D7 | CONTROLLED HOLD | Generated 310,066 pricing diagnostics; required bridge fields complete; no cost/fee profitability claim | Drive `D7_pricing_pack_20260902.zip` |
 | D8 | CONTROLLED HOLD | Generated 720 explicit PD/LGD/EAD sensitivity cells by split and band; illustrative only | Drive D8 summary files |
-| D9 | NOT_LOCKED_REVIEW_REQUIRED | Created closure manifest and listed remaining approvals; no false lock | `D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json` |
+| D9 | CONTROLLED HOLD | Created closure manifest and listed remaining approvals; closure remains `NOT_LOCKED_REVIEW_REQUIRED` with no false lock | `D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json`, `D9_CLOSURE/D9_GATE_RESULTS.json` |
 
 ## Population reconciliation
 

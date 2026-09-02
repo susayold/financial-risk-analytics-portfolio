@@ -6,7 +6,7 @@ Updated: 2026-09-02
 
 `D0 PASS` · `D1 PASS_WITH_LIMITATIONS` · `D2 PASS_WITH_LIMITATIONS` · `D3 PASS_WITH_LIMITATIONS` · `D4 BRIDGE_RECONCILED_APPROVAL_PENDING` · `D5–D9 CONTROLLED_HOLD`
 
-Block D is not complete. The governance foundation is implemented and reviewed, but the downstream economics stages must not be fabricated from summary metrics.
+Block D is not locked. The governance foundation and controlled analytical packs are implemented and reviewed; downstream outputs remain non-production until the declared assumptions and owner decisions are approved.
 
 ## Completed
 
@@ -44,7 +44,7 @@ Block D is not complete. The governance foundation is implemented and reviewed, 
 - 331,761 rows have valid non-increasing schedules.
 - 104 schedule anomalies are retained as `EXCLUDED_DATA_ERROR`; their timing scenarios are not used.
 - Origination EAD proxy reconciles exactly to `loan_amnt`.
-- QA: **8/8 gates PASS** within the declared P2 scope.
+- QA: **8/8 gates PASS** within the declared P2 scope. The resulting schedules are contractual scenarios, not approved regulatory EAD.
 
 ### D2 — Loss & Recovery Evidence
 
@@ -73,15 +73,18 @@ Block D is not complete. The governance foundation is implemented and reviewed, 
   the anchors remain scenario assumptions pending explicit main-case approval;
   they are not an empirical C8E LGD model.
 - No `p_bad_final` or C8E score is used; this is not an empirical C8E LGD model.
-- QA: **8 PASS / 0 FAIL / 2 PENDING** in the scenario contract; the two
-  pending items are now approval/empirical-linkage boundaries, not missing ID
-  evidence.
+- QA: **9 PASS / 0 FAIL / 1 PENDING** in the D4 run audit; the remaining
+  pending item is the score-conditional empirical-linkage/main-case approval
+  boundary, not missing ID evidence.
 
 ## Not claimed
 
 - No full-governed-population score coverage is claimed; D1 is limited to the
   310,066-row C8E matched scored subset.
-- No LGD, EAD timing, Expected Loss, decision policy, pricing adequacy or stress result has been calculated.
+- D3 contractual EAD timing scenarios, D5 analytical expected-loss proxy
+  scenarios, D6 proposed policy assignments, D7 descriptive pricing
+  diagnostics and D8 sensitivity cells have been calculated for review scope;
+  none is an approved production or regulatory result.
 - D4 scenario anchors are not approved main-case LGD inputs and must not be combined with `p_bad_final`.
 - No regulatory PD/LGD/EAD/ECL or realized profit/loss claim is made.
 
@@ -96,21 +99,17 @@ and owner thresholds are approved; no downstream production claim is made. See
 ## Blocking inputs
 
 1. Explicit approval of the D4 main-case LGD scenario/timing boundary.
-2. D5 analytical expected-loss proxy execution and formula audit.
-3. Owner decision on D6 action thresholds, D7 pricing assumptions and D8 shock policy.
+2. Acceptance boundary for the D5 analytical expected-loss proxy.
+3. Owner decision on D6 action thresholds and overrides, D7 pricing cost/fee
+   assumptions if profitability is required, and D8 baseline/shock policy.
+4. Data/model/risk owner sign-off before final D9 closure.
 
 The available private C9 closure package contains the frozen model, C9 OOT predictions and C8E Validation predictions, but does not by itself provide all three inputs above.
 
 ## Next valid action
 
-The D1 and D2 evidence bridges are now materialized. Next run the controlled
-D5 scenario output using the D1 mart, governed D4 anchors and declared D3 EAD
-scope; keep approval and production claims closed until owner decisions are
-recorded:
-
-```text
-python src/build_block_d_d1_mart.py --cumulative-c7 <path> --c8e <path> --c9 <path> --output-dir <D-runtime-output>
-```
-
-The current D4 output is scenario-only under the explicit fallback boundary in
-`D4_LGD_SCENARIO_CONTRACT.md`; it is not silently promoted to regulatory LGD.
+Record the D4 main-case decision, confirm the D5 proxy acceptance boundary,
+approve D6 thresholds/overrides and D8 shocks, and supply D7 cost/fee inputs if
+profitability is required. Then obtain owner sign-off and rerun the final D9
+closure gate. Until that happens, the current controlled analytical outputs
+must remain non-production.
