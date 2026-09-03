@@ -1,0 +1,17 @@
+{
+  "checkpoint_commit": "b06ea2d",
+  "artifacts": {
+    "block-e/BLOCK_E_STATUS.md": "26370838cb86e08cb1a18c3418a5fe83e2276bda6793cdca368c65c853ad06a9",
+    "block-e/BLOCK_E_EXECUTION_TRACKER.md": "8819a62126e77b22cba09092ebc03ef8b20f3db94338d2cd6647365beffe9be6",
+    "block-e/BLOCK_E_START_PRECHECK.json": "d990b88d987a7e0bce6e0f487bf7f336ed5645415ff78676f73e1f2f2561d009",
+    "block-e/E0_MONITORING_CONTRACT/E0_TEST_RESULTS.json": "0a8b0d684b724d1ce29967ec4a7fcc62e07e2803f341c2ac9cd23232ed9c6873",
+    "block-e/E1_MONITORING_MART/E1_TEST_RESULTS.json": "036a01f7a59fae662761528c7a2d0fb380ee89b03cef4c0271f25ce8e7ea8f33",
+    "block-e/E2_DATA_QUALITY/E2_TEST_RESULTS.json": "3da3ec4d1b8ca0fc6ef317509f2480e11e128d84bddde2d8b6cab7569614f66b",
+    "block-e/E3_FEATURE_DRIFT/E3_TEST_RESULTS.json": "6b7e53c251bc6202a728dbf8dfcd9ecab8591c735e229711e59b02743c574fc8",
+    "block-e/E3_FEATURE_DRIFT/E3_BLOCKER_REPORT.md": "6185b4abd5129775aa56adc0bcf72e196b3f5f8c5dacacfe030fd31ee06cdef4",
+    "block-e/E3_FEATURE_DRIFT/feature_psi.csv": "cee54701e71e886a6bccdf98b3e8e8779aca8c8fbaeef37c3c0d89ee276dae45",
+    "block-e/E3_FEATURE_DRIFT/feature_jsd.csv": "db3a6a08eea38892d7c228125e79098287b93673accad2f4c477663bd8ac42db",
+    "block-e/E3_FEATURE_DRIFT/feature_missingness_drift.csv": "1ac8ea62623ce8b514e0b13c29f6c4c42414b6cd2447b118e21e6f07d84b3ad7",
+    "block-e/E3_FEATURE_DRIFT/top_feature_drift_summary.csv": "a7dafcd688bef46c3d2297cace5aef9cd7260c79fca07d44cd630ce8694576bc"
+  }
+}

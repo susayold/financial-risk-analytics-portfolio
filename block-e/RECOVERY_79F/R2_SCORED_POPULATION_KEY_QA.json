@@ -1,0 +1,30 @@
+{
+  "stable_key": "account_id",
+  "row_count": 310066,
+  "unique_key_count": 310066,
+  "duplicate_key_count": 0,
+  "null_key_count": 0,
+  "split_counts": {
+    "Development": 182181,
+    "Validation": 83664,
+    "OOT": 44221
+  },
+  "expected_split_counts": {
+    "Development": 182181,
+    "Validation": 83664,
+    "OOT": 44221
+  },
+  "fuzzy_matching_used": false,
+  "public_hashed_key_strategy_defined": true,
+  "gates": {
+    "R2-G01": true,
+    "R2-G02": true,
+    "R2-G03": true,
+    "R2-G04": true,
+    "R2-G05": true,
+    "R2-G06": true
+  },
+  "status": "PASS",
+  "private_artifact": "outputs/block_e/private/C8E_SCORED_POPULATION_KEY.parquet",
+  "private_artifact_sha256": "a7015653a48d77a71c7a3631f37067ec2d5d868268d8b6e4018074f1fe501e87"
+}

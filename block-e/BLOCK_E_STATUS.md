@@ -29,6 +29,18 @@ Block D is released and frozen for portfolio-project review:
 | E3 — feature drift | **FAIL 7/8** | E3-G04 failed: only 9/79 features have row-level values |
 | E4–E9 | NOT RUN | plan requires stop at the first real gate failure |
 
+## 79F remediation execution
+
+| Recovery stage | Result | Evidence |
+|---|---:|---|
+| R0 — freeze b06ea2d checkpoint | PASS 5/5 | checkpoint and SHA-256 manifest |
+| R1 — exhaustive source/artifact inventory | PASS 6/6 | no exact 79F matrix found |
+| R2 — canonical scored population key | PASS 6/6 | 310,066 unique keys; private Drive artifact |
+| R3 — recovery/rebuild decision | PASS | deterministic rebuild required |
+| R4B — reconstruction specification | **BLOCKED** | frozen rules for all 79 features unavailable |
+
+R4B is the current remediation stop. R5–R10 and E4–E9 remain unexecuted until a complete historical 79F matrix or fully frozen deterministic feature-engineering implementation is supplied.
+
 ## Actual blocker
 
 The frozen C8E contract contains 79 model features, but the available D1 decision-economics mart exposes row-level values for only 9 of them. The remaining 70 are explicitly marked `NOT_AVAILABLE_SOURCE_FEATURE_VALUES`; no PSI, JSD or missingness number is fabricated for those fields. The two mandatory watch features are retained in the contract, but `installment_to_loan` is not present at row grain in D1.

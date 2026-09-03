@@ -1,0 +1,23 @@
+{
+  "stage": "R1",
+  "status": "PASS",
+  "tests_passed": 6,
+  "tests_failed": 0,
+  "gates": {
+    "R1-G01": "PASS",
+    "R1-G02": "PASS",
+    "R1-G03": "PASS",
+    "R1-G04": "PASS",
+    "R1-G05": "PASS",
+    "R1-G06": "PASS"
+  },
+  "search_scopes": [
+    "GitHub repository",
+    "Drive C9 closure folder",
+    "local/private outputs",
+    "C8/C9 scoring code and audits"
+  ],
+  "exact_matrix_candidate_found": false,
+  "feature_order_extracted": true,
+  "source_finding": "No exact 79F row-level model-input matrix was found in searched governed locations."
+}

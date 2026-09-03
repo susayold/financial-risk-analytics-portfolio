@@ -1,0 +1,21 @@
+{
+  "checkpoint_commit": "b06ea2d",
+  "block_e_status": "STOPPED_AT_E3_G04_REAL_GATE_FAILURE",
+  "e0": "12/12 PASS",
+  "e1": "10/10 PASS",
+  "e2": "8/8 PASS",
+  "e3": "7/8",
+  "feature_contract_count": 79,
+  "feature_value_available_count": 9,
+  "feature_value_missing_count": 70,
+  "e4_e9_executed": false,
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false,
+  "r0_gates": {
+    "R0-G01": "PASS",
+    "R0-G02": "PASS",
+    "R0-G03": "PASS",
+    "R0-G04": "PASS",
+    "R0-G05": "PASS"
+  }
+}

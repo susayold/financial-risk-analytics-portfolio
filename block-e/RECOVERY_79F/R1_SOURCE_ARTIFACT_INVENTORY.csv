@@ -1,0 +1,11 @@
+artifact_id,artifact_name,location,artifact_type,private_or_public,exists,row_level,contains_account_key,contains_feature_values,feature_count,feature_names_available,split_coverage,candidate_priority,notes
+R1-01,C8E frozen CatBoost model,Drive C9 closure folder,model binary,private,True,False,False,False,79,True,Development/Validation/OOT metadata only,P1,Model exists but does not contain row-level input values
+R1-02,13_frozen_c8e_feature_contract_79f.csv,Drive C9 closure folder,feature contract,private,True,False,False,False,79,True,all contract names,P2,Names/order contract only; no account-level values
+R1-03,09_feature_importance.csv,Drive C9 closure folder,importance registry,private,True,False,False,False,79,True,all contract names,P4,Prioritization only; cannot reconstruct features
+R1-04,12_oot_2017_predictions.parquet,Drive C9 closure folder,prediction output,private,True,True,True,False,0,False,OOT 2017,P4,"Scores/outcomes, not model-input matrix"
+R1-05,CRD_PI_C9_BLOCK_C_CLOSURE_RESULTS.zip,Drive C9 closure folder,closure package,private,True,True,True,False,0,True,C9 artifacts,P4,Listed contents do not expose a 79F row-level matrix
+R1-06,D1 decision_economics_mart.csv,private runtime outputs/block_d,decision mart,private,True,True,True,True,9,False,Development/Validation/OOT,P4,310066 rows; only 9 frozen feature columns available
+R1-07,materialize_block_d_d1_development_scores.py,GitHub repository,scoring code,public,True,False,False,False,79,True,Development replay,P3,Consumes model-ready input; does not define all feature transformations
+R1-08,D1_INPUT_AVAILABILITY_AUDIT.md,GitHub repository,availability audit,public,True,False,False,False,0,False,Validation/OOT and replay evidence,P4,Explicitly records missing full input artifacts
+R1-09,evidence/feature-contract.md,GitHub repository,Block A whitelist,public,True,False,False,False,8,True,champion whitelist,P4,Not the C8E 79F model-input contract
+R1-10,monitoring_account_mart.parquet,Drive Block E private evidence folder,monitoring mart,private,True,True,True,True,9,False,E1 310066 rows,P4,Private mart has 9 values; not a 79F snapshot

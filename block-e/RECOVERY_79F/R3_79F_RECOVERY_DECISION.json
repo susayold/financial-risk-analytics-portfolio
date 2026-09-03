@@ -1,0 +1,9 @@
+{
+  "decision": "DETERMINISTIC_REBUILD_REQUIRED",
+  "exact_matrix_found": false,
+  "candidate_inventory": "R1_SOURCE_ARTIFACT_INVENTORY.csv",
+  "available_row_level_feature_count": 9,
+  "missing_row_level_feature_count": 70,
+  "rebuild_track": "R4B",
+  "next_gate": "R4B_FEATURE_RECONSTRUCTION_SPEC"
+}

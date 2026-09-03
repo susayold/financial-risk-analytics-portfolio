@@ -37,11 +37,13 @@ This file only indexes links. The Drive root is the single storage location; Git
 
 - Status: **`STOPPED_AT_E3_G04_REAL_GATE_FAILURE`**; E0 `12/12 PASS`, E1 `10/10 PASS`, E2 `8/8 PASS`, E3 `7/8`.
 - E3 blocker: the frozen 79-feature contract has row-level values for only 9 features in the available D1 mart; 70 remain unavailable and are not fabricated.
-- E4–E9 were not run because the plan requires stopping at the first real gate failure. No `block-e-v1.0-final` tag exists.
+- R0–R3 remediation passed; R4B is blocked because no exact 79F matrix or complete frozen reconstruction logic was found. E4–E9 were not run because the plan requires stopping at the first unresolved 79F evidence gate. No `block-e-v1.0-final` tag exists.
+- [Block E 79F recovery evidence](https://github.com/susayold/financial-risk-analytics-portfolio/tree/main/block-e/RECOVERY_79F)
 - [Block E status](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/BLOCK_E_STATUS.md)
 - [Block E execution tracker](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/BLOCK_E_EXECUTION_TRACKER.md)
 - [E3 blocker report](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/E3_FEATURE_DRIFT/E3_BLOCKER_REPORT.md)
 - [Block E private monitoring mart on Drive](https://drive.google.com/file/d/1XS6TfIi7pPzDHQFjxfC1MS_IX1VIvCpD/view?usp=drivesdk)
+- [Block E canonical scored population key on private Drive](https://drive.google.com/file/d/1rczaozIFNWb-7VrYzhGimKgY9o6MBRX1/view?usp=drivesdk)
 
 ### Block D Drive checkpoint artifacts
 
