@@ -2,9 +2,9 @@
   "run_name": "block_d_full_review_qa",
   "run_date": "2026-09-03",
   "scope": "final portfolio closure; no production or regulatory claim",
-  "status": "PASS",
-  "checks_passed": 36,
-  "checks_failed": 0,
+  "status": "FAIL",
+  "checks_passed": 35,
+  "checks_failed": 2,
   "checks": [
     {
       "check_id": "D0-G01",
@@ -51,7 +51,7 @@
     {
       "check_id": "D4-G02",
       "pass": true,
-      "observed": "REJECT_ML_CHALLENGER_KEEP_SCENARIO_LGD",
+      "observed": "REJECT_ALL_EMPIRICAL_ML_CHALLENGERS_KEEP_SCENARIO_LGD",
       "expected": "declared challenger decision",
       "evidence": "D4_EMPIRICAL_LGD_DECISION.json"
     },
@@ -62,10 +62,7 @@
         10,
         0
       ],
-      "expected": [
-        10,
-        0
-      ],
+      "expected": "at least 10 D4 gates and 0 failures",
       "evidence": "D4_FINAL_TEST_RESULTS.json"
     },
     {
@@ -170,13 +167,10 @@
       "check_id": "D8-G03",
       "pass": true,
       "observed": [
-        12,
+        14,
         0
       ],
-      "expected": [
-        12,
-        0
-      ],
+      "expected": "at least 14 D8 remediation gates and 0 failures",
       "evidence": "D8_FINAL_TEST_RESULTS.json"
     },
     {
@@ -188,8 +182,8 @@
     },
     {
       "check_id": "S7-G02",
-      "pass": true,
-      "observed": "PORTFOLIO_VALID",
+      "pass": false,
+      "observed": "INVALID",
       "expected": "PORTFOLIO_VALID",
       "evidence": "D9_APPROVAL_VALIDATION.json"
     },
@@ -324,6 +318,16 @@
       "observed": 0,
       "expected": 0,
       "evidence": "D9_FINAL_CHECKSUM_VALIDATION.json"
+    },
+    {
+      "check_id": "R8-SEMANTIC",
+      "pass": false,
+      "observed": [
+        7,
+        1
+      ],
+      "expected": "N/N semantic checks and 0 failures",
+      "evidence": "BLOCK_D_SEMANTIC_QA.json"
     }
   ],
   "overall_block_status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",

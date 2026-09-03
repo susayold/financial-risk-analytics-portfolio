@@ -12,15 +12,28 @@
     "<=2015->2016",
     "<=2016->2017"
   ],
+  "completed_folds": [
+    "<= 2014 -> 2015",
+    "<= 2015 -> 2016",
+    "<= 2016 -> 2017"
+  ],
   "skipped_folds": [
-    "<= 2013 -> 2014",
-    "<= 2013 -> 2014",
-    "<= 2013 -> 2014",
-    "<= 2013 -> 2014",
     "<= 2013 -> 2014"
   ],
+  "skipped_model_fold_rows": 6,
+  "skip_reasons": {
+    "<= 2013 -> 2014": "INADEQUATE_TRAINING_SAMPLE"
+  },
+  "model_coverage": [
+    "B0_GLOBAL_MEAN",
+    "B1_EXPOSURE_WEIGHTED_MEAN",
+    "B2_RISK_DECILE_TERM_BASELINE",
+    "CATBOOST_REGRESSOR",
+    "HUBER_REGRESSOR",
+    "TWEEDIE_REGRESSOR"
+  ],
   "seed": 42,
-  "model_decision": "REJECT_ML_CHALLENGER_KEEP_SCENARIO_LGD",
+  "model_decision": "REJECT_ALL_EMPIRICAL_ML_CHALLENGERS_KEEP_SCENARIO_LGD",
   "claim_boundary": [
     "analytical portfolio LGD only",
     "retrospective BAD evidence target",

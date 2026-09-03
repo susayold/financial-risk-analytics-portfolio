@@ -3,16 +3,28 @@
   "status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
   "governance_mode": "PORTFOLIO_PROJECT_REVIEW",
   "portfolio_closure_status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
-  "run_timestamp_utc": "2026-09-03T00:22:48.863991+00:00",
+  "run_timestamp_utc": "2026-09-03T02:39:00.736606+00:00",
   "execution_coverage_pct": 100.0,
   "portfolio_requirement_resolution_pct": 100.0,
   "technical_qa": "N/N PASS",
   "production_authorized": false,
   "regulatory_compliance_claimed": false,
   "evidence_checksums": {
+    "PRE_MICRO_REMEDIATION_MANIFEST.json": {
+      "sha256": "b6c1775c1c90ac1592f39c726da1713f2c58c305e479795915b7263eaeca2507",
+      "bytes": 2886
+    },
     "../D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_DECISION.json": {
-      "sha256": "4622d416e5877d42c5075b260aab653213403ee8add387cedb6b93beddac7e3c",
-      "bytes": 794
+      "sha256": "789680321eccdfc5bc55d5c327ee9b8f8e15d20f263fa15324a9a4b7e0fa202e",
+      "bytes": 1051
+    },
+    "../D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_MODEL_COMPARISON.csv": {
+      "sha256": "8c24d87c370f2d286949ad972662d2ef53dd3a117616046704ac7d22a39a6e03",
+      "bytes": 833
+    },
+    "../D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_FOLD_METRICS.csv": {
+      "sha256": "eee2661f5b3b204d6410c5a4d1ba76e14fa85e407b9d14dec6959e1da7b78086",
+      "bytes": 3691
     },
     "../D4_TIMING_DECISION.json": {
       "sha256": "c11f03581147c274590672eb57934fc5af9a55406b22755357be71975bfd75aa",
@@ -23,8 +35,20 @@
       "bytes": 585
     },
     "../D5_EXPECTED_LOSS/D5_EL_RECONCILIATION.json": {
-      "sha256": "529ebd6e3546d47b2ab8c02cb4ff509f74a92caefe387f9dbf601d9d2c08d8e9",
-      "bytes": 1958
+      "sha256": "a586099a82dcd686b704c43ed54f672662910a258fe122c695f92677990480e3",
+      "bytes": 2107
+    },
+    "../D5_EXPECTED_LOSS/D5_SEGMENT_EL_SUMMARY.csv": {
+      "sha256": "7f77e4623839dab49680a1406413af667f434ca6f3ed0c35732a1489cdda9938",
+      "bytes": 4827
+    },
+    "../D5_EXPECTED_LOSS/D5_RISK_DECILE_EL.csv": {
+      "sha256": "9eb8591d04aca4150601e427c4b7acaed94aece7851c661ce6fdc500c27544a2",
+      "bytes": 1109
+    },
+    "../D5_EXPECTED_LOSS/D5_SEGMENT_RATE_VALIDATION.json": {
+      "sha256": "dceb48a4caadd0d6675af1a14ba0e3072eed2063d27bacdbc0da1fdb4a803cf7",
+      "bytes": 2628
     },
     "../D6_DECISION_POLICY/D6_POLICY_DECISION.json": {
       "sha256": "97ad8b67ac41367a4b01fc4576fa312f861c94e4b0bb9fb38c6b6c27c6a1a713",
@@ -34,21 +58,49 @@
       "sha256": "1d45a0cdaa591af2d01cad9e70d2325c30700df046a66fc377993165d455bde8",
       "bytes": 675
     },
+    "../D8_STRESS/D8_FINAL_SCENARIO_REGISTER.csv": {
+      "sha256": "8e6b0b7b213c798652af60662e544d2846dfc91994c0275dc4328066b2587ff5",
+      "bytes": 1127
+    },
+    "../D8_STRESS/D8_FINAL_STRESS_RESULTS.csv": {
+      "sha256": "76b666066b5d3401473628faaa1930bb673679fe52997f6e2456b6b973bef470",
+      "bytes": 1058
+    },
     "../D8_STRESS/D8_REVERSE_STRESS_RESULTS.csv": {
-      "sha256": "581d55b536be10f96282c9a4ce4f44082a4c0dc7f88ac57db5c2be7db0c68e83",
-      "bytes": 588
+      "sha256": "5950e723df701a4da5fec883c5496083867cdf7d050b01362f49da922f9912c3",
+      "bytes": 631
+    },
+    "../D8_STRESS/D8_EAD_TIMING_SENSITIVITY.csv": {
+      "sha256": "a3823b1df889033722c051135891d5f9f679e4de4f58f4486dc6bdcaf70a0e56",
+      "bytes": 1354
+    },
+    "D9_PORTFOLIO_PROJECT_OWNER_DECISIONS.json": {
+      "sha256": "0e498da342cdee7f4930ee15f67ae33947a6aa60972497000577c38799cb24cb",
+      "bytes": 3917
     },
     "D9_FINAL_BLOCK_D_DECISION.json": {
-      "sha256": "d006612429922ccad3515e3cf035148e06004fdf4329292395bc3e9ac5b02499",
-      "bytes": 1617
+      "sha256": "89e5d67801bfba1d7ba2620d942a70144b2215cb60e8fc57512cf49d7488cbc0",
+      "bytes": 1975
     },
     "D9_FINAL_TEST_RESULTS.json": {
       "sha256": "5d71f3f01d7f046adca1922e8481ce8edde8f2c55266f2d242858a8e17ab4d90",
       "bytes": 312
     },
+    "../BLOCK_D_FULL_REVIEW_QA.json": {
+      "sha256": "3285fad82a1366a77e84251d54f461c8165ef40e0be1eb0cb4da21b4b47632f0",
+      "bytes": 8268
+    },
+    "../BLOCK_D_SEMANTIC_QA.json": {
+      "sha256": "0689533785e20658563209c3380611e1ec60fd3f54f698b254bf0f10c6accedd",
+      "bytes": 3577
+    },
+    "../BLOCK_D_VALIDATION_REPORT.md": {
+      "sha256": "18b32f57ff24efc04878c49573fbe41acdc981bb035ae3761ebdd99d913dda2d",
+      "bytes": 2078
+    },
     "../BLOCK_D_FINAL_SCORECARD.json": {
-      "sha256": "d25a7446fa98343a368be49f34830b6f513fbe779e1917b884e72a7bc31a1853",
-      "bytes": 2474
+      "sha256": "33e95b8442f320e56b57492496aa61c90fc46b7df83c78c316892e6fca4a0f2e",
+      "bytes": 2583
     }
   },
   "missing_required_entries": [],

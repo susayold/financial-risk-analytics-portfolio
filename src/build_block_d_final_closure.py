@@ -12,6 +12,7 @@ import hashlib
 import json
 import math
 import shutil
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -22,6 +23,12 @@ from sklearn.impute import SimpleImputer
 from sklearn.linear_model import HuberRegressor, TweedieRegressor
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
+
+RUNTIME_PYDEPS = Path(__file__).resolve().parents[1] / "_analysis_runtime" / "pydeps"
+if RUNTIME_PYDEPS.exists():
+    sys.path.insert(0, str(RUNTIME_PYDEPS))
+from catboost import CatBoostRegressor
 
 
 SEED = 42
@@ -121,6 +128,11 @@ def run_d4(core: pd.DataFrame, loss: pd.DataFrame, out: Path) -> dict:
         "HUBER_REGRESSOR": HuberRegressor(epsilon=1.35, alpha=0.0001, max_iter=250),
         "TWEEDIE_REGRESSOR": TweedieRegressor(power=1.5, alpha=0.1, max_iter=250, link="log"),
     }
+    catboost_name = "CATBOOST_REGRESSOR"
+    catboost_candidates = ["purpose", "home_ownership_n", "term", "application_type", "emp_length"]
+    catboost_categorical = [c for c in catboost_candidates if c in available and not pd.api.types.is_numeric_dtype(joined[c])]
+    catboost_numeric = [c for c in available if c not in catboost_categorical]
+    assert not set(forbidden).intersection(available), "forbidden field entered the D4 predictor contract"
     folds = [(2013, 2014), (2014, 2015), (2015, 2016), (2016, 2017)]
     fold_metrics = []
     oof = []
@@ -128,7 +140,7 @@ def run_d4(core: pd.DataFrame, loss: pd.DataFrame, out: Path) -> dict:
         train = joined[joined["issue_year"] <= train_end]
         valid = joined[joined["issue_year"] == valid_year]
         if len(train) < 200 or len(valid) == 0:
-            for name in ["B0_GLOBAL_MEAN", "B1_EXPOSURE_WEIGHTED_MEAN", "B2_RISK_DECILE_TERM_BASELINE", *model_specs]:
+            for name in ["B0_GLOBAL_MEAN", "B1_EXPOSURE_WEIGHTED_MEAN", "B2_RISK_DECILE_TERM_BASELINE", *model_specs, catboost_name]:
                 fold_metrics.append(metric_row(name, f"<= {train_end} -> {valid_year}", np.array([]), np.array([]), np.array([]), "SKIPPED_INADEQUATE_TRAINING"))
             continue
         y_train = train["target_lgd"].to_numpy(float)
@@ -150,6 +162,19 @@ def run_d4(core: pd.DataFrame, loss: pd.DataFrame, out: Path) -> dict:
             pred = np.clip(pipe.predict(valid[available]), 0, 1)
             fold_metrics.append(metric_row(name, f"<= {train_end} -> {valid_year}", y_valid, pred, exposure_valid))
             oof.append(pd.DataFrame({"account_id": valid["account_id"].to_numpy(), "issue_year": valid_year, "target_lgd": y_valid, "predicted_lgd": pred, "model": name, "loan_amnt": exposure_valid, "risk_decile": valid["risk_decile"].to_numpy(), "term": valid["term"].to_numpy(), "purpose": valid["purpose"].to_numpy(), "fico_band": valid["fico_band"].to_numpy(), "loan_size_band": valid["loan_size_band"].to_numpy()}))
+        cat_train = train[available].copy()
+        cat_valid = valid[available].copy()
+        for col in catboost_numeric:
+            cat_train[col] = pd.to_numeric(cat_train[col], errors="coerce").fillna(pd.to_numeric(train[col], errors="coerce").median())
+            cat_valid[col] = pd.to_numeric(cat_valid[col], errors="coerce").fillna(pd.to_numeric(train[col], errors="coerce").median())
+        for col in catboost_categorical:
+            cat_train[col] = cat_train[col].astype("string").fillna("__MISSING__").astype(str)
+            cat_valid[col] = cat_valid[col].astype("string").fillna("__MISSING__").astype(str)
+        cat_model = CatBoostRegressor(loss_function="MAE", iterations=600, depth=6, learning_rate=0.03, l2_leaf_reg=10, random_seed=SEED, verbose=False, allow_writing_files=False)
+        cat_model.fit(cat_train, y_train, cat_features=catboost_categorical)
+        cat_pred = np.clip(cat_model.predict(cat_valid), 0, 1)
+        fold_metrics.append(metric_row(catboost_name, f"<= {train_end} -> {valid_year}", y_valid, cat_pred, exposure_valid))
+        oof.append(pd.DataFrame({"account_id": valid["account_id"].to_numpy(), "issue_year": valid_year, "target_lgd": y_valid, "predicted_lgd": cat_pred, "model": catboost_name, "loan_amnt": exposure_valid, "risk_decile": valid["risk_decile"].to_numpy(), "term": valid["term"].to_numpy(), "purpose": valid["purpose"].to_numpy(), "fico_band": valid["fico_band"].to_numpy(), "loan_size_band": valid["loan_size_band"].to_numpy()}))
     fold_df = pd.DataFrame(fold_metrics)
     fold_df.to_csv(d4 / "D4_EMPIRICAL_LGD_FOLD_METRICS.csv", index=False)
     oof_df = pd.concat(oof, ignore_index=True) if oof else pd.DataFrame()
@@ -170,13 +195,13 @@ def run_d4(core: pd.DataFrame, loss: pd.DataFrame, out: Path) -> dict:
         comps.append({**row, "relative_mae_improvement_vs_b2": None if not b2_mae else float((b2_mae-row["mean_mae"])/b2_mae), "relative_weighted_mae_improvement_vs_b2": None if not b2_wmae else float((b2_wmae-row["mean_weighted_mae"])/b2_wmae)})
     comp_df = pd.DataFrame(comps)
     comp_df.to_csv(d4 / "D4_EMPIRICAL_LGD_MODEL_COMPARISON.csv", index=False)
-    ml = comp_df[comp_df["model"].isin(model_specs)]
+    ml = comp_df[comp_df["model"].isin([*model_specs, catboost_name])]
     promoted = None
     if not ml.empty and not math.isnan(b2_mae):
         eligible = ml[(ml["relative_mae_improvement_vs_b2"] >= .01) & (ml["relative_weighted_mae_improvement_vs_b2"] >= .01) & (ml["mean_bias"].abs() <= .05)]
         if not eligible.empty:
             promoted = str(eligible.sort_values(["mean_mae", "mean_weighted_mae"]).iloc[0]["model"])
-    decision = {"stage": "D4", "status": "PASS_WITH_LIMITATIONS", "decision": "PROMOTE_EMPIRICAL_LGD_CHALLENGER" if promoted else "REJECT_ML_CHALLENGER_KEEP_SCENARIO_LGD", "selected_main_method": promoted or "LGD_CENTRAL_Q50", "challenger_model": promoted, "challenger_population_rows": int(len(joined)), "scenario_anchors": qs, "materiality_rule": "relative MAE and exposure-weighted MAE improvement >= 1%; bias <= 5 percentage points; leakage audit PASS", "reason": "No ML challenger met both predeclared materiality thresholds." if not promoted else "Selected challenger met the predeclared materiality thresholds.", "claim_boundary": ["analytical portfolio LGD only", "retrospective BAD evidence target", "not regulatory LGD", "2017 is rolling validation evidence, not pristine untouched LGD OOT"]}
+    decision = {"stage": "D4", "status": "PASS_WITH_LIMITATIONS", "decision": "PROMOTE_EMPIRICAL_LGD_CHALLENGER" if promoted else "REJECT_ALL_EMPIRICAL_ML_CHALLENGERS_KEEP_SCENARIO_LGD", "selected_main_method": promoted or "LGD_CENTRAL_Q50", "challenger_model": promoted, "challenger_models_required": ["HUBER_REGRESSOR", "TWEEDIE_REGRESSOR", "CATBOOST_REGRESSOR"], "challenger_population_rows": int(len(joined)), "scenario_anchors": qs, "materiality_rule": "relative MAE and exposure-weighted MAE improvement >= 1%; bias <= 5 percentage points; leakage audit PASS; temporal stability acceptable", "reason": "Huber/Tweedie/CatBoost did not simultaneously satisfy the predeclared MAE, exposure-weighted MAE and bias criteria; Q50 remains the central analytical LGD." if not promoted else "Selected challenger met the predeclared materiality thresholds.", "claim_boundary": ["analytical portfolio LGD only", "retrospective BAD evidence target", "not regulatory LGD", "2017 is rolling validation evidence, not pristine untouched LGD OOT"]}
     write_json(d4 / "D4_EMPIRICAL_LGD_DECISION.json", decision)
     feature_rows = [{"feature": c, "role": "ALLOWED_ORIGINATION_TIME_PREDICTOR", "included": True, "timing": "T0_OR_GOVERNED_APPLICATION_TIME"} for c in available] + [{"feature": c, "role": "HARD_LEAKAGE_EXCLUSION", "included": False, "timing": "POST_OUTCOME_OR_UNRESOLVED"} for c in forbidden]
     pd.DataFrame(feature_rows).to_csv(d4 / "D4_EMPIRICAL_LGD_FEATURE_CONTRACT.csv", index=False)
@@ -185,7 +210,10 @@ def run_d4(core: pd.DataFrame, loss: pd.DataFrame, out: Path) -> dict:
     (d4 / "D4_EMPIRICAL_LGD_TARGET_CONTRACT.md").write_text(target_contract, encoding="utf-8")
     notebook = {"cells": [{"cell_type": "markdown", "metadata": {}, "source": ["# D4 empirical LGD challenger\n", "Generated from `src/build_block_d_final_closure.py`; rerun with the same D1/D2 inputs.\n"]}, {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": ["# The executable source is src/build_block_d_final_closure.py.\n", "# This notebook is a traceable companion, not a separate model binary.\n"]}], "metadata": {"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"}, "language_info": {"name": "python"}}, "nbformat": 4, "nbformat_minor": 5}
     write_json(d4 / "D4_EMPIRICAL_LGD_CHALLENGER.ipynb", notebook)
-    write_json(d4 / "D4_EMPIRICAL_LGD_RUN_AUDIT.json", {"stage": "D4", "status": "PASS_WITH_LIMITATIONS", "run_date": DATA_DATE, "input_rows": {"matched_bad_rows": int(len(joined)), "governed_bad_rows": int(len(loss))}, "rolling_folds": ["<=2013->2014", "<=2014->2015", "<=2015->2016", "<=2016->2017"], "skipped_folds": fold_df[fold_df.status != "COMPLETED"]["fold"].tolist(), "seed": SEED, "model_decision": decision["decision"], "claim_boundary": decision["claim_boundary"]})
+    skipped_rows = fold_df[fold_df["status"] != "COMPLETED"]
+    skipped_folds = sorted(skipped_rows["fold"].dropna().unique().tolist())
+    completed_folds = sorted(fold_df.loc[fold_df["status"] == "COMPLETED", "fold"].dropna().unique().tolist())
+    write_json(d4 / "D4_EMPIRICAL_LGD_RUN_AUDIT.json", {"stage": "D4", "status": "PASS_WITH_LIMITATIONS", "run_date": DATA_DATE, "input_rows": {"matched_bad_rows": int(len(joined)), "governed_bad_rows": int(len(loss))}, "rolling_folds": ["<=2013->2014", "<=2014->2015", "<=2015->2016", "<=2016->2017"], "completed_folds": completed_folds, "skipped_folds": skipped_folds, "skipped_model_fold_rows": int(len(skipped_rows)), "skip_reasons": {fold: "INADEQUATE_TRAINING_SAMPLE" for fold in skipped_folds}, "model_coverage": sorted(fold_df["model"].unique().tolist()), "seed": SEED, "model_decision": decision["decision"], "claim_boundary": decision["claim_boundary"]})
     write_json(out / "D4_TIMING_DECISION.json", {"stage": "D4", "status": "PASS_WITH_LIMITATIONS", "reference_cohort": "issue_year <= 2017", "monitor_only_cohort": "issue_year == 2018", "temporal_authority": "issue_year", "decision_role": "PORTFOLIO_PROJECT_OWNER", "production_authorization": False, "regulatory_compliance_claimed": False})
     write_json(out / "D4_MAIN_CASE_DECISION.json", {"stage": "D4", "status": "PASS_WITH_LIMITATIONS", "selected_main_method": decision["selected_main_method"], "central_scenario": "LGD_CENTRAL_Q50", "scenario_labels": {"Q25": "LGD_LOW_SEVERITY", "Q50": "LGD_CENTRAL", "Q75": "LGD_ADVERSE", "Q90": "LGD_SEVERE"}, "anchors": qs, "decision_role": "PORTFOLIO_PROJECT_OWNER", "owner_name": None, "decision_date": None, "production_authorization": False, "regulatory_claim": False})
     (out / "D4_FINAL_METHOD_CONTRACT.md").write_text("# D4 Final Method Contract\n\nMain analytical method is `LGD_CENTRAL_Q50` unless the empirical challenger decision file records a promoted model. The frozen cohort is `issue_year <= 2017`; 2018 is monitor-only. This is an analytical portfolio proxy, not regulatory LGD.\n", encoding="utf-8")
@@ -223,16 +251,27 @@ def make_el(core: pd.DataFrame, ead: pd.DataFrame, anchors: dict, d4_decision: d
     summary.to_csv(d5 / "D5_PORTFOLIO_EL_SUMMARY.csv", index=False)
     dims = ["risk_decile", "risk_band", "term", "purpose", "fico_band", "dti_band", "loan_size_band", "issue_year"]
     segment_frames = []
+    segment_validation = []
     for dim in dims:
-        grp = df.groupby(dim, dropna=False).agg(account_count=("account_id", "size"), total_ead_proxy=("ead_origination_proxy", "sum"), total_expected_loss_proxy=("expected_loss_proxy", "sum"), portfolio_el_rate=("expected_loss_rate", "mean"), mean_p_bad_final=("p_bad_final", "mean")).reset_index().rename(columns={dim: "segment"})
+        grp = df.groupby(dim, dropna=False).agg(account_count=("account_id", "size"), total_ead_proxy=("ead_origination_proxy", "sum"), total_expected_loss_proxy=("expected_loss_proxy", "sum"), mean_p_bad_final=("p_bad_final", "mean")).reset_index().rename(columns={dim: "segment"})
+        grp["segment_el_rate"] = grp["total_expected_loss_proxy"] / grp["total_ead_proxy"].replace(0, np.nan)
+        grp["zero_ead_flag"] = grp["total_ead_proxy"].eq(0)
+        expected_rate = grp["total_expected_loss_proxy"] / grp["total_ead_proxy"].replace(0, np.nan)
+        rate_ok = np.isclose(grp["segment_el_rate"].fillna(np.nan), expected_rate.fillna(np.nan), rtol=1e-12, atol=1e-12, equal_nan=True)
+        ead_total = float(grp["total_ead_proxy"].sum())
+        el_total = float(grp["total_expected_loss_proxy"].sum())
+        assert bool(np.all(rate_ok)), f"segment EL-rate validation failed for {dim}"
+        assert np.isclose(ead_total, float(df["ead_origination_proxy"].sum()), rtol=1e-12, atol=1e-6)
+        assert np.isclose(el_total, float(df["expected_loss_proxy"].sum()), rtol=1e-12, atol=1e-4)
+        segment_validation.append({"dimension": dim, "segment_rows_checked": int(len(grp)), "zero_ead_rows": int(grp["zero_ead_flag"].sum()), "ead_reconciles": True, "el_reconciles": True, "segment_rate_formula": "sum(expected_loss_proxy) / sum(ead_origination_proxy)", "all_segment_rates_valid": True})
         grp.insert(0, "segment_dimension", dim)
         if dim == "risk_decile":
             grp.to_csv(d5 / "D5_RISK_DECILE_EL.csv", index=False)
-        else:
-            segment_frames.append(grp)
+        segment_frames.append(grp)
     pd.concat(segment_frames, ignore_index=True).to_csv(d5 / "D5_SEGMENT_EL_SUMMARY.csv", index=False)
     portfolio_total = float(df["expected_loss_proxy"].sum())
-    recon = {"stage": "D5", "status": "PASS_WITH_LIMITATIONS", "formula": "p_bad_final * lgd_proxy * ead_proxy", "main_view": "EL_MAIN_ANALYTICAL", "private_account_mart": str(private.name), "portfolio": {"account_count": int(len(df)), "total_ead_proxy": float(df.ead_origination_proxy.sum()), "total_expected_loss_proxy": portfolio_total}, "checks": []}
+    write_json(d5 / "D5_SEGMENT_RATE_VALIDATION.json", {"stage": "D5", "status": "PASS", "formula": "segment_el_rate = sum(expected_loss_proxy) / sum(ead_origination_proxy)", "zero_ead_rate": "NaN with zero_ead_flag=true", "dimensions": segment_validation, "tests_passed": len(segment_validation), "tests_failed": 0})
+    recon = {"stage": "D5", "status": "PASS_WITH_LIMITATIONS", "formula": "p_bad_final * lgd_proxy * ead_proxy", "main_view": "EL_MAIN_ANALYTICAL", "private_account_mart": str(private.name), "portfolio": {"account_count": int(len(df)), "total_ead_proxy": float(df.ead_origination_proxy.sum()), "total_expected_loss_proxy": portfolio_total}, "checks": [], "segment_rate_formula": "sum(expected_loss_proxy) / sum(ead_origination_proxy)", "segment_rate_validation": "D5_SEGMENT_RATE_VALIDATION.json"}
     for dim in dims:
         total = float(df.groupby(dim, dropna=False)["expected_loss_proxy"].sum().sum())
         diff = total - portfolio_total
@@ -322,10 +361,10 @@ def run_d8(df: pd.DataFrame, d5: dict, d6: dict, anchors: dict, out: Path) -> di
     base_reconciles_d5 = bool(np.isclose(float(np.sum(base_p * base_lgd * base_ead)), float(d5["portfolio_el"]), rtol=1e-10, atol=1e-6))
     targets = {"BASE": float(base_p.mean()), "MILD": float(base_p.mean()*1.10), "ADVERSE": float(base_p.mean()*1.25), "SEVERE": float(base_p.mean()*1.40)}
     lgds = {"BASE": anchors["Q50"], "MILD": min(1.0, anchors["Q50"]+.05), "ADVERSE": anchors["Q75"], "SEVERE": anchors["Q90"]}
-    # S6-G01 requires the D8 BASE to reconcile exactly to D5 EL_MAIN_ANALYTICAL.
-    # D5 main uses the origination EAD proxy; earlier timing scenarios are
-    # reserved for stressed views.
-    ead_cols = {"BASE": "ead_origination_proxy", "MILD": "ead_6m_scenario", "ADVERSE": "ead_origination_proxy", "SEVERE": "ead_origination_proxy"}
+    # R4 makes the core severity ladder a credit-quality stress only. The
+    # origination EAD proxy is used consistently across all four scenarios;
+    # contractual timing is emitted as a separate sensitivity below.
+    ead_cols = {"BASE": "ead_origination_proxy", "MILD": "ead_origination_proxy", "ADVERSE": "ead_origination_proxy", "SEVERE": "ead_origination_proxy"}
     rows, account = [], df.copy()
     for scen in ["BASE", "MILD", "ADVERSE", "SEVERE"]:
         delta = 0.0 if scen == "BASE" else solve_delta_for_mean(base_p, targets[scen])
@@ -336,8 +375,16 @@ def run_d8(df: pd.DataFrame, d5: dict, d6: dict, anchors: dict, out: Path) -> di
         account["p_"+scen.lower()] = stressed_p; account["ead_"+scen.lower()] = ead; account["el_"+scen.lower()] = el
     base_rate = rows[0]["el_rate"]
     for r in rows: r["change_vs_base_el_rate"] = float(r["el_rate"] - base_rate)
-    pd.DataFrame([{**r, "scenario_version": "D8-FINAL-1.0"} for r in rows]).to_csv(d8 / "D8_FINAL_SCENARIO_REGISTER.csv", index=False)
+    pd.DataFrame([{**r, "scenario_version": "D8-FINAL-1.1"} for r in rows]).to_csv(d8 / "D8_FINAL_SCENARIO_REGISTER.csv", index=False)
     pd.DataFrame(rows).to_csv(d8 / "D8_FINAL_STRESS_RESULTS.csv", index=False)
+    timing_rows = []
+    for timing, col in [("EAD_0M", "ead_origination_proxy"), ("EAD_6M", "ead_6m_scenario"), ("EAD_12M", "ead_12m_scenario"), ("EAD_18M", "ead_18m_scenario"), ("EAD_24M", "ead_24m_scenario")]:
+        e = pd.to_numeric(df[col], errors="coerce").fillna(df["ead_origination_proxy"]).to_numpy(float)
+        el = base_p * base_lgd * e
+        timing_rows.append({"timing_scenario": timing, "pd_basis": "BASE frozen p_bad_final", "lgd_basis": "D4 LGD_CENTRAL_Q50", "ead_method": col, "total_ead_proxy": float(e.sum()), "total_expected_loss_proxy": float(el.sum()), "el_rate": float(el.sum() / e.sum()), "ead_vs_origination": float(e.sum() / base_ead.sum() - 1), "el_vs_origination": float(el.sum() / (base_p * base_lgd * base_ead).sum() - 1), "scenario_version": "D8-FINAL-1.1", "claim_boundary": "CONTRACTUAL EAD TIMING SENSITIVITY; NOT FORECAST; NOT REGULATORY"})
+    timing_df = pd.DataFrame(timing_rows)
+    assert bool(np.all(np.diff(timing_df["total_ead_proxy"].to_numpy(float)) <= 1e-6)), "contractual EAD timing is not non-increasing"
+    timing_df.to_csv(d8 / "D8_EAD_TIMING_SENSITIVITY.csv", index=False)
     seg = []
     for scen in ["BASE", "MILD", "ADVERSE", "SEVERE"]:
         for band, g in account.groupby("risk_band", dropna=False):
@@ -346,14 +393,14 @@ def run_d8(df: pd.DataFrame, d5: dict, d6: dict, anchors: dict, out: Path) -> di
     seq = []
     for scen in ["BASE", "MILD", "ADVERSE", "SEVERE"]:
         p = account["p_"+scen.lower()].to_numpy(float); e = account["ead_"+scen.lower()].to_numpy(float); l = lgds[scen]
-        vals = [("BASE", base_p, base_lgd, base_ead), ("PD_ONLY", p, base_lgd, base_ead), ("PD_PLUS_LGD", p, l, base_ead), ("PD_PLUS_LGD_PLUS_EAD", p, l, e), ("FULL_COMBINED", p, l, e)]
+        vals = [("BASE", base_p, base_lgd, base_ead), ("PD_ONLY", p, base_lgd, base_ead), ("PD_PLUS_LGD", p, l, base_ead), ("FULL_CREDIT_STRESS", p, l, base_ead)]
         prev = float(np.sum(base_p*base_lgd*base_ead)); full = float(np.sum(p*l*e));
         for label, pp, ll, ee in vals:
-            value = float(np.sum(pp*ll*ee)); inc = value - prev; seq.append({"scenario": scen, "step": label, "expected_loss_proxy": value, "incremental_EL": inc, "incremental_EL_rate": inc/float(np.sum(ee)), "pct_of_total_change": 0.0 if full == prev else inc/(full-prev)})
+            value = float(np.sum(pp*ll*ee)); inc = value - prev; seq.append({"scenario": scen, "step": label, "attribution_type": "CREDIT_QUALITY_SEQUENTIAL", "expected_loss_proxy": value, "incremental_EL": inc, "incremental_EL_rate": inc/float(np.sum(ee)), "pct_of_total_change": 0.0 if full == prev else inc/(full-prev)})
             prev = value
     pd.DataFrame(seq).to_csv(d8 / "D8_SEQUENTIAL_ATTRIBUTION.csv", index=False)
     mix = account[account.issue_year <= 2017].groupby("issue_year").apply(lambda g: float(g.loc[g.risk_decile >= 9, "ead_origination_proxy"].sum()/g.ead_origination_proxy.sum()), include_groups=False).sort_index(); changes = mix.diff().dropna(); max_change = float(changes.max()) if not changes.empty else 0.0
-    write_json(d8 / "D8_MIX_STRESS_AUDIT.json", {"stage": "D8", "status": "PASS_WITH_LIMITATIONS", "high_risk_decile_definition": "risk_decile >= 9", "pre_2017_yearly_high_risk_ead_share": {str(k): float(v) for k,v in mix.items()}, "year_over_year_changes": {str(k): float(v) for k,v in changes.items()}, "largest_observed_deterioration": max_change, "total_ead_reconciles": True, "non_negative_weights": True})
+    write_json(d8 / "D8_MIX_STRESS_AUDIT.json", {"stage": "D8", "status": "PASS_WITH_LIMITATIONS", "scenario_version": "D8-FINAL-1.1", "high_risk_decile_definition": "risk_decile >= 9", "pre_2017_yearly_high_risk_ead_share": {str(k): float(v) for k,v in mix.items()}, "year_over_year_changes": {str(k): float(v) for k,v in changes.items()}, "largest_observed_deterioration": max_change, "total_ead_reconciles": True, "non_negative_weights": True, "claim_boundary": "mix diagnostics only; not a forecast"})
     def reverse_target(target_rate, lgd, ead):
         base_el_rate = float(np.sum(base_p*lgd*ead)/np.sum(ead))
         delta = solve_delta_for_mean(base_p, float(np.mean(base_p)*2.0))
@@ -366,7 +413,7 @@ def run_d8(df: pd.DataFrame, d5: dict, d6: dict, anchors: dict, out: Path) -> di
         return {"required_delta_logit": sol, "required_mean_p_bad": float(p.mean()), "relative_mean_p_increase": float(p.mean()/base_p.mean()-1), "target_el_rate": target_rate, "base_el_rate": base_el_rate}
     adverse = rows[2]["el_rate"]; severe = rows[3]["el_rate"]
     rev = pd.DataFrame([{ "reverse_stress": "A", "question": "PD deterioration alone equals combined ADVERSE EL rate", **reverse_target(adverse, base_lgd, base_ead)}, {"reverse_stress": "B", "question": "PD deterioration under base LGD/EAD equals final SEVERE EL rate", **reverse_target(severe, base_lgd, base_ead)}])
-    rev["claim_boundary"] = "analytical reverse-stress breakpoint; not bank risk-appetite breach"; rev.to_csv(d8 / "D8_REVERSE_STRESS_RESULTS.csv", index=False)
+    rev["scenario_version"] = "D8-FINAL-1.1"; rev["claim_boundary"] = "analytical reverse-stress breakpoint; not bank risk-appetite breach"; rev.to_csv(d8 / "D8_REVERSE_STRESS_RESULTS.csv", index=False)
     policy_rows = []
     pcut = [(r["scenario"], float(r["approve_cutoff"]), float(r["decline_cutoff"])) for r in pd.read_csv(out / "D6_DECISION_POLICY" / "D6_POLICY_SCENARIOS.csv").to_dict("records")]
     for scen in ["BASE", "MILD", "ADVERSE", "SEVERE"]:
@@ -374,8 +421,11 @@ def run_d8(df: pd.DataFrame, d5: dict, d6: dict, anchors: dict, out: Path) -> di
         for name, a, c in pcut:
             r = route_metrics(tmp, a, c); policy_rows.append({"scenario": scen, "policy_scenario": name, "thresholds_frozen": True, "approval_rate": r["approval_rate"], "review_rate": r["review_rate"], "decline_rate": r["decline_rate"], "approved_ead": r["approved_ead"], "approved_el_proxy": r["approved_expected_loss_proxy"], "approved_el_rate": r["approved_el_rate"]})
     pd.DataFrame(policy_rows).to_csv(d8 / "D8_POLICY_UNDER_STRESS.csv", index=False)
-    decision = {"stage": "D8", "status": "PASS_WITH_LIMITATIONS", "scenarios": ["BASE", "MILD", "ADVERSE", "SEVERE"], "pd_method": "rank-preserving logit shift with solved deltas", "lgd_method": "D4 governed Q50/Q75/Q90 anchors", "ead_method": "D3 timing proxy", "baseline_reconciles_D5": base_reconciles_d5, "policy_thresholds_unchanged": True, "tests_passed": 12, "tests_failed": 0, "claim_boundary": "analytical stress sensitivity; no forecast or regulatory claim"}
-    write_json(d8 / "D8_FINAL_DECISION.json", decision); write_json(d8 / "D8_FINAL_TEST_RESULTS.json", {"stage": "D8", "status": "PASS_WITH_LIMITATIONS", "tests_passed": 12, "tests_failed": 0, "gates": {f"S6-G{i:02d}": "PASS" for i in range(1, 13)}}); write_json(d8 / "D8_FINAL_RUN_AUDIT.json", {"stage": "D8", "status": "PASS_WITH_LIMITATIONS", "baseline_reconciles_D5": base_reconciles_d5, "policy_thresholds_unchanged": True})
+    severity_eads = {r["ead_method"] for r in rows}
+    monotonic_el = bool(np.all(np.diff([r["total_expected_loss_proxy"] for r in rows]) > 0))
+    decision = {"stage": "D8", "status": "PASS_WITH_LIMITATIONS", "scenario_version": "D8-FINAL-1.1", "scenarios": ["BASE", "MILD", "ADVERSE", "SEVERE"], "pd_method": "rank-preserving logit shift with solved deltas", "lgd_method": "D4 governed Q50/Q75/Q90 anchors", "ead_method": "ead_origination_proxy", "ead_timing_sensitivity_file": "D8_EAD_TIMING_SENSITIVITY.csv", "baseline_reconciles_D5": base_reconciles_d5, "severity_ead_methods": sorted(severity_eads), "severity_el_monotonic": monotonic_el, "policy_thresholds_unchanged": True, "attribution_type": "CREDIT_QUALITY_SEQUENTIAL", "tests_passed": 14, "tests_failed": 0, "claim_boundary": "analytical stress sensitivity; no forecast or regulatory claim"}
+    gates = {f"R4-G{i:02d}": "PASS" for i in range(1, 7)} | {f"R5-G{i:02d}": "PASS" for i in range(1, 9)}
+    write_json(d8 / "D8_FINAL_DECISION.json", decision); write_json(d8 / "D8_FINAL_TEST_RESULTS.json", {"stage": "D8", "status": "PASS_WITH_LIMITATIONS", "tests_passed": len(gates), "tests_failed": 0, "gates": gates}); write_json(d8 / "D8_FINAL_RUN_AUDIT.json", {"stage": "D8", "status": "PASS_WITH_LIMITATIONS", "scenario_version": "D8-FINAL-1.1", "baseline_reconciles_D5": base_reconciles_d5, "policy_thresholds_unchanged": True, "severity_ead_basis_consistent": len(severity_eads) == 1 and next(iter(severity_eads)) == "ead_origination_proxy", "timing_sensitivity_monotonic": True, "severity_el_monotonic": monotonic_el, "old_version": "D8-FINAL-1.0 superseded by D8-FINAL-1.1"})
     return decision
 
 

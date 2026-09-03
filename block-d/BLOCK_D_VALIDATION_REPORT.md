@@ -14,6 +14,10 @@ The final analytical chain is reproducible from the derived D1/D2/D3 inputs on t
 - D7 is explicitly `DESCRIPTIVE_ONLY`.
 - D8 contains rank-preserving PD stress, versioned LGD/EAD rules, sequential attribution, mix audit, reverse-stress breakpoints, and policy-under-stress with frozen thresholds.
 
+## Micro-remediation checkpoint
+
+The final micro-remediation confirmed the CatBoost challenger set, corrected segment EL-rate aggregation to `sum(EL) / sum(EAD)`, separated core credit stress from contractual EAD timing sensitivity in `D8-FINAL-1.1`, and fixed unique skipped-fold reporting. Semantic QA is `7/8 PASS`; R8-G06 is pending the user-supplied portfolio project-owner identifier and current decision date. The canonical final release tag remains withheld until that manual governance gate passes.
+
 ## Claim boundary
 
 Outputs are analytical portfolio evidence. They are not IFRS 9, Basel, regulatory LGD/EAD/ECL, production-approved lending policy, realized profitability, observed EAD, or verified 12-month PD.

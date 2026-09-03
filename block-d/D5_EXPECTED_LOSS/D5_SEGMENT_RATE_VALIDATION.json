@@ -1,0 +1,82 @@
+{
+  "stage": "D5",
+  "status": "PASS",
+  "formula": "segment_el_rate = sum(expected_loss_proxy) / sum(ead_origination_proxy)",
+  "zero_ead_rate": "NaN with zero_ead_flag=true",
+  "dimensions": [
+    {
+      "dimension": "risk_decile",
+      "segment_rows_checked": 10,
+      "zero_ead_rows": 0,
+      "ead_reconciles": true,
+      "el_reconciles": true,
+      "segment_rate_formula": "sum(expected_loss_proxy) / sum(ead_origination_proxy)",
+      "all_segment_rates_valid": true
+    },
+    {
+      "dimension": "risk_band",
+      "segment_rows_checked": 5,
+      "zero_ead_rows": 0,
+      "ead_reconciles": true,
+      "el_reconciles": true,
+      "segment_rate_formula": "sum(expected_loss_proxy) / sum(ead_origination_proxy)",
+      "all_segment_rates_valid": true
+    },
+    {
+      "dimension": "term",
+      "segment_rows_checked": 2,
+      "zero_ead_rows": 0,
+      "ead_reconciles": true,
+      "el_reconciles": true,
+      "segment_rate_formula": "sum(expected_loss_proxy) / sum(ead_origination_proxy)",
+      "all_segment_rates_valid": true
+    },
+    {
+      "dimension": "purpose",
+      "segment_rows_checked": 14,
+      "zero_ead_rows": 0,
+      "ead_reconciles": true,
+      "el_reconciles": true,
+      "segment_rate_formula": "sum(expected_loss_proxy) / sum(ead_origination_proxy)",
+      "all_segment_rates_valid": true
+    },
+    {
+      "dimension": "fico_band",
+      "segment_rows_checked": 3,
+      "zero_ead_rows": 0,
+      "ead_reconciles": true,
+      "el_reconciles": true,
+      "segment_rate_formula": "sum(expected_loss_proxy) / sum(ead_origination_proxy)",
+      "all_segment_rates_valid": true
+    },
+    {
+      "dimension": "dti_band",
+      "segment_rows_checked": 5,
+      "zero_ead_rows": 0,
+      "ead_reconciles": true,
+      "el_reconciles": true,
+      "segment_rate_formula": "sum(expected_loss_proxy) / sum(ead_origination_proxy)",
+      "all_segment_rates_valid": true
+    },
+    {
+      "dimension": "loan_size_band",
+      "segment_rows_checked": 4,
+      "zero_ead_rows": 0,
+      "ead_reconciles": true,
+      "el_reconciles": true,
+      "segment_rate_formula": "sum(expected_loss_proxy) / sum(ead_origination_proxy)",
+      "all_segment_rates_valid": true
+    },
+    {
+      "dimension": "issue_year",
+      "segment_rows_checked": 4,
+      "zero_ead_rows": 0,
+      "ead_reconciles": true,
+      "el_reconciles": true,
+      "segment_rate_formula": "sum(expected_loss_proxy) / sum(ead_origination_proxy)",
+      "all_segment_rates_valid": true
+    }
+  ],
+  "tests_passed": 8,
+  "tests_failed": 0
+}

@@ -1,5 +1,5 @@
 {
-  "scorecard_version": "D-FINAL-10-10-1.0",
+  "scorecard_version": "D-FINAL-10-10-1.1",
   "scorecard_date": "2026-09-03",
   "status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
   "axes": {
@@ -7,6 +7,8 @@
     "portfolio_requirement_resolution_pct": 100.0,
     "technical_qa_pct": 100.0,
     "artifact_checksum_integrity_pct": 100.0,
+    "semantic_remediation_pct": 87.5,
+    "portfolio_implementation_score": "PENDING_SEMANTIC_OWNER_GATE",
     "production_regulatory_readiness": "NOT_IN_SCOPE"
   },
   "stages": [

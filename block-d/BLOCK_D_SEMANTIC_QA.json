@@ -1,0 +1,130 @@
+{
+  "run_name": "block_d_semantic_qa",
+  "run_date": "2026-09-03",
+  "status": "FAIL",
+  "checks_passed": 7,
+  "checks_failed": 1,
+  "checks": [
+    {
+      "check_id": "R8-G01",
+      "pass": true,
+      "observed": [
+        "B0_GLOBAL_MEAN",
+        "B1_EXPOSURE_WEIGHTED_MEAN",
+        "B2_RISK_DECILE_TERM_BASELINE",
+        "CATBOOST_REGRESSOR",
+        "HUBER_REGRESSOR",
+        "TWEEDIE_REGRESSOR"
+      ],
+      "expected": [
+        "CATBOOST_REGRESSOR",
+        "HUBER_REGRESSOR",
+        "TWEEDIE_REGRESSOR"
+      ],
+      "evidence": "D4_EMPIRICAL_LGD_MODEL_COMPARISON.csv"
+    },
+    {
+      "check_id": "R8-G02",
+      "pass": true,
+      "observed": {
+        "skipped_folds": [
+          "<= 2013 -> 2014"
+        ],
+        "completed_folds": [
+          "<= 2014 -> 2015",
+          "<= 2015 -> 2016",
+          "<= 2016 -> 2017"
+        ],
+        "skipped_model_fold_rows": 6
+      },
+      "expected": "unique folds, disjoint sets, explicit model-fold count",
+      "evidence": "D4_EMPIRICAL_LGD_RUN_AUDIT.json"
+    },
+    {
+      "check_id": "R8-G03",
+      "pass": true,
+      "observed": {
+        "rows_checked": 57,
+        "all_rates_valid": true
+      },
+      "expected": "all segment rates = sum(EL)/sum(EAD)",
+      "evidence": "D5_RISK_DECILE_EL.csv + D5_SEGMENT_EL_SUMMARY.csv"
+    },
+    {
+      "check_id": "R8-G04",
+      "pass": true,
+      "observed": {
+        "scenario_version": "D8-FINAL-1.1",
+        "ead_method": "ead_origination_proxy",
+        "severity_ead_methods": [
+          "ead_origination_proxy"
+        ]
+      },
+      "expected": "one consistent origination EAD basis",
+      "evidence": "D8_FINAL_DECISION.json"
+    },
+    {
+      "check_id": "R8-G05",
+      "pass": true,
+      "observed": {
+        "scenarios": [
+          "EAD_0M",
+          "EAD_6M",
+          "EAD_12M",
+          "EAD_18M",
+          "EAD_24M"
+        ],
+        "ead_non_increasing": true
+      },
+      "expected": {
+        "scenarios": [
+          "EAD_0M",
+          "EAD_6M",
+          "EAD_12M",
+          "EAD_18M",
+          "EAD_24M"
+        ],
+        "ead_non_increasing": true
+      },
+      "evidence": "D8_EAD_TIMING_SENSITIVITY.csv"
+    },
+    {
+      "check_id": "R8-G06",
+      "pass": false,
+      "observed": {
+        "decision_owner_name": null,
+        "decision_date": null,
+        "institutional_signoffs_na": true
+      },
+      "expected": "non-null project owner/date; institutional signoffs N/A",
+      "evidence": "D9_PORTFOLIO_PROJECT_OWNER_DECISIONS.json"
+    },
+    {
+      "check_id": "R8-G07",
+      "pass": true,
+      "observed": {
+        "README.md": true,
+        "PROJECT_MASTER_LINKS.md": true,
+        "block-d/README.md": true,
+        "block-d/BLOCK_D_STATUS.md": true,
+        "block-d/BLOCK_D_FINAL_SCORECARD.md": true,
+        "block-d/BLOCK_D_VALIDATION_REPORT.md": true,
+        "block-d/D9_CLOSURE/D9_FINAL_BLOCK_D_DECISION.json": true
+      },
+      "expected": "all current status sources agree",
+      "evidence": "status source set"
+    },
+    {
+      "check_id": "R8-G08",
+      "pass": true,
+      "observed": {
+        "final_audit": "D8-FINAL-1.0 superseded by D8-FINAL-1.1",
+        "historical_gate": "D8_FINAL_TEST_RESULTS.json",
+        "illustrative": "D8_FINAL_DECISION.json"
+      },
+      "expected": "older methodology explicitly labelled superseded",
+      "evidence": "D8 historical evidence"
+    }
+  ],
+  "semantic_remediation_pct": 87.5
+}

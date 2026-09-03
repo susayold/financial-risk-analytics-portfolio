@@ -28,7 +28,13 @@ def run() -> list[dict]:
     results.append({"id": "T3", "pass": validate_register(bad)["validation_status"] == "INVALID"})
     bad = copy.deepcopy(base); del bad["decisions"]["D4_main_case_lgd"]
     results.append({"id": "T4", "pass": validate_register(bad)["validation_status"] == "INVALID"})
-    results.append({"id": "T5", "pass": validate_register(base)["validation_status"] == "PORTFOLIO_VALID"})
+    ready = copy.deepcopy(base)
+    ready["decision_owner_name"] = "test-owner"
+    ready["decision_date"] = "2026-09-03"
+    for item in ready["decisions"].values():
+        item["decision_owner"] = "test-owner"
+        item["decision_date"] = "2026-09-03"
+    results.append({"id": "T5", "pass": validate_register(ready)["validation_status"] == "PORTFOLIO_VALID"})
     inst = {"stage": "D9", "governance_mode": "INSTITUTIONAL_PRODUCTION", "production_authorized": True}
     for role in ("model_owner", "risk_owner"):
         inst.setdefault("institutional_owners", {})[role] = {"name": "x", "date": "2026-09-03", "reference": "x"}

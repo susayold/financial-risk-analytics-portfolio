@@ -200,6 +200,14 @@ def _validate_portfolio_register(register: dict) -> dict:
         errors.append("portfolio mode requires production_authorized=false")
     if register.get("regulatory_compliance_claimed") is not False:
         errors.append("portfolio mode requires regulatory_compliance_claimed=false")
+    owner_name = register.get("decision_owner_name")
+    owner_date = register.get("decision_date")
+    if not isinstance(owner_name, str) or not owner_name.strip():
+        errors.append("decision_owner_name is required and must be user-supplied")
+    if not isinstance(owner_date, str) or not owner_date.strip():
+        errors.append("decision_date is required and must be user-supplied")
+    elif _is_valid_current_date(owner_date) is False:
+        errors.append("decision_date must be an ISO date that is not in the future")
     if not isinstance(decisions, dict) or set(decisions) != set(DECISION_KEYS):
         errors.append("portfolio decisions must contain exactly the six required D4-D8 decision keys")
         decisions = {}
@@ -212,8 +220,10 @@ def _validate_portfolio_register(register: dict) -> dict:
         decision_statuses[key] = item.get("status")
         if item.get("status") not in {"COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "FORMALLY_STOPPED_BY_PREDECLARED_STOP_CONDITION"}:
             errors.append(f"{key}.status must be a portfolio completion or declared stop status")
-        if item.get("decision_owner") != "PORTFOLIO_PROJECT_OWNER":
-            errors.append(f"{key}.decision_owner must be PORTFOLIO_PROJECT_OWNER")
+        if item.get("decision_owner") != owner_name:
+            errors.append(f"{key}.decision_owner must equal decision_owner_name")
+        if item.get("decision_date") != owner_date:
+            errors.append(f"{key}.decision_date must equal top-level decision_date")
         if not item.get("decision_reference"):
             errors.append(f"{key}.decision_reference is required")
         if "conditions" not in item:
@@ -251,6 +261,14 @@ def _validate_portfolio_register(register: dict) -> dict:
         "regulatory_compliance_claimed": False,
         "unlock_rule": "Six portfolio project-owner analytical decisions complete; institutional signoffs are not applicable; no production authorization is inferred.",
     }
+
+
+def _is_valid_current_date(value: str) -> bool:
+    try:
+        parsed = date.fromisoformat(value)
+    except ValueError:
+        return False
+    return parsed <= date.today()
 
 
 def _validate_institutional_register(register: dict) -> dict:

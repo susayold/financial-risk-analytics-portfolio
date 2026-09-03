@@ -1,6 +1,11 @@
 {
   "stage": "D8",
   "status": "PASS_WITH_LIMITATIONS",
+  "scenario_version": "D8-FINAL-1.1",
   "baseline_reconciles_D5": true,
-  "policy_thresholds_unchanged": true
+  "policy_thresholds_unchanged": true,
+  "severity_ead_basis_consistent": true,
+  "timing_sensitivity_monotonic": true,
+  "severity_el_monotonic": true,
+  "old_version": "D8-FINAL-1.0 superseded by D8-FINAL-1.1"
 }

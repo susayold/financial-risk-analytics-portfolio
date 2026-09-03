@@ -15,6 +15,8 @@
   "policy_scope": "HISTORICAL_DECISION_SIMULATION",
   "pricing_scope": "DESCRIPTIVE_ONLY",
   "stress_scope": "ANALYTICAL_SENSITIVITY",
+  "d8_scenario_version": "D8-FINAL-1.1",
+  "d8_ead_timing_sensitivity": "D8_EAD_TIMING_SENSITIVITY.csv",
   "portfolio_expected_loss_proxy": 526752273.6678772,
   "portfolio_ead_proxy": 4469158350.0,
   "policy_scenarios": [
@@ -42,5 +44,16 @@
     "final-resolution target rather than verified 12m PD",
     "LGD/EAD/EL are analytical proxies"
   ],
+  "project_owner": {
+    "name": null,
+    "decision_date": null,
+    "role": "PORTFOLIO_PROJECT_OWNER"
+  },
+  "semantic_remediation": {
+    "status": "FAIL",
+    "checks_passed": 7,
+    "checks_failed": 1,
+    "remediation_pct": 87.5
+  },
   "next_action": "MOVE_TO_BLOCK_E"
 }

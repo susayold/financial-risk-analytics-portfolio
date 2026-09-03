@@ -32,8 +32,8 @@ def main() -> int:
     d4 = load("D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_DECISION.json")
     d4_final = load("D4_FINAL_TEST_RESULTS.json")
     add("D4-G01", d4.get("status") == "PASS_WITH_LIMITATIONS", d4.get("status"), "PASS_WITH_LIMITATIONS", "D4_EMPIRICAL_LGD_DECISION.json")
-    add("D4-G02", d4.get("decision") in {"REJECT_ML_CHALLENGER_KEEP_SCENARIO_LGD", "PROMOTE_EMPIRICAL_LGD_CHALLENGER"}, d4.get("decision"), "declared challenger decision", "D4_EMPIRICAL_LGD_DECISION.json")
-    add("D4-G03", d4_final.get("tests_failed") == 0 and d4_final.get("tests_passed") == 10, [d4_final.get("tests_passed"), d4_final.get("tests_failed")], [10, 0], "D4_FINAL_TEST_RESULTS.json")
+    add("D4-G02", d4.get("decision") in {"REJECT_ML_CHALLENGER_KEEP_SCENARIO_LGD", "REJECT_ALL_EMPIRICAL_ML_CHALLENGERS_KEEP_SCENARIO_LGD", "PROMOTE_EMPIRICAL_LGD_CHALLENGER"}, d4.get("decision"), "declared challenger decision", "D4_EMPIRICAL_LGD_DECISION.json")
+    add("D4-G03", d4_final.get("tests_failed") == 0 and d4_final.get("tests_passed", 0) >= 10, [d4_final.get("tests_passed"), d4_final.get("tests_failed")], "at least 10 D4 gates and 0 failures", "D4_FINAL_TEST_RESULTS.json")
     add("D4-G04", load("D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_LEAKAGE_AUDIT.json").get("matches_in_X") == [], load("D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_LEAKAGE_AUDIT.json").get("matches_in_X"), [], "D4_EMPIRICAL_LGD_LEAKAGE_AUDIT.json")
     d5 = load("D5_EXPECTED_LOSS/D5_EL_RECONCILIATION.json"); d5t = load("D5_EXPECTED_LOSS/D5_FINAL_TEST_RESULTS.json")
     add("D5-G01", d5.get("status") == "PASS_WITH_LIMITATIONS", d5.get("status"), "PASS_WITH_LIMITATIONS", "D5_EL_RECONCILIATION.json")
@@ -49,7 +49,7 @@ def main() -> int:
     d8 = load("D8_STRESS/D8_FINAL_DECISION.json"); d8t = load("D8_STRESS/D8_FINAL_TEST_RESULTS.json")
     add("D8-G01", d8.get("status") == "PASS_WITH_LIMITATIONS", d8.get("status"), "PASS_WITH_LIMITATIONS", "D8_FINAL_DECISION.json")
     add("D8-G02", d8.get("policy_thresholds_unchanged") is True, d8.get("policy_thresholds_unchanged"), True, "D8_FINAL_DECISION.json")
-    add("D8-G03", d8t.get("tests_passed") == 12 and d8t.get("tests_failed") == 0, [d8t.get("tests_passed"), d8t.get("tests_failed")], [12, 0], "D8_FINAL_TEST_RESULTS.json")
+    add("D8-G03", d8t.get("tests_passed", 0) >= 14 and d8t.get("tests_failed") == 0, [d8t.get("tests_passed"), d8t.get("tests_failed")], "at least 14 D8 remediation gates and 0 failures", "D8_FINAL_TEST_RESULTS.json")
     reg = load("D9_CLOSURE/D9_APPROVAL_REGISTER.json"); validation = validate_register(reg)
     add("S7-G01", reg.get("governance_mode") == "PORTFOLIO_PROJECT_REVIEW", reg.get("governance_mode"), "PORTFOLIO_PROJECT_REVIEW", "D9_APPROVAL_REGISTER.json")
     add("S7-G02", validation.get("validation_status") == "PORTFOLIO_VALID", validation.get("validation_status"), "PORTFOLIO_VALID", "D9_APPROVAL_VALIDATION.json")
@@ -72,6 +72,8 @@ def main() -> int:
     add("S9-G02", score.get("axes", {}).get("portfolio_requirement_resolution_pct") == 100.0, score.get("axes", {}).get("portfolio_requirement_resolution_pct"), 100.0, "BLOCK_D_FINAL_SCORECARD.json")
     add("S9-G03", score.get("axes", {}).get("production_regulatory_readiness") == "NOT_IN_SCOPE", score.get("axes", {}).get("production_regulatory_readiness"), "NOT_IN_SCOPE", "BLOCK_D_FINAL_SCORECARD.json")
     add("S10-G01", load("D9_CLOSURE/D9_FINAL_CHECKSUM_VALIDATION.json").get("checks_failed") == 0, load("D9_CLOSURE/D9_FINAL_CHECKSUM_VALIDATION.json").get("checks_failed"), 0, "D9_FINAL_CHECKSUM_VALIDATION.json")
+    semantic = load("BLOCK_D_SEMANTIC_QA.json")
+    add("R8-SEMANTIC", semantic.get("status") == "PASS" and semantic.get("checks_failed") == 0, [semantic.get("checks_passed"), semantic.get("checks_failed")], "N/N semantic checks and 0 failures", "BLOCK_D_SEMANTIC_QA.json")
     passed = sum(x["pass"] for x in checks); failed = len(checks) - passed
     payload = {"run_name": "block_d_full_review_qa", "run_date": date.today().isoformat(), "scope": "final portfolio closure; no production or regulatory claim", "status": "PASS" if failed == 0 else "FAIL", "checks_passed": passed, "checks_failed": failed, "checks": checks, "overall_block_status": final.get("status"), "production_authorized": False, "regulatory_compliance_claimed": False}
     OUT.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")

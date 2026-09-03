@@ -1,0 +1,37 @@
+{
+  "snapshot_stage": "PRE_MICRO_REMEDIATION",
+  "snapshot_date": "2026-09-03",
+  "block_d_status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+  "frozen_risk_model": "C8E_RICH_BUREAU_CATBOOST_79F",
+  "probability_method": "p_bad_final",
+  "lgd_main": "LGD_CENTRAL_Q50",
+  "lgd_q50": 0.667384888,
+  "account_count": 310066,
+  "ead_main_total": 4469158350.0,
+  "expected_loss_main_total": 526752273.6678772,
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false,
+  "r0_gates": {
+    "R0-G01_current_files_checksum_captured": "PASS",
+    "R0-G02_current_status_captured": "PASS",
+    "R0-G03_no_file_mutated_before_snapshot": "PASS",
+    "R0-G04_private_artifacts_remain_private": "PASS",
+    "R0-G05_production_regulatory_flags_false": "PASS"
+  },
+  "checksums": {
+    "block-d/D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_MODEL_COMPARISON.csv": {"sha256": "ACCA62186CA6AD9DAA30FC6CF0224EFD42AB423BCB3B1A58F20BAE8F838F01E5", "bytes": 711},
+    "block-d/D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_FOLD_METRICS.csv": {"sha256": "91BFE85C410D4611C44E9CC7F41B1DD48CF4E044EBD0902F23B7EFC1AB1B9ACE", "bytes": 3104},
+    "block-d/D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_DECISION.json": {"sha256": "4622D416E5877D42C5075B260AAB653213403EE8ADD387CEDB6B93BEDDAC7E3C", "bytes": 794},
+    "block-d/D5_EXPECTED_LOSS/D5_EL_RECONCILIATION.json": {"sha256": "529EBD6E3546D47B2AB8C02CB4FF509F74A92CAEFE387F9DBF601D9D2C08D8E9", "bytes": 1958},
+    "block-d/D5_EXPECTED_LOSS/D5_SEGMENT_EL_SUMMARY.csv": {"sha256": "374EC8B76B30C6D2B1EA006F63F26DF7259CD105283A1B42158E20323E3CE3FF", "bytes": 3621},
+    "block-d/D5_EXPECTED_LOSS/D5_RISK_DECILE_EL.csv": {"sha256": "D82749F57775135BC05B52185A7B33C7A5245BBB8D249329054793D9C715B9CB", "bytes": 1035},
+    "block-d/D6_DECISION_POLICY/D6_POLICY_DECISION.json": {"sha256": "97AD8B67AC41367A4B01FC4576FA312F861C94E4B0BB9FB38C6B6C27C6A1A713", "bytes": 402},
+    "block-d/D8_STRESS/D8_FINAL_SCENARIO_REGISTER.csv": {"sha256": "62F9D98B2B477FBAD409D2543777D8CC25C0339EAAE64EEA23738811B1122982", "bytes": 1128},
+    "block-d/D8_STRESS/D8_FINAL_STRESS_RESULTS.csv": {"sha256": "31972ECE143DBB88068D7F808E7A84BAB37CEA3CB2BF05CA8188667E7E7533A4", "bytes": 1059},
+    "block-d/D8_STRESS/D8_REVERSE_STRESS_RESULTS.csv": {"sha256": "581D55B536BE10F96282C9A4CE4F44082A4C0DC7F88AC57DB5C2BE7DB0C68E83", "bytes": 588},
+    "block-d/D9_CLOSURE/D9_FINAL_BLOCK_D_DECISION.json": {"sha256": "D006612429922CCAD3515E3CF035148E06004FDF4329292395BC3E9AC5B02499", "bytes": 1617},
+    "block-d/BLOCK_D_FULL_REVIEW_QA.json": {"sha256": "40D31EB0407AFC50A4D2CEA6EB91FC987AF0FB7D9B3B73F13D0C34C416FBA1BC", "bytes": 8014}
+  },
+  "private_artifact_boundary": "Raw source CSV, DuckDB, and row-level private marts remain outside GitHub and are not published in the public artifact set.",
+  "claim_boundary": "This is the preserved pre-remediation snapshot; it is not the post-remediation Block D status."
+}

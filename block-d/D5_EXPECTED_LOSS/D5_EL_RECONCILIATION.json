@@ -67,6 +67,8 @@
       "pass": true
     }
   ],
+  "segment_rate_formula": "sum(expected_loss_proxy) / sum(ead_origination_proxy)",
+  "segment_rate_validation": "D5_SEGMENT_RATE_VALIDATION.json",
   "tests_passed": 10,
   "tests_failed": 0
 }

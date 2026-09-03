@@ -22,15 +22,28 @@ def digest(path: Path) -> str:
 
 def main() -> int:
     names = [
+        "PRE_MICRO_REMEDIATION_MANIFEST.json",
         "../D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_DECISION.json",
+        "../D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_MODEL_COMPARISON.csv",
+        "../D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_FOLD_METRICS.csv",
         "../D4_TIMING_DECISION.json",
         "../D4_MAIN_CASE_DECISION.json",
         "../D5_EXPECTED_LOSS/D5_EL_RECONCILIATION.json",
+        "../D5_EXPECTED_LOSS/D5_SEGMENT_EL_SUMMARY.csv",
+        "../D5_EXPECTED_LOSS/D5_RISK_DECILE_EL.csv",
+        "../D5_EXPECTED_LOSS/D5_SEGMENT_RATE_VALIDATION.json",
         "../D6_DECISION_POLICY/D6_POLICY_DECISION.json",
         "../D7_PRICING/D7_SCOPE_DECISION.json",
+        "../D8_STRESS/D8_FINAL_SCENARIO_REGISTER.csv",
+        "../D8_STRESS/D8_FINAL_STRESS_RESULTS.csv",
         "../D8_STRESS/D8_REVERSE_STRESS_RESULTS.csv",
+        "../D8_STRESS/D8_EAD_TIMING_SENSITIVITY.csv",
+        "D9_PORTFOLIO_PROJECT_OWNER_DECISIONS.json",
         "D9_FINAL_BLOCK_D_DECISION.json",
         "D9_FINAL_TEST_RESULTS.json",
+        "../BLOCK_D_FULL_REVIEW_QA.json",
+        "../BLOCK_D_SEMANTIC_QA.json",
+        "../BLOCK_D_VALIDATION_REPORT.md",
         "../BLOCK_D_FINAL_SCORECARD.json",
     ]
     entries = {}

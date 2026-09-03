@@ -1,9 +1,14 @@
 {
   "stage": "D4",
   "status": "PASS_WITH_LIMITATIONS",
-  "decision": "REJECT_ML_CHALLENGER_KEEP_SCENARIO_LGD",
+  "decision": "REJECT_ALL_EMPIRICAL_ML_CHALLENGERS_KEEP_SCENARIO_LGD",
   "selected_main_method": "LGD_CENTRAL_Q50",
   "challenger_model": null,
+  "challenger_models_required": [
+    "HUBER_REGRESSOR",
+    "TWEEDIE_REGRESSOR",
+    "CATBOOST_REGRESSOR"
+  ],
   "challenger_population_rows": 49049,
   "scenario_anchors": {
     "Q25": 0.48967010746551115,
@@ -11,8 +16,8 @@
     "Q75": 0.7902973489584245,
     "Q90": 0.865786
   },
-  "materiality_rule": "relative MAE and exposure-weighted MAE improvement >= 1%; bias <= 5 percentage points; leakage audit PASS",
-  "reason": "No ML challenger met both predeclared materiality thresholds.",
+  "materiality_rule": "relative MAE and exposure-weighted MAE improvement >= 1%; bias <= 5 percentage points; leakage audit PASS; temporal stability acceptable",
+  "reason": "Huber/Tweedie/CatBoost did not simultaneously satisfy the predeclared MAE, exposure-weighted MAE and bias criteria; Q50 remains the central analytical LGD.",
   "claim_boundary": [
     "analytical portfolio LGD only",
     "retrospective BAD evidence target",

@@ -19,6 +19,8 @@ Block D is `CLOSED_WITH_LIMITATIONS_PORTFOLIO` for the CRD.PI portfolio project.
 
 Execution coverage, portfolio requirement resolution, technical QA, and artifact checksum integrity are each 100%. Production authorization and regulatory compliance are not in scope.
 
+The post-closure micro-remediation checkpoint is `7/8` semantic checks: CatBoost coverage, exposure-weighted D5 segment rates, D8-FINAL-1.1 stress/timing separation, fold semantics, and superseded-evidence labels pass. R8-G06 remains pending only because the portfolio project-owner identifier and decision date must be supplied explicitly by the project owner. No final release tag is created before that gate passes.
+
 ## Final links
 
 - `D9_CLOSURE/D9_FINAL_BLOCK_D_DECISION.json` — final decision and limitations.

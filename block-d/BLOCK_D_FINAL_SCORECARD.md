@@ -8,6 +8,8 @@ Status: `CLOSED_WITH_LIMITATIONS_PORTFOLIO`
 | Portfolio requirement resolution | 100% |
 | Technical QA | 100% |
 | Artifact checksum integrity | 100% |
+| Semantic remediation | 87.5% |
+| Portfolio implementation | PENDING_OWNER_GATE |
 | Production / regulatory readiness | NOT_IN_SCOPE |
 
 | Stage | Final state | Completion |
