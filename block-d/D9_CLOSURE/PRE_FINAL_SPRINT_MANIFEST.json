@@ -9,6 +9,13 @@
   "manifest_checksums": {"passed": 16, "failed": 0},
   "input_file_mutated": false,
   "private_raw_artifacts_published": false,
+  "s0_gates": {
+    "S0-G01_snapshot_manifest_exists": "PASS",
+    "S0-G02_current_stage_status_preserved": "PASS",
+    "S0-G03_input_checksums_captured": "PASS",
+    "S0-G04_no_input_file_mutated": "PASS",
+    "S0-G05_private_raw_artifacts_not_pushed": "PASS"
+  },
   "checksum_sources": {
     "D1_RUN_AUDIT.json": "pre-existing D9 closure manifest",
     "D2_GOVERNED_CORE_BRIDGE_AUDIT.json": "pre-existing D9 closure manifest",
@@ -26,5 +33,15 @@
     "risk_band_contract.json",
     "D0 assumption register"
   ],
+  "checksum_inventory": {
+    "decision_economics_mart": {"source": "outputs/block_d/d1_full_20260902/decision_economics_mart.csv", "sha256": "BB6C688924A93FB8BBFB999E4B9D7A73C0A61D167576A168F5563BDBC5C87938", "visibility": "private_execution_disk"},
+    "D2_governed_BAD_loss_evidence": {"source": "outputs/block_d/d2_bridge_20260902/D2_GOVERNED_BAD_LOSS_EVIDENCE.csv", "sha256": "5574B5E468FC46EF1732EBF75BD1C4805113E94B26FD38A819D65AEC338838DA", "visibility": "private_execution_disk"},
+    "D3_EAD_proxy": {"source": "outputs/block_d/d3/account_ead_proxy.csv", "sha256": "6ECADA46F9E1E797D9B4DF27A5D94343A4EFF4197B66A232FF34676356927A84", "visibility": "private_execution_disk"},
+    "D4_scenario_anchors": {"source": "outputs/block_d/d4/lgd_scenario_anchors.csv", "sha256": "7CF179B7B236E81C911F8AF8756E61A51A82601685182335986C9C319F524FC2", "visibility": "private_execution_disk"},
+    "C8E_frozen_model_metadata": {"source": "D1_RUN_AUDIT.json -> c8e_results_20260902.zip", "sha256": "16ce4ec94d0dc0485f6a95dc2ddea7e5517bf037c9e76c3520b4c210ab5e4f79", "visibility": "upstream_audit_metadata"},
+    "C9_validation_and_OOT_predictions": {"source": "D1_RUN_AUDIT.json -> c9_nested_20260902.zip", "sha256": "e25536bbe9f2a92f4220e43966085cf96ba14c75ec218b4388bfc31fa26a2b3e", "visibility": "upstream_audit_metadata"},
+    "risk_band_contract": {"source": "block-d/D1_RISK_SCORE_MART/risk_band_contract.json", "sha256": "566E3FE9FA2ED074AD6FAFA3E9949E16A280C90005BCF306737783DD146BD0A4", "visibility": "public_sanitized_contract"},
+    "D0_assumption_register": {"source": "block-d/D0_GOVERNANCE_CONTRACT/D0_ASSUMPTION_REGISTER.csv", "sha256": "50995136EA4DD9FC63E37ED55ADD5A09C33E5EAB8C565B03C1FE450D4D95E1AC", "visibility": "public_sanitized_contract"}
+  },
   "claim_boundary": "This is a preserved pre-sprint snapshot; it is not the final Block D status."
 }
