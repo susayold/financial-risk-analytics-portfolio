@@ -34,7 +34,7 @@ The website presents five completed, independent financial risk projects. Each p
 
 ## CRD.PI Block D checkpoint
 
-Block D is `CLOSED_WITH_LIMITATIONS_PORTFOLIO`. Execution coverage, portfolio requirement resolution, technical QA, and artifact checksum integrity are each 100%. Production authorization and regulatory compliance are `NOT_IN_SCOPE`; the public repository contains code, contracts, sanitized aggregates, QA, and documentation only.
+Block D is `CLOSED_WITH_LIMITATIONS_PORTFOLIO` with current closure substatus `PENDING_OWNER_GATE`. Execution coverage, portfolio requirement resolution, technical QA, and artifact checksum integrity are each 100%; semantic remediation is 87.5% until the explicit portfolio project-owner identifier/date are supplied. Production authorization and regulatory compliance are `NOT_IN_SCOPE`; the public repository contains code, contracts, sanitized aggregates, QA, and documentation only.
 
 - [Block D final decision](block-d/D9_CLOSURE/D9_FINAL_BLOCK_D_DECISION.json)
 - [Block D final scorecard](block-d/BLOCK_D_FINAL_SCORECARD.md)

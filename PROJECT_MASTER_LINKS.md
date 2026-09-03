@@ -19,11 +19,12 @@ This file only indexes links. The Drive root is the single storage location; Git
 
 ## Current Block D checkpoint
 
-- Status: **`CLOSED_WITH_LIMITATIONS_PORTFOLIO`**.
+- Status: **`CLOSED_WITH_LIMITATIONS_PORTFOLIO`**; closure substatus: **`PENDING_OWNER_GATE`**.
 - Execution coverage: **100% (10/10 stages)**.
 - Portfolio requirement resolution: **100%**.
 - Technical QA: **N/N PASS**; final artifact checksum integrity: **100%**.
 - Production authorization: **NOT IN SCOPE**; regulatory claim: **NONE**.
+- Semantic remediation: **87.5% (7/8)**; final release tag is withheld until the owner gate passes.
 - [Block D status](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_STATUS.md)
 - [Block D final scorecard](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_FINAL_SCORECARD.md)
 - [Block D machine-readable final scorecard](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_FINAL_SCORECARD.json)
@@ -43,7 +44,8 @@ This file only indexes links. The Drive root is the single storage location; Git
 - [Block D validation report](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_VALIDATION_REPORT.md)
 - [Block D validation report on Drive](https://drive.google.com/file/d/1p_0-dhraDD2vIAFz2bRSaxtG9QK4BGbA/view?usp=drivesdk)
 - [Block D README checkpoint on Drive](https://drive.google.com/file/d/1yNE2P3z2z1efOm9lJNolxiLpkenBfjVM/view?usp=drivesdk)
-- [Block D final 10/10 package on Drive](https://drive.google.com/file/d/19qBMgtxVoyHU6YHhZvL9PpLCiubVg2I8/view?usp=drivesdk)
+- [Block D previous final-10/10 checkpoint — historical/superseded](https://drive.google.com/file/d/19qBMgtxVoyHU6YHhZvL9PpLCiubVg2I8/view?usp=drivesdk)
 - [Block D micro-remediation checkpoint package — pending owner gate](https://drive.google.com/file/d/1KtaOw_vG5kqj9SLKAM75kLDaCL5Pt4dR/view?usp=drivesdk)
+- [Block D pre-owner-gate finalization package — checkpoint](https://drive.google.com/file/d/16UIDE_X4GJzM6NCrBeOTfebwKHE3_Ta_/view?usp=drivesdk)
 - [Block D pre-final S0 sprint manifest on Drive](https://drive.google.com/file/d/1xopTFW55BG1cqefOHuSsgWynOcPwvhPg/view?usp=drivesdk)
 - [Block D private account EL mart on Drive](https://drive.google.com/file/d/1xR9TSRArpCO03Tc_8Kc1QAGVMiOnwiKY/view?usp=drivesdk)
