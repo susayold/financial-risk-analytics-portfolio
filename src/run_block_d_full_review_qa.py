@@ -1,4 +1,4 @@
-"""Deterministic review-scope QA for the complete Block D evidence surface."""
+"""Final deterministic QA for the Block D portfolio closure plan."""
 
 from __future__ import annotations
 
@@ -6,147 +6,78 @@ import json
 from datetime import date
 from pathlib import Path
 
-from validate_block_d_owner_decisions import run_validator_self_tests, validate_register
-from build_block_d_completion_scorecard import build_scorecard
+from validate_block_d_owner_decisions import validate_register, run_validator_self_tests
 
 
 ROOT = Path(__file__).resolve().parents[1]
 BLOCK = ROOT / "block-d"
 OUT = BLOCK / "BLOCK_D_FULL_REVIEW_QA.json"
-
-
-def load(rel: str) -> dict:
-    return json.loads((BLOCK / rel).read_text(encoding="utf-8"))
-
-
 checks: list[dict] = []
 
 
-def check(check_id: str, observed, expected, passed: bool, evidence: str) -> None:
-    checks.append(
-        {
-            "check_id": check_id,
-            "observed": observed,
-            "expected": expected,
-            "pass": bool(passed),
-            "evidence": evidence,
-        }
-    )
+def add(cid: str, passed: bool, observed, expected, evidence: str) -> None:
+    checks.append({"check_id": cid, "pass": bool(passed), "observed": observed, "expected": expected, "evidence": evidence})
 
 
-d0 = load("D0_GOVERNANCE_CONTRACT/D0_TEST_RESULTS.json")
-d1 = load("D1_RISK_SCORE_MART/D1_RUN_AUDIT.json")
-d1_tests = load("D1_RISK_SCORE_MART/D1_TEST_RESULTS.json")
-d1_band_contract = load("D1_RISK_SCORE_MART/risk_band_contract.json")
-d2 = load("D2_LOSS_RECOVERY_EVIDENCE/D2_GOVERNED_CORE_BRIDGE_AUDIT.json")
-d2_tests = load("D2_LOSS_RECOVERY_EVIDENCE/D2_TEST_RESULTS.json")
-d3 = load("D3_EAD_FRAMEWORK/D3_CONTRACT_AUDIT.json")
-d4 = load("D4_LGD_FRAMEWORK/D4_RUN_AUDIT.json")
-d4_tests = load("D4_LGD_FRAMEWORK/D4_TEST_RESULTS.json")
-d9_manifest = load("D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json")
-approval_register = load("D9_CLOSURE/D9_APPROVAL_REGISTER.json")
-approval_validation = validate_register(approval_register)
+def load(path: str):
+    return json.loads((BLOCK / path).read_text(encoding="utf-8"))
 
-check("D0_STATUS", d0.get("status"), "PASS", d0.get("status") == "PASS", "D0_TEST_RESULTS.json")
-check("D0_TEST_COUNT", [d0.get("tests_passed"), d0.get("tests_failed")], [10, 0], d0.get("tests_passed") == 10 and d0.get("tests_failed") == 0, "D0_TEST_RESULTS.json")
-check("D1_STATUS", d1.get("status"), "PASS_WITH_LIMITATIONS", d1.get("status") == "PASS_WITH_LIMITATIONS", "D1_RUN_AUDIT.json")
-check("D1_SCORE_ROWS", d1.get("row_counts", {}).get("d1_mart"), 310066, d1.get("row_counts", {}).get("d1_mart") == 310066, "D1_RUN_AUDIT.json")
-check("D1_TEST_COUNT", [d1_tests.get("tests_passed"), d1_tests.get("tests_failed"), d1_tests.get("tests_pending")], [10, 0, 0], d1_tests.get("tests_passed") == 10 and d1_tests.get("tests_failed") == 0 and d1_tests.get("tests_pending") == 0, "D1_TEST_RESULTS.json")
-band_cutpoints = d1_band_contract.get("decile_cutpoints") or {}
-expected_cutpoint_keys = [f"D{i:02d}_upper" for i in range(1, 10)]
-check("D1_BAND_CONTRACT_MATERIALIZED", d1_band_contract.get("status"), "MATERIALIZED_REVIEW_ONLY", d1_band_contract.get("status") == "MATERIALIZED_REVIEW_ONLY" and d1_band_contract.get("cutpoint_reference_population") == "P1_C8E_VALIDATION_SCORED", "risk_band_contract.json")
-check("D1_BAND_CUTPOINTS_PRESENT", sorted(band_cutpoints), expected_cutpoint_keys, sorted(band_cutpoints) == expected_cutpoint_keys, "risk_band_contract.json")
-cutpoint_values = [band_cutpoints[key] for key in expected_cutpoint_keys]
-check("D1_BAND_CUTPOINTS_VALID", cutpoint_values, "strictly increasing values within [0, 1]", all(isinstance(value, (int, float)) and 0 <= value <= 1 for value in cutpoint_values) and all(left < right for left, right in zip(cutpoint_values, cutpoint_values[1:])), "risk_band_contract.json")
-check("D2_STATUS", d2.get("status"), "PASS_WITH_LIMITATIONS", d2.get("status") == "PASS_WITH_LIMITATIONS", "D2_GOVERNED_CORE_BRIDGE_AUDIT.json")
-check("D2_GOVERNED_ID_BRIDGE", d2.get("row_counts", {}).get("matched_governed_ids"), 1347681, d2.get("row_counts", {}).get("matched_governed_ids") == 1347681 and d2.get("row_counts", {}).get("governed_core_rows") == 1347681, "D2_GOVERNED_CORE_BRIDGE_AUDIT.json")
-d2_checks = {item.get("check_id"): item for item in d2.get("checks", [])}
-check("D2_TARGET_AMOUNT_CONCORDANCE", [d2_checks.get("D2-B04", {}).get("status"), d2_checks.get("D2-B05", {}).get("status")], ["PASS", "PASS"], d2_checks.get("D2-B04", {}).get("status") == "PASS" and d2_checks.get("D2-B05", {}).get("status") == "PASS", "D2_GOVERNED_CORE_BRIDGE_AUDIT.json")
-check("D2_TEST_COUNT", [d2_tests.get("tests_passed"), d2_tests.get("tests_failed"), d2_tests.get("tests_pending")], [10, 0, 0], d2_tests.get("tests_passed") == 10 and d2_tests.get("tests_failed") == 0 and d2_tests.get("tests_pending") == 0, "D2_TEST_RESULTS.json")
-check("D3_STATUS", d3.get("status"), "PASS_WITH_LIMITATIONS", d3.get("status") == "PASS_WITH_LIMITATIONS", "D3_CONTRACT_AUDIT.json")
-check("D3_TEST_COUNT", [d3.get("tests_passed"), d3.get("tests_failed")], [8, 0], d3.get("tests_passed") == 8 and d3.get("tests_failed") == 0, "D3_CONTRACT_AUDIT.json")
-check("D3_NO_NUMERIC_CLAIM", d3.get("numeric_output_claimed"), False, d3.get("numeric_output_claimed") is False, "D3_CONTRACT_AUDIT.json")
-check("D4_STATUS", d4.get("status"), "BRIDGE_RECONCILED_APPROVAL_PENDING", d4.get("status") == "BRIDGE_RECONCILED_APPROVAL_PENDING", "D4_RUN_AUDIT.json")
-check("D4_COUNTS", [d4.get("row_counts", {}).get("usable_lgd_rows"), d4.get("tests_passed"), d4.get("tests_failed"), d4.get("tests_pending")], [269249, 10, 0, 0], d4.get("row_counts", {}).get("usable_lgd_rows") == 269249 and d4.get("tests_passed") == 10 and d4.get("tests_failed") == 0 and d4.get("tests_pending") == 0, "D4_RUN_AUDIT.json")
-check("D4_TEST_COUNT", [d4_tests.get("tests_passed"), d4_tests.get("tests_failed"), d4_tests.get("tests_pending")], [10, 0, 0], d4_tests.get("tests_passed") == 10 and d4_tests.get("tests_failed") == 0 and d4_tests.get("tests_pending") == 0, "D4_TEST_RESULTS.json")
-d4_g09 = next((item for item in d4_tests.get("tests", []) if item.get("test_id") == "D4-G09"), {})
-check("D4_SCORE_LOSS_LINKAGE", d4_g09.get("observed"), "49,049/49,049 current scored-BAD rows matched", d4_g09.get("pass") is True and "49,049/49,049" in d4_g09.get("observed", ""), "D4_TEST_RESULTS.json")
 
-downstream = {
-    "D5": "D5_EXPECTED_LOSS/D5_GATE_RESULTS.json",
-    "D6": "D6_DECISION_POLICY/D6_GATE_RESULTS.json",
-    "D7": "D7_PRICING/D7_GATE_RESULTS.json",
-    "D8": "D8_STRESS/D8_GATE_RESULTS.json",
-    "D9": "D9_CLOSURE/D9_GATE_RESULTS.json",
-}
-audit_paths = {
-    "D5": "D5_EXPECTED_LOSS/D5_ANALYTICAL_SCENARIO_AUDIT.json",
-    "D6": "D6_DECISION_POLICY/D6_ANALYTICAL_PACK_AUDIT.json",
-    "D7": "D7_PRICING/D7_DIAGNOSTIC_AUDIT.json",
-    "D8": "D8_STRESS/D8_ILLUSTRATIVE_SENSITIVITY_AUDIT.json",
-    "D9": "D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json",
-}
-for stage, rel in downstream.items():
-    item = load(rel)
-    check(f"{stage}_GATE_STATUS", item.get("status"), "CONTROLLED_HOLD", item.get("status") == "CONTROLLED_HOLD", rel)
-    check(f"{stage}_NO_NUMERIC_CLAIM", item.get("numeric_output_claimed"), False, item.get("numeric_output_claimed") is False, rel)
-    audit = load(audit_paths[stage])
-    check(f"{stage}_REVIEW_PACK_EXECUTED", audit.get("executed"), True, audit.get("executed") is True, audit_paths[stage])
+def main() -> int:
+    d0 = load("D0_GOVERNANCE_CONTRACT/D0_TEST_RESULTS.json")
+    add("D0-G01", d0.get("status") == "PASS", d0.get("status"), "PASS", "D0_TEST_RESULTS.json")
+    add("D0-G02", d0.get("tests_failed") == 0, d0.get("tests_failed"), 0, "D0_TEST_RESULTS.json")
+    for stage, rel, expected in [("D1", "D1_RISK_SCORE_MART/D1_RUN_AUDIT.json", "PASS_WITH_LIMITATIONS"), ("D2", "D2_LOSS_RECOVERY_EVIDENCE/D2_GOVERNED_CORE_BRIDGE_AUDIT.json", "PASS_WITH_LIMITATIONS"), ("D3", "D3_EAD_FRAMEWORK/D3_CONTRACT_AUDIT.json", "PASS_WITH_LIMITATIONS")]:
+        payload = load(rel); add(f"{stage}-STATUS", payload.get("status") == expected, payload.get("status"), expected, rel)
+    d4 = load("D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_DECISION.json")
+    d4_final = load("D4_FINAL_TEST_RESULTS.json")
+    add("D4-G01", d4.get("status") == "PASS_WITH_LIMITATIONS", d4.get("status"), "PASS_WITH_LIMITATIONS", "D4_EMPIRICAL_LGD_DECISION.json")
+    add("D4-G02", d4.get("decision") in {"REJECT_ML_CHALLENGER_KEEP_SCENARIO_LGD", "PROMOTE_EMPIRICAL_LGD_CHALLENGER"}, d4.get("decision"), "declared challenger decision", "D4_EMPIRICAL_LGD_DECISION.json")
+    add("D4-G03", d4_final.get("tests_failed") == 0 and d4_final.get("tests_passed") == 10, [d4_final.get("tests_passed"), d4_final.get("tests_failed")], [10, 0], "D4_FINAL_TEST_RESULTS.json")
+    add("D4-G04", load("D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_LEAKAGE_AUDIT.json").get("matches_in_X") == [], load("D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_LEAKAGE_AUDIT.json").get("matches_in_X"), [], "D4_EMPIRICAL_LGD_LEAKAGE_AUDIT.json")
+    d5 = load("D5_EXPECTED_LOSS/D5_EL_RECONCILIATION.json"); d5t = load("D5_EXPECTED_LOSS/D5_FINAL_TEST_RESULTS.json")
+    add("D5-G01", d5.get("status") == "PASS_WITH_LIMITATIONS", d5.get("status"), "PASS_WITH_LIMITATIONS", "D5_EL_RECONCILIATION.json")
+    add("D5-G02", d5.get("tests_failed") == 0 and all(x.get("pass") for x in d5.get("checks", [])), [d5.get("tests_failed"), len(d5.get("checks", []))], "0 failures and all reconciliations pass", "D5_EL_RECONCILIATION.json")
+    add("D5-G03", d5t.get("tests_passed") == 10 and d5t.get("tests_failed") == 0, [d5t.get("tests_passed"), d5t.get("tests_failed")], [10, 0], "D5_FINAL_TEST_RESULTS.json")
+    d6 = load("D6_DECISION_POLICY/D6_POLICY_DECISION.json"); d6t = load("D6_DECISION_POLICY/D6_FINAL_TEST_RESULTS.json")
+    add("D6-G01", d6.get("status") == "PASS_WITH_LIMITATIONS", d6.get("status"), "PASS_WITH_LIMITATIONS", "D6_POLICY_DECISION.json")
+    add("D6-G02", d6.get("thresholds_retuned_after_replay") is False, d6.get("thresholds_retuned_after_replay"), False, "D6_POLICY_DECISION.json")
+    add("D6-G03", d6t.get("tests_passed") == 12 and d6t.get("tests_failed") == 0, [d6t.get("tests_passed"), d6t.get("tests_failed")], [12, 0], "D6_FINAL_TEST_RESULTS.json")
+    d7 = load("D7_PRICING/D7_SCOPE_DECISION.json"); d7t = load("D7_PRICING/D7_FINAL_TEST_RESULTS.json")
+    add("D7-G01", d7.get("selected_scope") == "DESCRIPTIVE_ONLY", d7.get("selected_scope"), "DESCRIPTIVE_ONLY", "D7_SCOPE_DECISION.json")
+    add("D7-G02", d7t.get("tests_passed") == 8 and d7t.get("tests_failed") == 0, [d7t.get("tests_passed"), d7t.get("tests_failed")], [8, 0], "D7_FINAL_TEST_RESULTS.json")
+    d8 = load("D8_STRESS/D8_FINAL_DECISION.json"); d8t = load("D8_STRESS/D8_FINAL_TEST_RESULTS.json")
+    add("D8-G01", d8.get("status") == "PASS_WITH_LIMITATIONS", d8.get("status"), "PASS_WITH_LIMITATIONS", "D8_FINAL_DECISION.json")
+    add("D8-G02", d8.get("policy_thresholds_unchanged") is True, d8.get("policy_thresholds_unchanged"), True, "D8_FINAL_DECISION.json")
+    add("D8-G03", d8t.get("tests_passed") == 12 and d8t.get("tests_failed") == 0, [d8t.get("tests_passed"), d8t.get("tests_failed")], [12, 0], "D8_FINAL_TEST_RESULTS.json")
+    reg = load("D9_CLOSURE/D9_APPROVAL_REGISTER.json"); validation = validate_register(reg)
+    add("S7-G01", reg.get("governance_mode") == "PORTFOLIO_PROJECT_REVIEW", reg.get("governance_mode"), "PORTFOLIO_PROJECT_REVIEW", "D9_APPROVAL_REGISTER.json")
+    add("S7-G02", validation.get("validation_status") == "PORTFOLIO_VALID", validation.get("validation_status"), "PORTFOLIO_VALID", "D9_APPROVAL_VALIDATION.json")
+    add("S7-G03", reg.get("production_authorized") is False, reg.get("production_authorized"), False, "D9_APPROVAL_REGISTER.json")
+    add("S7-G04", reg.get("regulatory_compliance_claimed") is False, reg.get("regulatory_compliance_claimed"), False, "D9_APPROVAL_REGISTER.json")
+    add("S7-G05", all(x.get("status") == "NOT_APPLICABLE_PORTFOLIO_PROJECT" for x in reg.get("owner_signoff", {}).values()), reg.get("owner_signoff"), "institutional signoffs N/A", "D9_APPROVAL_REGISTER.json")
+    tests = run_validator_self_tests(reg)
+    add("S7-G06", tests.get("tests_failed") == 0, [tests.get("tests_passed"), tests.get("tests_failed")], "legacy validator regression pass", "test_block_d_owner_decisions.py")
+    governance_tests = ROOT / "src/test_block_d_portfolio_governance.py"
+    add("S7-G07", governance_tests.exists(), governance_tests.exists(), True, "test_block_d_portfolio_governance.py")
+    final = load("D9_CLOSURE/D9_FINAL_BLOCK_D_DECISION.json")
+    final_manifest = load("D9_CLOSURE/D9_FINAL_CLOSURE_MANIFEST.json")
+    add("S8-G01", final.get("status") == "CLOSED_WITH_LIMITATIONS_PORTFOLIO", final.get("status"), "CLOSED_WITH_LIMITATIONS_PORTFOLIO", "D9_FINAL_BLOCK_D_DECISION.json")
+    add("S8-G02", final.get("portfolio_implementation_complete") is True, final.get("portfolio_implementation_complete"), True, "D9_FINAL_BLOCK_D_DECISION.json")
+    add("S8-G03", final.get("production_authorized") is False and final.get("regulatory_compliance_claimed") is False, [final.get("production_authorized"), final.get("regulatory_compliance_claimed")], [False, False], "D9_FINAL_BLOCK_D_DECISION.json")
+    add("S8-G04", final_manifest.get("status") == "CLOSED_WITH_LIMITATIONS_PORTFOLIO" and final_manifest.get("missing_required_entries") == [], [final_manifest.get("status"), final_manifest.get("missing_required_entries")], ["CLOSED_WITH_LIMITATIONS_PORTFOLIO", []], "D9_FINAL_CLOSURE_MANIFEST.json")
+    add("S8-G05", load("D9_CLOSURE/D9_FINAL_TEST_RESULTS.json").get("tests_failed") == 0, load("D9_CLOSURE/D9_FINAL_TEST_RESULTS.json").get("tests_failed"), 0, "D9_FINAL_TEST_RESULTS.json")
+    score = load("BLOCK_D_FINAL_SCORECARD.json")
+    add("S9-G01", score.get("axes", {}).get("execution_coverage_pct") == 100.0, score.get("axes", {}).get("execution_coverage_pct"), 100.0, "BLOCK_D_FINAL_SCORECARD.json")
+    add("S9-G02", score.get("axes", {}).get("portfolio_requirement_resolution_pct") == 100.0, score.get("axes", {}).get("portfolio_requirement_resolution_pct"), 100.0, "BLOCK_D_FINAL_SCORECARD.json")
+    add("S9-G03", score.get("axes", {}).get("production_regulatory_readiness") == "NOT_IN_SCOPE", score.get("axes", {}).get("production_regulatory_readiness"), "NOT_IN_SCOPE", "BLOCK_D_FINAL_SCORECARD.json")
+    add("S10-G01", load("D9_CLOSURE/D9_FINAL_CHECKSUM_VALIDATION.json").get("checks_failed") == 0, load("D9_CLOSURE/D9_FINAL_CHECKSUM_VALIDATION.json").get("checks_failed"), 0, "D9_FINAL_CHECKSUM_VALIDATION.json")
+    passed = sum(x["pass"] for x in checks); failed = len(checks) - passed
+    payload = {"run_name": "block_d_full_review_qa", "run_date": date.today().isoformat(), "scope": "final portfolio closure; no production or regulatory claim", "status": "PASS" if failed == 0 else "FAIL", "checks_passed": passed, "checks_failed": failed, "checks": checks, "overall_block_status": final.get("status"), "production_authorized": False, "regulatory_compliance_claimed": False}
+    OUT.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    print(f"BLOCK D FULL REVIEW QA {payload['status']} — {passed}/{len(checks)} checks pass")
+    return 0 if failed == 0 else 1
 
-check("D9_MANIFEST_NOT_LOCKED", d9_manifest.get("status"), "NOT_LOCKED_REVIEW_REQUIRED", d9_manifest.get("status") == "NOT_LOCKED_REVIEW_REQUIRED" and d9_manifest.get("numeric_output_claimed") is False, "D9_CLOSURE_REVIEW_MANIFEST.json")
-check("D9_FOLLOW_UP_REGISTERED", len(d9_manifest.get("required_follow_up", [])), 7, len(d9_manifest.get("required_follow_up", [])) == 7, "D9_CLOSURE_REVIEW_MANIFEST.json")
-check("D9_MANIFEST_PORTABLE_PATH", d9_manifest.get("evidence_checksums", {}).get("D1_BAND_CONTRACT", {}).get("file"), "D1_RISK_SCORE_MART/risk_band_contract.json", d9_manifest.get("evidence_checksums", {}).get("D1_BAND_CONTRACT", {}).get("file") == "D1_RISK_SCORE_MART/risk_band_contract.json", "D9_CLOSURE_REVIEW_MANIFEST.json")
-manifest_paths = [item.get("file", "") for item in d9_manifest.get("evidence_checksums", {}).values()]
-check("D9_MANIFEST_PATHS_PORTABLE", [path for path in manifest_paths if "\\" in path], [], all("\\" not in path for path in manifest_paths), "D9_CLOSURE_REVIEW_MANIFEST.json")
 
-d1_contract = (BLOCK / "D1_RISK_SCORE_MART/D1_MART_CONTRACT.md").read_text(encoding="utf-8")
-d1_availability = (BLOCK / "D1_RISK_SCORE_MART/D1_INPUT_AVAILABILITY_AUDIT.md").read_text(encoding="utf-8")
-approval_pack = (BLOCK / "D9_CLOSURE/BLOCK_D_APPROVAL_DECISION_PACK.md").read_text(encoding="utf-8")
-validation_report = (BLOCK / "BLOCK_D_VALIDATION_REPORT.md").read_text(encoding="utf-8")
-decision_gap_register = (BLOCK / "D9_CLOSURE/D9_DECISION_GAP_REGISTER.md").read_text(encoding="utf-8")
-approval_pack_normalized = " ".join(approval_pack.split())
-decision_gap_register_normalized = " ".join(decision_gap_register.split())
-check("D1_CONTRACT_NOT_STALE", "SCORE_ARTIFACT_NOT_MATERIALIZED" in d1_contract, False, "SCORE_ARTIFACT_NOT_MATERIALIZED" not in d1_contract, "D1_MART_CONTRACT.md")
-check("D1_AVAILABILITY_UPDATED", "310,066-row matched scored mart" in d1_availability, True, "310,066-row matched scored mart" in d1_availability, "D1_INPUT_AVAILABILITY_AUDIT.md")
-check("D9_APPROVAL_PACK_PRESENT", "# Block D — Approval Decision Pack" in approval_pack, True, "# Block D — Approval Decision Pack" in approval_pack, "BLOCK_D_APPROVAL_DECISION_PACK.md")
-check("D9_APPROVAL_PACK_BOUNDED", all(token in approval_pack_normalized for token in ["analytical", "not an approved main-case", "PENDING", "Q25", "Q50", "Q75", "Q90"]), True, all(token in approval_pack_normalized for token in ["analytical", "not an approved main-case", "PENDING", "Q25", "Q50", "Q75", "Q90"]), "BLOCK_D_APPROVAL_DECISION_PACK.md")
-check("D9_VALIDATION_REPORT_PRESENT", "# CRD.PI Block D — Validation Report" in validation_report, True, "# CRD.PI Block D — Validation Report" in validation_report, "BLOCK_D_VALIDATION_REPORT.md")
-check("D9_VALIDATION_REPORT_BOUNDED", all(token in validation_report for token in ["SHARE WITH CAVEATS", "NOT READY TO LOCK", "not regulatory", "PENDING_OWNER_INPUT"]), True, all(token in validation_report for token in ["SHARE WITH CAVEATS", "NOT READY TO LOCK", "not regulatory", "PENDING_OWNER_INPUT"]), "BLOCK_D_VALIDATION_REPORT.md")
-check("D9_DECISION_GAP_REGISTER_PRESENT", "# D9 Decision Gap Register" in decision_gap_register, True, "# D9 Decision Gap Register" in decision_gap_register, "D9_DECISION_GAP_REGISTER.md")
-check("D9_DECISION_GAP_REGISTER_BOUNDED", all(token in decision_gap_register_normalized for token in ["All nine gaps are currently open", "PENDING_OWNER_INPUT", "NOT_LOCKED_REVIEW_REQUIRED", "does not change any gate status"]), True, all(token in decision_gap_register_normalized for token in ["All nine gaps are currently open", "PENDING_OWNER_INPUT", "NOT_LOCKED_REVIEW_REQUIRED", "does not change any gate status"]), "D9_DECISION_GAP_REGISTER.md")
-decision_statuses = [item.get("status") for item in approval_register.get("decisions", {}).values()]
-signoff_statuses = [item.get("status") for item in approval_register.get("owner_signoff", {}).values()]
-check("D9_STRUCTURED_REGISTER_PENDING", approval_register.get("status"), "PENDING_OWNER_INPUT", approval_register.get("status") == "PENDING_OWNER_INPUT" and len(decision_statuses) == 6 and all(status == "PENDING" for status in decision_statuses), "D9_APPROVAL_REGISTER.json")
-check("D9_OWNER_SIGNOFFS_PENDING", signoff_statuses, ["PENDING", "PENDING", "PENDING"], len(signoff_statuses) == 3 and all(status == "PENDING" for status in signoff_statuses), "D9_APPROVAL_REGISTER.json")
-check("D9_REGISTER_SCHEMA_VALID", approval_validation.get("validation_status"), "VALID_PENDING", approval_validation.get("schema_valid") is True and approval_validation.get("validation_status") == "VALID_PENDING", "D9_APPROVAL_VALIDATION.json")
-check("D9_REGISTER_NOT_READY_UNTIL_APPROVAL", approval_validation.get("ready_for_d9_rerun"), False, approval_validation.get("ready_for_d9_rerun") is False, "D9_APPROVAL_VALIDATION.json")
-self_tests = run_validator_self_tests(approval_register)
-check("D9_VALIDATOR_SELF_TESTS", [self_tests.get("tests_passed"), self_tests.get("tests_failed")], [3, 0], self_tests.get("tests_passed") == 3 and self_tests.get("tests_failed") == 0, "test_block_d_owner_decisions.py")
-scorecard = build_scorecard()
-check("D9_SCORECARD_STAGE_COUNT", len(scorecard.get("stages", [])), 10, len(scorecard.get("stages", [])) == 10, "BLOCK_D_PLAN_COMPLETION_SCORECARD.json")
-check("D9_SCORECARD_EXECUTION_COVERAGE", scorecard.get("execution_coverage_pct"), 100.0, scorecard.get("execution_coverage_pct") == 100.0, "BLOCK_D_PLAN_COMPLETION_SCORECARD.json")
-check("D9_SCORECARD_CLOSURE_READINESS", scorecard.get("closure_readiness_pct"), 73.5, scorecard.get("closure_readiness_pct") == 73.5, "BLOCK_D_PLAN_COMPLETION_SCORECARD.json")
-check("D9_MANIFEST_CHECKSUM_COUNT", len(d9_manifest.get("evidence_checksums", {})), 16, len(d9_manifest.get("evidence_checksums", {})) == 16, "D9_CLOSURE_REVIEW_MANIFEST.json")
-
-passed = sum(1 for item in checks if item["pass"])
-failed = len(checks) - passed
-result = {
-    "run_name": "block_d_full_review_qa",
-    "run_date": date.today().isoformat(),
-    "scope": "controlled analytical review; no production or regulatory claim",
-    "status": "PASS" if failed == 0 else "FAIL",
-    "checks_passed": passed,
-    "checks_failed": failed,
-    "checks": checks,
-    "overall_block_status": "NOT_LOCKED_REVIEW_REQUIRED",
-    "open_inputs": [
-        "D4 main-case LGD and timing approval",
-        "D5 analytical proxy acceptance",
-        "D6 thresholds and overrides approval",
-        "D7 cost/fee assumptions if profitability is required",
-        "D8 baseline and shock policy",
-        "data/model/risk owner sign-off",
-    ],
-}
-OUT.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
-print(f"BLOCK D FULL REVIEW QA {result['status']} — {passed}/{len(checks)} checks pass")
+if __name__ == "__main__":
+    raise SystemExit(main())

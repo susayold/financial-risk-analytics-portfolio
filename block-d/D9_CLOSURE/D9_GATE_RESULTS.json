@@ -1,13 +1,9 @@
 {
   "stage": "D9",
-  "title": "Block D Closure Gate",
-  "status": "CONTROLLED_HOLD",
-  "executed": false,
-  "numeric_output_claimed": false,
-  "review_manifest_executed": true,
-  "closure_decision": "NOT_LOCKED",
-  "required_stage_passes": ["D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8"],
-  "open_stage_gates": ["D4", "D5", "D6", "D7", "D8"],
-  "required_signoffs": ["data_owner", "model_owner", "risk_owner"],
-  "claims_forbidden": ["Block D LOCKED", "production economics approval"]
+  "status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+  "governance_mode": "PORTFOLIO_PROJECT_REVIEW",
+  "tests_passed": 9,
+  "tests_failed": 0,
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false
 }

@@ -1,0 +1,72 @@
+{
+  "stage": "D5",
+  "status": "PASS_WITH_LIMITATIONS",
+  "formula": "p_bad_final * lgd_proxy * ead_proxy",
+  "main_view": "EL_MAIN_ANALYTICAL",
+  "private_account_mart": "D5_ACCOUNT_EXPECTED_LOSS.parquet",
+  "portfolio": {
+    "account_count": 310066,
+    "total_ead_proxy": 4469158350.0,
+    "total_expected_loss_proxy": 526752273.6678772
+  },
+  "checks": [
+    {
+      "dimension": "risk_decile",
+      "segment_total": 526752273.66787714,
+      "portfolio_total": 526752273.6678772,
+      "difference": -5.960464477539063e-08,
+      "pass": true
+    },
+    {
+      "dimension": "risk_band",
+      "segment_total": 526752273.6678772,
+      "portfolio_total": 526752273.6678772,
+      "difference": 0.0,
+      "pass": true
+    },
+    {
+      "dimension": "term",
+      "segment_total": 526752273.6678772,
+      "portfolio_total": 526752273.6678772,
+      "difference": 0.0,
+      "pass": true
+    },
+    {
+      "dimension": "purpose",
+      "segment_total": 526752273.66787714,
+      "portfolio_total": 526752273.6678772,
+      "difference": -5.960464477539063e-08,
+      "pass": true
+    },
+    {
+      "dimension": "fico_band",
+      "segment_total": 526752273.66787714,
+      "portfolio_total": 526752273.6678772,
+      "difference": -5.960464477539063e-08,
+      "pass": true
+    },
+    {
+      "dimension": "dti_band",
+      "segment_total": 526752273.66787714,
+      "portfolio_total": 526752273.6678772,
+      "difference": -5.960464477539063e-08,
+      "pass": true
+    },
+    {
+      "dimension": "loan_size_band",
+      "segment_total": 526752273.6678772,
+      "portfolio_total": 526752273.6678772,
+      "difference": 0.0,
+      "pass": true
+    },
+    {
+      "dimension": "issue_year",
+      "segment_total": 526752273.6678772,
+      "portfolio_total": 526752273.6678772,
+      "difference": 0.0,
+      "pass": true
+    }
+  ],
+  "tests_passed": 10,
+  "tests_failed": 0
+}

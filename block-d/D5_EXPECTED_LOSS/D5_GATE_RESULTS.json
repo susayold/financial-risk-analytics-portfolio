@@ -1,25 +1,7 @@
 {
   "stage": "D5",
-  "title": "Expected Loss Gate",
-  "status": "CONTROLLED_HOLD",
-  "executed": false,
-  "numeric_output_claimed": false,
-  "analytical_pack_executed": true,
-  "formula_boundary": "expected_loss_proxy = p_bad_final * LGD * EAD",
-  "upstream_requirements": {
-    "D1_full_score_mart": "PASS_WITH_LIMITATIONS",
-    "D2_governed_core_loss_bridge": "PASS_WITH_LIMITATIONS",
-    "D3_ead_scope": "AVAILABLE_WITH_LIMITATIONS",
-    "D4_approved_lgd": "APPROVAL_PENDING"
-  },
-  "blocked_checks": [
-    "D1 is a 310,066-row matched scored subset, not full-governed score coverage",
-    "D4 LGD anchors are governed but main-case approval is pending"
-  ],
-  "claims_forbidden": [
-    "regulatory PD/LGD/EAD/ECL",
-    "IFRS 9 or Basel capital result",
-    "realized profit or loss",
-    "portfolio EL number using unbridged populations"
-  ]
+  "status": "PASS_WITH_LIMITATIONS",
+  "superseded_by": "D5_FINAL_TEST_RESULTS.json",
+  "formula_boundary": "p_bad_final * lgd_proxy * ead_proxy",
+  "claim_boundary": "ANALYTICAL EXPECTED-LOSS PROXY; NOT IFRS 9; NOT BASEL; NOT REALIZED LOSS; NOT PRODUCTION ECL"
 }

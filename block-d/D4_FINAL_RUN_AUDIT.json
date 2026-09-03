@@ -1,0 +1,10 @@
+{
+  "stage": "D4",
+  "status": "PASS_WITH_LIMITATIONS",
+  "selected_main_method": "LGD_CENTRAL_Q50",
+  "source_checksums": {
+    "D1": "bb6c688924a93fb8bbfb999e4b9d7a73c0a61d167576a168f5563bdbc5c87938",
+    "D2": "5574b5e468fc46ef1732ebf75bd1c4805113e94b26fd38a819d65aec338838da"
+  },
+  "no_regulatory_claim": true
+}

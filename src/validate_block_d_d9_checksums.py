@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_MANIFEST = ROOT / "block-d" / "D9_CLOSURE" / "D9_CLOSURE_REVIEW_MANIFEST.json"
+DEFAULT_MANIFEST = ROOT / "block-d" / "D9_CLOSURE" / "D9_FINAL_CLOSURE_MANIFEST.json"
 
 
 def sha256(path: Path) -> str:
@@ -31,14 +31,17 @@ def main() -> int:
     checked = 0
     for key, item in manifest.get("evidence_checksums", {}).items():
         checked += 1
-        relative = Path(item["file"])
-        evidence = block_dir / relative
+        relative = Path(item.get("file", key))
+        # Final manifests are rooted at D9_CLOSURE and use portable ../ paths;
+        # the legacy review manifest is rooted at block-d. Support both.
+        candidate_from_manifest = args.manifest.parent / relative
+        evidence = candidate_from_manifest if candidate_from_manifest.is_file() else (block_dir / relative)
         if not evidence.is_file():
-            failures.append(f"{key}: missing {item['file']}")
+            failures.append(f"{key}: missing {item.get('file', key)}")
             continue
         actual = sha256(evidence)
         if actual != item.get("sha256"):
-            failures.append(f"{key}: checksum mismatch for {item['file']}")
+            failures.append(f"{key}: checksum mismatch for {item.get('file', key)}")
 
     print(f"D9 checksum entries: {checked}")
     print(f"D9 checksum failures: {len(failures)}")

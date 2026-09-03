@@ -1,15 +1,7 @@
 {
   "stage": "D7",
-  "title": "Pricing Adequacy Gate",
-  "status": "CONTROLLED_HOLD",
-  "executed": false,
-  "numeric_output_claimed": false,
-  "analytical_pack_executed": true,
-  "required_pricing_fields": ["term", "int_rate", "installment", "sub_grade", "grade_derived"],
-  "required_upstream": ["D1_PASS", "D5_PASS", "PRICING_BRIDGE_PASS"],
-  "blocked_checks": [
-    "D5 approved economics gate is not open",
-    "Cost, fee and realized profitability evidence is not in scope"
-  ],
-  "claims_forbidden": ["price adequacy", "risk-adjusted margin", "realized profitability"]
+  "status": "PASS_WITH_LIMITATIONS",
+  "superseded_by": "D7_FINAL_TEST_RESULTS.json",
+  "selected_scope": "DESCRIPTIVE_ONLY",
+  "profitability_claimed": false
 }

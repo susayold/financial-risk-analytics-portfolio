@@ -1,34 +1,27 @@
 {
   "run_name": "block_d_owner_decision_validation",
   "run_date": "2026-09-03",
-  "scope": "D9 owner-input validation; no approval is inferred",
-  "validation_status": "VALID_PENDING",
+  "scope": "D9 portfolio project review; institutional production authorization is out of scope",
+  "governance_mode": "PORTFOLIO_PROJECT_REVIEW",
+  "validation_status": "PORTFOLIO_VALID",
   "schema_valid": true,
-  "ready_for_d9_rerun": false,
+  "ready_for_d9_rerun": true,
   "decision_statuses": {
-    "D4_main_case_lgd": "PENDING",
-    "D4_timing_boundary": "PENDING",
-    "D5_analytical_proxy": "PENDING",
-    "D6_action_policy": "PENDING",
-    "D7_pricing_scope": "PENDING",
-    "D8_stress_policy": "PENDING"
+    "D4_main_case_lgd": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW",
+    "D4_timing_boundary": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW",
+    "D5_analytical_proxy": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW",
+    "D6_action_policy": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW",
+    "D7_pricing_scope": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW",
+    "D8_stress_policy": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW"
   },
   "owner_signoff_statuses": {
-    "data_owner": "PENDING",
-    "model_owner": "PENDING",
-    "risk_owner": "PENDING"
+    "data_owner": "NOT_APPLICABLE_PORTFOLIO_PROJECT",
+    "model_owner": "NOT_APPLICABLE_PORTFOLIO_PROJECT",
+    "risk_owner": "NOT_APPLICABLE_PORTFOLIO_PROJECT"
   },
-  "pending_items": [
-    "D4_main_case_lgd",
-    "D4_timing_boundary",
-    "D5_analytical_proxy",
-    "D6_action_policy",
-    "D7_pricing_scope",
-    "D8_stress_policy",
-    "data_owner",
-    "model_owner",
-    "risk_owner"
-  ],
+  "pending_items": [],
   "errors": [],
-  "unlock_rule": "All six decisions and all three owner sign-offs must be APPROVED before D9 rerun."
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false,
+  "unlock_rule": "Six portfolio project-owner analytical decisions complete; institutional signoffs are not applicable; no production authorization is inferred."
 }

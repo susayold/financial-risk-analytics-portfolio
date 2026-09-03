@@ -1,0 +1,77 @@
+{
+  "scorecard_version": "D-FINAL-10-10-1.0",
+  "scorecard_date": "2026-09-03",
+  "status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+  "axes": {
+    "execution_coverage_pct": 100.0,
+    "portfolio_requirement_resolution_pct": 100.0,
+    "technical_qa_pct": 100.0,
+    "artifact_checksum_integrity_pct": 100.0,
+    "production_regulatory_readiness": "NOT_IN_SCOPE"
+  },
+  "stages": [
+    {
+      "stage": "D0",
+      "final_portfolio_state": "PASS",
+      "completion_pct": 100.0,
+      "note": "Governance contract closed"
+    },
+    {
+      "stage": "D1",
+      "final_portfolio_state": "CLOSED_WITH_ACCEPTED_LIMITATION",
+      "completion_pct": 100.0,
+      "note": "Matched scored population limitation"
+    },
+    {
+      "stage": "D2",
+      "final_portfolio_state": "CLOSED_WITH_ACCEPTED_LIMITATION",
+      "completion_pct": 100.0,
+      "note": "Retrospective BAD evidence limitation"
+    },
+    {
+      "stage": "D3",
+      "final_portfolio_state": "CLOSED_WITH_ACCEPTED_LIMITATION",
+      "completion_pct": 100.0,
+      "note": "EAD contractual timing proxy limitation"
+    },
+    {
+      "stage": "D4",
+      "final_portfolio_state": "CLOSED_WITH_ACCEPTED_LIMITATION",
+      "completion_pct": 100.0,
+      "note": "Analytical LGD method frozen"
+    },
+    {
+      "stage": "D5",
+      "final_portfolio_state": "CLOSED_WITH_ACCEPTED_LIMITATION",
+      "completion_pct": 100.0,
+      "note": "Analytical expected-loss proxy"
+    },
+    {
+      "stage": "D6",
+      "final_portfolio_state": "CLOSED_WITH_ACCEPTED_LIMITATION",
+      "completion_pct": 100.0,
+      "note": "Historical policy simulation"
+    },
+    {
+      "stage": "D7",
+      "final_portfolio_state": "CLOSED_WITH_ACCEPTED_LIMITATION",
+      "completion_pct": 100.0,
+      "note": "Descriptive-only stop condition"
+    },
+    {
+      "stage": "D8",
+      "final_portfolio_state": "CLOSED_WITH_ACCEPTED_LIMITATION",
+      "completion_pct": 100.0,
+      "note": "Analytical stress sensitivity"
+    },
+    {
+      "stage": "D9",
+      "final_portfolio_state": "CLOSED_WITH_ACCEPTED_LIMITATION",
+      "completion_pct": 100.0,
+      "note": "Portfolio governance closure"
+    }
+  ],
+  "interpretation": "100% completion means every portfolio requirement has a resolved evidence-backed state; it does not mean zero limitations or production authorization.",
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false
+}

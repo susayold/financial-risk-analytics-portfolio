@@ -1,89 +1,23 @@
 {
   "stage": "D9",
-  "status": "PENDING_OWNER_INPUT",
-  "updated": "2026-09-02",
-  "purpose": "Structured owner decisions for D4-D9 closure; no approval is implied by this file.",
+  "status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+  "updated": "2026-09-03",
+  "governance_mode": "PORTFOLIO_PROJECT_REVIEW",
+  "purpose": "Portfolio project analytical decisions; no institutional approval is implied.",
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false,
   "decisions": {
-    "D4_main_case_lgd": {
-      "status": "PENDING",
-      "options": [
-        {"option": "Q25", "lgd": 0.48967010746551115},
-        {"option": "Q50", "lgd": 0.667384888},
-        {"option": "Q75", "lgd": 0.7902973489584245},
-        {"option": "Q90", "lgd": 0.865786}
-      ],
-      "selected_option": null,
-      "decision_owner": null,
-      "decision_date": null,
-      "decision_reference": null,
-      "conditions": null,
-      "evidence": "D4_LGD_FRAMEWORK/D4_RUN_AUDIT.json"
-    },
-    "D4_timing_boundary": {
-      "status": "PENDING",
-      "proposed_reference": "issue_year <= 2017",
-      "shadow_treatment": "2018 monitor-only",
-      "approved": null,
-      "decision_owner": null,
-      "decision_date": null,
-      "decision_reference": null,
-      "conditions": null,
-      "evidence": "D4_LGD_FRAMEWORK/D4_LGD_SCENARIO_CONTRACT.md"
-    },
-    "D5_analytical_proxy": {
-      "status": "PENDING",
-      "formula": "p_bad_final * LGD assumption * declared EAD scenario",
-      "approved": null,
-      "claim_boundary": "analytical proxy only; not regulatory or realized loss",
-      "decision_owner": null,
-      "decision_date": null,
-      "decision_reference": null,
-      "conditions": null,
-      "evidence": "D5_EXPECTED_LOSS/D5_ANALYTICAL_SCENARIO_AUDIT.json"
-    },
-    "D6_action_policy": {
-      "status": "PENDING",
-      "proposed_mapping": "R1/R2 STANDARD_REVIEW; R3 MANUAL_REVIEW; R4/R5 ENHANCED_REVIEW",
-      "thresholds_approved": null,
-      "overrides_approved": null,
-      "decision_owner": null,
-      "decision_date": null,
-      "decision_reference": null,
-      "conditions": null,
-      "evidence": "D6_DECISION_POLICY/D6_ANALYTICAL_PACK_AUDIT.json"
-    },
-    "D7_pricing_scope": {
-      "status": "PENDING",
-      "options": [
-        "DESCRIPTIVE_ONLY",
-        "PROVIDE_APPROVED_COST_FEE_TIMING_INPUTS_FOR_ADEQUACY_ANALYSIS"
-      ],
-      "selected_option": null,
-      "decision_owner": null,
-      "decision_date": null,
-      "decision_reference": null,
-      "conditions": null,
-      "evidence": "D7_PRICING/D7_DIAGNOSTIC_AUDIT.json"
-    },
-    "D8_stress_policy": {
-      "status": "PENDING",
-      "proposed_shocks": {
-        "pd_pct": [0, 10, 25],
-        "lgd_additive": [0, 0.1],
-        "ead_pct": [0, 5]
-      },
-      "approved": null,
-      "decision_owner": null,
-      "decision_date": null,
-      "decision_reference": null,
-      "conditions": null,
-      "evidence": "D8_STRESS/D8_ILLUSTRATIVE_SENSITIVITY_AUDIT.json"
-    }
+    "D4_main_case_lgd": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "Q50", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D4_MAIN_CASE_DECISION.json", "conditions": "Analytical portfolio proxy; not regulatory LGD.", "production_authorization": false, "regulatory_claim": false},
+    "D4_timing_boundary": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "ISSUE_YEAR_LE_2017", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D4_TIMING_DECISION.json", "conditions": "2018 monitor-only; 2017 is not pristine untouched LGD OOT.", "production_authorization": false, "regulatory_claim": false},
+    "D5_analytical_proxy": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "EL_MAIN_ANALYTICAL", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D5_FINAL_RUN_AUDIT.json", "conditions": "Not IFRS 9, Basel, realized loss, or production ECL.", "production_authorization": false, "regulatory_claim": false},
+    "D6_action_policy": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "HISTORICAL_DECISION_SIMULATION", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D6_POLICY_DECISION.json", "conditions": "Validation-derived and OOT-replayed; no production override authority.", "production_authorization": false, "regulatory_claim": false},
+    "D7_pricing_scope": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "DESCRIPTIVE_ONLY", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D7_SCOPE_DECISION.json", "conditions": "Diagnostic spread only; no profitability claim.", "production_authorization": false, "regulatory_claim": false},
+    "D8_stress_policy": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "ANALYTICAL_SENSITIVITY", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D8_FINAL_DECISION.json", "conditions": "Not a forecast or bank risk-appetite breach.", "production_authorization": false, "regulatory_claim": false}
   },
   "owner_signoff": {
-    "data_owner": {"status": "PENDING", "name": null, "date": null, "reference": null},
-    "model_owner": {"status": "PENDING", "name": null, "date": null, "reference": null},
-    "risk_owner": {"status": "PENDING", "name": null, "date": null, "reference": null}
+    "data_owner": {"status": "NOT_APPLICABLE_PORTFOLIO_PROJECT", "name": null, "date": null, "reference": null},
+    "model_owner": {"status": "NOT_APPLICABLE_PORTFOLIO_PROJECT", "name": null, "date": null, "reference": null},
+    "risk_owner": {"status": "NOT_APPLICABLE_PORTFOLIO_PROJECT", "name": null, "date": null, "reference": null}
   },
-  "unlock_rule": "All required decisions and all three owner sign-offs must be recorded before D9 can be rerun for LOCKED review."
+  "unlock_rule": "Portfolio closure requires six evidence-backed project-owner decisions, technical QA, claim-boundary pass, artifact manifest pass, production_authorized=false, and regulatory_compliance_claimed=false. Institutional mode requires real owner identities and is not used here."
 }

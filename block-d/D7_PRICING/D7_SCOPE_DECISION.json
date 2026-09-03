@@ -1,0 +1,25 @@
+{
+  "stage": "D7",
+  "status": "PASS_WITH_LIMITATIONS",
+  "selected_scope": "DESCRIPTIVE_ONLY",
+  "reason": "Cost, fee, servicing, capital and realized timing inputs are not governed observed inputs in CRD.PI Block D.",
+  "population": "matched pricing subset",
+  "diagnostics": [
+    "observed int_rate",
+    "term",
+    "installment",
+    "p_bad_final",
+    "expected_loss_rate",
+    "rate_minus_el_diagnostic_spread"
+  ],
+  "forbidden_claims": [
+    "profit",
+    "margin",
+    "pricing_headroom",
+    "realized_profitability"
+  ],
+  "int_rate_recursion_caveat": true,
+  "production_authorization": false,
+  "tests_passed": 8,
+  "tests_failed": 0
+}

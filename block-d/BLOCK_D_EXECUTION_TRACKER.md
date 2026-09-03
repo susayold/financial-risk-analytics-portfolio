@@ -1,63 +1,18 @@
 # Block D Execution Tracker
 
-Updated: 2026-09-03
+Current status: `CLOSED_WITH_LIMITATIONS_PORTFOLIO`.
 
-## Current position
+All D0–D9 plan stages are resolved for portfolio scope. Execution coverage and portfolio requirement resolution are 100%; technical QA and artifact checksum integrity are 100%. Production/regulatory readiness is `NOT_IN_SCOPE`.
 
-`D0 PASS` · `D1 PASS_WITH_LIMITATIONS` · `D2 PASS_WITH_LIMITATIONS` · `D3 PASS_WITH_LIMITATIONS` · `D4 BRIDGE_RECONCILED_APPROVAL_PENDING` · `D5–D9 CONTROLLED_HOLD`
+| Stage | Current state | Evidence |
+|---|---|---|
+| D0 | PASS | D0 governance contract |
+| D1–D3 | PASS_WITH_LIMITATIONS | Existing score, loss bridge, and EAD contracts |
+| D4 | PASS_WITH_LIMITATIONS | Empirical challenger, Q50 method and timing decisions |
+| D5 | PASS_WITH_LIMITATIONS | Reconciled analytical EL outputs |
+| D6 | PASS_WITH_LIMITATIONS | Full policy frontiers and historical replay |
+| D7 | PASS_WITH_LIMITATIONS | Descriptive-only pricing scope |
+| D8 | PASS_WITH_LIMITATIONS | Full stress, attribution and reverse stress |
+| D9 | CLOSED_WITH_LIMITATIONS_PORTFOLIO | Portfolio governance, final QA and manifest |
 
-The evidence bridges are complete. The block is not locked because D4
-main-case LGD/timing approval, D6 owner policy approval and D7/D8 governance
-decisions are not recorded.
-
-Execution coverage is **100% (10/10 stages)**. Closure readiness toward a
-fully approved `LOCKED` state is **73.5%** under the documented conversion in
-`BLOCK_D_PLAN_COMPLETION_SCORECARD.md`. The latest controls are **55/55
-full-review QA checks PASS**, **16/16 D9 checksum entries PASS** and **3/3
-owner-register validator self-tests PASS**.
-
-## Work completed in this execution
-
-| Stage | Result | What was done | Evidence |
-|---|---|---|---|
-| D0 | PASS | Preserved frozen model, population lanes, target semantics and claim boundary | `D0_GOVERNANCE_CONTRACT/` |
-| D1 | PASS_WITH_LIMITATIONS | Replayed frozen C8E 79-feature model for 182,181 Development rows; built 310,066-row Development/Validation/OOT score mart; materialized Validation risk-band cutpoints; matched pricing fields 100%; reconciled core + Shadow population | `D1_RISK_SCORE_MART/`, Drive `D1_full_20260902.zip` |
-| D2 | PASS_WITH_LIMITATIONS | Scanned 2,260,701 accepted-source rows; bridged 1,347,681/1,347,681 governed IDs; target and loan amount concordance 100%; filtered 269,249 governed BAD loss rows | `D2_LOSS_RECOVERY_EVIDENCE/`, Drive `D2_governed_core_bridge_20260902.zip` |
-| D3 | PASS_WITH_LIMITATIONS | Retained contractual EAD proxy and timing scope on accepted/pricing source | `D3_EAD_FRAMEWORK/` and private D3 evidence |
-| D4 | BRIDGE_RECONCILED_APPROVAL_PENDING | Generated Q25/Q50/Q75/Q90 governed BAD-only LGD anchors; 2018 Shadow monitor-only; explicit approval boundary retained | `D4_LGD_FRAMEWORK/`, Drive D4 files |
-| D5 | CONTROLLED HOLD | Executed 1,240,264 account-scenario rows and 60 split/band summaries using `p_bad_final × LGD scenario × declared EAD`; not approved EL | Drive `D5_scenario_pack_20260902.zip` |
-| D6 | CONTROLLED HOLD | Generated 310,066 proposed policy assignments across five reporting bands; no production cutoff or override authority claimed | Drive `D6_policy_pack_20260902.zip` |
-| D7 | CONTROLLED HOLD | Generated 310,066 pricing diagnostics; required bridge fields complete; no cost/fee profitability claim | Drive `D7_pricing_pack_20260902.zip` |
-| D8 | CONTROLLED HOLD | Generated 720 explicit PD/LGD/EAD sensitivity cells by split and band; illustrative only | Drive D8 summary files |
-| D9 | CONTROLLED HOLD | Created closure manifest, structured approval register, owner-input validator and checksum validator; closure remains `NOT_LOCKED_REVIEW_REQUIRED` with no false lock | `D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json`, `D9_CLOSURE/D9_GATE_RESULTS.json`, `D9_CLOSURE/D9_APPROVAL_VALIDATION.json` |
-
-## Population reconciliation
-
-- Full governed population: **1,347,681** = modeling core **1,291,521** + Historical Shadow **56,160**.
-- D1 scored matched subset: **310,066** = Development **182,181** + Validation **83,664** + OOT **44,221**.
-- D2 governed BAD loss evidence: **269,249 / 269,249** BAD rows matched.
-- No source duplicate-ID groups, target conflicts or loan-amount mismatches were found in the exact bridge.
-
-## Claim boundary
-
-- `actual_default` remains an observed final-resolution BAD/GOOD flag, not a verified 12-month PD.
-- D5 and D8 outputs are analytical scenario values, not regulatory PD/LGD/EAD/ECL or realized loss.
-- D6 is a proposed reporting/action mapping, not an approval policy.
-- D7 is descriptive pricing context, not margin or profitability.
-- Raw accepted CSV, private model binaries and temporary runtime data remain outside GitHub and were not uploaded to Drive.
-
-## Drive delivery
-
-- [Block D main folder](https://drive.google.com/drive/folders/1xutm72gqys_QruCtCx5Rd9xmQ0YVOud-)
-- [D1 full evidence ZIP](https://drive.google.com/file/d/1A2laFU3d9e5UHAegKfIzKaAegLNpBlRy/view?usp=drivesdk)
-- [D2 governed bridge ZIP](https://drive.google.com/file/d/1503zJkDmksZwx7AkIEg3-OHdCxk6TYq8/view?usp=drivesdk)
-- [D5 scenario pack ZIP](https://drive.google.com/file/d/1i4TjiREQAzutHrEU3iYBK3sOk5woMpDm/view?usp=drivesdk)
-- [D6 policy pack ZIP](https://drive.google.com/file/d/1G5OLPz-NAvO1KLUynJc1DEJxnJrdYU2T/view?usp=drivesdk)
-- [D7 pricing pack ZIP](https://drive.google.com/file/d/1umRSK8tUFUscH4bLZi8hyhIOKhfqwvPl/view?usp=drivesdk)
-
-## Latest control artifacts
-
-- [Plan completion scorecard](BLOCK_D_PLAN_COMPLETION_SCORECARD.md)
-- [D9 owner decision intake](D9_CLOSURE/D9_OWNER_DECISION_INTAKE.md)
-- [D9 owner decision validation](D9_CLOSURE/D9_APPROVAL_VALIDATION.json)
-- [D9 closure manifest](D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json)
+The old pre-sprint review state is preserved in `D9_CLOSURE/PRE_FINAL_SPRINT_MANIFEST.json` and is not the current status.

@@ -1,14 +1,7 @@
 {
   "stage": "D6",
-  "title": "Decision Policy Gate",
-  "status": "CONTROLLED_HOLD",
-  "executed": false,
-  "numeric_output_claimed": false,
-  "analytical_pack_executed": true,
-  "required_upstream": ["D1_PASS", "D5_PASS", "D0_CLAIM_BOUNDARY", "OWNER_SIGNOFF"],
-  "blocked_checks": [
-    "D5 approved expected-loss gate is not open",
-    "Action thresholds and overrides have no owner approval"
-  ],
-  "claims_forbidden": ["production approve/decline policy", "approved override limits"]
+  "status": "PASS_WITH_LIMITATIONS",
+  "superseded_by": "D6_FINAL_TEST_RESULTS.json",
+  "scope": "HISTORICAL_DECISION_SIMULATION",
+  "production_authorization": false
 }

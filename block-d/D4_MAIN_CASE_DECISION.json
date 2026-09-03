@@ -1,0 +1,23 @@
+{
+  "stage": "D4",
+  "status": "PASS_WITH_LIMITATIONS",
+  "selected_main_method": "LGD_CENTRAL_Q50",
+  "central_scenario": "LGD_CENTRAL_Q50",
+  "scenario_labels": {
+    "Q25": "LGD_LOW_SEVERITY",
+    "Q50": "LGD_CENTRAL",
+    "Q75": "LGD_ADVERSE",
+    "Q90": "LGD_SEVERE"
+  },
+  "anchors": {
+    "Q25": 0.48967010746551115,
+    "Q50": 0.667384888,
+    "Q75": 0.7902973489584245,
+    "Q90": 0.865786
+  },
+  "decision_role": "PORTFOLIO_PROJECT_OWNER",
+  "owner_name": null,
+  "decision_date": null,
+  "production_authorization": false,
+  "regulatory_claim": false
+}

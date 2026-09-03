@@ -1,0 +1,8 @@
+{
+  "stage": "D6",
+  "status": "PASS_WITH_LIMITATIONS",
+  "validation_rows": 83664,
+  "oot_rows": 44221,
+  "thresholds_frozen_before_replay": true,
+  "claim_boundary": "HISTORICAL_DECISION_SIMULATION; no production lending authorization"
+}

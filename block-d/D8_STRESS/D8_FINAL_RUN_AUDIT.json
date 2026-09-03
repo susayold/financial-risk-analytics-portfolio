@@ -1,0 +1,6 @@
+{
+  "stage": "D8",
+  "status": "PASS_WITH_LIMITATIONS",
+  "baseline_reconciles_D5": true,
+  "policy_thresholds_unchanged": true
+}

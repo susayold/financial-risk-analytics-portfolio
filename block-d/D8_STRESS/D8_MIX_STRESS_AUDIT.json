@@ -1,0 +1,19 @@
+{
+  "stage": "D8",
+  "status": "PASS_WITH_LIMITATIONS",
+  "high_risk_decile_definition": "risk_decile >= 9",
+  "pre_2017_yearly_high_risk_ead_share": {
+    "2014": 0.25985682505486946,
+    "2015": 0.25068307064172807,
+    "2016": 0.2479247669700742,
+    "2017": 0.2639387515334972
+  },
+  "year_over_year_changes": {
+    "2015": -0.009173754413141388,
+    "2016": -0.002758303671653861,
+    "2017": 0.01601398456342301
+  },
+  "largest_observed_deterioration": 0.01601398456342301,
+  "total_ead_reconciles": true,
+  "non_negative_weights": true
+}

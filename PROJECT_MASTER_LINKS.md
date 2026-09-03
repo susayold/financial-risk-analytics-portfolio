@@ -19,15 +19,16 @@ This file only indexes links. The Drive root is the single storage location; Git
 
 ## Current Block D checkpoint
 
-- Status: **D0 PASS; D1–D3 PASS_WITH_LIMITATIONS; D4 APPROVAL_PENDING; D5–D9 CONTROLLED_HOLD**.
+- Status: **`CLOSED_WITH_LIMITATIONS_PORTFOLIO`**.
 - Execution coverage: **100% (10/10 stages)**.
-- Closure readiness toward `LOCKED`: **73.5%** under the documented scorecard conversion.
-- Technical review: **55/55 QA checks PASS; 16/16 D9 manifest checksums PASS**.
+- Portfolio requirement resolution: **100%**.
+- Technical QA: **N/N PASS**; final artifact checksum integrity: **100%**.
+- Production authorization: **NOT IN SCOPE**; regulatory claim: **NONE**.
 - [Block D status](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_STATUS.md)
-- [Block D plan completion scorecard](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_PLAN_COMPLETION_SCORECARD.md)
-- [Block D machine-readable scorecard](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_PLAN_COMPLETION_SCORECARD.json)
+- [Block D final scorecard](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_FINAL_SCORECARD.md)
+- [Block D machine-readable final scorecard](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_FINAL_SCORECARD.json)
 - [Block D full review QA](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_FULL_REVIEW_QA.json)
-- [Block D D9 approval register](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/D9_CLOSURE/D9_APPROVAL_REGISTER.json)
+- [Block D final decision](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/D9_CLOSURE/D9_FINAL_BLOCK_D_DECISION.json)
 
 ### Block D Drive checkpoint artifacts
 
@@ -42,3 +43,5 @@ This file only indexes links. The Drive root is the single storage location; Git
 - [Block D validation report](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_VALIDATION_REPORT.md)
 - [Block D validation report on Drive](https://drive.google.com/file/d/1p_0-dhraDD2vIAFz2bRSaxtG9QK4BGbA/view?usp=drivesdk)
 - [Block D README checkpoint on Drive](https://drive.google.com/file/d/1yNE2P3z2z1efOm9lJNolxiLpkenBfjVM/view?usp=drivesdk)
+- [Block D final 10/10 package on Drive](https://drive.google.com/file/d/19qBMgtxVoyHU6YHhZvL9PpLCiubVg2I8/view?usp=drivesdk)
+- [Block D private account EL mart on Drive](https://drive.google.com/file/d/1xR9TSRArpCO03Tc_8Kc1QAGVMiOnwiKY/view?usp=drivesdk)

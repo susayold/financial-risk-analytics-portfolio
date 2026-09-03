@@ -1,500 +1,332 @@
 {
   "run_name": "block_d_full_review_qa",
   "run_date": "2026-09-03",
-  "scope": "controlled analytical review; no production or regulatory claim",
+  "scope": "final portfolio closure; no production or regulatory claim",
   "status": "PASS",
-  "checks_passed": 55,
+  "checks_passed": 36,
   "checks_failed": 0,
   "checks": [
     {
-      "check_id": "D0_STATUS",
+      "check_id": "D0-G01",
+      "pass": true,
       "observed": "PASS",
       "expected": "PASS",
-      "pass": true,
       "evidence": "D0_TEST_RESULTS.json"
     },
     {
-      "check_id": "D0_TEST_COUNT",
-      "observed": [
-        10,
-        0
-      ],
-      "expected": [
-        10,
-        0
-      ],
+      "check_id": "D0-G02",
       "pass": true,
+      "observed": 0,
+      "expected": 0,
       "evidence": "D0_TEST_RESULTS.json"
     },
     {
-      "check_id": "D1_STATUS",
+      "check_id": "D1-STATUS",
+      "pass": true,
       "observed": "PASS_WITH_LIMITATIONS",
       "expected": "PASS_WITH_LIMITATIONS",
-      "pass": true,
-      "evidence": "D1_RUN_AUDIT.json"
+      "evidence": "D1_RISK_SCORE_MART/D1_RUN_AUDIT.json"
     },
     {
-      "check_id": "D1_SCORE_ROWS",
-      "observed": 310066,
-      "expected": 310066,
+      "check_id": "D2-STATUS",
       "pass": true,
-      "evidence": "D1_RUN_AUDIT.json"
-    },
-    {
-      "check_id": "D1_TEST_COUNT",
-      "observed": [
-        10,
-        0,
-        0
-      ],
-      "expected": [
-        10,
-        0,
-        0
-      ],
-      "pass": true,
-      "evidence": "D1_TEST_RESULTS.json"
-    },
-    {
-      "check_id": "D1_BAND_CONTRACT_MATERIALIZED",
-      "observed": "MATERIALIZED_REVIEW_ONLY",
-      "expected": "MATERIALIZED_REVIEW_ONLY",
-      "pass": true,
-      "evidence": "risk_band_contract.json"
-    },
-    {
-      "check_id": "D1_BAND_CUTPOINTS_PRESENT",
-      "observed": [
-        "D01_upper",
-        "D02_upper",
-        "D03_upper",
-        "D04_upper",
-        "D05_upper",
-        "D06_upper",
-        "D07_upper",
-        "D08_upper",
-        "D09_upper"
-      ],
-      "expected": [
-        "D01_upper",
-        "D02_upper",
-        "D03_upper",
-        "D04_upper",
-        "D05_upper",
-        "D06_upper",
-        "D07_upper",
-        "D08_upper",
-        "D09_upper"
-      ],
-      "pass": true,
-      "evidence": "risk_band_contract.json"
-    },
-    {
-      "check_id": "D1_BAND_CUTPOINTS_VALID",
-      "observed": [
-        0.02164269230889038,
-        0.03349045168371287,
-        0.04713356750200824,
-        0.06360944048234445,
-        0.08515207601719339,
-        0.11547320448209004,
-        0.1625668200995762,
-        0.2417021366212471,
-        0.4000101651733103
-      ],
-      "expected": "strictly increasing values within [0, 1]",
-      "pass": true,
-      "evidence": "risk_band_contract.json"
-    },
-    {
-      "check_id": "D2_STATUS",
       "observed": "PASS_WITH_LIMITATIONS",
       "expected": "PASS_WITH_LIMITATIONS",
-      "pass": true,
-      "evidence": "D2_GOVERNED_CORE_BRIDGE_AUDIT.json"
+      "evidence": "D2_LOSS_RECOVERY_EVIDENCE/D2_GOVERNED_CORE_BRIDGE_AUDIT.json"
     },
     {
-      "check_id": "D2_GOVERNED_ID_BRIDGE",
-      "observed": 1347681,
-      "expected": 1347681,
+      "check_id": "D3-STATUS",
       "pass": true,
-      "evidence": "D2_GOVERNED_CORE_BRIDGE_AUDIT.json"
-    },
-    {
-      "check_id": "D2_TARGET_AMOUNT_CONCORDANCE",
-      "observed": [
-        "PASS",
-        "PASS"
-      ],
-      "expected": [
-        "PASS",
-        "PASS"
-      ],
-      "pass": true,
-      "evidence": "D2_GOVERNED_CORE_BRIDGE_AUDIT.json"
-    },
-    {
-      "check_id": "D2_TEST_COUNT",
-      "observed": [
-        10,
-        0,
-        0
-      ],
-      "expected": [
-        10,
-        0,
-        0
-      ],
-      "pass": true,
-      "evidence": "D2_TEST_RESULTS.json"
-    },
-    {
-      "check_id": "D3_STATUS",
       "observed": "PASS_WITH_LIMITATIONS",
       "expected": "PASS_WITH_LIMITATIONS",
-      "pass": true,
-      "evidence": "D3_CONTRACT_AUDIT.json"
+      "evidence": "D3_EAD_FRAMEWORK/D3_CONTRACT_AUDIT.json"
     },
     {
-      "check_id": "D3_TEST_COUNT",
-      "observed": [
-        8,
-        0
-      ],
-      "expected": [
-        8,
-        0
-      ],
+      "check_id": "D4-G01",
       "pass": true,
-      "evidence": "D3_CONTRACT_AUDIT.json"
+      "observed": "PASS_WITH_LIMITATIONS",
+      "expected": "PASS_WITH_LIMITATIONS",
+      "evidence": "D4_EMPIRICAL_LGD_DECISION.json"
     },
     {
-      "check_id": "D3_NO_NUMERIC_CLAIM",
-      "observed": false,
-      "expected": false,
+      "check_id": "D4-G02",
       "pass": true,
-      "evidence": "D3_CONTRACT_AUDIT.json"
+      "observed": "REJECT_ML_CHALLENGER_KEEP_SCENARIO_LGD",
+      "expected": "declared challenger decision",
+      "evidence": "D4_EMPIRICAL_LGD_DECISION.json"
     },
     {
-      "check_id": "D4_STATUS",
-      "observed": "BRIDGE_RECONCILED_APPROVAL_PENDING",
-      "expected": "BRIDGE_RECONCILED_APPROVAL_PENDING",
+      "check_id": "D4-G03",
       "pass": true,
-      "evidence": "D4_RUN_AUDIT.json"
-    },
-    {
-      "check_id": "D4_COUNTS",
-      "observed": [
-        269249,
-        10,
-        0,
-        0
-      ],
-      "expected": [
-        269249,
-        10,
-        0,
-        0
-      ],
-      "pass": true,
-      "evidence": "D4_RUN_AUDIT.json"
-    },
-    {
-      "check_id": "D4_TEST_COUNT",
       "observed": [
         10,
-        0,
         0
       ],
       "expected": [
         10,
-        0,
         0
       ],
-      "pass": true,
-      "evidence": "D4_TEST_RESULTS.json"
+      "evidence": "D4_FINAL_TEST_RESULTS.json"
     },
     {
-      "check_id": "D4_SCORE_LOSS_LINKAGE",
-      "observed": "49,049/49,049 current scored-BAD rows matched; descriptive only",
-      "expected": "49,049/49,049 current scored-BAD rows matched",
+      "check_id": "D4-G04",
       "pass": true,
-      "evidence": "D4_TEST_RESULTS.json"
-    },
-    {
-      "check_id": "D5_GATE_STATUS",
-      "observed": "CONTROLLED_HOLD",
-      "expected": "CONTROLLED_HOLD",
-      "pass": true,
-      "evidence": "D5_EXPECTED_LOSS/D5_GATE_RESULTS.json"
-    },
-    {
-      "check_id": "D5_NO_NUMERIC_CLAIM",
-      "observed": false,
-      "expected": false,
-      "pass": true,
-      "evidence": "D5_EXPECTED_LOSS/D5_GATE_RESULTS.json"
-    },
-    {
-      "check_id": "D5_REVIEW_PACK_EXECUTED",
-      "observed": true,
-      "expected": true,
-      "pass": true,
-      "evidence": "D5_EXPECTED_LOSS/D5_ANALYTICAL_SCENARIO_AUDIT.json"
-    },
-    {
-      "check_id": "D6_GATE_STATUS",
-      "observed": "CONTROLLED_HOLD",
-      "expected": "CONTROLLED_HOLD",
-      "pass": true,
-      "evidence": "D6_DECISION_POLICY/D6_GATE_RESULTS.json"
-    },
-    {
-      "check_id": "D6_NO_NUMERIC_CLAIM",
-      "observed": false,
-      "expected": false,
-      "pass": true,
-      "evidence": "D6_DECISION_POLICY/D6_GATE_RESULTS.json"
-    },
-    {
-      "check_id": "D6_REVIEW_PACK_EXECUTED",
-      "observed": true,
-      "expected": true,
-      "pass": true,
-      "evidence": "D6_DECISION_POLICY/D6_ANALYTICAL_PACK_AUDIT.json"
-    },
-    {
-      "check_id": "D7_GATE_STATUS",
-      "observed": "CONTROLLED_HOLD",
-      "expected": "CONTROLLED_HOLD",
-      "pass": true,
-      "evidence": "D7_PRICING/D7_GATE_RESULTS.json"
-    },
-    {
-      "check_id": "D7_NO_NUMERIC_CLAIM",
-      "observed": false,
-      "expected": false,
-      "pass": true,
-      "evidence": "D7_PRICING/D7_GATE_RESULTS.json"
-    },
-    {
-      "check_id": "D7_REVIEW_PACK_EXECUTED",
-      "observed": true,
-      "expected": true,
-      "pass": true,
-      "evidence": "D7_PRICING/D7_DIAGNOSTIC_AUDIT.json"
-    },
-    {
-      "check_id": "D8_GATE_STATUS",
-      "observed": "CONTROLLED_HOLD",
-      "expected": "CONTROLLED_HOLD",
-      "pass": true,
-      "evidence": "D8_STRESS/D8_GATE_RESULTS.json"
-    },
-    {
-      "check_id": "D8_NO_NUMERIC_CLAIM",
-      "observed": false,
-      "expected": false,
-      "pass": true,
-      "evidence": "D8_STRESS/D8_GATE_RESULTS.json"
-    },
-    {
-      "check_id": "D8_REVIEW_PACK_EXECUTED",
-      "observed": true,
-      "expected": true,
-      "pass": true,
-      "evidence": "D8_STRESS/D8_ILLUSTRATIVE_SENSITIVITY_AUDIT.json"
-    },
-    {
-      "check_id": "D9_GATE_STATUS",
-      "observed": "CONTROLLED_HOLD",
-      "expected": "CONTROLLED_HOLD",
-      "pass": true,
-      "evidence": "D9_CLOSURE/D9_GATE_RESULTS.json"
-    },
-    {
-      "check_id": "D9_NO_NUMERIC_CLAIM",
-      "observed": false,
-      "expected": false,
-      "pass": true,
-      "evidence": "D9_CLOSURE/D9_GATE_RESULTS.json"
-    },
-    {
-      "check_id": "D9_REVIEW_PACK_EXECUTED",
-      "observed": true,
-      "expected": true,
-      "pass": true,
-      "evidence": "D9_CLOSURE/D9_CLOSURE_REVIEW_MANIFEST.json"
-    },
-    {
-      "check_id": "D9_MANIFEST_NOT_LOCKED",
-      "observed": "NOT_LOCKED_REVIEW_REQUIRED",
-      "expected": "NOT_LOCKED_REVIEW_REQUIRED",
-      "pass": true,
-      "evidence": "D9_CLOSURE_REVIEW_MANIFEST.json"
-    },
-    {
-      "check_id": "D9_FOLLOW_UP_REGISTERED",
-      "observed": 7,
-      "expected": 7,
-      "pass": true,
-      "evidence": "D9_CLOSURE_REVIEW_MANIFEST.json"
-    },
-    {
-      "check_id": "D9_MANIFEST_PORTABLE_PATH",
-      "observed": "D1_RISK_SCORE_MART/risk_band_contract.json",
-      "expected": "D1_RISK_SCORE_MART/risk_band_contract.json",
-      "pass": true,
-      "evidence": "D9_CLOSURE_REVIEW_MANIFEST.json"
-    },
-    {
-      "check_id": "D9_MANIFEST_PATHS_PORTABLE",
       "observed": [],
       "expected": [],
-      "pass": true,
-      "evidence": "D9_CLOSURE_REVIEW_MANIFEST.json"
+      "evidence": "D4_EMPIRICAL_LGD_LEAKAGE_AUDIT.json"
     },
     {
-      "check_id": "D1_CONTRACT_NOT_STALE",
-      "observed": false,
-      "expected": false,
+      "check_id": "D5-G01",
       "pass": true,
-      "evidence": "D1_MART_CONTRACT.md"
+      "observed": "PASS_WITH_LIMITATIONS",
+      "expected": "PASS_WITH_LIMITATIONS",
+      "evidence": "D5_EL_RECONCILIATION.json"
     },
     {
-      "check_id": "D1_AVAILABILITY_UPDATED",
-      "observed": true,
-      "expected": true,
+      "check_id": "D5-G02",
       "pass": true,
-      "evidence": "D1_INPUT_AVAILABILITY_AUDIT.md"
-    },
-    {
-      "check_id": "D9_APPROVAL_PACK_PRESENT",
-      "observed": true,
-      "expected": true,
-      "pass": true,
-      "evidence": "BLOCK_D_APPROVAL_DECISION_PACK.md"
-    },
-    {
-      "check_id": "D9_APPROVAL_PACK_BOUNDED",
-      "observed": true,
-      "expected": true,
-      "pass": true,
-      "evidence": "BLOCK_D_APPROVAL_DECISION_PACK.md"
-    },
-    {
-      "check_id": "D9_VALIDATION_REPORT_PRESENT",
-      "observed": true,
-      "expected": true,
-      "pass": true,
-      "evidence": "BLOCK_D_VALIDATION_REPORT.md"
-    },
-    {
-      "check_id": "D9_VALIDATION_REPORT_BOUNDED",
-      "observed": true,
-      "expected": true,
-      "pass": true,
-      "evidence": "BLOCK_D_VALIDATION_REPORT.md"
-    },
-    {
-      "check_id": "D9_DECISION_GAP_REGISTER_PRESENT",
-      "observed": true,
-      "expected": true,
-      "pass": true,
-      "evidence": "D9_DECISION_GAP_REGISTER.md"
-    },
-    {
-      "check_id": "D9_DECISION_GAP_REGISTER_BOUNDED",
-      "observed": true,
-      "expected": true,
-      "pass": true,
-      "evidence": "D9_DECISION_GAP_REGISTER.md"
-    },
-    {
-      "check_id": "D9_STRUCTURED_REGISTER_PENDING",
-      "observed": "PENDING_OWNER_INPUT",
-      "expected": "PENDING_OWNER_INPUT",
-      "pass": true,
-      "evidence": "D9_APPROVAL_REGISTER.json"
-    },
-    {
-      "check_id": "D9_OWNER_SIGNOFFS_PENDING",
       "observed": [
-        "PENDING",
-        "PENDING",
-        "PENDING"
+        0,
+        8
       ],
-      "expected": [
-        "PENDING",
-        "PENDING",
-        "PENDING"
-      ],
-      "pass": true,
-      "evidence": "D9_APPROVAL_REGISTER.json"
+      "expected": "0 failures and all reconciliations pass",
+      "evidence": "D5_EL_RECONCILIATION.json"
     },
     {
-      "check_id": "D9_REGISTER_SCHEMA_VALID",
-      "observed": "VALID_PENDING",
-      "expected": "VALID_PENDING",
+      "check_id": "D5-G03",
       "pass": true,
-      "evidence": "D9_APPROVAL_VALIDATION.json"
-    },
-    {
-      "check_id": "D9_REGISTER_NOT_READY_UNTIL_APPROVAL",
-      "observed": false,
-      "expected": false,
-      "pass": true,
-      "evidence": "D9_APPROVAL_VALIDATION.json"
-    },
-    {
-      "check_id": "D9_VALIDATOR_SELF_TESTS",
       "observed": [
-        3,
+        10,
         0
       ],
       "expected": [
-        3,
+        10,
         0
       ],
+      "evidence": "D5_FINAL_TEST_RESULTS.json"
+    },
+    {
+      "check_id": "D6-G01",
       "pass": true,
+      "observed": "PASS_WITH_LIMITATIONS",
+      "expected": "PASS_WITH_LIMITATIONS",
+      "evidence": "D6_POLICY_DECISION.json"
+    },
+    {
+      "check_id": "D6-G02",
+      "pass": true,
+      "observed": false,
+      "expected": false,
+      "evidence": "D6_POLICY_DECISION.json"
+    },
+    {
+      "check_id": "D6-G03",
+      "pass": true,
+      "observed": [
+        12,
+        0
+      ],
+      "expected": [
+        12,
+        0
+      ],
+      "evidence": "D6_FINAL_TEST_RESULTS.json"
+    },
+    {
+      "check_id": "D7-G01",
+      "pass": true,
+      "observed": "DESCRIPTIVE_ONLY",
+      "expected": "DESCRIPTIVE_ONLY",
+      "evidence": "D7_SCOPE_DECISION.json"
+    },
+    {
+      "check_id": "D7-G02",
+      "pass": true,
+      "observed": [
+        8,
+        0
+      ],
+      "expected": [
+        8,
+        0
+      ],
+      "evidence": "D7_FINAL_TEST_RESULTS.json"
+    },
+    {
+      "check_id": "D8-G01",
+      "pass": true,
+      "observed": "PASS_WITH_LIMITATIONS",
+      "expected": "PASS_WITH_LIMITATIONS",
+      "evidence": "D8_FINAL_DECISION.json"
+    },
+    {
+      "check_id": "D8-G02",
+      "pass": true,
+      "observed": true,
+      "expected": true,
+      "evidence": "D8_FINAL_DECISION.json"
+    },
+    {
+      "check_id": "D8-G03",
+      "pass": true,
+      "observed": [
+        12,
+        0
+      ],
+      "expected": [
+        12,
+        0
+      ],
+      "evidence": "D8_FINAL_TEST_RESULTS.json"
+    },
+    {
+      "check_id": "S7-G01",
+      "pass": true,
+      "observed": "PORTFOLIO_PROJECT_REVIEW",
+      "expected": "PORTFOLIO_PROJECT_REVIEW",
+      "evidence": "D9_APPROVAL_REGISTER.json"
+    },
+    {
+      "check_id": "S7-G02",
+      "pass": true,
+      "observed": "PORTFOLIO_VALID",
+      "expected": "PORTFOLIO_VALID",
+      "evidence": "D9_APPROVAL_VALIDATION.json"
+    },
+    {
+      "check_id": "S7-G03",
+      "pass": true,
+      "observed": false,
+      "expected": false,
+      "evidence": "D9_APPROVAL_REGISTER.json"
+    },
+    {
+      "check_id": "S7-G04",
+      "pass": true,
+      "observed": false,
+      "expected": false,
+      "evidence": "D9_APPROVAL_REGISTER.json"
+    },
+    {
+      "check_id": "S7-G05",
+      "pass": true,
+      "observed": {
+        "data_owner": {
+          "status": "NOT_APPLICABLE_PORTFOLIO_PROJECT",
+          "name": null,
+          "date": null,
+          "reference": null
+        },
+        "model_owner": {
+          "status": "NOT_APPLICABLE_PORTFOLIO_PROJECT",
+          "name": null,
+          "date": null,
+          "reference": null
+        },
+        "risk_owner": {
+          "status": "NOT_APPLICABLE_PORTFOLIO_PROJECT",
+          "name": null,
+          "date": null,
+          "reference": null
+        }
+      },
+      "expected": "institutional signoffs N/A",
+      "evidence": "D9_APPROVAL_REGISTER.json"
+    },
+    {
+      "check_id": "S7-G06",
+      "pass": true,
+      "observed": [
+        9,
+        0
+      ],
+      "expected": "legacy validator regression pass",
       "evidence": "test_block_d_owner_decisions.py"
     },
     {
-      "check_id": "D9_SCORECARD_STAGE_COUNT",
-      "observed": 10,
-      "expected": 10,
+      "check_id": "S7-G07",
       "pass": true,
-      "evidence": "BLOCK_D_PLAN_COMPLETION_SCORECARD.json"
+      "observed": true,
+      "expected": true,
+      "evidence": "test_block_d_portfolio_governance.py"
     },
     {
-      "check_id": "D9_SCORECARD_EXECUTION_COVERAGE",
+      "check_id": "S8-G01",
+      "pass": true,
+      "observed": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+      "expected": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+      "evidence": "D9_FINAL_BLOCK_D_DECISION.json"
+    },
+    {
+      "check_id": "S8-G02",
+      "pass": true,
+      "observed": true,
+      "expected": true,
+      "evidence": "D9_FINAL_BLOCK_D_DECISION.json"
+    },
+    {
+      "check_id": "S8-G03",
+      "pass": true,
+      "observed": [
+        false,
+        false
+      ],
+      "expected": [
+        false,
+        false
+      ],
+      "evidence": "D9_FINAL_BLOCK_D_DECISION.json"
+    },
+    {
+      "check_id": "S8-G04",
+      "pass": true,
+      "observed": [
+        "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+        []
+      ],
+      "expected": [
+        "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+        []
+      ],
+      "evidence": "D9_FINAL_CLOSURE_MANIFEST.json"
+    },
+    {
+      "check_id": "S8-G05",
+      "pass": true,
+      "observed": 0,
+      "expected": 0,
+      "evidence": "D9_FINAL_TEST_RESULTS.json"
+    },
+    {
+      "check_id": "S9-G01",
+      "pass": true,
       "observed": 100.0,
       "expected": 100.0,
-      "pass": true,
-      "evidence": "BLOCK_D_PLAN_COMPLETION_SCORECARD.json"
+      "evidence": "BLOCK_D_FINAL_SCORECARD.json"
     },
     {
-      "check_id": "D9_SCORECARD_CLOSURE_READINESS",
-      "observed": 73.5,
-      "expected": 73.5,
+      "check_id": "S9-G02",
       "pass": true,
-      "evidence": "BLOCK_D_PLAN_COMPLETION_SCORECARD.json"
+      "observed": 100.0,
+      "expected": 100.0,
+      "evidence": "BLOCK_D_FINAL_SCORECARD.json"
     },
     {
-      "check_id": "D9_MANIFEST_CHECKSUM_COUNT",
-      "observed": 16,
-      "expected": 16,
+      "check_id": "S9-G03",
       "pass": true,
-      "evidence": "D9_CLOSURE_REVIEW_MANIFEST.json"
+      "observed": "NOT_IN_SCOPE",
+      "expected": "NOT_IN_SCOPE",
+      "evidence": "BLOCK_D_FINAL_SCORECARD.json"
+    },
+    {
+      "check_id": "S10-G01",
+      "pass": true,
+      "observed": 0,
+      "expected": 0,
+      "evidence": "D9_FINAL_CHECKSUM_VALIDATION.json"
     }
   ],
-  "overall_block_status": "NOT_LOCKED_REVIEW_REQUIRED",
-  "open_inputs": [
-    "D4 main-case LGD and timing approval",
-    "D5 analytical proxy acceptance",
-    "D6 thresholds and overrides approval",
-    "D7 cost/fee assumptions if profitability is required",
-    "D8 baseline and shock policy",
-    "data/model/risk owner sign-off"
-  ]
+  "overall_block_status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false
 }

@@ -1,0 +1,11 @@
+{
+  "test": "block_d_status_consistency",
+  "status": "PASS",
+  "sources": {
+    "final_decision": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+    "scorecard": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+    "qa": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+    "register": "CLOSED_WITH_LIMITATIONS_PORTFOLIO"
+  },
+  "errors": []
+}

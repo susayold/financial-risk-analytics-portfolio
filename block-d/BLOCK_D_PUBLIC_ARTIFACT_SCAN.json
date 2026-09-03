@@ -1,0 +1,7 @@
+{
+  "scan": "block_d_public_artifacts",
+  "status": "PASS",
+  "files_scanned": 117,
+  "findings": [],
+  "claim_boundary": "Explicit negation and analytical scope wording are required for limitations."
+}

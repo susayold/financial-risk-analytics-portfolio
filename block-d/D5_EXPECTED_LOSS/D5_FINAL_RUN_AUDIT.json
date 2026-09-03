@@ -1,0 +1,7 @@
+{
+  "stage": "D5",
+  "status": "PASS_WITH_LIMITATIONS",
+  "input_rows": 310066,
+  "main_method": "LGD_CENTRAL_Q50",
+  "claim_boundary": "ANALYTICAL EXPECTED-LOSS PROXY; NOT IFRS 9; NOT BASEL; NOT REALIZED LOSS; NOT PRODUCTION ECL"
+}

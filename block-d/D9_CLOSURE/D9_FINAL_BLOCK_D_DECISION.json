@@ -1,0 +1,46 @@
+{
+  "block": "D",
+  "decision_date": "2026-09-03",
+  "governance_mode": "PORTFOLIO_PROJECT_REVIEW",
+  "status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+  "portfolio_implementation_complete": true,
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false,
+  "frozen_risk_model": "C8E_RICH_BUREAU_CATBOOST_79F",
+  "probability_method": "p_bad_final",
+  "lgd_method": "LGD_CENTRAL_Q50",
+  "ead_method": "D3_CONTRACTUAL_TIMING_PROXY",
+  "expected_loss_method": "ANALYTICAL_PROXY",
+  "main_expected_loss_view": "EL_MAIN_ANALYTICAL",
+  "policy_scope": "HISTORICAL_DECISION_SIMULATION",
+  "pricing_scope": "DESCRIPTIVE_ONLY",
+  "stress_scope": "ANALYTICAL_SENSITIVITY",
+  "portfolio_expected_loss_proxy": 526752273.6678772,
+  "portfolio_ead_proxy": 4469158350.0,
+  "policy_scenarios": [
+    "GROWTH",
+    "BALANCED",
+    "CONSERVATIVE"
+  ],
+  "stress_scenarios": [
+    "BASE",
+    "MILD",
+    "ADVERSE",
+    "SEVERE"
+  ],
+  "limitations": [
+    "C8E matched-population scope",
+    "final-resolution target rather than verified 12-month PD",
+    "LGD, EAD and expected loss are analytical proxies",
+    "2018 is monitor-only for the primary analytical cohort",
+    "pricing is descriptive-only because cost/fee/timing inputs are not governed",
+    "policy is historical simulation and has no production override authority"
+  ],
+  "monitoring_items": [
+    "C9 calibration slope 1.250707",
+    "C8E matched-population scope",
+    "final-resolution target rather than verified 12m PD",
+    "LGD/EAD/EL are analytical proxies"
+  ],
+  "next_action": "MOVE_TO_BLOCK_E"
+}

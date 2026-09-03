@@ -1,24 +1,11 @@
 {
-  "run_name": "block_d_downstream_gate_qa",
-  "run_date": "2026-09-02",
-  "status": "CONTROLLED_HOLD",
-  "numeric_outputs_claimed": false,
-  "stages": {
-    "D5": "CONTROLLED_HOLD",
-    "D6": "CONTROLLED_HOLD",
-    "D7": "CONTROLLED_HOLD",
-    "D8": "CONTROLLED_HOLD",
-    "D9": "CONTROLLED_HOLD"
-  },
-  "control_checks": {
-    "no_unapproved_el_number": "PASS",
-    "no_production_policy_claim": "PASS",
-    "no_pricing_profitability_claim": "PASS",
-    "no_stress_result_claim": "PASS",
-    "closure_not_locked": "PASS"
-  },
-  "open_inputs": [
-    "D4 approved LGD population and timing",
-    "D5-D8 approval boundaries and owner sign-offs"
-  ]
+  "scope": "D5-D9 final closure",
+  "status": "PASS",
+  "D5": "PASS_WITH_LIMITATIONS",
+  "D6": "PASS_WITH_LIMITATIONS",
+  "D7": "PASS_WITH_LIMITATIONS",
+  "D8": "PASS_WITH_LIMITATIONS",
+  "D9": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false
 }

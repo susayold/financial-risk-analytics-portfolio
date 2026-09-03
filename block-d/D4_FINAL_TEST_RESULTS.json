@@ -1,0 +1,18 @@
+{
+  "stage": "D4",
+  "status": "PASS_WITH_LIMITATIONS",
+  "gates": {
+    "S1-G01": "PASS",
+    "S1-G02": "PASS",
+    "S1-G03": "PASS",
+    "S1-G04": "PASS",
+    "S1-G05": "PASS",
+    "S1-G06": "PASS",
+    "S1-G07": "PASS",
+    "S1-G08": "PASS",
+    "S1-G09": "PASS",
+    "S1-G10": "PASS"
+  },
+  "tests_passed": 10,
+  "tests_failed": 0
+}

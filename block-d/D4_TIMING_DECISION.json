@@ -1,0 +1,10 @@
+{
+  "stage": "D4",
+  "status": "PASS_WITH_LIMITATIONS",
+  "reference_cohort": "issue_year <= 2017",
+  "monitor_only_cohort": "issue_year == 2018",
+  "temporal_authority": "issue_year",
+  "decision_role": "PORTFOLIO_PROJECT_OWNER",
+  "production_authorization": false,
+  "regulatory_compliance_claimed": false
+}

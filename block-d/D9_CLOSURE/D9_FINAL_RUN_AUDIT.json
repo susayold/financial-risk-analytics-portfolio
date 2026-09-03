@@ -1,0 +1,9 @@
+{
+  "stage": "D9",
+  "status": "PASS",
+  "governance_mode": "PORTFOLIO_PROJECT_REVIEW",
+  "analytical_stages_closed": true,
+  "portfolio_governance_ok": true,
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false
+}

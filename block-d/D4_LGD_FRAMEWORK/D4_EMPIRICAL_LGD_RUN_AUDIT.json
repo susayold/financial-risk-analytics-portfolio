@@ -1,0 +1,30 @@
+{
+  "stage": "D4",
+  "status": "PASS_WITH_LIMITATIONS",
+  "run_date": "2026-09-03",
+  "input_rows": {
+    "matched_bad_rows": 49049,
+    "governed_bad_rows": 269249
+  },
+  "rolling_folds": [
+    "<=2013->2014",
+    "<=2014->2015",
+    "<=2015->2016",
+    "<=2016->2017"
+  ],
+  "skipped_folds": [
+    "<= 2013 -> 2014",
+    "<= 2013 -> 2014",
+    "<= 2013 -> 2014",
+    "<= 2013 -> 2014",
+    "<= 2013 -> 2014"
+  ],
+  "seed": 42,
+  "model_decision": "REJECT_ML_CHALLENGER_KEEP_SCENARIO_LGD",
+  "claim_boundary": [
+    "analytical portfolio LGD only",
+    "retrospective BAD evidence target",
+    "not regulatory LGD",
+    "2017 is rolling validation evidence, not pristine untouched LGD OOT"
+  ]
+}

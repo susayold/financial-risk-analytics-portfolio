@@ -1,0 +1,16 @@
+{
+  "stage": "D6",
+  "status": "PASS_WITH_LIMITATIONS",
+  "derivation_split": "Validation-2016",
+  "replay_split": "historical OOT policy replay 2017",
+  "thresholds_retuned_after_replay": false,
+  "scenarios": [
+    "GROWTH",
+    "BALANCED",
+    "CONSERVATIVE"
+  ],
+  "production_authorization": false,
+  "override_authority": "NOT_IN_SCOPE",
+  "tests_passed": 12,
+  "tests_failed": 0
+}

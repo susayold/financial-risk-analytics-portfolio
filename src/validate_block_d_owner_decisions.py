@@ -39,6 +39,27 @@ def validate_register(register: dict) -> dict:
     errors: list[str] = []
     pending: list[str] = []
 
+    # The final portfolio closure is intentionally separate from an
+    # institutional approval workflow.  A portfolio project may record the
+    # analytical decisions and the role that owns them without fabricating a
+    # bank data/model/risk owner or a production approval.
+    governance_mode = register.get("governance_mode")
+    if governance_mode is not None:
+        if governance_mode not in {"PORTFOLIO_PROJECT_REVIEW", "INSTITUTIONAL_PRODUCTION"}:
+            return {
+                "run_name": "block_d_owner_decision_validation",
+                "run_date": date.today().isoformat(),
+                "scope": "D9 governance-mode validation; no approval is inferred",
+                "validation_status": "INVALID",
+                "schema_valid": False,
+                "ready_for_d9_rerun": False,
+                "governance_mode": governance_mode,
+                "errors": ["governance_mode must be PORTFOLIO_PROJECT_REVIEW or INSTITUTIONAL_PRODUCTION"],
+            }
+        if governance_mode == "PORTFOLIO_PROJECT_REVIEW":
+            return _validate_portfolio_register(register)
+        return _validate_institutional_register(register)
+
     if register.get("stage") != "D9":
         errors.append("stage must be D9")
     if register.get("status") not in {"PENDING_OWNER_INPUT", "READY_FOR_D9_RERUN"}:
@@ -170,11 +191,103 @@ def validate_register(register: dict) -> dict:
     }
 
 
+def _validate_portfolio_register(register: dict) -> dict:
+    errors: list[str] = []
+    decisions = register.get("decisions")
+    if register.get("stage") != "D9":
+        errors.append("stage must be D9")
+    if register.get("production_authorized") is not False:
+        errors.append("portfolio mode requires production_authorized=false")
+    if register.get("regulatory_compliance_claimed") is not False:
+        errors.append("portfolio mode requires regulatory_compliance_claimed=false")
+    if not isinstance(decisions, dict) or set(decisions) != set(DECISION_KEYS):
+        errors.append("portfolio decisions must contain exactly the six required D4-D8 decision keys")
+        decisions = {}
+    decision_statuses = {}
+    for key in DECISION_KEYS:
+        item = decisions.get(key)
+        if not isinstance(item, dict):
+            errors.append(f"{key} must be an object")
+            continue
+        decision_statuses[key] = item.get("status")
+        if item.get("status") not in {"COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "FORMALLY_STOPPED_BY_PREDECLARED_STOP_CONDITION"}:
+            errors.append(f"{key}.status must be a portfolio completion or declared stop status")
+        if item.get("decision_owner") != "PORTFOLIO_PROJECT_OWNER":
+            errors.append(f"{key}.decision_owner must be PORTFOLIO_PROJECT_OWNER")
+        if not item.get("decision_reference"):
+            errors.append(f"{key}.decision_reference is required")
+        if "conditions" not in item:
+            errors.append(f"{key}.conditions is required")
+        if item.get("production_authorization") is not False:
+            errors.append(f"{key}.production_authorization must be false")
+        if item.get("regulatory_claim") not in {False, "NONE", "NOT_CLAIMED"}:
+            errors.append(f"{key}.regulatory_claim must be false/none")
+    signoffs = register.get("owner_signoff")
+    signoff_statuses = {}
+    if not isinstance(signoffs, dict) or set(signoffs) != set(SIGNOFF_ROLES):
+        errors.append("owner_signoff must contain data_owner, model_owner and risk_owner")
+        signoffs = {}
+    for role in SIGNOFF_ROLES:
+        item = signoffs.get(role)
+        if not isinstance(item, dict) or item.get("status") != "NOT_APPLICABLE_PORTFOLIO_PROJECT":
+            errors.append(f"{role} must be NOT_APPLICABLE_PORTFOLIO_PROJECT in portfolio mode")
+            signoff_statuses[role] = None
+        else:
+            signoff_statuses[role] = item.get("status")
+    valid = not errors
+    return {
+        "run_name": "block_d_owner_decision_validation",
+        "run_date": date.today().isoformat(),
+        "scope": "D9 portfolio project review; institutional production authorization is out of scope",
+        "governance_mode": "PORTFOLIO_PROJECT_REVIEW",
+        "validation_status": "PORTFOLIO_VALID" if valid else "INVALID",
+        "schema_valid": valid,
+        "ready_for_d9_rerun": valid,
+        "decision_statuses": decision_statuses,
+        "owner_signoff_statuses": signoff_statuses,
+        "pending_items": [],
+        "errors": errors,
+        "production_authorized": False,
+        "regulatory_compliance_claimed": False,
+        "unlock_rule": "Six portfolio project-owner analytical decisions complete; institutional signoffs are not applicable; no production authorization is inferred.",
+    }
+
+
+def _validate_institutional_register(register: dict) -> dict:
+    """Validate the explicit institutional-mode shape without auto-approving it."""
+    errors: list[str] = []
+    owners = register.get("institutional_owners")
+    if not isinstance(owners, dict):
+        errors.append("institutional_owners is required in INSTITUTIONAL_PRODUCTION mode")
+        owners = {}
+    for role in SIGNOFF_ROLES:
+        item = owners.get(role)
+        if not isinstance(item, dict) or not all(item.get(x) for x in ("name", "date", "reference")):
+            errors.append(f"institutional_owners.{role} requires name, date and reference")
+    return {
+        "run_name": "block_d_owner_decision_validation",
+        "run_date": date.today().isoformat(),
+        "scope": "D9 institutional production validation; no approval is inferred",
+        "governance_mode": "INSTITUTIONAL_PRODUCTION",
+        "validation_status": "INSTITUTIONAL_VALID" if not errors else "INVALID",
+        "schema_valid": not errors,
+        "ready_for_d9_rerun": False,
+        "errors": errors,
+        "production_authorized": register.get("production_authorized"),
+        "regulatory_compliance_claimed": register.get("regulatory_compliance_claimed"),
+    }
+
+
 def run_validator_self_tests(register: dict | None = None) -> dict:
     """Exercise pending, malformed and fully-approved register paths."""
 
     if register is None:
         register = json.loads(DEFAULT_REGISTER.read_text(encoding="utf-8"))
+    if register.get("governance_mode") == "PORTFOLIO_PROJECT_REVIEW":
+        from test_block_d_portfolio_governance import run as run_portfolio_tests
+        portfolio_results = run_portfolio_tests()
+        passed = sum(1 for result in portfolio_results if result["pass"])
+        return {"tests_run": len(portfolio_results), "tests_passed": passed, "tests_failed": len(portfolio_results) - passed, "tests": portfolio_results}
     results: list[dict] = []
 
     pending = validate_register(register)

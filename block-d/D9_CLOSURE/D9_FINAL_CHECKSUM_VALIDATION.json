@@ -1,0 +1,49 @@
+{
+  "stage": "D9",
+  "status": "PASS",
+  "checks_passed": 10,
+  "checks_failed": 0,
+  "entries": {
+    "../D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_DECISION.json": {
+      "sha256": "4622d416e5877d42c5075b260aab653213403ee8add387cedb6b93beddac7e3c",
+      "bytes": 794
+    },
+    "../D4_TIMING_DECISION.json": {
+      "sha256": "c11f03581147c274590672eb57934fc5af9a55406b22755357be71975bfd75aa",
+      "bytes": 319
+    },
+    "../D4_MAIN_CASE_DECISION.json": {
+      "sha256": "05c9e83c9506f29daf0ed5a5da7d5a006e4bab6bbbaac52376458743ae0fc5aa",
+      "bytes": 585
+    },
+    "../D5_EXPECTED_LOSS/D5_EL_RECONCILIATION.json": {
+      "sha256": "529ebd6e3546d47b2ab8c02cb4ff509f74a92caefe387f9dbf601d9d2c08d8e9",
+      "bytes": 1958
+    },
+    "../D6_DECISION_POLICY/D6_POLICY_DECISION.json": {
+      "sha256": "97ad8b67ac41367a4b01fc4576fa312f861c94e4b0bb9fb38c6b6c27c6a1a713",
+      "bytes": 402
+    },
+    "../D7_PRICING/D7_SCOPE_DECISION.json": {
+      "sha256": "1d45a0cdaa591af2d01cad9e70d2325c30700df046a66fc377993165d455bde8",
+      "bytes": 675
+    },
+    "../D8_STRESS/D8_REVERSE_STRESS_RESULTS.csv": {
+      "sha256": "581d55b536be10f96282c9a4ce4f44082a4c0dc7f88ac57db5c2be7db0c68e83",
+      "bytes": 588
+    },
+    "D9_FINAL_BLOCK_D_DECISION.json": {
+      "sha256": "d006612429922ccad3515e3cf035148e06004fdf4329292395bc3e9ac5b02499",
+      "bytes": 1617
+    },
+    "D9_FINAL_TEST_RESULTS.json": {
+      "sha256": "5d71f3f01d7f046adca1922e8481ce8edde8f2c55266f2d242858a8e17ab4d90",
+      "bytes": 312
+    },
+    "../BLOCK_D_FINAL_SCORECARD.json": {
+      "sha256": "d25a7446fa98343a368be49f34830b6f513fbe779e1917b884e72a7bc31a1853",
+      "bytes": 2474
+    }
+  },
+  "missing": []
+}

@@ -1,0 +1,22 @@
+{
+  "stage": "D9",
+  "governance_mode": "PORTFOLIO_PROJECT_REVIEW",
+  "decision_owner_role": "PORTFOLIO_PROJECT_OWNER",
+  "decision_owner_name": null,
+  "decision_date": null,
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false,
+  "decisions": {
+    "D4_main_case_lgd": {"decision_id": "D4-MAIN-LGD-001", "status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "Q50", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D4_MAIN_CASE_DECISION.json", "rationale": "Empirical challenger was tested and rejected by the predeclared materiality rule; Q50 remains the central governed scenario.", "conditions": "Analytical portfolio proxy; not regulatory LGD.", "production_authorization": false, "regulatory_claim": false},
+    "D4_timing_boundary": {"decision_id": "D4-TIMING-001", "status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "ISSUE_YEAR_LE_2017", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D4_TIMING_DECISION.json", "rationale": "2018 remains monitor-only because the final-resolution boundary is not verified for the primary analytical cohort.", "conditions": "2017 is rolling validation evidence, not pristine untouched LGD OOT.", "production_authorization": false, "regulatory_claim": false},
+    "D5_analytical_proxy": {"decision_id": "D5-EL-001", "status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "EL_MAIN_ANALYTICAL", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D5_FINAL_RUN_AUDIT.json", "rationale": "The account/segment/portfolio expected-loss proxy was materialized and reconciled.", "conditions": "Not IFRS 9, Basel, realized loss, or production ECL.", "production_authorization": false, "regulatory_claim": false},
+    "D6_action_policy": {"decision_id": "D6-POLICY-001", "status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "HISTORICAL_DECISION_SIMULATION", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D6_POLICY_DECISION.json", "rationale": "Growth, Balanced, and Conservative policy scenarios were derived on Validation-2016 and replayed unchanged on 2017.", "conditions": "No production lending authorization; override authority not in scope.", "production_authorization": false, "regulatory_claim": false},
+    "D7_pricing_scope": {"decision_id": "D7-SCOPE-001", "status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "DESCRIPTIVE_ONLY", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D7_SCOPE_DECISION.json", "rationale": "Source-backed funding, operating, servicing, capital, fee, and realized timing inputs are absent.", "conditions": "Observed rate minus EL is a diagnostic spread only; no profitability claim.", "production_authorization": false, "regulatory_claim": false},
+    "D8_stress_policy": {"decision_id": "D8-STRESS-001", "status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "ANALYTICAL_SENSITIVITY", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D8_FINAL_DECISION.json", "rationale": "Base/Mild/Adverse/Severe rank-preserving PD, governed LGD, EAD timing, mix, sequential attribution, and reverse-stress outputs were generated.", "conditions": "Stress results are analytical sensitivities, not forecasts or risk-appetite breaches.", "production_authorization": false, "regulatory_claim": false}
+  },
+  "owner_signoff": {
+    "data_owner": {"status": "NOT_APPLICABLE_PORTFOLIO_PROJECT", "name": null, "date": null, "reference": null},
+    "model_owner": {"status": "NOT_APPLICABLE_PORTFOLIO_PROJECT", "name": null, "date": null, "reference": null},
+    "risk_owner": {"status": "NOT_APPLICABLE_PORTFOLIO_PROJECT", "name": null, "date": null, "reference": null}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "manifest_type": "PRE_FINAL_SPRINT_SNAPSHOT",
+  "snapshot_date": "2026-09-03",
+  "branch": "block-d-final-10-10-closure",
+  "block_d_status": "NOT_LOCKED_REVIEW_REQUIRED",
+  "execution_coverage_pct": 100.0,
+  "closure_readiness_pct": 73.5,
+  "full_review_qa": {"passed": 55, "failed": 0},
+  "manifest_checksums": {"passed": 16, "failed": 0},
+  "input_file_mutated": false,
+  "private_raw_artifacts_published": false,
+  "checksum_sources": {
+    "D1_RUN_AUDIT.json": "pre-existing D9 closure manifest",
+    "D2_GOVERNED_CORE_BRIDGE_AUDIT.json": "pre-existing D9 closure manifest",
+    "D4_RUN_AUDIT.json": "pre-existing D9 closure manifest",
+    "D9_CLOSURE_REVIEW_MANIFEST.json": "pre-existing D9 closure manifest"
+  },
+  "required_input_checksums": [
+    "decision_economics_mart",
+    "D2 governed BAD loss evidence",
+    "D3 EAD proxy/scenario output",
+    "D4 scenario anchors",
+    "C8E frozen model metadata",
+    "C9 Validation predictions",
+    "C9 OOT predictions",
+    "risk_band_contract.json",
+    "D0 assumption register"
+  ],
+  "claim_boundary": "This is a preserved pre-sprint snapshot; it is not the final Block D status."
+}

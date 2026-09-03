@@ -31,3 +31,11 @@ The website presents five completed, independent financial risk projects. Each p
 - Phone: 0865385817
 - Email: nguyen28052005@gmail.com
 - GitHub: [github.com/susayold](https://github.com/susayold)
+
+## CRD.PI Block D checkpoint
+
+Block D is `CLOSED_WITH_LIMITATIONS_PORTFOLIO`. Execution coverage, portfolio requirement resolution, technical QA, and artifact checksum integrity are each 100%. Production authorization and regulatory compliance are `NOT_IN_SCOPE`; the public repository contains code, contracts, sanitized aggregates, QA, and documentation only.
+
+- [Block D final decision](block-d/D9_CLOSURE/D9_FINAL_BLOCK_D_DECISION.json)
+- [Block D final scorecard](block-d/BLOCK_D_FINAL_SCORECARD.md)
+- [Block D final closure report](block-d/D9_CLOSURE/BLOCK_D_FINAL_CLOSURE_REPORT.md)

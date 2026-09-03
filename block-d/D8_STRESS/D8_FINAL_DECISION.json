@@ -1,0 +1,18 @@
+{
+  "stage": "D8",
+  "status": "PASS_WITH_LIMITATIONS",
+  "scenarios": [
+    "BASE",
+    "MILD",
+    "ADVERSE",
+    "SEVERE"
+  ],
+  "pd_method": "rank-preserving logit shift with solved deltas",
+  "lgd_method": "D4 governed Q50/Q75/Q90 anchors",
+  "ead_method": "D3 timing proxy",
+  "baseline_reconciles_D5": true,
+  "policy_thresholds_unchanged": true,
+  "tests_passed": 12,
+  "tests_failed": 0,
+  "claim_boundary": "analytical stress sensitivity; no forecast or regulatory claim"
+}

@@ -1,0 +1,3 @@
+reverse_stress,question,required_delta_logit,required_mean_p_bad,relative_mean_p_increase,target_el_rate,base_el_rate,claim_boundary
+A,PD deterioration alone equals combined ADVERSE EL rate,0.6491265340279742,0.2333406884560317,0.4953123765876948,0.1725357972464523,0.11786386438240148,analytical reverse-stress breakpoint; not bank risk-appetite breach
+B,PD deterioration under base LGD/EAD equals final SEVERE EL rate,1.0298147245090012,0.28835138524285986,0.8478363032733613,0.2103708824119658,0.11786386438240148,analytical reverse-stress breakpoint; not bank risk-appetite breach

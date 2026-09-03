@@ -1,51 +1,8 @@
 {
   "stage": "D4",
-  "run_timestamp_utc": "2026-09-02T11:15:14.016591+00:00",
-  "status": "BRIDGE_RECONCILED_APPROVAL_PENDING",
-  "input_files": [
-    "D2_GOVERNED_BAD_LOSS_EVIDENCE.csv",
-    "D2_GOVERNED_CORE_BRIDGE_AUDIT.json",
-    "D4_SCORE_CONDITIONAL_LINKAGE_AUDIT.json"
-  ],
-  "input_checksums": {
-    "D2_GOVERNED_BAD_LOSS_EVIDENCE.csv": "5574b5e468fc46ef1732ebf75bd1c4805113e94b26fd38a819d65aec338838da",
-    "D2_GOVERNED_CORE_BRIDGE_AUDIT.json": "d56c77898a123df2d82654fb526cfbd51dd10249b1d33b990d68d645a365aa1b",
-    "D4_SCORE_CONDITIONAL_LINKAGE_AUDIT.json": "bb18d3eaaed2ffd9039fdce12756d29205d9b62e2a2c974b4a7349aea4547578"
-  },
-  "upstream_versions": {
-    "block_a": "LOCKED",
-    "block_b": "LOCKED",
-    "block_c": "CLOSED_WITH_MONITORING"
-  },
-  "model_versions": {
-    "frozen_risk_model": "C8E_RICH_BUREAU_CATBOOST_79F"
-  },
-  "assumption_version": "D4-SCENARIO-0.1",
-  "random_seed": 42,
-  "row_counts": {
-    "source_rows": 269249,
-    "source_rows_before_exact_dedup": 269249,
-    "exact_duplicate_rows_removed": 0,
-    "usable_lgd_rows": 269249
-  },
-  "tests_passed": 10,
-  "tests_failed": 0,
-  "tests_pending": 0,
-  "outputs": [
-    "lgd_scenario_anchors.csv",
-    "lgd_scenario_summary.csv",
-    "lgd_by_issue_year.csv",
-    "D4_SCORE_CONDITIONAL_LOSS_LINKAGE.csv",
-    "D4_SCORE_CONDITIONAL_LINKAGE_AUDIT.json",
-    "D4_TEST_RESULTS.json",
-    "D4_RUN_AUDIT.json"
-  ],
-  "claim_boundary": [
-    "account-grain governed BAD-only scenario anchors",
-    "descriptive score-to-loss linkage only",
-    "not score-conditional empirical C8E LGD",
-    "no p_bad_final in the primary anchor calculation",
-    "main-case LGD/timing approval remains pending",
-    "no regulatory LGD"
-  ]
+  "status": "PASS_WITH_LIMITATIONS",
+  "superseded_by": "D4_EMPIRICAL_LGD_RUN_AUDIT.json",
+  "selected_main_method": "LGD_CENTRAL_Q50",
+  "challenger_decision": "REJECT_ML_CHALLENGER_KEEP_SCENARIO_LGD",
+  "claim_boundary": "Analytical portfolio LGD only; not regulatory LGD."
 }
