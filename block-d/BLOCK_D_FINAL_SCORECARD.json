@@ -8,7 +8,8 @@
     "technical_qa_pct": 100.0,
     "artifact_checksum_integrity_pct": 100.0,
     "semantic_remediation_pct": 87.5,
-    "portfolio_implementation_score": "PENDING_SEMANTIC_OWNER_GATE",
+    "portfolio_implementation_score": "PENDING_OWNER_GATE",
+    "portfolio_implementation_complete": false,
     "production_regulatory_readiness": "NOT_IN_SCOPE"
   },
   "stages": [

@@ -3,7 +3,9 @@
   "status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
   "governance_mode": "PORTFOLIO_PROJECT_REVIEW",
   "portfolio_closure_status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
-  "run_timestamp_utc": "2026-09-03T02:39:00.736606+00:00",
+  "closure_substatus": "PENDING_OWNER_GATE",
+  "portfolio_implementation_complete": false,
+  "run_timestamp_utc": "2026-09-03T09:32:24.161535+00:00",
   "execution_coverage_pct": 100.0,
   "portfolio_requirement_resolution_pct": 100.0,
   "technical_qa": "N/N PASS",
@@ -13,6 +15,10 @@
     "PRE_MICRO_REMEDIATION_MANIFEST.json": {
       "sha256": "b6c1775c1c90ac1592f39c726da1713f2c58c305e479795915b7263eaeca2507",
       "bytes": 2886
+    },
+    "PRE_OWNER_GATE_FINALIZATION_MANIFEST.json": {
+      "sha256": "5c63531396e10f1b6ed3f0eee051bd7d5e6bdec3e1997387c3d25babf8c4fbbf",
+      "bytes": 2421
     },
     "../D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_DECISION.json": {
       "sha256": "789680321eccdfc5bc55d5c327ee9b8f8e15d20f263fa15324a9a4b7e0fa202e",
@@ -78,29 +84,33 @@
       "sha256": "0e498da342cdee7f4930ee15f67ae33947a6aa60972497000577c38799cb24cb",
       "bytes": 3917
     },
+    "D9_APPROVAL_VALIDATION.json": {
+      "sha256": "c32baafc01e4f582a37c3d987366ea72fa30c606510799f7b2951f85c2e34e84",
+      "bytes": 1251
+    },
     "D9_FINAL_BLOCK_D_DECISION.json": {
-      "sha256": "89e5d67801bfba1d7ba2620d942a70144b2215cb60e8fc57512cf49d7488cbc0",
-      "bytes": 1975
+      "sha256": "5bc8599e0c5f560900f4ba02947eaaba59ec0795590cfe33688fbf571b3e64e2",
+      "bytes": 2022
     },
     "D9_FINAL_TEST_RESULTS.json": {
       "sha256": "5d71f3f01d7f046adca1922e8481ce8edde8f2c55266f2d242858a8e17ab4d90",
       "bytes": 312
     },
     "../BLOCK_D_FULL_REVIEW_QA.json": {
-      "sha256": "3285fad82a1366a77e84251d54f461c8165ef40e0be1eb0cb4da21b4b47632f0",
-      "bytes": 8268
+      "sha256": "f7d0dac0b8fb1d2af3f661aaa8c87594da9011ef72100108c3943f5ef6de5ece",
+      "bytes": 8488
     },
     "../BLOCK_D_SEMANTIC_QA.json": {
       "sha256": "0689533785e20658563209c3380611e1ec60fd3f54f698b254bf0f10c6accedd",
       "bytes": 3577
     },
     "../BLOCK_D_VALIDATION_REPORT.md": {
-      "sha256": "18b32f57ff24efc04878c49573fbe41acdc981bb035ae3761ebdd99d913dda2d",
-      "bytes": 2078
+      "sha256": "daff47544d958a91913e63a3d69c37f7c403f1137104509157bc248044206b05",
+      "bytes": 2100
     },
     "../BLOCK_D_FINAL_SCORECARD.json": {
-      "sha256": "33e95b8442f320e56b57492496aa61c90fc46b7df83c78c316892e6fca4a0f2e",
-      "bytes": 2583
+      "sha256": "1f24221f179567b44b3db2ad98fa3d820254196d719c1359556b043c9db1d1da",
+      "bytes": 2623
     }
   },
   "missing_required_entries": [],

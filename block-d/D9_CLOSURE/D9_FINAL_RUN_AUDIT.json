@@ -1,9 +1,12 @@
 {
   "stage": "D9",
-  "status": "PASS",
+  "status": "PENDING_OWNER_GATE",
   "governance_mode": "PORTFOLIO_PROJECT_REVIEW",
   "analytical_stages_closed": true,
   "portfolio_governance_ok": true,
+  "portfolio_implementation_complete": false,
+  "semantic_qa_failed": 1,
+  "full_review_qa_failed": 3,
   "production_authorized": false,
   "regulatory_compliance_claimed": false
 }

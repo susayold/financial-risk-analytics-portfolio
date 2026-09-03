@@ -1,0 +1,34 @@
+{
+  "stage": "PRE_OWNER_GATE_FINALIZATION",
+  "snapshot_date": "2026-09-03",
+  "status": "PENDING_OWNER_GATE",
+  "semantic_qa": {"passed": 7, "failed": 1},
+  "full_review_qa": {"passed": 35, "failed": 2},
+  "pending_gate": "R8-G06",
+  "decision_owner_name": null,
+  "decision_date": null,
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false,
+  "f0_gates": {
+    "F0-G01_snapshot_created": "PASS",
+    "F0-G02_current_failures_recorded": "PASS",
+    "F0-G03_owner_fields_confirmed_null": "PASS",
+    "F0-G04_production_authorized_false": "PASS",
+    "F0-G05_regulatory_compliance_claimed_false": "PASS",
+    "F0-G06_no_existing_artifact_overwritten_before_snapshot": "PASS"
+  },
+  "checksums": {
+    "block-d/BLOCK_D_SEMANTIC_QA.json": {"sha256": "0689533785E20658563209C3380611E1EC60FD3F54F698B254BF0F10C6ACCEDD", "bytes": 3577},
+    "block-d/BLOCK_D_FULL_REVIEW_QA.json": {"sha256": "3285FAD82A1366A77E84251D54F461C8165EF40E0BE1EB0CB4DA21B4B47632F0", "bytes": 8268},
+    "block-d/D9_CLOSURE/D9_PORTFOLIO_PROJECT_OWNER_DECISIONS.json": {"sha256": "0E498DA342CDEE7F4930EE15F67AE33947A6AA60972497000577C38799CB24CB", "bytes": 3917},
+    "block-d/D9_CLOSURE/D9_APPROVAL_VALIDATION.json": {"sha256": "C32BAAFC01E4F582A37C3D987366EA72FA30C606510799F7B2951F85C2E34E84", "bytes": 1251},
+    "block-d/D9_CLOSURE/D9_FINAL_BLOCK_D_DECISION.json": {"sha256": "89E5D67801BFBA1D7BA2620D942A70144B2215CB60E8FC57512CF49D7488CBC0", "bytes": 1975},
+    "block-d/BLOCK_D_FINAL_SCORECARD.json": {"sha256": "33E95B8442F320E56B57492496AA61C90FC46B7DF83C78C316892E6FCA4A0F2E", "bytes": 2583},
+    "block-d/BLOCK_D_STATUS.md": {"sha256": "508B93587942921041CF370E8528557B154C414F95C569B3F78A7DDF27DD0A4D", "bytes": 2011},
+    "block-d/BLOCK_D_VALIDATION_REPORT.md": {"sha256": "18B32F57FF24EFC04878C49573FBE41ACDC981BB035AE3761EBDD99D913DDA2D", "bytes": 2078},
+    "block-d/D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_DECISION.json": {"sha256": "789680321ECCDFC5BC55D5C327EE9B8F8E15D20F263FA15324A9A4B7E0FA202E", "bytes": 1051},
+    "block-d/D5_EXPECTED_LOSS/D5_EL_RECONCILIATION.json": {"sha256": "A586099A82DCD686B704C43ED54F672662910A258FE122C695F92677990480E3", "bytes": 2107},
+    "block-d/D8_STRESS/D8_FINAL_DECISION.json": {"sha256": "88FCCEB00F5BA497CD0F078A5DF09925F2098508B0E8EFC1B9DED746CD6D1E5B", "bytes": 762}
+  },
+  "claim_boundary": "This is a preserved pending-owner checkpoint, not the canonical final release."
+}

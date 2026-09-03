@@ -254,8 +254,14 @@
     {
       "check_id": "S8-G02",
       "pass": true,
-      "observed": true,
-      "expected": true,
+      "observed": {
+        "portfolio_implementation_complete": false,
+        "closure_substatus": "PENDING_OWNER_GATE"
+      },
+      "expected": {
+        "portfolio_implementation_complete": false,
+        "closure_substatus": "PENDING_OWNER_GATE"
+      },
       "evidence": "D9_FINAL_BLOCK_D_DECISION.json"
     },
     {

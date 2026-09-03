@@ -51,6 +51,7 @@ def main() -> int:
     add("D8-G02", d8.get("policy_thresholds_unchanged") is True, d8.get("policy_thresholds_unchanged"), True, "D8_FINAL_DECISION.json")
     add("D8-G03", d8t.get("tests_passed", 0) >= 14 and d8t.get("tests_failed") == 0, [d8t.get("tests_passed"), d8t.get("tests_failed")], "at least 14 D8 remediation gates and 0 failures", "D8_FINAL_TEST_RESULTS.json")
     reg = load("D9_CLOSURE/D9_APPROVAL_REGISTER.json"); validation = validate_register(reg)
+    semantic = load("BLOCK_D_SEMANTIC_QA.json")
     add("S7-G01", reg.get("governance_mode") == "PORTFOLIO_PROJECT_REVIEW", reg.get("governance_mode"), "PORTFOLIO_PROJECT_REVIEW", "D9_APPROVAL_REGISTER.json")
     add("S7-G02", validation.get("validation_status") == "PORTFOLIO_VALID", validation.get("validation_status"), "PORTFOLIO_VALID", "D9_APPROVAL_VALIDATION.json")
     add("S7-G03", reg.get("production_authorized") is False, reg.get("production_authorized"), False, "D9_APPROVAL_REGISTER.json")
@@ -63,7 +64,8 @@ def main() -> int:
     final = load("D9_CLOSURE/D9_FINAL_BLOCK_D_DECISION.json")
     final_manifest = load("D9_CLOSURE/D9_FINAL_CLOSURE_MANIFEST.json")
     add("S8-G01", final.get("status") == "CLOSED_WITH_LIMITATIONS_PORTFOLIO", final.get("status"), "CLOSED_WITH_LIMITATIONS_PORTFOLIO", "D9_FINAL_BLOCK_D_DECISION.json")
-    add("S8-G02", final.get("portfolio_implementation_complete") is True, final.get("portfolio_implementation_complete"), True, "D9_FINAL_BLOCK_D_DECISION.json")
+    expected_complete = validation.get("validation_status") == "PORTFOLIO_VALID" and semantic.get("checks_failed") == 0
+    add("S8-G02", final.get("portfolio_implementation_complete") is expected_complete and final.get("closure_substatus") == ("FINAL_PORTFOLIO_CLOSURE" if expected_complete else "PENDING_OWNER_GATE"), {"portfolio_implementation_complete": final.get("portfolio_implementation_complete"), "closure_substatus": final.get("closure_substatus")}, {"portfolio_implementation_complete": expected_complete, "closure_substatus": "FINAL_PORTFOLIO_CLOSURE" if expected_complete else "PENDING_OWNER_GATE"}, "D9_FINAL_BLOCK_D_DECISION.json")
     add("S8-G03", final.get("production_authorized") is False and final.get("regulatory_compliance_claimed") is False, [final.get("production_authorized"), final.get("regulatory_compliance_claimed")], [False, False], "D9_FINAL_BLOCK_D_DECISION.json")
     add("S8-G04", final_manifest.get("status") == "CLOSED_WITH_LIMITATIONS_PORTFOLIO" and final_manifest.get("missing_required_entries") == [], [final_manifest.get("status"), final_manifest.get("missing_required_entries")], ["CLOSED_WITH_LIMITATIONS_PORTFOLIO", []], "D9_FINAL_CLOSURE_MANIFEST.json")
     add("S8-G05", load("D9_CLOSURE/D9_FINAL_TEST_RESULTS.json").get("tests_failed") == 0, load("D9_CLOSURE/D9_FINAL_TEST_RESULTS.json").get("tests_failed"), 0, "D9_FINAL_TEST_RESULTS.json")
@@ -72,7 +74,6 @@ def main() -> int:
     add("S9-G02", score.get("axes", {}).get("portfolio_requirement_resolution_pct") == 100.0, score.get("axes", {}).get("portfolio_requirement_resolution_pct"), 100.0, "BLOCK_D_FINAL_SCORECARD.json")
     add("S9-G03", score.get("axes", {}).get("production_regulatory_readiness") == "NOT_IN_SCOPE", score.get("axes", {}).get("production_regulatory_readiness"), "NOT_IN_SCOPE", "BLOCK_D_FINAL_SCORECARD.json")
     add("S10-G01", load("D9_CLOSURE/D9_FINAL_CHECKSUM_VALIDATION.json").get("checks_failed") == 0, load("D9_CLOSURE/D9_FINAL_CHECKSUM_VALIDATION.json").get("checks_failed"), 0, "D9_FINAL_CHECKSUM_VALIDATION.json")
-    semantic = load("BLOCK_D_SEMANTIC_QA.json")
     add("R8-SEMANTIC", semantic.get("status") == "PASS" and semantic.get("checks_failed") == 0, [semantic.get("checks_passed"), semantic.get("checks_failed")], "N/N semantic checks and 0 failures", "BLOCK_D_SEMANTIC_QA.json")
     passed = sum(x["pass"] for x in checks); failed = len(checks) - passed
     payload = {"run_name": "block_d_full_review_qa", "run_date": date.today().isoformat(), "scope": "final portfolio closure; no production or regulatory claim", "status": "PASS" if failed == 0 else "FAIL", "checks_passed": passed, "checks_failed": failed, "checks": checks, "overall_block_status": final.get("status"), "production_authorized": False, "regulatory_compliance_claimed": False}

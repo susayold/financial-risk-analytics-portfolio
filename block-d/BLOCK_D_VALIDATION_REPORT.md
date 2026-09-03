@@ -2,7 +2,7 @@
 
 ## Assessment
 
-`CLOSED_WITH_LIMITATIONS_PORTFOLIO`
+`CLOSED_WITH_LIMITATIONS_PORTFOLIO` / `PENDING_OWNER_GATE`
 
 The final analytical chain is reproducible from the derived D1/D2/D3 inputs on the execution disk. D4–D8 final artifacts, governance-mode validation, status consistency, claim-boundary scanning, and checksum controls are required before publication. No production or regulatory authorization is claimed.
 

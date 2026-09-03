@@ -2,7 +2,7 @@
 
 ## Decision & Risk Economics
 
-Block D is `CLOSED_WITH_LIMITATIONS_PORTFOLIO` for the CRD.PI portfolio project. The sequence `D0 → D1 → D2 → D3 → D4 → D5 → D6 → D7 → D8 → D9` is complete under the declared scope.
+Block D is `CLOSED_WITH_LIMITATIONS_PORTFOLIO` for the CRD.PI analytical scope, with closure substatus `PENDING_OWNER_GATE`. The D0–D8 analytical chain is complete; the canonical D9 release remains pending the explicit portfolio project-owner identifier and decision date.
 
 | Stage | Final state | Scope boundary |
 |---|---|---|

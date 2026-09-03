@@ -23,6 +23,7 @@ def digest(path: Path) -> str:
 def main() -> int:
     names = [
         "PRE_MICRO_REMEDIATION_MANIFEST.json",
+        "PRE_OWNER_GATE_FINALIZATION_MANIFEST.json",
         "../D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_DECISION.json",
         "../D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_MODEL_COMPARISON.csv",
         "../D4_LGD_FRAMEWORK/D4_EMPIRICAL_LGD_FOLD_METRICS.csv",
@@ -39,6 +40,7 @@ def main() -> int:
         "../D8_STRESS/D8_REVERSE_STRESS_RESULTS.csv",
         "../D8_STRESS/D8_EAD_TIMING_SENSITIVITY.csv",
         "D9_PORTFOLIO_PROJECT_OWNER_DECISIONS.json",
+        "D9_APPROVAL_VALIDATION.json",
         "D9_FINAL_BLOCK_D_DECISION.json",
         "D9_FINAL_TEST_RESULTS.json",
         "../BLOCK_D_FULL_REVIEW_QA.json",
@@ -54,11 +56,15 @@ def main() -> int:
             entries[name] = {"sha256": digest(path), "bytes": path.stat().st_size}
         else:
             missing.append(name)
+    final_decision_path = (D9 / "D9_FINAL_BLOCK_D_DECISION.json").resolve()
+    final_decision = json.loads(final_decision_path.read_text(encoding="utf-8")) if final_decision_path.exists() else {}
     payload = {
         "stage": "D9",
         "status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
         "governance_mode": "PORTFOLIO_PROJECT_REVIEW",
         "portfolio_closure_status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+        "closure_substatus": final_decision.get("closure_substatus", "PENDING_OWNER_GATE"),
+        "portfolio_implementation_complete": final_decision.get("portfolio_implementation_complete", False),
         "run_timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "execution_coverage_pct": 100.0,
         "portfolio_requirement_resolution_pct": 100.0,
