@@ -1,0 +1,452 @@
+{
+  "baseline_version": "E-BASELINE-2016-1.0",
+  "features": {
+    "revenue": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "dti_n": {
+      "kind": "numeric",
+      "edges": [
+        -Infinity,
+        7.41,
+        10.67,
+        13.23,
+        15.57,
+        17.91,
+        20.38,
+        23.07,
+        26.29,
+        30.54,
+        Infinity
+      ],
+      "labels": [
+        "MISSING",
+        "UNDERFLOW",
+        "BIN_01",
+        "BIN_02",
+        "BIN_03",
+        "BIN_04",
+        "BIN_05",
+        "BIN_06",
+        "BIN_07",
+        "BIN_08",
+        "BIN_09",
+        "OVERFLOW"
+      ],
+      "special_bins": [
+        "MISSING",
+        "UNDERFLOW",
+        "OVERFLOW"
+      ]
+    },
+    "loan_amnt": {
+      "kind": "numeric",
+      "edges": [
+        -Infinity,
+        4950.0,
+        6075.0,
+        8000.0,
+        10000.0,
+        12000.0,
+        15000.0,
+        18000.0,
+        21600.0,
+        28000.0,
+        Infinity
+      ],
+      "labels": [
+        "MISSING",
+        "UNDERFLOW",
+        "BIN_01",
+        "BIN_02",
+        "BIN_03",
+        "BIN_04",
+        "BIN_05",
+        "BIN_06",
+        "BIN_07",
+        "BIN_08",
+        "BIN_09",
+        "OVERFLOW"
+      ],
+      "special_bins": [
+        "MISSING",
+        "UNDERFLOW",
+        "OVERFLOW"
+      ]
+    },
+    "fico_n": {
+      "kind": "numeric",
+      "edges": [
+        -Infinity,
+        667.0,
+        672.0,
+        677.0,
+        682.0,
+        692.0,
+        697.0,
+        707.0,
+        722.0,
+        742.0,
+        Infinity
+      ],
+      "labels": [
+        "MISSING",
+        "UNDERFLOW",
+        "BIN_01",
+        "BIN_02",
+        "BIN_03",
+        "BIN_04",
+        "BIN_05",
+        "BIN_06",
+        "BIN_07",
+        "BIN_08",
+        "BIN_09",
+        "OVERFLOW"
+      ],
+      "special_bins": [
+        "MISSING",
+        "UNDERFLOW",
+        "OVERFLOW"
+      ]
+    },
+    "experience_c": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "emp_length": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "purpose": {
+      "kind": "categorical",
+      "categories": [
+        "debt_consolidation",
+        "credit_card",
+        "home_improvement",
+        "other",
+        "major_purchase",
+        "medical",
+        "car",
+        "small_business",
+        "vacation",
+        "moving",
+        "house",
+        "renewable_energy",
+        "OTHER",
+        "MISSING"
+      ]
+    },
+    "home_ownership_n": {
+      "kind": "categorical",
+      "categories": [
+        "MORTGAGE",
+        "RENT",
+        "OWN",
+        "OTHER",
+        "OTHER",
+        "MISSING"
+      ]
+    },
+    "total_acc": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "open_acc": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "pub_rec": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "pub_rec_bankruptcies": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "revol_util": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "revol_bal": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "mort_acc": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "application_type": {
+      "kind": "categorical",
+      "categories": [
+        "Individual",
+        "Joint App",
+        "OTHER",
+        "MISSING"
+      ]
+    },
+    "loan_to_income": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "log_revenue": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "log_loan_amnt": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "fico_x_dti": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "open_to_total_acc": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "revol_bal_to_income": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "has_public_record": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "has_bankruptcy": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "term": {
+      "kind": "categorical",
+      "categories": [
+        " 36 months",
+        " 60 months",
+        "OTHER",
+        "MISSING"
+      ]
+    },
+    "installment": {
+      "kind": "numeric",
+      "edges": [
+        -Infinity,
+        156.58,
+        208.78,
+        265.68,
+        318.79,
+        374.97,
+        459.67,
+        540.0550000000003,
+        659.24,
+        843.22,
+        Infinity
+      ],
+      "labels": [
+        "MISSING",
+        "UNDERFLOW",
+        "BIN_01",
+        "BIN_02",
+        "BIN_03",
+        "BIN_04",
+        "BIN_05",
+        "BIN_06",
+        "BIN_07",
+        "BIN_08",
+        "BIN_09",
+        "OVERFLOW"
+      ],
+      "special_bins": [
+        "MISSING",
+        "UNDERFLOW",
+        "OVERFLOW"
+      ]
+    },
+    "int_rate": {
+      "kind": "numeric",
+      "edges": [
+        -Infinity,
+        7.24,
+        8.39,
+        9.75,
+        10.99,
+        11.49,
+        12.99,
+        14.46,
+        16.29,
+        19.53,
+        Infinity
+      ],
+      "labels": [
+        "MISSING",
+        "UNDERFLOW",
+        "BIN_01",
+        "BIN_02",
+        "BIN_03",
+        "BIN_04",
+        "BIN_05",
+        "BIN_06",
+        "BIN_07",
+        "BIN_08",
+        "BIN_09",
+        "OVERFLOW"
+      ],
+      "special_bins": [
+        "MISSING",
+        "UNDERFLOW",
+        "OVERFLOW"
+      ]
+    },
+    "verification_status": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "time_to_earliest_cr_line": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "installment_to_income": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "installment_to_loan": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "fico_x_revol_util": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "dti_x_revol_util": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "revol_bal_per_open_acc": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "has_mortgage_account": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "credit_history_log": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "fico_source_midpoint": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "fico_source_width": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "inq_last_6mths": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "acc_open_past_24mths": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "bc_util": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "bc_open_to_buy": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "avg_cur_bal": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "tot_cur_bal": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "tot_hi_cred_lim": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "total_bal_ex_mort": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "total_bc_limit": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "total_rev_hi_lim": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "num_accts_ever_120_pd": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "num_tl_90g_dpd_24m": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "pct_tl_nvr_dlq": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "percent_bc_gt_75": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "mths_since_recent_inq": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "mths_since_last_delinq": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "mths_since_last_major_derog": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "mo_sin_old_rev_tl_op": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "mo_sin_rcnt_tl": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "mo_sin_rcnt_rev_tl_op": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "num_actv_bc_tl": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "num_actv_rev_tl": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "num_bc_tl": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "num_il_tl": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "num_rev_accts": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "num_sats": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "num_tl_op_past_12m": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "delinq_2yrs": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "collections_12_mths_ex_med": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "chargeoff_within_12_mths": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "tax_liens": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "tot_coll_amt": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "total_il_high_credit_limit": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "bc_available_ratio": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "nonmort_balance_to_income": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "total_balance_to_income": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "recent_open_share": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "very_recent_open_share": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "inquiry_pressure": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "has_recent_90dpd": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    },
+    "has_ever_120pd": {
+      "status": "SOURCE_VALUE_NOT_AVAILABLE_IN_D1_MART"
+    }
+  },
+  "epsilon": 1e-06,
+  "available_feature_values": [
+    "dti_n",
+    "loan_amnt",
+    "fico_n",
+    "purpose",
+    "home_ownership_n",
+    "application_type",
+    "term",
+    "installment",
+    "int_rate"
+  ],
+  "available_feature_count": 9,
+  "contract_feature_count": 79
+}

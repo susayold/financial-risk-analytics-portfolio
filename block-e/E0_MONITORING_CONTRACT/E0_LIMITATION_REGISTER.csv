@@ -1,0 +1,4 @@
+limitation_id,scope,description,handling
+L1,2018,No row-level 2018 score/input snapshot is available locally; only explicit input/score monitoring eligibility is retained.,MONITOR_ONLY
+L2,E3,"The 79-feature contract and importance registry are available, but row-level values for most features are not in the frozen D1 mart.",E3_BLOCKER
+L3,D2,GOOD-row retrospective loss is not contract-supported; combined loss backtest remains stopped.,SEPARATE_INCIDENCE_SEVERITY

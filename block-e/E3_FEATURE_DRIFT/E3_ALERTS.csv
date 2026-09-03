@@ -1,0 +1,2 @@
+feature,window_id,psi,jsd,missingness_shift_pp,drift_materiality_score,prioritization_type,monitoring_status
+int_rate,2017Y,0.10064644356518351,0.012164874868258508,0.0,0.10064644356518351,PRIORITIZATION_SCORE,VALUE_AVAILABLE

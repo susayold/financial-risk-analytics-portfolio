@@ -1,0 +1,9 @@
+{
+  "stage": "E1",
+  "status": "PASS",
+  "mart_grain": "one account x monitoring_version",
+  "private_mart": "outputs\\block_e\\private\\monitoring_account_mart.parquet",
+  "row_count": 310066,
+  "baseline_version": "E-BASELINE-2016-1.0",
+  "source_sha256": "bb6c688924a93fb8bbfb999e4b9d7a73c0a61d167576a168f5563bdbc5c87938"
+}

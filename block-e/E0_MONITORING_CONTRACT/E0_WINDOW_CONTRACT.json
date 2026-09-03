@@ -1,0 +1,29 @@
+{
+  "baseline_version": "E-BASELINE-2016-1.0",
+  "reference_model_window": "Validation-2016",
+  "historical_monitor_window": "OOT-2017",
+  "shadow_input_window": "2018",
+  "frequencies": [
+    "monthly",
+    "quarterly",
+    "annual"
+  ],
+  "sample_rules": {
+    "auc_ks": {
+      "n": 1000,
+      "bad": 100,
+      "good": 100
+    },
+    "calibration": {
+      "n": 2000,
+      "bad": 150
+    },
+    "decile": {
+      "n": 2000
+    },
+    "segment": {
+      "n": 500,
+      "bad": 30
+    }
+  }
+}

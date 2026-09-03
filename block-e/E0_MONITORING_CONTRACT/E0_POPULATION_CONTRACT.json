@@ -1,0 +1,17 @@
+{
+  "lane_a": "C8E matched scored population; score/risk/performance/calibration/EL/policy/stress",
+  "lane_b": "full governed portfolio; DQ/coverage/mix/exposure only",
+  "scored_rows": 310066,
+  "split_counts": {
+    "Development": 182181,
+    "Validation": 83664,
+    "OOT": 44221
+  },
+  "outcome_eligibility": {
+    "2016": true,
+    "2017": true,
+    "2018": false
+  },
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false
+}

@@ -1,0 +1,24 @@
+{
+  "stage": "E1",
+  "status": "PASS",
+  "tests_passed": 10,
+  "tests_failed": 0,
+  "gates": {
+    "E1-G01": "PASS",
+    "E1-G02": "PASS",
+    "E1-G03": "PASS",
+    "E1-G04": "PASS",
+    "E1-G05": "PASS",
+    "E1-G06": "PASS",
+    "E1-G07": "PASS",
+    "E1-G08": "PASS",
+    "E1-G09": "PASS",
+    "E1-G10": "PASS"
+  },
+  "observed_split_counts": {
+    "Development": 182181,
+    "Validation": 83664,
+    "OOT": 44221
+  },
+  "total_scored_rows": 310066
+}

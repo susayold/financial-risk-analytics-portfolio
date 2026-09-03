@@ -1,0 +1,22 @@
+{
+  "stage": "E0",
+  "status": "PASS",
+  "tests_passed": 12,
+  "tests_failed": 0,
+  "gates": {
+    "E0-G01": "PASS",
+    "E0-G02": "PASS",
+    "E0-G03": "PASS",
+    "E0-G04": "PASS",
+    "E0-G05": "PASS",
+    "E0-G06": "PASS",
+    "E0-G07": "PASS",
+    "E0-G08": "PASS",
+    "E0-G09": "PASS",
+    "E0-G10": "PASS",
+    "E0-G11": "PASS",
+    "E0-G12": "PASS"
+  },
+  "thresholds_frozen_before_evaluation": true,
+  "no_auto_retraining": true
+}

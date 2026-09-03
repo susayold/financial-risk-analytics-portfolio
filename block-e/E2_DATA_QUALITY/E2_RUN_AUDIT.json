@@ -1,0 +1,17 @@
+{
+  "stage": "E2",
+  "status": "PASS",
+  "windows": 35,
+  "priority_fields": [
+    "loan_amnt",
+    "fico_n",
+    "dti_n",
+    "purpose",
+    "home_ownership_n",
+    "term",
+    "int_rate",
+    "installment"
+  ],
+  "invalid_vs_outside_reference_distinguished": true,
+  "2018_outcome_monitoring": "DISABLED"
+}

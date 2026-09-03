@@ -1,0 +1,12 @@
+metric_id,definition,threshold_summary,provenance
+PSI,reference vs monitored distribution,<0.10 / 0.10-0.25 / >=0.25,PROJECT_INTERNAL
+MISSINGNESS_SHIFT_PP,absolute missingness shift,<2 / 2-5 / >5 pp,PROJECT_INTERNAL
+COVERAGE_DROP_PP,score coverage deterioration,<2 / 2-5 / >5 pp,PROJECT_INTERNAL
+AUC_DROP,reference AUC minus monitored AUC,<=.02 /.02-.05 />.05,PROJECT_INTERNAL
+KS_DROP,reference KS minus monitored KS,<=.03 /.03-.07 />.07,PROJECT_INTERNAL
+CALIBRATION_GAP,mean prediction minus observed BAD rate,<.02 /.02-.05 />.05,PROJECT_INTERNAL
+CALIBRATION_SLOPE,calibration slope,.75-1.25 / .65-.75 or 1.25-1.35 / outside,PROJECT_INTERNAL
+DECILE_MONOTONICITY_VIOLATIONS,frozen decile BAD-rate violations,0 / 1 / >=2,PROJECT_INTERNAL
+QUARTERLY_AUC_RANGE,max quarterly AUC minus min,<.05 /.05-.08 />.08,PROJECT_INTERNAL
+RISK_BAND_SHARE_SHIFT_PP,absolute share shift,<5 / 5-10 / >10 pp,PROJECT_INTERNAL
+EL_RATE_INCREASE_PCT,relative EL-rate increase,<10 / 10-25 / >25%,PROJECT_INTERNAL

@@ -1,0 +1,15 @@
+{
+  "stage": "E3",
+  "status": "FAIL",
+  "epsilon": 1e-06,
+  "reference_bins": "Validation-2016 frozen",
+  "feature_importance_use": "prioritization only; no tuning",
+  "mandatory_watch_features": [
+    "installment_to_loan",
+    "int_rate"
+  ],
+  "stop_before": "E4",
+  "row_level_source_boundary": "D1 decision economics mart exposes 9 of 79 frozen feature values",
+  "feature_value_available_count": 9,
+  "feature_value_missing_count": 70
+}

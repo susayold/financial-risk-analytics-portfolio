@@ -1,0 +1,6 @@
+level,action
+GREEN,continue monitoring
+AMBER,investigate; two consecutive = WATCH
+RED,investigate; two consecutive = ESCALATE
+CRITICAL,immediate escalation
+INSUFFICIENT_SAMPLE,do not force RAG
