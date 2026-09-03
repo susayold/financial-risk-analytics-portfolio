@@ -44,4 +44,5 @@ This file only indexes links. The Drive root is the single storage location; Git
 - [Block D validation report on Drive](https://drive.google.com/file/d/1p_0-dhraDD2vIAFz2bRSaxtG9QK4BGbA/view?usp=drivesdk)
 - [Block D README checkpoint on Drive](https://drive.google.com/file/d/1yNE2P3z2z1efOm9lJNolxiLpkenBfjVM/view?usp=drivesdk)
 - [Block D final 10/10 package on Drive](https://drive.google.com/file/d/19qBMgtxVoyHU6YHhZvL9PpLCiubVg2I8/view?usp=drivesdk)
+- [Block D pre-final S0 sprint manifest on Drive](https://drive.google.com/file/d/1xopTFW55BG1cqefOHuSsgWynOcPwvhPg/view?usp=drivesdk)
 - [Block D private account EL mart on Drive](https://drive.google.com/file/d/1xR9TSRArpCO03Tc_8Kc1QAGVMiOnwiKY/view?usp=drivesdk)
