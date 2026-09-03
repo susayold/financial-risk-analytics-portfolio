@@ -3,9 +3,9 @@
   "status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
   "governance_mode": "PORTFOLIO_PROJECT_REVIEW",
   "portfolio_closure_status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
-  "closure_substatus": "PENDING_OWNER_GATE",
-  "portfolio_implementation_complete": false,
-  "run_timestamp_utc": "2026-09-03T09:32:24.161535+00:00",
+  "closure_substatus": "FINAL_PORTFOLIO_CLOSURE",
+  "portfolio_implementation_complete": true,
+  "run_timestamp_utc": "2026-09-03T11:22:40.402370+00:00",
   "execution_coverage_pct": 100.0,
   "portfolio_requirement_resolution_pct": 100.0,
   "technical_qa": "N/N PASS",
@@ -81,36 +81,36 @@
       "bytes": 1354
     },
     "D9_PORTFOLIO_PROJECT_OWNER_DECISIONS.json": {
-      "sha256": "0e498da342cdee7f4930ee15f67ae33947a6aa60972497000577c38799cb24cb",
-      "bytes": 3917
+      "sha256": "ad3c194c68a55f629889124940c6a867a4ed5c89734119d156c0d99b42e1acdd",
+      "bytes": 3881
     },
     "D9_APPROVAL_VALIDATION.json": {
       "sha256": "c32baafc01e4f582a37c3d987366ea72fa30c606510799f7b2951f85c2e34e84",
       "bytes": 1251
     },
     "D9_FINAL_BLOCK_D_DECISION.json": {
-      "sha256": "5bc8599e0c5f560900f4ba02947eaaba59ec0795590cfe33688fbf571b3e64e2",
-      "bytes": 2022
+      "sha256": "416cae3b02fce9e4427a1d6daf5c95bf5981e675cdeb0ea714c4b0d434f78892",
+      "bytes": 2041
     },
     "D9_FINAL_TEST_RESULTS.json": {
       "sha256": "5d71f3f01d7f046adca1922e8481ce8edde8f2c55266f2d242858a8e17ab4d90",
       "bytes": 312
     },
     "../BLOCK_D_FULL_REVIEW_QA.json": {
-      "sha256": "f7d0dac0b8fb1d2af3f661aaa8c87594da9011ef72100108c3943f5ef6de5ece",
-      "bytes": 8488
+      "sha256": "d712a26e05e31374ba9dd0b0cde8522c4301f27b680bff12ec67a6cd81931cd6",
+      "bytes": 8502
     },
     "../BLOCK_D_SEMANTIC_QA.json": {
-      "sha256": "0689533785e20658563209c3380611e1ec60fd3f54f698b254bf0f10c6accedd",
-      "bytes": 3577
+      "sha256": "5e071f2f3bdcc9d234af243bd3155cbdbc7cf73b03a3cbf4f93746d5f59514a6",
+      "bytes": 3591
     },
     "../BLOCK_D_VALIDATION_REPORT.md": {
       "sha256": "daff47544d958a91913e63a3d69c37f7c403f1137104509157bc248044206b05",
       "bytes": 2100
     },
     "../BLOCK_D_FINAL_SCORECARD.json": {
-      "sha256": "1f24221f179567b44b3db2ad98fa3d820254196d719c1359556b043c9db1d1da",
-      "bytes": 2623
+      "sha256": "09ace287bce93ae2e320b4256cc370b52f546e5b19417549de80d5be8d87da22",
+      "bytes": 2610
     }
   },
   "missing_required_entries": [],

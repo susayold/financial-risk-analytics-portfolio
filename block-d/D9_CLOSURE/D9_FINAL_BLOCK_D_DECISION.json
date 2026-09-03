@@ -3,8 +3,8 @@
   "decision_date": "2026-09-03",
   "governance_mode": "PORTFOLIO_PROJECT_REVIEW",
   "status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
-  "portfolio_implementation_complete": false,
-  "closure_substatus": "PENDING_OWNER_GATE",
+  "portfolio_implementation_complete": true,
+  "closure_substatus": "FINAL_PORTFOLIO_CLOSURE",
   "production_authorized": false,
   "regulatory_compliance_claimed": false,
   "frozen_risk_model": "C8E_RICH_BUREAU_CATBOOST_79F",
@@ -46,15 +46,15 @@
     "LGD/EAD/EL are analytical proxies"
   ],
   "project_owner": {
-    "name": null,
-    "decision_date": null,
+    "name": "susayold",
+    "decision_date": "2026-09-03",
     "role": "PORTFOLIO_PROJECT_OWNER"
   },
   "semantic_remediation": {
-    "status": "FAIL",
-    "checks_passed": 7,
-    "checks_failed": 1,
-    "remediation_pct": 87.5
+    "status": "PASS",
+    "checks_passed": 8,
+    "checks_failed": 0,
+    "remediation_pct": 100.0
   },
   "next_action": "MOVE_TO_BLOCK_E"
 }

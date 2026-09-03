@@ -4,18 +4,18 @@
   "updated": "2026-09-03",
   "governance_mode": "PORTFOLIO_PROJECT_REVIEW",
   "decision_owner_role": "PORTFOLIO_PROJECT_OWNER",
-  "decision_owner_name": null,
-  "decision_date": null,
+  "decision_owner_name": "susayold",
+  "decision_date": "2026-09-03",
   "purpose": "Portfolio project analytical decisions; no institutional approval is implied.",
   "production_authorized": false,
   "regulatory_compliance_claimed": false,
   "decisions": {
-    "D4_main_case_lgd": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "Q50", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D4_MAIN_CASE_DECISION.json", "conditions": "Analytical portfolio proxy; not regulatory LGD.", "production_authorization": false, "regulatory_claim": false},
-    "D4_timing_boundary": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "ISSUE_YEAR_LE_2017", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D4_TIMING_DECISION.json", "conditions": "2018 monitor-only; 2017 is not pristine untouched LGD OOT.", "production_authorization": false, "regulatory_claim": false},
-    "D5_analytical_proxy": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "EL_MAIN_ANALYTICAL", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D5_FINAL_RUN_AUDIT.json", "conditions": "Not IFRS 9, Basel, realized loss, or production ECL.", "production_authorization": false, "regulatory_claim": false},
-    "D6_action_policy": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "HISTORICAL_DECISION_SIMULATION", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D6_POLICY_DECISION.json", "conditions": "Validation-derived and OOT-replayed; no production override authority.", "production_authorization": false, "regulatory_claim": false},
-    "D7_pricing_scope": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "DESCRIPTIVE_ONLY", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D7_SCOPE_DECISION.json", "conditions": "Diagnostic spread only; no profitability claim.", "production_authorization": false, "regulatory_claim": false},
-    "D8_stress_policy": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "ANALYTICAL_SENSITIVITY", "decision_owner": "PORTFOLIO_PROJECT_OWNER", "decision_date": null, "decision_reference": "D8_FINAL_DECISION.json", "conditions": "Not a forecast or bank risk-appetite breach.", "production_authorization": false, "regulatory_claim": false}
+    "D4_main_case_lgd": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "Q50", "decision_owner": "susayold", "decision_date": "2026-09-03", "decision_reference": "D4_MAIN_CASE_DECISION.json", "conditions": "Analytical portfolio proxy; not regulatory LGD.", "production_authorization": false, "regulatory_claim": false},
+    "D4_timing_boundary": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "ISSUE_YEAR_LE_2017", "decision_owner": "susayold", "decision_date": "2026-09-03", "decision_reference": "D4_TIMING_DECISION.json", "conditions": "2018 monitor-only; 2017 is not pristine untouched LGD OOT.", "production_authorization": false, "regulatory_claim": false},
+    "D5_analytical_proxy": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "EL_MAIN_ANALYTICAL", "decision_owner": "susayold", "decision_date": "2026-09-03", "decision_reference": "D5_FINAL_RUN_AUDIT.json", "conditions": "Not IFRS 9, Basel, realized loss, or production ECL.", "production_authorization": false, "regulatory_claim": false},
+    "D6_action_policy": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "HISTORICAL_DECISION_SIMULATION", "decision_owner": "susayold", "decision_date": "2026-09-03", "decision_reference": "D6_POLICY_DECISION.json", "conditions": "Validation-derived and OOT-replayed; no production override authority.", "production_authorization": false, "regulatory_claim": false},
+    "D7_pricing_scope": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "DESCRIPTIVE_ONLY", "decision_owner": "susayold", "decision_date": "2026-09-03", "decision_reference": "D7_SCOPE_DECISION.json", "conditions": "Diagnostic spread only; no profitability claim.", "production_authorization": false, "regulatory_claim": false},
+    "D8_stress_policy": {"status": "COMPLETED_BY_PORTFOLIO_PROJECT_REVIEW", "selected_option": "ANALYTICAL_SENSITIVITY", "decision_owner": "susayold", "decision_date": "2026-09-03", "decision_reference": "D8_FINAL_DECISION.json", "conditions": "Not a forecast or bank risk-appetite breach.", "production_authorization": false, "regulatory_claim": false}
   },
   "owner_signoff": {
     "data_owner": {"status": "NOT_APPLICABLE_PORTFOLIO_PROJECT", "name": null, "date": null, "reference": null},

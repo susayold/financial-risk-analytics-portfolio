@@ -2,9 +2,9 @@
 
 ## Assessment
 
-`CLOSED_WITH_LIMITATIONS_PORTFOLIO` / `PENDING_OWNER_GATE`
+`CLOSED_WITH_LIMITATIONS_PORTFOLIO` / `FINAL_PORTFOLIO_CLOSURE`
 
-The final analytical chain is reproducible from the derived D1/D2/D3 inputs on the execution disk. D4–D8 final artifacts, governance-mode validation, status consistency, claim-boundary scanning, and checksum controls are required before publication. No production or regulatory authorization is claimed.
+The final analytical chain is reproducible from the derived D1/D2/D3 inputs on the execution disk. D4–D8 final artifacts, governance-mode validation, status consistency, claim-boundary scanning, and checksum controls passed for the portfolio-project release. No production or regulatory authorization is claimed.
 
 ## Method and evidence
 
@@ -14,9 +14,9 @@ The final analytical chain is reproducible from the derived D1/D2/D3 inputs on t
 - D7 is explicitly `DESCRIPTIVE_ONLY`.
 - D8 contains rank-preserving PD stress, versioned LGD/EAD rules, sequential attribution, mix audit, reverse-stress breakpoints, and policy-under-stress with frozen thresholds.
 
-## Micro-remediation checkpoint
+## Final owner-gate validation
 
-The final micro-remediation confirmed the CatBoost challenger set, corrected segment EL-rate aggregation to `sum(EL) / sum(EAD)`, separated core credit stress from contractual EAD timing sensitivity in `D8-FINAL-1.1`, and fixed unique skipped-fold reporting. Semantic QA is `7/8 PASS`; R8-G06 is pending the user-supplied portfolio project-owner identifier and current decision date. The canonical final release tag remains withheld until that manual governance gate passes.
+The final micro-remediation confirmed the CatBoost challenger set, corrected segment EL-rate aggregation to `sum(EL) / sum(EAD)`, separated core credit stress from contractual EAD timing sensitivity in `D8-FINAL-1.1`, and fixed unique skipped-fold reporting. The user supplied `susayold` and `2026-09-03`; R8-G06 passed. Semantic QA is `8/8 PASS`, full review QA is `37/37 PASS`, public scan has `0 findings`, and D9 checksum validation has `0 failures`.
 
 ## Claim boundary
 

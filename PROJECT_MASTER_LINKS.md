@@ -19,12 +19,13 @@ This file only indexes links. The Drive root is the single storage location; Git
 
 ## Current Block D checkpoint
 
-- Status: **`CLOSED_WITH_LIMITATIONS_PORTFOLIO`**; closure substatus: **`PENDING_OWNER_GATE`**.
+- Status: **`CLOSED_WITH_LIMITATIONS_PORTFOLIO`**; closure substatus: **`FINAL_PORTFOLIO_CLOSURE`**.
 - Execution coverage: **100% (10/10 stages)**.
 - Portfolio requirement resolution: **100%**.
 - Technical QA: **N/N PASS**; final artifact checksum integrity: **100%**.
 - Production authorization: **NOT IN SCOPE**; regulatory claim: **NONE**.
-- Semantic remediation: **87.5% (7/8)**; final release tag is withheld until the owner gate passes.
+- Semantic remediation: **100% (8/8)**; full review QA: **37/37 PASS**; public scan: **122 files / 0 findings**; D9 checksum validation: **25 entries / 0 failures**.
+- Portfolio owner: **`susayold`**; decision date: **`2026-09-03`**; canonical tag: **`block-d-v1.0-final`**.
 - [Block D status](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_STATUS.md)
 - [Block D final scorecard](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_FINAL_SCORECARD.md)
 - [Block D machine-readable final scorecard](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_FINAL_SCORECARD.json)

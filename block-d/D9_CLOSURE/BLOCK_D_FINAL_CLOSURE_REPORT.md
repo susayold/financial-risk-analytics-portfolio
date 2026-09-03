@@ -22,10 +22,10 @@ Block D is closed for the CRD.PI portfolio analytical scope. The final micro-rem
 
 ## Semantic remediation
 
-- Status: `FAIL`
-- Checks: `7/8`
-- Project owner: `pending user-supplied identifier`
-- Decision date: `pending user-supplied current date`
+- Status: `PASS`
+- Checks: `8/8`
+- Project owner: `susayold`
+- Decision date: `2026-09-03`
 
 ## Handoff
 

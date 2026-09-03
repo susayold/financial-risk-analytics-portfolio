@@ -1,9 +1,9 @@
 {
   "run_name": "block_d_semantic_qa",
   "run_date": "2026-09-03",
-  "status": "FAIL",
-  "checks_passed": 7,
-  "checks_failed": 1,
+  "status": "PASS",
+  "checks_passed": 8,
+  "checks_failed": 0,
   "checks": [
     {
       "check_id": "R8-G01",
@@ -90,10 +90,10 @@
     },
     {
       "check_id": "R8-G06",
-      "pass": false,
+      "pass": true,
       "observed": {
-        "decision_owner_name": null,
-        "decision_date": null,
+        "decision_owner_name": "susayold",
+        "decision_date": "2026-09-03",
         "institutional_signoffs_na": true
       },
       "expected": "non-null project owner/date; institutional signoffs N/A",
@@ -126,5 +126,5 @@
       "evidence": "D8 historical evidence"
     }
   ],
-  "semantic_remediation_pct": 87.5
+  "semantic_remediation_pct": 100.0
 }

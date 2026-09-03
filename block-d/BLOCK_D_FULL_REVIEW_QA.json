@@ -2,9 +2,9 @@
   "run_name": "block_d_full_review_qa",
   "run_date": "2026-09-03",
   "scope": "final portfolio closure; no production or regulatory claim",
-  "status": "FAIL",
-  "checks_passed": 35,
-  "checks_failed": 2,
+  "status": "PASS",
+  "checks_passed": 37,
+  "checks_failed": 0,
   "checks": [
     {
       "check_id": "D0-G01",
@@ -182,8 +182,8 @@
     },
     {
       "check_id": "S7-G02",
-      "pass": false,
-      "observed": "INVALID",
+      "pass": true,
+      "observed": "PORTFOLIO_VALID",
       "expected": "PORTFOLIO_VALID",
       "evidence": "D9_APPROVAL_VALIDATION.json"
     },
@@ -255,12 +255,12 @@
       "check_id": "S8-G02",
       "pass": true,
       "observed": {
-        "portfolio_implementation_complete": false,
-        "closure_substatus": "PENDING_OWNER_GATE"
+        "portfolio_implementation_complete": true,
+        "closure_substatus": "FINAL_PORTFOLIO_CLOSURE"
       },
       "expected": {
-        "portfolio_implementation_complete": false,
-        "closure_substatus": "PENDING_OWNER_GATE"
+        "portfolio_implementation_complete": true,
+        "closure_substatus": "FINAL_PORTFOLIO_CLOSURE"
       },
       "evidence": "D9_FINAL_BLOCK_D_DECISION.json"
     },
@@ -327,10 +327,10 @@
     },
     {
       "check_id": "R8-SEMANTIC",
-      "pass": false,
+      "pass": true,
       "observed": [
-        7,
-        1
+        8,
+        0
       ],
       "expected": "N/N semantic checks and 0 failures",
       "evidence": "BLOCK_D_SEMANTIC_QA.json"

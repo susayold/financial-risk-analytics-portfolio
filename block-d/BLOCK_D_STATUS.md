@@ -20,9 +20,11 @@ Block D is complete for the CRD.PI portfolio-project scope. It is not a producti
 
 D4 empirical LGD challenger was run on 49,049 matched BAD rows and rejected by the predeclared materiality rule; Q50 remains the central analytical scenario. D7 is `DESCRIPTIVE_ONLY` because governed cost, fee, servicing, capital, and realized timing inputs are absent.
 
-## Micro-remediation checkpoint
+## Final portfolio closure
 
-The final micro-remediation has executed CatBoostRegressor alongside Huber/Tweedie, corrected D5 segment EL rates to `sum(EL) / sum(EAD)`, and versioned D8 stress as `D8-FINAL-1.1` with a consistent origination-EAD severity basis plus separate contractual timing sensitivity. Semantic QA is currently `7/8 PASS`; the only remaining gate is user-supplied portfolio project-owner identifier and decision date. The final release tag is intentionally withheld until that manual field is supplied.
+The final micro-remediation has executed CatBoostRegressor alongside Huber/Tweedie, corrected D5 segment EL rates to `sum(EL) / sum(EAD)`, and versioned D8 stress as `D8-FINAL-1.1` with a consistent origination-EAD severity basis plus separate contractual timing sensitivity. The portfolio project-owner gate is closed with the user-supplied public identifier `susayold` and decision date `2026-09-03`.
+
+Semantic QA is `8/8 PASS`; full review QA is `37/37 PASS`; public artifact scan is `122 files / 0 findings`; D9 checksum validation is `25 entries / 0 failures`. Block D is `FINAL_PORTFOLIO_CLOSURE` and released under the annotated tag `block-d-v1.0-final`.
 
 ## Limitations carried forward
 
