@@ -15,10 +15,10 @@
 | E5 — performance/calibration | PASS 17/17 patched | eligible annual/quarterly/monthly calibration alerts; 2017-10 RED regression |
 | E6 — EL/severity/EAD | PASS 8/8 | frozen `LGD_Q50=0.667384888`; no unsupported combined loss backtest |
 | E7 — policy/pricing/concentration | PASS 14/14 patched | D6 thresholds unchanged; capacity AMBER propagation |
-| E8 — governance workflow | PASS 25/25 patched | 92 KRIs; 21 alerts; 4 breaches; 21 investigations/actions; no GREEN alerts |
+| E8 — governance workflow | PASS 25/25 patched | 92 KRIs; 21 alerts; 3 breaches; 21 investigations/actions; no GREEN alerts |
 | E9 — closure/handoff | PASS 35/35 patched | checksum, public/private scan, current vs historical KRI and handoff |
 
-**Completion:** 100% of the governance micro-remediation is executed and QA-passed. Final status is `PASS_WITH_MONITORING`, not a production or regulatory approval. Canonical tag: `block-e-v1.0.1-final`; next action: `MOVE_TO_BLOCK_F`.
+**Completion:** 100% of the governance micro-remediation and documentation micro-fix is executed and QA-passed. Final status is `PASS_WITH_MONITORING`, not a production or regulatory approval. Canonical tag: `block-e-v1.0.2-final`; next action: `MOVE_TO_BLOCK_F`.
 
 **Canonical evidence:** `E9_FINAL/`, `E1_MART_79F/`, `E4_SCORE_RISK_MIX/`, `E5_PERFORMANCE_CALIBRATION/`, `E6_EXPECTED_LOSS_MONITORING/`, `E7_POLICY_CONCENTRATION/`, and `E8_KRI_GOVERNANCE/`.
 

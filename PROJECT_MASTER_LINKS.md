@@ -37,7 +37,7 @@ This file only indexes links. The Drive root is the single storage location; Git
 
 - Status: **`PASS_WITH_MONITORING`**; E3 `8/8 PASS`, E4 `7/7 PASS`, E5 `17/17 patched PASS`, E6 `8/8 PASS`, E7 `14/14 patched PASS`, E8 `25/25 patched PASS`, E9 `35/35 patched PASS`.
 - Canonical 79F snapshot: 310,066 rows, 79 frozen features, exact split reconciliation, SHA-256 `fe2ae600c9913ccfe827509f439c2f14108260e0e237f3fa78715b145123cd42`.
-- `block-e-v1.0-final` remains historical; `block-e-v1.0.1-final` is the patched canonical release. Current highest KRI is AMBER and historical highest observed KRI is RED due the reproducible 2017-10 calibration slope; 2018 outcome scoring is disabled; no production or regulatory claim is made. Next action: `MOVE_TO_BLOCK_F`.
+- `block-e-v1.0-final` and `block-e-v1.0.1-final` remain immutable historical releases; `block-e-v1.0.2-final` is the documentation-consistency canonical release. Current highest KRI is AMBER and historical highest observed KRI is RED due the reproducible 2017-10 calibration slope; 2018 outcome scoring is disabled; no production or regulatory claim is made. Next action: `MOVE_TO_BLOCK_F`.
 - [Block E 79F recovery evidence](https://github.com/susayold/financial-risk-analytics-portfolio/tree/main/block-e/RECOVERY_79F)
 - [Block E status](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/BLOCK_E_STATUS.md)
 - [Block E execution tracker](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/BLOCK_E_EXECUTION_TRACKER.md)
@@ -46,7 +46,8 @@ This file only indexes links. The Drive root is the single storage location; Git
 - [Block E block-F handoff](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/E9_FINAL/BLOCK_E_TO_F_HANDOFF.json)
 - [Block E patched QA 35/35](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/E9_FINAL/BLOCK_E_FINAL_QA_PATCHED.json)
 - [Block E patched decision](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/E9_FINAL/BLOCK_E_DECISION_PATCHED.json)
-- [Block E patched release](https://github.com/susayold/financial-risk-analytics-portfolio/releases/tag/block-e-v1.0.1-final)
+- [Block E governance remediation release](https://github.com/susayold/financial-risk-analytics-portfolio/releases/tag/block-e-v1.0.1-final)
+- [Block E documentation consistency release](https://github.com/susayold/financial-risk-analytics-portfolio/releases/tag/block-e-v1.0.2-final)
 - [Block E patched Block-F handoff](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/E9_FINAL/BLOCK_E_TO_F_HANDOFF_PATCHED.json)
 - [Block E private evidence folder on Drive](https://drive.google.com/drive/folders/1cF3HXZF9dH4BHLklxfN2QoPpeRj_iU1y)
 - [Block E patched handoff package on Drive](https://drive.google.com/file/d/17W43Xpg5BjhT3l2VCY0agsxxBpOgrui5/view?usp=drivesdk)

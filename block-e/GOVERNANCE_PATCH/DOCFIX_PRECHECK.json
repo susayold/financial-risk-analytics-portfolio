@@ -1,0 +1,19 @@
+{
+  "patch_type": "DOCUMENTATION_ONLY",
+  "authoritative_breach_count": 3,
+  "authoritative_kri_count": 92,
+  "authoritative_alert_count": 21,
+  "authoritative_investigation_count": 21,
+  "authoritative_action_count": 21,
+  "historical_red_breach_count": 1,
+  "model_changed": false,
+  "target_changed": false,
+  "feature_contract_changed": false,
+  "snapshot_changed": false,
+  "analytical_outputs_changed": false,
+  "pre_fix_assertions": {
+    "e8_authoritative_counts": "PASS",
+    "historical_red_breach_count": "PASS"
+  },
+  "status": "PASS"
+}

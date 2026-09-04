@@ -1,0 +1,6 @@
+artifact,field,expected,observed,status
+E8_TEST_RESULTS_PATCHED.json,breach_count,3,3,PASS
+BLOCK_E_STATUS.md,total_breaches,3,3,PASS
+BLOCK_E_EXECUTION_TRACKER.md,total_breaches,3,3,PASS
+BLOCK_E_DECISION_PATCHED.json,historical_red_breach_count,1,1,PASS
+BLOCK_E_TO_F_HANDOFF_PATCHED.json,historical_red_breaches,1,1,PASS

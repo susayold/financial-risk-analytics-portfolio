@@ -1,0 +1,12 @@
+Repository-wide pre-fix scan — 2026-09-04
+
+STALE_DOCUMENTATION
+- block-e/BLOCK_E_STATUS.md: E8 summary says "4 breaches"
+- block-e/BLOCK_E_EXECUTION_TRACKER.md: E8 summary says "4 breaches"
+
+CORRECT_HISTORICAL_REFERENCE
+- BLOCK_E_DECISION_PATCHED.json: historical_red_breach_count = 1 (not total breach_count)
+- E8_TEST_RESULTS_PATCHED.json: authoritative breach_count = 3
+
+NOT_RELEVANT
+- No other canonical repository hit for "4 breaches", "breach_count": 4, or "breach_count.*4".

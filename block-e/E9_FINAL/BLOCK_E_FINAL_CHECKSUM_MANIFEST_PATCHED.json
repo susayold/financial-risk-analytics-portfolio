@@ -1,14 +1,48 @@
 {
   "block": "E",
-  "tag": "block-e-v1.0.1-final",
+  "tag": "block-e-v1.0.2-final",
   "snapshot_sha256_unchanged": "fe2ae600c9913ccfe827509f439c2f14108260e0e237f3fa78715b145123cd42",
-  "old_tag": "block-e-v1.0-final",
-  "old_commit": "49c7f1a0fbbe8fa20ddb0252474ca13281303faf",
-  "artifact_count": 100,
+  "artifact_count": 107,
   "artifacts": [
+    {
+      "artifact": "block-e/GOVERNANCE_PATCH/BLOCK_E_DOCFIX_FINAL_QA.json",
+      "sha256": "b02aa6cae1fbad472569c3590be2ce2c4cec6ab75879fdb2a48405e8cdac84a9",
+      "public": true,
+      "row_level": false
+    },
     {
       "artifact": "block-e/GOVERNANCE_PATCH/BLOCK_E_GOVERNANCE_PATCH_SUPERSESSION.json",
       "sha256": "89a7e8f6e7de5288f5db32ff4120f5629b26697a4b79c8ea5ba60778b2060d4c",
+      "public": true,
+      "row_level": false
+    },
+    {
+      "artifact": "block-e/GOVERNANCE_PATCH/DOCFIX_CHECKSUM_AUDIT.json",
+      "sha256": "a7d6b7938ee035acdbd272485c9cccfb40ca4809b64bc52d78719ed50997cca2",
+      "public": true,
+      "row_level": false
+    },
+    {
+      "artifact": "block-e/GOVERNANCE_PATCH/DOCFIX_CONSISTENCY_MATRIX.csv",
+      "sha256": "a58504ca3e8e062cedcd8d53b5d1b24f4bdde66ac4555b6d38e4b1ea526053f8",
+      "public": true,
+      "row_level": false
+    },
+    {
+      "artifact": "block-e/GOVERNANCE_PATCH/DOCFIX_POST_SCAN.json",
+      "sha256": "0d3a60c2cf23017da6377f4c089fe0c495d12d266a716dfeb1e0a29baf0ea9f0",
+      "public": true,
+      "row_level": false
+    },
+    {
+      "artifact": "block-e/GOVERNANCE_PATCH/DOCFIX_PRECHECK.json",
+      "sha256": "08af53fe36dee3d048167e826bf9b0e27d7fffeedef6b36a7984fc6469d91341",
+      "public": true,
+      "row_level": false
+    },
+    {
+      "artifact": "block-e/GOVERNANCE_PATCH/DOCFIX_STALE_REFERENCE_SCAN.txt",
+      "sha256": "10d446a3f5d522d6961cd616f6d1fcff01440676a8486762f380de41ea88e5ec",
       "public": true,
       "row_level": false
     },
@@ -589,6 +623,12 @@
       "row_level": false
     },
     {
+      "artifact": "block-e/E9_FINAL/BLOCK_E_RELEASE_NOTES_v1.0.2.md",
+      "sha256": "30ac4415ab0c35126012c70a862ba92c68afae2a35f95cfd96eabdd192af695b",
+      "public": true,
+      "row_level": false
+    },
+    {
       "artifact": "block-e/E9_FINAL/BLOCK_E_TO_F_HANDOFF.json",
       "sha256": "1e96d5440fe7c09f3a4e343d61c7c3c1ebecc2ed11abdb19cf3d2bebb594dd9d",
       "public": true,
@@ -596,7 +636,7 @@
     },
     {
       "artifact": "block-e/E9_FINAL/BLOCK_E_TO_F_HANDOFF_PATCHED.json",
-      "sha256": "9aebe0190e7fe7b48774f00eea68784e8c5892a23e73739864b44f0b6bf0755a",
+      "sha256": "6aefae3a7a276225facceba86c64dbdd64cf3771cac54ff33a8c0c523b416d4a",
       "public": true,
       "row_level": false
     },
@@ -607,5 +647,6 @@
       "row_level": false
     }
   ],
-  "checksum_status": "PASS"
+  "checksum_status": "PASS",
+  "documentation_fix": true
 }
