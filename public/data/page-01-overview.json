@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "project": "CRD.PI",
+    "page": "executive-overview",
+    "analytical_handoff": "block-e-v1.0.2-final",
+    "generated_from_canonical_artifacts": true,
+    "production_authorized": false,
+    "regulatory_compliance_claimed": false
+  },
+  "portfolio": {
+    "resolved_loans": 1347681,
+    "observed_bad": 269249,
+    "observed_bad_rate": 0.1998,
+    "scope": "full_core_resolved_granted_loans"
+  },
+  "model": {
+    "model_id": "C8E_RICH_BUREAU_CATBOOST_79F",
+    "frozen_features": 79,
+    "oot_year": 2017,
+    "oot_scored_n": 44221,
+    "oot_roc_auc": 0.8557777504539299,
+    "oot_gini": 0.711556,
+    "oot_ks": 0.562509,
+    "oot_pr_auc": 0.548909,
+    "oot_brier": 0.083625,
+    "bootstrap_reps": 300,
+    "bootstrap_auc_ci_low": 0.850576,
+    "bootstrap_auc_ci_high": 0.861032
+  },
+  "economics": {
+    "scored_accounts": 310066,
+    "ead_proxy": 4469158350.0,
+    "lgd_central_q50": 0.667384888,
+    "expected_loss_proxy": 526752273.6678772,
+    "expected_loss_rate": 0.11786386438240148,
+    "claim_boundary": "analytical_expected_loss_proxy_only"
+  },
+  "monitoring": {
+    "kri_count": 92,
+    "alert_count": 21,
+    "amber_alert_count": 20,
+    "red_alert_count": 1,
+    "breach_count": 3,
+    "investigation_count": 21,
+    "action_count": 21,
+    "current_highest_kri": "AMBER",
+    "historical_highest_kri": "RED",
+    "auto_retraining": false
+  }
+}

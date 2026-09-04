@@ -3,845 +3,99 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Financial Risk Analytics Portfolio by Nguyen Pham Khoi Nguyen: five completed projects in credit portfolio monitoring, credit scoring, IFRS 9-style ECL, fraud risk and policy implementation.">
-  <meta name="theme-color" content="#102a3a">
+  <meta name="description" content="CRD.PI is a recruiter-facing credit risk intelligence project connecting governed lending data, portfolio risk, a frozen credit-risk model, analytical loss economics and monitoring governance.">
+  <meta name="theme-color" content="#061a38">
+  <link rel="canonical" href="https://susayold.github.io/financial-risk-analytics-portfolio/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Financial Risk Analytics Portfolio | Nguyen Pham Khoi Nguyen">
-  <meta property="og:description" content="Five completed financial risk projects with verified headline results and public GitHub repositories.">
+  <meta property="og:title" content="CRD.PI | Credit Risk Intelligence &amp; Portfolio Analytics">
+  <meta property="og:description" content="An auditable analytical framework connecting governed lending data, out-of-time credit modeling, risk economics and monitoring governance.">
   <meta property="og:url" content="https://susayold.github.io/financial-risk-analytics-portfolio/">
-  <meta property="og:image" content="https://susayold.github.io/financial-risk-analytics-portfolio/assets/credit-scorecard-benchmark.png">
-  <title>Financial Risk Analytics Portfolio | Nguyen Pham Khoi Nguyen</title>
-  <style>
-    :root {
-      --ink: #102a3a;
-      --ink-soft: #294454;
-      --muted: #5e707b;
-      --line: #d7e0e5;
-      --canvas: #f3f5f6;
-      --paper: #ffffff;
-      --blue: #2559a7;
-      --teal: #087f73;
-      --gold: #ad7418;
-      --red: #b33f3f;
-      --green: #3c8158;
-      --content: 1160px;
-      --shadow: 0 14px 34px rgba(16, 42, 58, 0.09);
-    }
-
-    * {
-      box-sizing: border-box;
-      letter-spacing: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 76px;
-    }
-
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: var(--canvas);
-      font-family: Inter, "Segoe UI", Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.58;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      border-bottom: 1px solid rgba(215, 224, 229, 0.95);
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-    }
-
-    .nav-shell {
-      display: flex;
-      min-height: 68px;
-      max-width: var(--content);
-      margin: 0 auto;
-      padding: 10px 24px;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      display: inline-flex;
-      min-width: 0;
-      align-items: center;
-      gap: 11px;
-      color: var(--ink);
-      text-decoration: none;
-      font-weight: 850;
-    }
-
-    .brand-mark {
-      display: grid;
-      flex: 0 0 auto;
-      width: 38px;
-      height: 38px;
-      place-items: center;
-      border-radius: 6px;
-      color: #fff;
-      background: var(--ink);
-      font-size: 13px;
-      font-weight: 900;
-    }
-
-    .nav-actions,
-    .language-control {
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-actions {
-      gap: 10px;
-    }
-
-    .nav-link {
-      padding: 8px 10px;
-      color: var(--ink-soft);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 750;
-    }
-
-    .language-control {
-      overflow: hidden;
-      border: 1px solid #b8c5cd;
-      border-radius: 6px;
-      background: #fff;
-    }
-
-    .lang-button {
-      width: 42px;
-      height: 34px;
-      border: 0;
-      color: var(--muted);
-      background: transparent;
-      font: inherit;
-      font-size: 13px;
-      font-weight: 850;
-      cursor: pointer;
-    }
-
-    .lang-button[aria-pressed="true"] {
-      color: #fff;
-      background: var(--ink);
-    }
-
-    .hero {
-      position: relative;
-      min-height: 560px;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      color: #fff;
-      background: var(--ink) url("assets/credit-scorecard-benchmark.png") center / cover no-repeat;
-    }
-
-    .hero::before {
-      position: absolute;
-      inset: 0;
-      content: "";
-      background: rgba(7, 29, 42, 0.90);
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: var(--content);
-      margin: 0 auto;
-      padding: 72px 24px 82px;
-    }
-
-    .owner-name,
-    .section-label,
-    .project-domain {
-      margin: 0 0 11px;
-      font-size: 13px;
-      font-weight: 850;
-      text-transform: uppercase;
-    }
-
-    .owner-name {
-      color: #9ce0d5;
-    }
-
-    h1,
-    h2,
-    h3 {
-      margin: 0;
-      line-height: 1.15;
-      font-weight: 850;
-      overflow-wrap: anywhere;
-    }
-
-    h1 {
-      max-width: 860px;
-      font-size: 58px;
-    }
-
-    h2 {
-      font-size: 38px;
-    }
-
-    h3 {
-      font-size: 25px;
-    }
-
-    .hero-copy {
-      max-width: 800px;
-      margin: 20px 0 0;
-      color: #dbe7ed;
-      font-size: 21px;
-    }
-
-    .hero-role {
-      margin: 17px 0 0;
-      color: #afc3ce;
-      font-weight: 700;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 27px;
-    }
-
-    .button {
-      display: inline-flex;
-      min-height: 44px;
-      padding: 10px 15px;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid transparent;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 850;
-      line-height: 1.25;
-    }
-
-    .button-light {
-      color: var(--ink);
-      background: #fff;
-    }
-
-    .button-ghost {
-      color: #fff;
-      border-color: rgba(255, 255, 255, 0.45);
-      background: rgba(255, 255, 255, 0.07);
-    }
-
-    .button-github {
-      width: 100%;
-      color: #fff;
-      background: var(--ink);
-    }
-
-    .summary-strip {
-      position: relative;
-      z-index: 2;
-      max-width: var(--content);
-      margin: -36px auto 0;
-      padding: 0 24px;
-    }
-
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: var(--shadow);
-    }
-
-    .summary-item {
-      min-height: 112px;
-      padding: 20px;
-      border-right: 1px solid var(--line);
-    }
-
-    .summary-item:last-child {
-      border-right: 0;
-    }
-
-    .summary-item strong {
-      display: block;
-      color: var(--blue);
-      font-size: 27px;
-      line-height: 1.1;
-    }
-
-    .summary-item span {
-      display: block;
-      margin-top: 7px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.4;
-    }
-
-    .content-shell {
-      max-width: var(--content);
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .projects {
-      padding: 92px 0 78px;
-    }
-
-    .section-label {
-      color: var(--teal);
-    }
-
-    .section-intro {
-      max-width: 760px;
-      margin: 13px 0 30px;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .project-card {
-      position: relative;
-      display: flex;
-      min-height: 100%;
-      flex-direction: column;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: 0 10px 26px rgba(16, 42, 58, 0.06);
-    }
-
-    .project-card::before {
-      display: block;
-      height: 5px;
-      content: "";
-      background: var(--accent);
-    }
-
-    .project-card:last-child {
-      grid-column: 1 / -1;
-    }
-
-    .project-card:last-child .card-body {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
-      gap: 30px;
-    }
-
-    .card-body {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      padding: 24px;
-    }
-
-    .project-domain {
-      color: var(--accent);
-      text-transform: none;
-    }
-
-    .project-description {
-      margin: 12px 0 0;
-      color: var(--ink-soft);
-    }
-
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0;
-      margin: 22px 0 20px;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .metric {
-      min-height: 94px;
-      padding: 14px 12px;
-      border-right: 1px solid var(--line);
-    }
-
-    .metric:first-child {
-      padding-left: 0;
-    }
-
-    .metric:last-child {
-      padding-right: 0;
-      border-right: 0;
-    }
-
-    .metric strong {
-      display: block;
-      color: var(--accent);
-      font-size: 21px;
-      line-height: 1.15;
-    }
-
-    .metric span {
-      display: block;
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 1.4;
-    }
-
-    .project-note {
-      margin: 0 0 20px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin: auto 0 18px;
-    }
-
-    .skill {
-      padding: 5px 8px;
-      border-radius: 4px;
-      color: var(--ink-soft);
-      background: #eef2f4;
-      font-size: 12px;
-      font-weight: 750;
-    }
-
-    .p-monitoring { --accent: var(--blue); }
-    .p-scorecard { --accent: var(--teal); }
-    .p-ecl { --accent: var(--gold); }
-    .p-fraud { --accent: var(--red); }
-    .p-rules { --accent: var(--green); }
-
-    .scope {
-      padding: 70px 0;
-      color: #fff;
-      background: var(--ink);
-    }
-
-    .scope .section-label {
-      color: #91d9cf;
-    }
-
-    .scope-copy {
-      max-width: 820px;
-      margin: 13px 0 24px;
-      color: #c9d7df;
-      font-size: 17px;
-    }
-
-    .scope-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px 28px;
-      margin: 0;
-      padding-left: 20px;
-      color: #e1ebf0;
-    }
-
-    .contact {
-      padding: 68px 0;
-      background: #fff;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 32px;
-      align-items: end;
-    }
-
-    .contact-copy {
-      max-width: 650px;
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .contact-links {
-      display: grid;
-      gap: 8px;
-      justify-items: end;
-    }
-
-    .contact-links a {
-      color: var(--blue);
-      font-weight: 800;
-      text-underline-offset: 4px;
-      overflow-wrap: anywhere;
-    }
-
-    footer {
-      padding: 22px 24px;
-      color: #9cb0bb;
-      background: #0b202d;
-      text-align: center;
-      font-size: 13px;
-    }
-
-    @media (max-width: 900px) {
-      .summary-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .summary-item:nth-child(2) {
-        border-right: 0;
-      }
-
-      .summary-item:nth-child(-n+2) {
-        border-bottom: 1px solid var(--line);
-      }
-
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .project-card:last-child {
-        grid-column: auto;
-      }
-
-      .project-card:last-child .card-body {
-        display: flex;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-links {
-        justify-items: start;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .nav-shell,
-      .hero-inner,
-      .content-shell {
-        padding-left: 18px;
-        padding-right: 18px;
-      }
-
-      .brand span:last-child,
-      .nav-link {
-        display: none;
-      }
-
-      .hero {
-        min-height: 610px;
-      }
-
-      h1 {
-        font-size: 40px;
-      }
-
-      h2 {
-        font-size: 31px;
-      }
-
-      .hero-copy {
-        font-size: 18px;
-      }
-
-      .hero-actions .button {
-        width: 100%;
-      }
-
-      .summary-strip {
-        margin-top: 0;
-        padding: 0;
-      }
-
-      .summary-grid {
-        grid-template-columns: 1fr;
-        border-radius: 0;
-      }
-
-      .summary-item,
-      .summary-item:nth-child(2) {
-        min-height: auto;
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .summary-item:last-child {
-        border-bottom: 0;
-      }
-
-      .projects {
-        padding-top: 64px;
-      }
-
-      .card-body {
-        padding: 20px;
-      }
-
-      .metrics {
-        grid-template-columns: 1fr;
-      }
-
-      .metric,
-      .metric:first-child,
-      .metric:last-child {
-        min-height: auto;
-        padding: 12px 0;
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .metric:last-child {
-        border-bottom: 0;
-      }
-
-      .scope-list {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-    }
-  </style>
+  <meta property="og:image" content="https://susayold.github.io/financial-risk-analytics-portfolio/assets/images/block-b/block-b-og.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>CRD.PI | Credit Risk Intelligence &amp; Portfolio Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/crdpi-overview.css">
 </head>
 <body>
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="icon-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="7.5" ry="3.2"/><path d="M4.5 5v7c0 1.8 3.4 3.2 7.5 3.2s7.5-1.4 7.5-3.2V5M4.5 12v7c0 1.8 3.4 3.2 7.5 3.2s7.5-1.4 7.5-3.2v-7"/></symbol>
+    <symbol id="icon-portfolio" viewBox="0 0 24 24"><path d="M4 19V9h4v10H4Zm6 0V4h4v15h-4Zm6 0v-7h4v7h-4Z"/></symbol>
+    <symbol id="icon-model" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.5"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="m10.2 10.5-3.6-3M13.8 10.5l3.6-3M10.2 13.5l-3.6 3M13.8 13.5l3.6 3"/></symbol>
+    <symbol id="icon-document" viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20.5H7z"/><path d="M14 3.5v4h4M9.5 12h5M9.5 15.5h5"/></symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 3.5 19 6v5.5c0 4.2-2.7 7.4-7 9-4.3-1.6-7-4.8-7-9V6z"/><path d="m8.7 12 2.1 2.1 4.5-4.6"/></symbol>
+    <symbol id="icon-rocket" viewBox="0 0 24 24"><path d="M14.2 5.2c2.1-1.8 4.1-2 5-1.9.1.9-.1 2.9-1.9 5l-5.7 5.8-3.2-3.2z"/><path d="m8.4 10.9-3.5.8-1.8 2.4 4.6.5M13.1 15.6l-.5 4.6 2.4-1.8.8-3.5M7.2 16.8c-1.5.2-2.2 1-2.7 2.4 1.4-.5 2.2-1.2 2.4-2.7Z"/></symbol>
+    <symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M12 2v3M22 12h-3M12 22v-3M2 12h3"/></symbol>
+    <symbol id="icon-radar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 12 18 7M12 4v8l-5 5M4 19h16"/></symbol>
+    <symbol id="icon-workflow" viewBox="0 0 24 24"><rect x="3.5" y="4" width="6" height="5" rx="1"/><rect x="14.5" y="15" width="6" height="5" rx="1"/><rect x="3.5" y="15" width="6" height="5" rx="1"/><path d="M9.5 6.5h3a2 2 0 0 1 2 2V15M9.5 17.5h5"/></symbol>
+    <symbol id="icon-eyeoff" viewBox="0 0 24 24"><path d="M3 3 21 21M10.6 10.6a2 2 0 0 0 2.8 2.8M6.2 6.4C4.3 7.8 3 9.6 2.5 12c1.2 4 5 6.5 9.5 6.5 1.7 0 3.2-.4 4.5-1.1M14.8 5.8c3.3.8 5.8 3.1 6.7 6.2-.4 1.3-1.1 2.4-2.1 3.4"/></symbol>
+    <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 10.5v5M12 7.5h.01"/></symbol>
+    <symbol id="icon-github" viewBox="0 0 24 24"><path d="M12 3.2a8.8 8.8 0 0 0-2.8 17.1c.4.1.5-.2.5-.4v-1.7c-2 .4-2.4-1-2.4-1-.3-.8-.8-1-.8-1-.7-.1.1-.1.1-.1.7.1 1 .7 1 .7.6 1 1.5.7 1.9.5.1-.4.2-.7.4-.9-1.6-.2-3.3-.8-3.3-3.6 0-.8.3-1.4.7-1.9-.1-.2-.3-.9.1-1.9 0 0 .6-.2 2 .7a6.7 6.7 0 0 1 3.6 0c1.4-.9 2-.7 2-.7.4 1 .2 1.7.1 1.9.4.5.7 1.1.7 1.9 0 2.8-1.7 3.4-3.3 3.6.3.3.5.7.5 1.4v2.1c0 .2.1.5.5.4A8.8 8.8 0 0 0 12 3.2Z"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
-    <div class="nav-shell">
-      <a class="brand" href="#top" aria-label="Financial Risk Analytics Portfolio home">
-        <span class="brand-mark">FR</span>
-        <span data-en="Financial Risk Analytics Portfolio" data-vi="Hồ sơ dự án phân tích rủi ro tài chính">Financial Risk Analytics Portfolio</span>
-      </a>
-      <div class="nav-actions">
-        <a class="nav-link" href="#projects" data-en="Projects" data-vi="Dự án">Projects</a>
-        <a class="nav-link" href="#contact" data-en="Contact" data-vi="Liên hệ">Contact</a>
-        <div class="language-control" aria-label="Language selection">
-          <button class="lang-button" type="button" data-language="en" aria-pressed="true">EN</button>
-          <button class="lang-button" type="button" data-language="vi" aria-pressed="false">VI</button>
-        </div>
+    <nav class="nav-shell" aria-label="Primary navigation">
+      <a class="brand" href="./" aria-label="CRD.PI overview"><span>CRD</span><b>.</b><span>PI</span><small>Credit Risk Analytics<br>Portfolio Intelligence</small></a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="nav-links" data-nav-panel>
+        <a class="active" aria-current="page" href="./">Overview</a><a href="portfolio-risk/">Portfolio</a><a href="model-decisioning/">Model</a><a href="loss-policy-stress/">Loss &amp; Policy</a><a href="monitoring/">Monitoring</a><a href="governance/">Governance</a><a href="architecture/">Architecture</a>
       </div>
-    </div>
+      <a class="github-link" href="https://github.com/susayold/financial-risk-analytics-portfolio" target="_blank" rel="noopener"><svg><use href="#icon-github"/></svg>GitHub <span>↗</span></a>
+    </nav>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-inner">
-        <p class="owner-name">Nguyen Pham Khoi Nguyen</p>
-        <h1 data-en="Financial Risk Analytics Portfolio" data-vi="Hồ sơ dự án phân tích rủi ro tài chính">Financial Risk Analytics Portfolio</h1>
-        <p class="hero-copy" data-en="Five completed, independent projects in credit portfolio monitoring, explainable credit scoring, IFRS 9-style ECL, fraud risk and controlled policy implementation." data-vi="Năm dự án độc lập đã hoàn thiện về giám sát danh mục tín dụng, chấm điểm tín dụng có khả năng giải thích, ECL theo định hướng IFRS 9, rủi ro gian lận và triển khai chính sách có kiểm soát.">Five completed, independent projects in credit portfolio monitoring, explainable credit scoring, IFRS 9-style ECL, fraud risk and controlled policy implementation.</p>
-        <p class="hero-role" data-en="Risk Analytics | Credit Risk | Modeling | Risk Management | Python | SQL | Excel" data-vi="Phân tích rủi ro | Rủi ro tín dụng | Mô hình hóa | Quản trị rủi ro | Python | SQL | Excel">Risk Analytics | Credit Risk | Modeling | Risk Management | Python | SQL | Excel</p>
-        <div class="hero-actions">
-          <a class="button button-light" href="#projects" data-en="View projects" data-vi="Xem dự án">View projects</a>
-          <a class="button button-ghost" href="https://github.com/susayold" target="_blank" rel="noopener" data-en="Open GitHub profile" data-vi="Mở hồ sơ GitHub">Open GitHub profile</a>
-        </div>
-      </div>
-    </section>
+  <main id="main-content">
+    <section class="hero" id="overview" aria-labelledby="hero-title"><div class="hero-grid page-width"><div class="hero-copy">
+      <p class="eyebrow">Credit risk decisioning &amp; portfolio intelligence</p><h1 id="hero-title">End-to-end credit risk intelligence <em>for better decisions and governed monitoring.</em></h1>
+      <p class="hero-description">A recruiter-facing analytical framework connecting governed lending data, portfolio risk, a frozen credit-risk model, loss and policy analytics, and post-model monitoring with explicit audit and claim boundaries.</p>
+      <div class="hero-badges" aria-label="Project status"><span class="hero-badge badge-blue">A–E analytical core complete</span><span class="hero-badge badge-amber"><i></i>Block E · Pass with monitoring</span><span class="hero-badge badge-progress"><i></i>Block F · Delivery in progress</span></div>
+      <div class="hero-actions"><a class="button button-primary" href="#pipeline">Explore the Project <span>→</span></a><a class="button button-outline" href="https://github.com/susayold/financial-risk-analytics-portfolio" target="_blank" rel="noopener"><svg><use href="#icon-github"/></svg>View on GitHub <span>↗</span></a></div>
+      <p class="hero-trust"><svg><use href="#icon-shield"/></svg>Historical analytical portfolio project · No production underwriting claim</p>
+      <div class="hero-mini-stats" aria-label="Project headline evidence"><div><strong data-bind="portfolio.resolved_loans" data-format="compact"></strong><span>governed loans</span></div><div><strong data-bind="model.frozen_features" data-format="feature"></strong><span>frozen features</span></div><div><strong data-bind="model.oot_roc_auc" data-format="auc"></strong><span>OOT ROC-AUC</span></div><div class="mini-status"><strong data-bind="monitoring.current_highest_kri"></strong><span>current KRI</span></div></div>
+    </div><div class="hero-visual" aria-label="Illustration of governed risk analytics"><div class="visual-grid"></div><div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div>
+      <div class="visual-callout callout-left"><span class="callout-icon"><svg><use href="#icon-target"/></svg></span><b>Better decisions</b><small>Higher quality approvals</small></div><div class="visual-callout callout-right"><span class="callout-icon cyan"><svg><use href="#icon-radar"/></svg></span><b>Actionable insights</b><small>Portfolio &amp; risk intelligence</small></div>
+      <div class="dashboard-card dashboard-main"><div class="dash-toolbar"><span>RISK INSIGHTS</span><i></i><i></i><i></i></div><div class="dash-head"><b>Portfolio risk view</b><span>OOT <span data-bind="model.oot_year" data-format="integer"></span></span></div><div class="dash-chart"><div class="chart-y"><span>0.9</span><span>0.6</span><span>0.3</span><span>0.0</span></div><div class="chart-bars"><i style="--h:38%"></i><i style="--h:48%"></i><i style="--h:44%"></i><i style="--h:63%"></i><i style="--h:59%"></i><i style="--h:78%"></i><i style="--h:72%"></i><i style="--h:88%"></i></div></div><div class="dash-footer"><span>Model ranking</span><strong data-bind="model.oot_roc_auc" data-format="auc"></strong><span class="positive">stable OOT</span></div></div>
+      <div class="dashboard-card dashboard-side"><span class="side-label">Expected loss</span><div class="risk-ring"><b data-bind="economics.expected_loss_rate" data-format="percent"></b></div><small>analytical proxy</small></div><div class="dashboard-card dashboard-front"><div class="front-label"><span>MONITORING</span><b data-bind="monitoring.current_highest_kri"></b></div><div class="signal-lines"><i></i><i></i><i></i><i></i><i></i></div><small>governed KRI status</small></div><div class="visual-server"><div></div><div></div><div></div><small>CRD.PI</small></div>
+    </div></div></section>
 
-    <div class="summary-strip" aria-label="Portfolio summary">
-      <div class="summary-grid">
-        <div class="summary-item"><strong>5</strong><span data-en="Completed financial risk projects" data-vi="Dự án rủi ro tài chính đã hoàn thiện">Completed financial risk projects</span></div>
-        <div class="summary-item"><strong>1.348M</strong><span data-en="Largest credit population assessed" data-vi="Quy mô danh mục tín dụng lớn nhất đã phân tích">Largest credit population assessed</span></div>
-        <div class="summary-item"><strong>284,807</strong><span data-en="Observed fraud-benchmark transactions" data-vi="Giao dịch quan sát trong bộ dữ liệu gian lận">Observed fraud-benchmark transactions</span></div>
-        <div class="summary-item"><strong>5</strong><span data-en="Public GitHub repositories" data-vi="Kho mã nguồn GitHub công khai">Public GitHub repositories</span></div>
-      </div>
-    </div>
+    <section class="trust-strip" aria-label="Analytical credibility signals"><div class="page-width trust-grid"><div class="trust-item"><span class="trust-icon"><svg><use href="#icon-shield"/></svg></span><div><strong><span data-bind="model.frozen_features" data-format="feature"></span> model</strong><span>Frozen feature contract</span></div></div><div class="trust-item"><span class="trust-icon"><svg><use href="#icon-document"/></svg></span><div><strong>OOT validation</strong><span><span data-bind="model.oot_year" data-format="integer"></span> one-time holdout</span></div></div><div class="trust-item"><span class="trust-icon"><svg><use href="#icon-workflow"/></svg></span><div><strong>Governance</strong><span>No automatic retraining</span></div></div><div class="trust-item"><span class="trust-icon"><svg><use href="#icon-eyeoff"/></svg></span><div><strong>Public-safe</strong><span>Row-level private evidence excluded</span></div></div></div></section>
 
-    <section class="projects content-shell" id="projects">
-      <p class="section-label" data-en="Completed projects" data-vi="Các dự án đã hoàn thiện">Completed projects</p>
-      <h2 data-en="Select a project to review on GitHub" data-vi="Chọn một dự án để xem trên GitHub">Select a project to review on GitHub</h2>
-      <p class="section-intro" data-en="Each repository contains the project website, methodology, reports, validation evidence and supporting files." data-vi="Mỗi kho mã nguồn bao gồm website dự án, phương pháp, báo cáo, bằng chứng kiểm định và các tệp hỗ trợ.">Each repository contains the project website, methodology, reports, validation evidence and supporting files.</p>
+    <section class="section pipeline-section" id="pipeline" aria-labelledby="pipeline-title"><div class="page-width"><div class="section-heading"><p class="section-kicker">01 · Project journey</p><h2 id="pipeline-title">Risk Intelligence Pipeline</h2><p>From governed source data to portfolio monitoring and delivery.</p></div><div class="pipeline" role="list">
+      <a class="pipeline-node node-blue" href="portfolio-risk/" role="listitem"><span class="node-icon"><svg><use href="#icon-database"/></svg></span><span class="node-code">A</span><b>Data</b><small>Foundation &amp; data definition</small><em>LOCKED</em><span class="node-scope" data-bind="portfolio.resolved_loans" data-format="compact"></span><span class="node-scope-label">resolved granted loans</span></a><span class="pipeline-connector" aria-hidden="true">→</span>
+      <a class="pipeline-node node-blue" href="portfolio-risk/" role="listitem"><span class="node-icon"><svg><use href="#icon-portfolio"/></svg></span><span class="node-code">B</span><b>Portfolio Risk</b><small>Data engineering &amp; portfolio risk</small><em>CLOSED</em><span class="node-scope">DQ · segments · vintage</span></a><span class="pipeline-connector" aria-hidden="true">→</span>
+      <a class="pipeline-node node-purple" href="model-decisioning/" role="listitem"><span class="node-icon"><svg><use href="#icon-model"/></svg></span><span class="node-code">C</span><b>Risk Model</b><small>Credit risk modeling</small><em>CLOSED WITH MONITORING</em><span class="node-scope">C8E CatBoost · <span data-bind="model.frozen_features" data-format="feature"></span></span></a><span class="pipeline-connector" aria-hidden="true">→</span>
+      <a class="pipeline-node node-purple" href="loss-policy-stress/" role="listitem"><span class="node-icon"><svg><use href="#icon-document"/></svg></span><span class="node-code">D</span><b>Loss &amp; Policy</b><small>Decision &amp; risk economics</small><em>CLOSED WITH LIMITATIONS</em><span class="node-scope">LGD / EAD · EL · stress</span></a><span class="pipeline-connector" aria-hidden="true">→</span>
+      <a class="pipeline-node node-amber" href="monitoring/" role="listitem"><span class="node-icon"><svg><use href="#icon-shield"/></svg></span><span class="node-code">E</span><b>Monitoring</b><small>Monitoring &amp; governance</small><em>PASS WITH MONITORING</em><span class="node-scope"><span data-bind="monitoring.kri_count" data-format="integer"></span> KRIs · <span data-bind="monitoring.alert_count" data-format="integer"></span> alerts</span></a><span class="pipeline-connector" aria-hidden="true">→</span>
+      <a class="pipeline-node node-cyan" href="architecture/" role="listitem"><span class="node-icon"><svg><use href="#icon-rocket"/></svg></span><span class="node-code">F</span><b>Delivery</b><small>Recruiter-facing delivery layer</small><em>IN PROGRESS</em><span class="node-scope">web · release · evidence</span></a>
+    </div></div></section>
 
-      <div class="project-grid">
-        <article class="project-card p-monitoring">
-          <div class="card-body">
-            <div>
-              <p class="project-domain" data-en="Credit portfolio risk" data-vi="Rủi ro danh mục tín dụng">Credit portfolio risk</p>
-              <h3 data-en="Credit Portfolio Monitoring & Early Warning" data-vi="Giám sát danh mục tín dụng và cảnh báo sớm">Credit Portfolio Monitoring & Early Warning</h3>
-              <p class="project-description" data-en="Monitors portfolio quality, maturity, concentration, model stability, policy outcomes and KRI actions." data-vi="Giám sát chất lượng danh mục, độ trưởng thành dữ liệu, mức độ tập trung, độ ổn định mô hình, kết quả chính sách và hành động KRI.">Monitors portfolio quality, maturity, concentration, model stability, policy outcomes and KRI actions.</p>
-              <div class="metrics">
-                <div class="metric"><strong>1.348M</strong><span data-en="Accepted/booked accounts" data-vi="Tài khoản đã được chấp nhận/ghi nhận">Accepted/booked accounts</span></div>
-                <div class="metric"><strong>21.35%</strong><span data-en="Latest matured bad rate" data-vi="Tỷ lệ xấu gần nhất trên nhóm đã đủ kỳ hạn">Latest matured bad rate</span></div>
-                <div class="metric"><strong>19.42B</strong><span data-en="Analytical exposure units" data-vi="Đơn vị dư nợ phân tích">Analytical exposure units</span></div>
-              </div>
-              <p class="project-note" data-en="Observed credit outcomes are kept separate from synthetic monthly servicing controls. 131 automated analytical and control checks passed." data-vi="Kết quả tín dụng quan sát được tách riêng khỏi dữ liệu kiểm thử tổng hợp về quản lý khoản vay theo tháng. Có 131 kiểm tra phân tích và kiểm soát tự động đạt yêu cầu.">Observed credit outcomes are kept separate from synthetic monthly servicing controls. 131 automated analytical and control checks passed.</p>
-            </div>
-            <div class="skills"><span class="skill">SQL</span><span class="skill">Python</span><span class="skill">Excel</span><span class="skill">KRI</span><span class="skill">Dashboard</span></div>
-            <a class="button button-github" href="https://github.com/susayold/credit-portfolio-monitoring" target="_blank" rel="noopener" data-en="Open GitHub repository" data-vi="Mở kho mã nguồn GitHub">Open GitHub repository</a>
-          </div>
-        </article>
+    <section class="section evidence-section" id="evidence" aria-labelledby="evidence-title"><div class="page-width"><div class="section-heading heading-row"><div><p class="section-kicker">02 · Executive scorecard</p><h2 id="evidence-title">Topline Evidence</h2><p>A compact view across the governed portfolio, frozen model and monitoring layer.</p></div><span class="as-of">Canonical handoff · <b data-bind="meta.analytical_handoff"></b></span></div><div class="metric-grid">
+      <article class="metric-card blue-accent"><div class="metric-top"><span class="metric-icon"><svg><use href="#icon-database"/></svg></span><button class="info-button" type="button" aria-label="Governed resolved loans scope" aria-expanded="false" data-tooltip="Resolved granted LendingClub loans with a known final outcome. This is the full-core foundation, not the C8E scored subset."><svg><use href="#icon-info"/></svg></button></div><strong class="metric-value" data-bind="portfolio.resolved_loans" data-format="compact"></strong><h3>Governed Resolved Loans</h3><p>Block A/B full-core population</p><small class="metric-scope">Full core · <span data-bind="portfolio.observed_bad" data-format="integer"></span> observed BAD</small></article>
+      <article class="metric-card navy-accent"><div class="metric-top"><span class="metric-icon"><svg><use href="#icon-portfolio"/></svg></span><button class="info-button" type="button" aria-label="Analytical EAD proxy scope" aria-expanded="false" data-tooltip="Analytical origination-exposure proxy across 310,066 matched scored accounts. Not observed regulatory EAD."><svg><use href="#icon-info"/></svg></button></div><strong class="metric-value" data-bind="economics.ead_proxy" data-format="currencyCompact"></strong><h3>Origination EAD Proxy</h3><p><span data-bind="economics.scored_accounts" data-format="integer"></span> matched scored accounts</p><small class="metric-scope">Block D analytical proxy</small></article>
+      <article class="metric-card blue-accent"><div class="metric-top"><span class="metric-icon"><svg><use href="#icon-target"/></svg></span><button class="info-button" type="button" aria-label="Analytical EL rate scope" aria-expanded="false" data-tooltip="Central analytical expected-loss proxy using the frozen C8E score, central LGD Q50 and origination EAD proxy. Not portfolio PD and not regulatory ECL."><svg><use href="#icon-info"/></svg></button></div><strong class="metric-value" data-bind="economics.expected_loss_rate" data-format="percent"></strong><h3>Analytical EL Rate</h3><p>Central analytical scenario</p><small class="metric-scope">Not PD · not regulatory ECL</small></article>
+      <article class="metric-card navy-accent"><div class="metric-top"><span class="metric-icon"><svg><use href="#icon-document"/></svg></span><button class="info-button" type="button" aria-label="Expected-loss proxy scope" aria-expanded="false" data-tooltip="Analytical expected-loss proxy using p_bad_final × central LGD × EAD proxy. Not IFRS 9, Basel or realized loss."><svg><use href="#icon-info"/></svg></button></div><strong class="metric-value" data-bind="economics.expected_loss_proxy" data-format="currencyCompact"></strong><h3>Expected-Loss Proxy</h3><p>Central analytical expected loss</p><small class="metric-scope">Matched scored population</small></article>
+      <article class="metric-card blue-accent"><div class="metric-top"><span class="metric-icon"><svg><use href="#icon-model"/></svg></span><button class="info-button" type="button" aria-label="OOT ROC-AUC scope" aria-expanded="false" data-tooltip="One-time 2017 out-of-time evaluation of the frozen 79-feature CatBoost model. No OOT early stopping or post-open specification changes."><svg><use href="#icon-info"/></svg></button></div><strong class="metric-value" data-bind="model.oot_roc_auc" data-format="auc"></strong><h3>OOT ROC-AUC</h3><p>2017 one-time holdout</p><small class="metric-scope">KS <span data-bind="model.oot_ks" data-format="auc"></span> · n = <span data-bind="model.oot_scored_n" data-format="integer"></span></small></article>
+      <article class="metric-card amber-accent"><div class="metric-top"><span class="metric-icon"><svg><use href="#icon-radar"/></svg></span><button class="info-button" type="button" aria-label="Current monitoring status scope" aria-expanded="false" data-tooltip="The latest monitored KRI state is AMBER. The historical maximum severity is RED; warnings are governed, not hidden."><svg><use href="#icon-info"/></svg></button></div><strong class="metric-value status-value" data-bind="monitoring.current_highest_kri"></strong><h3>Current KRI Status</h3><p>Historical highest: <span class="red-text" data-bind="monitoring.historical_highest_kri"></span></p><small class="metric-scope"><span data-bind="monitoring.kri_count" data-format="integer"></span> KRIs · <span data-bind="monitoring.alert_count" data-format="integer"></span> alerts</small></article>
+    </div><p class="scope-disclosure"><svg><use href="#icon-info"/></svg>Metrics span governed full-core and matched scored populations; scope is disclosed per metric.</p></div></section>
 
-        <article class="project-card p-scorecard">
-          <div class="card-body">
-            <div>
-              <p class="project-domain" data-en="Credit risk modeling" data-vi="Mô hình rủi ro tín dụng">Credit risk modeling</p>
-              <h3 data-en="Credit Risk Decision Engine" data-vi="Hệ thống phân tích quyết định rủi ro tín dụng">Credit Risk Decision Engine</h3>
-              <p class="project-description" data-en="Builds an explainable WOE/IV and WOE-logistic scorecard with out-of-time validation, calibration and cutoff analysis." data-vi="Xây dựng scorecard WOE/IV và WOE-logistic có khả năng giải thích, kèm kiểm định ngoài thời gian, hiệu chỉnh và phân tích ngưỡng quyết định.">Builds an explainable WOE/IV and WOE-logistic scorecard with out-of-time validation, calibration and cutoff analysis.</p>
-              <div class="metrics">
-                <div class="metric"><strong>331,865</strong><span data-en="Enriched accepted loans" data-vi="Khoản vay đã được chấp nhận và làm giàu đặc trưng">Enriched accepted loans</span></div>
-                <div class="metric"><strong>0.781</strong><span data-en="WOE-logistic test AUC" data-vi="AUC kiểm định của WOE-logistic">WOE-logistic test AUC</span></div>
-                <div class="metric"><strong>0.418</strong><span data-en="WOE-logistic test KS" data-vi="KS kiểm định của WOE-logistic">WOE-logistic test KS</span></div>
-              </div>
-              <p class="project-note" data-en="Accepted/booked-loan portfolio study; rejected applicants have no observed repayment outcomes. No production underwriting model is claimed." data-vi="Nghiên cứu trên danh mục khoản vay đã được chấp nhận/ghi nhận; hồ sơ bị từ chối không có kết quả trả nợ quan sát. Dự án không tuyên bố đây là mô hình phê duyệt tín dụng đang vận hành thực tế.">Accepted/booked-loan portfolio study; rejected applicants have no observed repayment outcomes. No production underwriting model is claimed.</p>
-            </div>
-            <div class="skills"><span class="skill">WOE/IV</span><span class="skill">Logistic</span><span class="skill">AUC/KS</span><span class="skill">Calibration</span><span class="skill">Cutoff</span></div>
-            <a class="button button-github" href="https://github.com/susayold/credit-risk-decision-engine" target="_blank" rel="noopener" data-en="Open GitHub repository" data-vi="Mở kho mã nguồn GitHub">Open GitHub repository</a>
-          </div>
-        </article>
+    <section class="section findings-section" id="findings" aria-labelledby="findings-title"><div class="page-width"><div class="section-heading"><p class="section-kicker">03 · Decision readout</p><h2 id="findings-title">What the Evidence Says</h2><p>Four signals connect performance, economics, monitoring and control.</p></div><div class="finding-grid">
+      <article class="finding-card finding-blue"><span class="finding-icon"><svg><use href="#icon-target"/></svg></span><p class="finding-number">01</p><h3>Strong out-of-time ranking</h3><p>The frozen <span data-bind="model.frozen_features"></span>-feature CatBoost champion maintained strong discriminatory performance on the one-time <span data-bind="model.oot_year" data-format="integer"></span> OOT holdout.</p><strong class="finding-evidence">ROC-AUC <span data-bind="model.oot_roc_auc" data-format="auc"></span> · KS <span data-bind="model.oot_ks" data-format="auc"></span> · <span data-bind="model.bootstrap_reps" data-format="integer"></span>-bootstrap AUC CI [<span data-bind="model.bootstrap_auc_ci_low" data-format="auc"></span>, <span data-bind="model.bootstrap_auc_ci_high" data-format="auc"></span>]</strong><a href="model-decisioning/">Explore model evidence <span>→</span></a></article>
+      <article class="finding-card finding-navy"><span class="finding-icon"><svg><use href="#icon-shield"/></svg></span><p class="finding-number">02</p><h3>Risk translated into economics</h3><p>The matched scored portfolio is carried from predicted risk into analytical EAD, LGD, expected-loss, policy and stress views.</p><strong class="finding-evidence"><span data-bind="economics.ead_proxy" data-format="currencyCompact"></span> EAD proxy · <span data-bind="economics.expected_loss_proxy" data-format="currencyCompact"></span> central EL proxy · <span data-bind="economics.expected_loss_rate" data-format="percent"></span> EL rate</strong><span class="finding-boundary">Analytical proxy only</span><a href="loss-policy-stress/">Explore loss &amp; policy <span>→</span></a></article>
+      <article class="finding-card finding-amber"><span class="finding-icon"><svg><use href="#icon-radar"/></svg></span><p class="finding-number">03</p><h3>Monitoring surfaces real warning signals</h3><p>The monitoring layer preserves AMBER and RED findings rather than forcing an all-GREEN dashboard.</p><strong class="finding-evidence"><span data-bind="monitoring.kri_count" data-format="integer"></span> KRIs · <span data-bind="monitoring.alert_count" data-format="integer"></span> alerts · <span data-bind="monitoring.breach_count" data-format="integer"></span> breaches</strong><span class="finding-micro">Current <b data-bind="monitoring.current_highest_kri"></b> · historical highest <b class="red-text" data-bind="monitoring.historical_highest_kri"></b></span><a href="monitoring/">Explore monitoring <span>→</span></a></article>
+      <article class="finding-card finding-green"><span class="finding-icon"><svg><use href="#icon-workflow"/></svg></span><p class="finding-number">04</p><h3>Warnings enter a governed workflow</h3><p>Every non-GREEN event is linked to investigation and action, while RED does not automatically trigger model retraining.</p><strong class="finding-evidence"><span data-bind="monitoring.investigation_count" data-format="integer"></span> investigations · <span data-bind="monitoring.action_count" data-format="integer"></span> actions · auto-retraining disabled</strong><a href="governance/">Explore governance <span>→</span></a></article>
+    </div></div></section>
 
-        <article class="project-card p-ecl">
-          <div class="card-body">
-            <div>
-              <p class="project-domain" data-en="Impairment and stress testing" data-vi="Tổn thất tín dụng và kiểm tra sức chịu đựng">Impairment and stress testing</p>
-              <h3 data-en="IFRS 9-Style ECL & Stress Testing" data-vi="Phân tích ECL và kiểm tra sức chịu đựng theo định hướng IFRS 9">IFRS 9-Style ECL & Stress Testing</h3>
-              <p class="project-description" data-en="Models monthly PD, LGD, EAD, discounting, staging proxies and macro-scenario sensitivity." data-vi="Mô hình hóa PD theo tháng, LGD, EAD, chiết khấu, biến phân giai đoạn ước tính và độ nhạy theo kịch bản vĩ mô.">Models monthly PD, LGD, EAD, discounting, staging proxies and macro-scenario sensitivity.</p>
-              <div class="metrics">
-                <div class="metric"><strong>186,566</strong><span data-en="Eligible proxy accounts" data-vi="Tài khoản ước tính đủ điều kiện">Eligible proxy accounts</span></div>
-                <div class="metric"><strong>1.179B</strong><span data-en="EAD-proxy units" data-vi="Đơn vị EAD ước tính">EAD-proxy units</span></div>
-                <div class="metric"><strong>118.65M</strong><span data-en="Weighted lifetime ECL-proxy units" data-vi="Đơn vị ECL vòng đời ước tính gia quyền">Weighted lifetime ECL-proxy units</span></div>
-              </div>
-              <p class="project-note" data-en="Downside uplift is 53.85% versus base. Outputs are analytical proxy units and management sensitivities, not audited accounting provisions." data-vi="Mức tăng trong kịch bản bất lợi là 53,85% so với cơ sở. Kết quả là đơn vị ước tính phục vụ phân tích và độ nhạy quản trị, không phải dự phòng kế toán đã kiểm toán.">Downside uplift is 53.85% versus base. Outputs are analytical proxy units and management sensitivities, not audited accounting provisions.</p>
-            </div>
-            <div class="skills"><span class="skill">PD/LGD/EAD</span><span class="skill">ECL</span><span class="skill">Stress Testing</span><span class="skill">Scenario Analysis</span><span class="skill">Excel</span></div>
-            <a class="button button-github" href="https://github.com/susayold/ifrs9-ecl-stress-testing" target="_blank" rel="noopener" data-en="Open GitHub repository" data-vi="Mở kho mã nguồn GitHub">Open GitHub repository</a>
-          </div>
-        </article>
+    <section class="capability-band" id="capabilities" aria-labelledby="capability-title"><div class="page-width"><div class="section-heading light-heading"><p class="section-kicker">04 · What this demonstrates</p><h2 id="capability-title">One project. Six connected risk capabilities.</h2></div><div class="capability-grid"><a href="portfolio-risk/" class="capability"><span><svg><use href="#icon-database"/></svg></span><b>Data Governance</b><small>Source hierarchy, target definition, chronological splits and leakage controls.</small></a><a href="portfolio-risk/" class="capability"><span><svg><use href="#icon-portfolio"/></svg></span><b>Portfolio Intelligence</b><small>Risk segmentation, concentration, cohort analysis and materiality screening.</small></a><a href="model-decisioning/" class="capability"><span><svg><use href="#icon-model"/></svg></span><b>Credit Modeling</b><small>Frozen feature contract, model validation, OOT testing and calibration evidence.</small></a><a href="loss-policy-stress/" class="capability"><span><svg><use href="#icon-target"/></svg></span><b>Risk Economics</b><small>Analytical LGD, EAD, expected loss, historical policy simulation and stress.</small></a><a href="monitoring/" class="capability"><span><svg><use href="#icon-radar"/></svg></span><b>Monitoring &amp; Governance</b><small>Drift, calibration, KRIs, alerts, breaches, investigations and change control.</small></a><a href="architecture/" class="capability"><span><svg><use href="#icon-rocket"/></svg></span><b>Delivery</b><small>Versioned public-safe data, recruiter-facing web delivery and reproducible releases.</small></a></div></div></section>
 
-        <article class="project-card p-fraud">
-          <div class="card-body">
-            <div>
-              <p class="project-domain" data-en="Fraud and operational risk" data-vi="Gian lận và rủi ro hoạt động">Fraud and operational risk</p>
-              <h3 data-en="Fraud Detection, Controls & Operational Risk" data-vi="Phát hiện gian lận, kiểm soát và rủi ro hoạt động">Fraud Detection, Controls & Operational Risk</h3>
-              <p class="project-description" data-en="Connects an observed fraud benchmark to alert thresholds, interpretable controls, operations, incidents and root-cause analysis." data-vi="Kết nối bộ dữ liệu gian lận quan sát với ngưỡng cảnh báo, kiểm soát có khả năng giải thích, vận hành, sự cố và phân tích nguyên nhân gốc.">Connects an observed fraud benchmark to alert thresholds, interpretable controls, operations, incidents and root-cause analysis.</p>
-              <div class="metrics">
-                <div class="metric"><strong>284,807</strong><span data-en="Observed transactions" data-vi="Giao dịch quan sát">Observed transactions</span></div>
-                <div class="metric"><strong>0.7786</strong><span data-en="Champion test PR-AUC" data-vi="PR-AUC kiểm định của mô hình được chọn">Champion test PR-AUC</span></div>
-                <div class="metric"><strong>84.93%</strong><span data-en="Test fraud recall" data-vi="Khả năng phát hiện gian lận trên tập kiểm định">Test fraud recall</span></div>
-              </div>
-              <p class="project-note" data-en="Observed PCA data supports model performance; separately labelled synthetic data supports controls testing. Fraud-amount recall is 69.36%." data-vi="Dữ liệu PCA quan sát được dùng để đánh giá hiệu suất mô hình; dữ liệu tổng hợp có nhãn riêng được dùng để kiểm thử kiểm soát. Khả năng thu hồi giá trị gian lận là 69,36%.">Observed PCA data supports model performance; separately labelled synthetic data supports controls testing. Fraud-amount recall is 69.36%.</p>
-            </div>
-            <div class="skills"><span class="skill">PR-AUC</span><span class="skill">Thresholds</span><span class="skill">KRI</span><span class="skill">Incident/RCA</span><span class="skill">Operational Risk</span></div>
-            <a class="button button-github" href="https://github.com/susayold/fraud-operational-risk" target="_blank" rel="noopener" data-en="Open GitHub repository" data-vi="Mở kho mã nguồn GitHub">Open GitHub repository</a>
-          </div>
-        </article>
+    <section class="section boundary-section" id="boundaries" aria-labelledby="boundary-title"><div class="page-width"><div class="section-heading"><p class="section-kicker">05 · Claim discipline</p><h2 id="boundary-title">How to read this project</h2><p>The evidence is useful because the boundaries are explicit.</p></div><div class="boundary-panel"><div class="boundary-card boundary-blue"><span><svg><use href="#icon-target"/></svg></span><b>Target</b><p>Final-resolution BAD / GOOD analytical outcome.</p><small>Not a verified 12-month regulatory PD.</small></div><div class="boundary-card boundary-purple"><span><svg><use href="#icon-document"/></svg></span><b>Loss</b><p>LGD, EAD and expected-loss values are analytical proxies.</p><small>Not IFRS 9 / Basel production estimates.</small></div><div class="boundary-card boundary-amber"><span><svg><use href="#icon-workflow"/></svg></span><b>Policy</b><p>Approval, review and decline outputs are historical simulations.</p><small>Not a deployed underwriting policy.</small></div><div class="boundary-card boundary-green"><span><svg><use href="#icon-eyeoff"/></svg></span><b>Deployment</b><p>The website exposes sanitized aggregate evidence only.</p><small>No production authorization is claimed.</small></div></div></div></section>
 
-        <article class="project-card p-rules">
-          <div class="card-body">
-            <div>
-              <p class="project-domain" data-en="Risk policy implementation" data-vi="Triển khai chính sách rủi ro">Risk policy implementation</p>
-              <h3 data-en="Risk System Rule Implementation" data-vi="Triển khai quy tắc trong hệ thống rủi ro">Risk System Rule Implementation</h3>
-              <p class="project-description" data-en="Translates PD and cutoff evidence into policy scenarios, business requirements, rule matrices, UAT/SIT, release controls, rollback and monitoring." data-vi="Chuyển bằng chứng PD và ngưỡng quyết định thành kịch bản chính sách, yêu cầu nghiệp vụ, ma trận quy tắc, UAT/SIT, kiểm soát triển khai, quay lui và giám sát.">Translates PD and cutoff evidence into policy scenarios, business requirements, rule matrices, UAT/SIT, release controls, rollback and monitoring.</p>
-              <div class="metrics">
-                <div class="metric"><strong>1.292M</strong><span data-en="Scored matured accounts" data-vi="Tài khoản đã đủ kỳ hạn và có điểm">Scored matured accounts</span></div>
-                <div class="metric"><strong>14.64%</strong><span data-en="Approved bad rate under the 20% policy" data-vi="Tỷ lệ xấu trong nhóm phê duyệt theo chính sách 20%">Approved bad rate under the 20% policy</span></div>
-                <div class="metric"><strong>49.96%</strong><span data-en="Lower auto-approved routed EL vs baseline" data-vi="EL định tuyến tự động phê duyệt thấp hơn so với cơ sở">Lower auto-approved routed EL vs baseline</span></div>
-              </div>
-              <p class="project-note" data-en="Historical policy-routing simulation on accepted/booked accounts, not a realised portfolio-loss reduction. The 20% policy requires a controlled pilot because approval drops 30.32 percentage points and manual review rises 150%." data-vi="Mô phỏng định tuyến chính sách trên tài khoản lịch sử đã được chấp nhận/ghi nhận, không phải mức giảm tổn thất danh mục đã phát sinh. Chính sách 20% cần thí điểm có kiểm soát vì tỷ lệ phê duyệt giảm 30,32 điểm phần trăm và khối lượng xem xét thủ công tăng 150%.">Historical policy-routing simulation on accepted/booked accounts, not a realised portfolio-loss reduction. The 20% policy requires a controlled pilot because approval drops 30.32 percentage points and manual review rises 150%.</p>
-            </div>
-            <div>
-              <div class="skills"><span class="skill">Policy Simulation</span><span class="skill">BRD</span><span class="skill">Rule Matrix</span><span class="skill">UAT/SIT</span><span class="skill">Release Control</span></div>
-              <a class="button button-github" href="https://github.com/susayold/risk-system-rule-implementation" target="_blank" rel="noopener" data-en="Open GitHub repository" data-vi="Mở kho mã nguồn GitHub">Open GitHub repository</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
+    <section class="section explore-section" id="explore" aria-labelledby="explore-title"><div class="page-width"><div class="section-heading heading-row"><div><p class="section-kicker">06 · Continue the review</p><h2 id="explore-title">Explore the Risk Lifecycle</h2><p>Go deeper into the evidence layer that matches your role.</p></div><a class="text-link" href="https://github.com/susayold/financial-risk-analytics-portfolio" target="_blank" rel="noopener">View all on GitHub <span>↗</span></a></div><div class="explore-grid"><a class="explore-card" href="portfolio-risk/"><span class="explore-icon"><svg><use href="#icon-portfolio"/></svg></span><b>Portfolio Risk</b><small>Composition, observed risk, concentration and temporal movement.</small><span class="explore-arrow">→</span></a><a class="explore-card" href="model-decisioning/"><span class="explore-icon"><svg><use href="#icon-model"/></svg></span><b>Risk Model</b><small>Frozen model performance, calibration, deciles and validation discipline.</small><span class="explore-arrow">→</span></a><a class="explore-card" href="loss-policy-stress/"><span class="explore-icon"><svg><use href="#icon-target"/></svg></span><b>Loss &amp; Policy</b><small>Predicted risk into analytical loss, stress and historical policy decisions.</small><span class="explore-arrow">→</span></a><a class="explore-card" href="monitoring/"><span class="explore-icon"><svg><use href="#icon-radar"/></svg></span><b>Monitoring</b><small>Drift, calibration, KRIs, alert history and early-warning signals.</small><span class="explore-arrow">→</span></a><a class="explore-card featured-explore" href="governance/"><span class="explore-icon"><svg><use href="#icon-shield"/></svg></span><b>Governance &amp; Delivery</b><small>Alert-to-action governance, release history and public/private architecture.</small><span class="explore-arrow">→</span></a></div></div></section>
 
-    <section class="scope">
-      <div class="content-shell">
-        <p class="section-label" data-en="Result scope" data-vi="Phạm vi kết quả">Result scope</p>
-        <h2 data-en="Key interpretation notes" data-vi="Lưu ý khi diễn giải">Key interpretation notes</h2>
-        <p class="scope-copy" data-en="The portfolio separates observed results from proxies, synthetic controls and policy simulations so that the displayed metrics are not overstated." data-vi="Hồ sơ dự án tách biệt kết quả quan sát với biến ước tính, dữ liệu kiểm thử tổng hợp và mô phỏng chính sách để tránh diễn giải quá mức các chỉ số hiển thị.">The portfolio separates observed results from proxies, synthetic controls and policy simulations so that the displayed metrics are not overstated.</p>
-        <ul class="scope-list">
-          <li data-en="EAD and ECL values are analytical proxy units unless explicitly stated otherwise." data-vi="Giá trị EAD và ECL là đơn vị ước tính phục vụ phân tích, trừ khi có ghi chú khác.">EAD and ECL values are analytical proxy units unless explicitly stated otherwise.</li>
-          <li data-en="Policy-routing results are historical simulations, not realised loss reductions." data-vi="Kết quả định tuyến chính sách là mô phỏng lịch sử, không phải mức giảm tổn thất đã phát sinh.">Policy-routing results are historical simulations, not realised loss reductions.</li>
-          <li data-en="Synthetic controls support workflow testing and are not presented as observed bank operations." data-vi="Dữ liệu tổng hợp được dùng để kiểm thử quy trình và không được trình bày như hoạt động thực tế của ngân hàng.">Synthetic controls support workflow testing and are not presented as observed bank operations.</li>
-          <li data-en="No production underwriting, live loan-origination system or organisational approval is claimed." data-vi="Dự án không tuyên bố có mô hình phê duyệt thực tế, hệ thống khởi tạo khoản vay đang vận hành hoặc phê duyệt của tổ chức.">No production underwriting, live loan-origination system or organisational approval is claimed.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="contact" id="contact">
-      <div class="content-shell contact-grid">
-        <div>
-          <p class="section-label" data-en="Contact" data-vi="Liên hệ">Contact</p>
-          <h2>Nguyễn Phạm Khôi Nguyên</h2>
-          <p class="contact-copy" data-en="Interested in Risk Analytics, Credit Risk, Risk Modeling, Risk Management and Data Analytics opportunities." data-vi="Quan tâm đến các cơ hội trong Phân tích rủi ro, Rủi ro tín dụng, Mô hình rủi ro, Quản trị rủi ro và Phân tích dữ liệu.">Interested in Risk Analytics, Credit Risk, Risk Modeling, Risk Management and Data Analytics opportunities.</p>
-        </div>
-        <div class="contact-links">
-          <a href="tel:+84865385817">0865385817</a>
-          <a href="mailto:nguyen28052005@gmail.com">nguyen28052005@gmail.com</a>
-          <a href="https://github.com/susayold" target="_blank" rel="noopener">github.com/susayold</a>
-        </div>
-      </div>
-    </section>
+    <section class="footer-banner"><div class="page-width footer-banner-inner"><div><p class="eyebrow">Turning risk analytics into real opportunities.</p><h2>Intelligence. Governance. Impact.</h2><p>Analytical rigor. Practical insights. Transparent governance.</p></div><div class="footer-quote"><span>“</span><p>Responsible analytics enables a more resilient financial system.</p><i></i></div></div></section>
   </main>
-
-  <footer>
-    <span data-en="Financial Risk Analytics Portfolio by Nguyen Pham Khoi Nguyen" data-vi="Hồ sơ dự án phân tích rủi ro tài chính của Nguyễn Phạm Khôi Nguyên">Financial Risk Analytics Portfolio by Nguyen Pham Khoi Nguyen</span>
-  </footer>
-
-  <script>
-    (() => {
-      const languageButtons = document.querySelectorAll("[data-language]");
-      const translatedElements = document.querySelectorAll("[data-en][data-vi]");
-      const titles = {
-        en: "Financial Risk Analytics Portfolio | Nguyen Pham Khoi Nguyen",
-        vi: "Hồ sơ dự án phân tích rủi ro tài chính | Nguyễn Phạm Khôi Nguyên"
-      };
-      const descriptions = {
-        en: "Financial Risk Analytics Portfolio by Nguyen Pham Khoi Nguyen: five completed projects in credit portfolio monitoring, credit scoring, IFRS 9-style ECL, fraud risk and policy implementation.",
-        vi: "Hồ sơ dự án phân tích rủi ro tài chính của Nguyễn Phạm Khôi Nguyên gồm năm dự án về giám sát tín dụng, chấm điểm tín dụng, ECL theo định hướng IFRS 9, gian lận và triển khai chính sách."
-      };
-
-      const applyLanguage = (language) => {
-        const selected = language === "vi" ? "vi" : "en";
-        document.documentElement.lang = selected;
-        translatedElements.forEach((element) => {
-          element.textContent = element.dataset[selected];
-        });
-        languageButtons.forEach((button) => {
-          button.setAttribute("aria-pressed", String(button.dataset.language === selected));
-        });
-        document.title = titles[selected];
-        document.querySelector('meta[name="description"]').setAttribute("content", descriptions[selected]);
-        try {
-          localStorage.setItem("portfolio-language", selected);
-        } catch (error) {
-          // Language switching still works when storage is unavailable.
-        }
-      };
-
-      languageButtons.forEach((button) => {
-        button.addEventListener("click", () => applyLanguage(button.dataset.language));
-      });
-
-      let initialLanguage = "en";
-      try {
-        initialLanguage = localStorage.getItem("portfolio-language") || "en";
-      } catch (error) {
-        initialLanguage = "en";
-      }
-      applyLanguage(initialLanguage);
-    })();
-  </script>
+  <footer class="site-footer"><div class="page-width footer-grid"><div class="footer-brand"><a class="brand" href="./"><span>CRD</span><b>.</b><span>PI</span></a><p>Credit Risk Decisioning &amp; Portfolio Intelligence<br><small>A personal analytical portfolio project</small></p></div><div class="footer-links"><a href="https://github.com/susayold/financial-risk-analytics-portfolio" target="_blank" rel="noopener">GitHub</a><a href="mailto:nguyen28052005@gmail.com">Email</a><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></div><div class="footer-meta"><p>Canonical analytical handoff:<br><b data-bind="meta.analytical_handoff"></b></p><small>Production authorization: false · Regulatory compliance: not claimed</small></div></div></footer>
+  <script src="assets/crdpi-overview.js" defer></script>
 </body>
 </html>
