@@ -1,0 +1,8 @@
+{
+  "superseded_tag": "block-e-v1.0-final",
+  "superseding_tag": "block-e-v1.0.1-final",
+  "reason": "alert/investigation/action relational completeness and historical calibration RED propagation",
+  "model_changed": false,
+  "79f_snapshot_changed": false,
+  "analytical_metrics_redeveloped": false
+}

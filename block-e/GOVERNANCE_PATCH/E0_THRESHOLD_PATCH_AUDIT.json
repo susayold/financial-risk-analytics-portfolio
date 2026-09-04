@@ -1,0 +1,18 @@
+{
+  "artifact": "E0_THRESHOLD_REGISTER.csv",
+  "version": "E0-1.0.1",
+  "patch_type": "MACHINE_READABLE_THRESHOLD_COMPLETENESS_PATCH",
+  "threshold_count": 12,
+  "boundary_policy": "terminal bands are non-overlapping; PSI .25 belongs to RED",
+  "numeric_levels_tuned": false,
+  "observed_2017_values_used_for_tuning": false,
+  "gates": {
+    "M1-G01": "PASS",
+    "M1-G02": "PASS",
+    "M1-G03": "PASS",
+    "M1-G04": "PASS",
+    "M1-G05": "PASS",
+    "M1-G06": "PASS"
+  },
+  "result": "6/6 PASS"
+}

@@ -1,0 +1,18 @@
+{
+  "block": "E",
+  "status": "PASS_WITH_MONITORING",
+  "execution_coverage_pct": 100,
+  "monitoring_requirement_resolution_pct": 100,
+  "technical_qa_pct": 100,
+  "feature_monitoring_coverage": "79/79",
+  "artifact_integrity_pct": 100,
+  "claim_boundary_qa_pct": 100,
+  "governance_workflow_pct": 100,
+  "e8_original_qa": "10/10 PASS",
+  "e8_patch_qa": "15/15 PASS",
+  "e9_final_qa": "35/35 PASS",
+  "highest_current_kri_status": "AMBER",
+  "highest_observed_kri_status": "RED",
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false
+}

@@ -1,0 +1,33 @@
+{
+  "patch_plan": "E-GOV-PATCH-1.0",
+  "old_tag": "block-e-v1.0-final",
+  "old_tag_commit": "49c7f1a0fbbe8fa20ddb0252474ca13281303faf",
+  "old_status": "PASS_WITH_MONITORING",
+  "old_e8": "10/10 PASS",
+  "old_e9": "23/23 PASS",
+  "patch_reason": "governance relational completeness",
+  "model_changed": false,
+  "feature_contract_changed": false,
+  "target_changed": false,
+  "79f_snapshot_changed": false,
+  "snapshot_sha256": "fe2ae600c9913ccfe827509f439c2f14108260e0e237f3fa78715b145123cd42",
+  "discovered_issues": [
+    "action register empty",
+    "investigation register empty",
+    "breach register empty",
+    "monthly calibration RED missing",
+    "E7 capacity AMBER alerts missing",
+    "GREEN row present in alert log",
+    "threshold register incomplete",
+    "GitHub Release object absent",
+    "change-control portfolio approval inconsistent"
+  ],
+  "m0_gates": {
+    "M0-G01": "PASS",
+    "M0-G02": "PASS",
+    "M0-G03": "PASS",
+    "M0-G04": "PASS",
+    "M0-G05": "PASS"
+  },
+  "m0_result": "5/5 PASS"
+}

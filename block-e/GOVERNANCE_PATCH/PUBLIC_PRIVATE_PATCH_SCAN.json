@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "findings": [],
+  "scope": "public aggregate patch artifacts",
+  "row_level_public": false
+}

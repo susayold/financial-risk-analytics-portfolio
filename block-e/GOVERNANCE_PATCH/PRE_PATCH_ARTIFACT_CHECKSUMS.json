@@ -1,0 +1,20 @@
+{
+  "checkpoint": "block-e-v1.0-final",
+  "commit": "49c7f1a0fbbe8fa20ddb0252474ca13281303faf",
+  "hashes": {
+    "block-e/E0_MONITORING_CONTRACT/E0_THRESHOLD_REGISTER.csv": "8249f3c8d6dd37cb7bba9249bab591b54f8c036058fba1f577e6f8044c0e7ebc",
+    "block-e/E0_MONITORING_CONTRACT/E0_METRIC_REGISTER.csv": "f9161f484cd603321e982709373353ff62c0e1d03fea1fc9dc5808648f38e356",
+    "block-e/E5_PERFORMANCE_CALIBRATION/E5_ALERTS.csv": "7c995455925c44b60e4d015c4f3cd32a684f1cc8ff0866279ed5d8ecebdf2487",
+    "block-e/E5_PERFORMANCE_CALIBRATION/calibration_monitor.csv": "25ffc182097d8558195ec41871120aac24742801bfe0e7c726f407aa9f1b199c",
+    "block-e/E7_POLICY_CONCENTRATION/review_capacity_monitor.csv": "6496a13185fefa22778d9fabbf1679bba57ac2bd366d9cbde7037dfa7975a663",
+    "block-e/E8_KRI_GOVERNANCE/kri_register.csv": "aa9d980ec831ebb50ab950b077e502f838565b2af404f14daa1f5e9d9332b3ff",
+    "block-e/E8_KRI_GOVERNANCE/alert_log.csv": "c46ab7b04244d456650b87a7d05f56b1abf1191d949ba64cdf686e91a21cafdc",
+    "block-e/E8_KRI_GOVERNANCE/breach_register.csv": "660893fec06f6a50c8fbd8179251ba2a17fb7930e45d159b352f1535e11051e0",
+    "block-e/E8_KRI_GOVERNANCE/investigation_register.csv": "71238e8d519c6cf2cc5566cdb53be5ba1b70bed9fc55c29fccd96504488ed5e5",
+    "block-e/E8_KRI_GOVERNANCE/action_register.csv": "bf5356e7248a07509f78565c1d4df1bd5e4332212b4d8853b96ebf4416c5ba09",
+    "block-e/E8_KRI_GOVERNANCE/change_control_register.csv": "3606516e5b5eea82f876da08e7ed01b241e1f589d7ce6b2ae86a184656bf41a9",
+    "block-e/E9_FINAL/BLOCK_E_FINAL_QA.json": "e202848a1614c9c04c8b7f2b3ce218f6a26b34c12bbd335acc5dc934d68fae6e",
+    "block-e/E9_FINAL/BLOCK_E_FINAL_SCORECARD.json": "c0d0cb8b39cace5268525e9f8896838ef127f81782ee76b18c2c43e651db3960",
+    "block-e/E9_FINAL/BLOCK_E_DECISION.json": "b4f2898ea0ff5bf63e5da65975f1b28ed3f4f91211efc21c8a37aeb2b9feef6c"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "owner_identifier": "susayold",
+  "decision_date": "2026-09-04",
+  "object": "E1-MART-79F-1.0",
+  "approved_for_portfolio_project_use": true,
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false,
+  "decision_scope": "historical portfolio-project monitoring simulation",
+  "notes": "79F evidence-retention remediation; no model redevelopment"
+}

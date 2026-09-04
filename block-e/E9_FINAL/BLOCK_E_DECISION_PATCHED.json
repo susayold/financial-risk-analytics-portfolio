@@ -1,0 +1,30 @@
+{
+  "block": "E",
+  "implementation_complete": true,
+  "feature_monitoring_coverage": "79/79",
+  "scored_population": 310066,
+  "baseline": "Validation-2016",
+  "primary_historical_monitoring_window": "OOT-2017",
+  "shadow_input_window": "2018_not_available",
+  "model": "C8E_RICH_BUREAU_CATBOOST_79F",
+  "block_c_model_reopened": false,
+  "block_c_evidence_patch_applied": true,
+  "highest_current_kri_status": "AMBER",
+  "highest_observed_kri_status": "RED",
+  "historical_red_breach_count": 1,
+  "historical_amber_alert_count": 20,
+  "open_alerts": 21,
+  "open_investigations": 21,
+  "watch_items": 20,
+  "recalibration_candidate": true,
+  "redevelopment_candidate": false,
+  "model_use_restrictions": [
+    "historical_portfolio_project_only"
+  ],
+  "portfolio_project_use_approved": true,
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false,
+  "status": "PASS_WITH_MONITORING",
+  "canonical_tag": "block-e-v1.0.1-final",
+  "next_action": "MOVE_TO_BLOCK_F"
+}
