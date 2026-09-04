@@ -1,0 +1,641 @@
+{
+  "schema": "crd.pi.model-feature-contract-79f.v1",
+  "model_id": "C8E_RICH_BUREAU_CATBOOST_79F",
+  "feature_count": 79,
+  "canonical_order": [
+    "revenue",
+    "dti_n",
+    "loan_amnt",
+    "fico_n",
+    "experience_c",
+    "emp_length",
+    "purpose",
+    "home_ownership_n",
+    "total_acc",
+    "open_acc",
+    "pub_rec",
+    "pub_rec_bankruptcies",
+    "revol_util",
+    "revol_bal",
+    "mort_acc",
+    "application_type",
+    "loan_to_income",
+    "log_revenue",
+    "log_loan_amnt",
+    "fico_x_dti",
+    "open_to_total_acc",
+    "revol_bal_to_income",
+    "has_public_record",
+    "has_bankruptcy",
+    "term",
+    "installment",
+    "int_rate",
+    "verification_status",
+    "time_to_earliest_cr_line",
+    "installment_to_income",
+    "installment_to_loan",
+    "fico_x_revol_util",
+    "dti_x_revol_util",
+    "revol_bal_per_open_acc",
+    "has_mortgage_account",
+    "credit_history_log",
+    "fico_source_midpoint",
+    "fico_source_width",
+    "inq_last_6mths",
+    "acc_open_past_24mths",
+    "bc_util",
+    "bc_open_to_buy",
+    "avg_cur_bal",
+    "tot_cur_bal",
+    "tot_hi_cred_lim",
+    "total_bal_ex_mort",
+    "total_bc_limit",
+    "total_rev_hi_lim",
+    "num_accts_ever_120_pd",
+    "num_tl_90g_dpd_24m",
+    "pct_tl_nvr_dlq",
+    "percent_bc_gt_75",
+    "mths_since_recent_inq",
+    "mths_since_last_delinq",
+    "mths_since_last_major_derog",
+    "mo_sin_old_rev_tl_op",
+    "mo_sin_rcnt_tl",
+    "mo_sin_rcnt_rev_tl_op",
+    "num_actv_bc_tl",
+    "num_actv_rev_tl",
+    "num_bc_tl",
+    "num_il_tl",
+    "num_rev_accts",
+    "num_sats",
+    "num_tl_op_past_12m",
+    "delinq_2yrs",
+    "collections_12_mths_ex_med",
+    "chargeoff_within_12_mths",
+    "tax_liens",
+    "tot_coll_amt",
+    "total_il_high_credit_limit",
+    "bc_available_ratio",
+    "nonmort_balance_to_income",
+    "total_balance_to_income",
+    "recent_open_share",
+    "very_recent_open_share",
+    "inquiry_pressure",
+    "has_recent_90dpd",
+    "has_ever_120pd"
+  ],
+  "features": [
+    {
+      "canonical_index": 1,
+      "name": "revenue",
+      "group_id": "A",
+      "group_name": "Core Borrower & Loan Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 2,
+      "name": "dti_n",
+      "group_id": "A",
+      "group_name": "Core Borrower & Loan Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 3,
+      "name": "loan_amnt",
+      "group_id": "A",
+      "group_name": "Core Borrower & Loan Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 4,
+      "name": "fico_n",
+      "group_id": "A",
+      "group_name": "Core Borrower & Loan Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 5,
+      "name": "experience_c",
+      "group_id": "A",
+      "group_name": "Core Borrower & Loan Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 6,
+      "name": "emp_length",
+      "group_id": "A",
+      "group_name": "Core Borrower & Loan Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 7,
+      "name": "purpose",
+      "group_id": "A",
+      "group_name": "Core Borrower & Loan Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 8,
+      "name": "home_ownership_n",
+      "group_id": "A",
+      "group_name": "Core Borrower & Loan Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 9,
+      "name": "total_acc",
+      "group_id": "B",
+      "group_name": "Basic Bureau & Account Structure",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 10,
+      "name": "open_acc",
+      "group_id": "B",
+      "group_name": "Basic Bureau & Account Structure",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 11,
+      "name": "pub_rec",
+      "group_id": "B",
+      "group_name": "Basic Bureau & Account Structure",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 12,
+      "name": "pub_rec_bankruptcies",
+      "group_id": "B",
+      "group_name": "Basic Bureau & Account Structure",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 13,
+      "name": "revol_util",
+      "group_id": "B",
+      "group_name": "Basic Bureau & Account Structure",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 14,
+      "name": "revol_bal",
+      "group_id": "B",
+      "group_name": "Basic Bureau & Account Structure",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 15,
+      "name": "mort_acc",
+      "group_id": "B",
+      "group_name": "Basic Bureau & Account Structure",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 16,
+      "name": "application_type",
+      "group_id": "B",
+      "group_name": "Basic Bureau & Account Structure",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 17,
+      "name": "loan_to_income",
+      "group_id": "C",
+      "group_name": "Derived Risk Ratios",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 18,
+      "name": "log_revenue",
+      "group_id": "C",
+      "group_name": "Derived Risk Ratios",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 19,
+      "name": "log_loan_amnt",
+      "group_id": "C",
+      "group_name": "Derived Risk Ratios",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 20,
+      "name": "fico_x_dti",
+      "group_id": "C",
+      "group_name": "Derived Risk Ratios",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 21,
+      "name": "open_to_total_acc",
+      "group_id": "C",
+      "group_name": "Derived Risk Ratios",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 22,
+      "name": "revol_bal_to_income",
+      "group_id": "C",
+      "group_name": "Derived Risk Ratios",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 23,
+      "name": "has_public_record",
+      "group_id": "C",
+      "group_name": "Derived Risk Ratios",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 24,
+      "name": "has_bankruptcy",
+      "group_id": "C",
+      "group_name": "Derived Risk Ratios",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 25,
+      "name": "term",
+      "group_id": "D",
+      "group_name": "Affordability, Loan Structure & Credit History",
+      "role_exception": true
+    },
+    {
+      "canonical_index": 26,
+      "name": "installment",
+      "group_id": "D",
+      "group_name": "Affordability, Loan Structure & Credit History",
+      "role_exception": true
+    },
+    {
+      "canonical_index": 27,
+      "name": "int_rate",
+      "group_id": "D",
+      "group_name": "Affordability, Loan Structure & Credit History",
+      "role_exception": true
+    },
+    {
+      "canonical_index": 28,
+      "name": "verification_status",
+      "group_id": "D",
+      "group_name": "Affordability, Loan Structure & Credit History",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 29,
+      "name": "time_to_earliest_cr_line",
+      "group_id": "D",
+      "group_name": "Affordability, Loan Structure & Credit History",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 30,
+      "name": "installment_to_income",
+      "group_id": "D",
+      "group_name": "Affordability, Loan Structure & Credit History",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 31,
+      "name": "installment_to_loan",
+      "group_id": "D",
+      "group_name": "Affordability, Loan Structure & Credit History",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 32,
+      "name": "fico_x_revol_util",
+      "group_id": "D",
+      "group_name": "Affordability, Loan Structure & Credit History",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 33,
+      "name": "dti_x_revol_util",
+      "group_id": "D",
+      "group_name": "Affordability, Loan Structure & Credit History",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 34,
+      "name": "revol_bal_per_open_acc",
+      "group_id": "D",
+      "group_name": "Affordability, Loan Structure & Credit History",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 35,
+      "name": "has_mortgage_account",
+      "group_id": "D",
+      "group_name": "Affordability, Loan Structure & Credit History",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 36,
+      "name": "credit_history_log",
+      "group_id": "D",
+      "group_name": "Affordability, Loan Structure & Credit History",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 37,
+      "name": "fico_source_midpoint",
+      "group_id": "D",
+      "group_name": "Affordability, Loan Structure & Credit History",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 38,
+      "name": "fico_source_width",
+      "group_id": "D",
+      "group_name": "Affordability, Loan Structure & Credit History",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 39,
+      "name": "inq_last_6mths",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 40,
+      "name": "acc_open_past_24mths",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 41,
+      "name": "bc_util",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 42,
+      "name": "bc_open_to_buy",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 43,
+      "name": "avg_cur_bal",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 44,
+      "name": "tot_cur_bal",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 45,
+      "name": "tot_hi_cred_lim",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 46,
+      "name": "total_bal_ex_mort",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 47,
+      "name": "total_bc_limit",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 48,
+      "name": "total_rev_hi_lim",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 49,
+      "name": "num_accts_ever_120_pd",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 50,
+      "name": "num_tl_90g_dpd_24m",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 51,
+      "name": "pct_tl_nvr_dlq",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 52,
+      "name": "percent_bc_gt_75",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 53,
+      "name": "mths_since_recent_inq",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 54,
+      "name": "mths_since_last_delinq",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 55,
+      "name": "mths_since_last_major_derog",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 56,
+      "name": "mo_sin_old_rev_tl_op",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 57,
+      "name": "mo_sin_rcnt_tl",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 58,
+      "name": "mo_sin_rcnt_rev_tl_op",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 59,
+      "name": "num_actv_bc_tl",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 60,
+      "name": "num_actv_rev_tl",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 61,
+      "name": "num_bc_tl",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 62,
+      "name": "num_il_tl",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 63,
+      "name": "num_rev_accts",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 64,
+      "name": "num_sats",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 65,
+      "name": "num_tl_op_past_12m",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 66,
+      "name": "delinq_2yrs",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 67,
+      "name": "collections_12_mths_ex_med",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 68,
+      "name": "chargeoff_within_12_mths",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 69,
+      "name": "tax_liens",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 70,
+      "name": "tot_coll_amt",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 71,
+      "name": "total_il_high_credit_limit",
+      "group_id": "E",
+      "group_name": "Rich Bureau Raw Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 72,
+      "name": "bc_available_ratio",
+      "group_id": "F",
+      "group_name": "Rich Bureau Derived Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 73,
+      "name": "nonmort_balance_to_income",
+      "group_id": "F",
+      "group_name": "Rich Bureau Derived Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 74,
+      "name": "total_balance_to_income",
+      "group_id": "F",
+      "group_name": "Rich Bureau Derived Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 75,
+      "name": "recent_open_share",
+      "group_id": "F",
+      "group_name": "Rich Bureau Derived Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 76,
+      "name": "very_recent_open_share",
+      "group_id": "F",
+      "group_name": "Rich Bureau Derived Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 77,
+      "name": "inquiry_pressure",
+      "group_id": "F",
+      "group_name": "Rich Bureau Derived Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 78,
+      "name": "has_recent_90dpd",
+      "group_id": "F",
+      "group_name": "Rich Bureau Derived Signals",
+      "role_exception": false
+    },
+    {
+      "canonical_index": 79,
+      "name": "has_ever_120pd",
+      "group_id": "F",
+      "group_name": "Rich Bureau Derived Signals",
+      "role_exception": false
+    }
+  ]
+}

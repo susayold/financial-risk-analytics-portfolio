@@ -1,0 +1,201 @@
+{
+  "meta": {
+    "project": "CRD.PI",
+    "page": "model-decisioning",
+    "schema": "crd.pi.page-03-model-decisioning.v1",
+    "model_id": "C8E_RICH_BUREAU_CATBOOST_79F",
+    "block_c_status": "PASS_WITH_MONITORING",
+    "analytical_handoff": "block-e-v1.0.2-final",
+    "production_authorized": false,
+    "regulatory_compliance_claimed": false,
+    "public_safe": true
+  },
+  "contract": {
+    "champion": "C8E Rich Bureau CatBoost",
+    "algorithm": "CatBoost",
+    "feature_count": 79,
+    "score": "p_bad_final",
+    "target": "actual_default",
+    "target_semantics": "final_resolution_bad_good",
+    "development_only_fit": true,
+    "oot_early_stopping": false,
+    "oot_hyperparameter_tuning": false,
+    "post_oot_specification_changes": 0,
+    "historical_shadow_2018_used": false,
+    "automatic_retraining": false,
+    "feature_order_frozen": true
+  },
+  "population": {
+    "scored_accounts": 310066,
+    "cross_split_id_overlap": 0,
+    "full_governed_core_accounts": 1347681,
+    "scope_note": "C8E performance applies to the matched enriched scored population, not all governed core accounts.",
+    "splits": [
+      {
+        "split": "Development",
+        "rows": 182181,
+        "bad": 28967,
+        "bad_rate": 0.159001,
+        "role": "model fitting / frozen replay"
+      },
+      {
+        "split": "Validation 2016",
+        "rows": 83664,
+        "bad": 14190,
+        "bad_rate": 0.169557,
+        "roc_auc": 0.8219631903097561,
+        "role": "reference validation"
+      },
+      {
+        "split": "OOT 2017",
+        "rows": 44221,
+        "bad": 5892,
+        "bad_rate": 0.13323986341331043,
+        "roc_auc": 0.8557777504539299,
+        "role": "one-time untouched holdout"
+      }
+    ]
+  },
+  "validation": {
+    "recorded_roc_auc": 0.821938,
+    "reproduced_roc_auc": 0.8219631903097561,
+    "reproduction_difference": 2.5e-05,
+    "rows": 83664,
+    "bad": 14190
+  },
+  "oot": {
+    "rows": 44221,
+    "bad": 5892,
+    "observed_bad_rate": 0.13323986341331043,
+    "roc_auc": 0.8557777504539299,
+    "gini": 0.7115555009078598,
+    "ks": 0.5625094217238796,
+    "pr_auc": 0.5489091154627448,
+    "brier": 0.08362492875360526,
+    "log_loss": 0.2843152586611653,
+    "bootstrap_reps": 300,
+    "auc_ci_low": 0.850576,
+    "auc_ci_high": 0.861032,
+    "quarterly_auc_range": 0.01817803162203191
+  },
+  "calibration": {
+    "intercept": 0.11462162626752728,
+    "slope": 1.2507071775766894,
+    "mean_prediction": 0.15145175596075336,
+    "observed_bad_rate": 0.13323986341331043,
+    "absolute_gap": 0.01821189254744293,
+    "status": "AMBER_WATCH",
+    "watch_reason": "The slope narrowly misses the project's 1.25 GREEN upper boundary."
+  },
+  "ranking": {
+    "decile_monotonic_violations": 0,
+    "decile_spearman": 1.0,
+    "prediction_psi": 0.003663365,
+    "interpretation": "Risk ordering remains clean while aggregate score-distribution shift is low."
+  },
+  "decisioning": {
+    "score": "p_bad_final",
+    "decile_low": "D01",
+    "decile_high": "D10",
+    "cutpoint_reference": "P1_C8E_VALIDATION_SCORED",
+    "cutpoint_direction": "lower p_bad_final = lower risk",
+    "split_level_qcut_allowed": false,
+    "risk_bands": [
+      "R1 VERY_LOW",
+      "R2 LOW",
+      "R3 MEDIUM",
+      "R4 HIGH",
+      "R5 VERY_HIGH"
+    ],
+    "band_note": "Risk bands are reporting labels only, not automatic approval or decline rules."
+  },
+  "feature_groups": [
+    {
+      "id": "A",
+      "name": "Core Borrower & Loan Signals",
+      "count": 8,
+      "features": [
+        "revenue",
+        "dti_n",
+        "loan_amnt",
+        "fico_n"
+      ]
+    },
+    {
+      "id": "B",
+      "name": "Basic Bureau & Account Structure",
+      "count": 8,
+      "features": [
+        "total_acc",
+        "open_acc",
+        "pub_rec",
+        "pub_rec_bankruptcies"
+      ]
+    },
+    {
+      "id": "C",
+      "name": "Derived Risk Ratios",
+      "count": 8,
+      "features": [
+        "loan_to_income",
+        "log_revenue",
+        "log_loan_amnt",
+        "fico_x_dti"
+      ]
+    },
+    {
+      "id": "D",
+      "name": "Affordability, Loan Structure & Credit History",
+      "count": 14,
+      "features": [
+        "term",
+        "installment",
+        "int_rate",
+        "verification_status"
+      ]
+    },
+    {
+      "id": "E",
+      "name": "Rich Bureau Raw Signals",
+      "count": 33,
+      "features": [
+        "inq_last_6mths",
+        "acc_open_past_24mths",
+        "bc_util",
+        "bc_open_to_buy"
+      ]
+    },
+    {
+      "id": "F",
+      "name": "Rich Bureau Derived Signals",
+      "count": 8,
+      "features": [
+        "bc_available_ratio",
+        "nonmort_balance_to_income",
+        "total_balance_to_income",
+        "recent_open_share"
+      ]
+    }
+  ],
+  "red_team": {
+    "benchmark_auc_gt": 0.95,
+    "classification": "LEAKAGE_RED_TEAM_BENCHMARK",
+    "signals": [
+      "post-origination information",
+      "latest-FICO",
+      "late-fee / post-outcome information"
+    ],
+    "used_as_champion": false
+  },
+  "reproducibility": {
+    "feature_coverage": "79/79",
+    "scored_rows": 310066,
+    "oot_replay_rows": 44221,
+    "oot_replay_max_abs_diff": 0.0,
+    "oot_replay_spearman": 1.0,
+    "p_bad_replay_identity": "PASS",
+    "interpretation": "Exact historical score replay without retraining; this does not prove production readiness or future performance."
+  },
+  "feature_role_exception": "term, installment and int_rate enter the frozen Block C model under a documented versioned re-contract; the exception remains audit-visible.",
+  "monitoring_cross_link": "Block E later identifies a historical RED monthly calibration-slope event; the full alert workflow belongs on Monitoring."
+}
