@@ -1,0 +1,6 @@
+{
+  "stage": "E8",
+  "status": "PASS",
+  "persistence_logic": "1 AMBER investigate; 2 AMBER WATCH; 3 AMBER escalation; 2 RED escalation; 1 CRITICAL immediate",
+  "production_authorized": false
+}

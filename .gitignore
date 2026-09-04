@@ -4,5 +4,6 @@ _b5_runtime/
 _analysis_runtime/
 outputs/block_d/
 outputs/block_e/private/
+outputs/block_e/*staging*/
 **/__pycache__/
 *.py[cod]

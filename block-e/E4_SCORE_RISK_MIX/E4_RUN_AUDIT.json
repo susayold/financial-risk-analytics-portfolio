@@ -1,0 +1,8 @@
+{
+  "stage": "E4",
+  "status": "PASS",
+  "baseline": "Validation-2016",
+  "monitor": "OOT-2017",
+  "frozen_bins": true,
+  "no_qcut_on_monitor": true
+}

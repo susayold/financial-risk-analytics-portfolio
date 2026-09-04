@@ -1,0 +1,11 @@
+{
+  "artifact": "E1_MART_79F_1_0.parquet",
+  "version": "E1-MART-79F-1.0",
+  "grain": "one account x monitoring_version",
+  "row_count": 310066,
+  "private": true,
+  "source_snapshot_sha256": "fe2ae600c9913ccfe827509f439c2f14108260e0e237f3fa78715b145123cd42",
+  "model": "C8E_RICH_BUREAU_CATBOOST_79F",
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false
+}

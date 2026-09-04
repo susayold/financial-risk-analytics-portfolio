@@ -1,0 +1,38 @@
+{
+  "replay_mode": "FROZEN_MODEL_LOAD",
+  "predeclared_auc_tolerance": 0.0005,
+  "predeclared_ks_tolerance": 0.001,
+  "validation": {
+    "roc_auc": 0.821963190309756,
+    "gini": 0.6439263806195119,
+    "ks": 0.49140525048353373,
+    "pr_auc": 0.531874506682275,
+    "brier": 0.10726820291754496,
+    "log_loss": 0.3502497253254071,
+    "n": 83664,
+    "bad_rate": 0.16960699942627652,
+    "mean_prediction": 0.15288368914210024
+  },
+  "oot": {
+    "roc_auc": 0.8557777504539299,
+    "gini": 0.7115555009078598,
+    "ks": 0.5625094217238796,
+    "pr_auc": 0.5489091154627446,
+    "brier": 0.08362492875360529,
+    "log_loss": 0.28431525866116525,
+    "n": 44221,
+    "bad_rate": 0.13323986341331043,
+    "mean_prediction": 0.15145175596075336
+  },
+  "anchors": {
+    "validation_auc": 0.821963,
+    "oot_auc": 0.85577775045,
+    "oot_ks": 0.5625094217
+  },
+  "checks": {
+    "validation_auc_within_tolerance": true,
+    "oot_auc_within_tolerance": true,
+    "oot_ks_within_tolerance": true
+  },
+  "aggregate_reproducibility_pass": true
+}

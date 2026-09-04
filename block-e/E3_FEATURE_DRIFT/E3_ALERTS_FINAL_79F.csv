@@ -1,0 +1,4 @@
+kri_id,feature,window_id,observed_value,status,metric_id
+E3-KRI-001,int_rate,OOT-2017,0.100646,AMBER,PSI
+E3-KRI-002,installment_to_loan,OOT-2017,0.136962,AMBER,PSI
+E3-KRI-003,mths_since_last_delinq,OOT-2017,2.6635,AMBER,MISSINGNESS_SHIFT_PP

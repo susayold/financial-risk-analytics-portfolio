@@ -1,0 +1,6 @@
+kri_id,domain,metric_id,window_id,observed_value,reference_value,delta,status,threshold_version,persistence_count,action_required,claim_boundary
+E3-KRI-001,FEATURE_DRIFT,int_rate PSI,OOT-2017,0.100646,0,0.100646,AMBER,E0-1.0,1,WATCH,historical monitoring simulation
+E3-KRI-002,FEATURE_DRIFT,installment_to_loan PSI,OOT-2017,0.136962,0,0.136962,AMBER,E0-1.0,1,WATCH,historical monitoring simulation
+E3-KRI-003,MISSINGNESS,mths_since_last_delinq missingness,OOT-2017,2.6635,0,2.6635,AMBER,E0-1.0,1,INCREASE_MONITORING_FREQUENCY,historical monitoring simulation
+E5-KRI-001,CALIBRATION,calibration slope,OOT-2017,1.2507071775766894,0,1.2507071775766894,AMBER,E0-1.0,1,CALIBRATION_REVIEW,historical monitoring simulation
+E6-KRI-001,EL,portfolio EL rate,OOT-2017,0.119915287837936,0,0.119915287837936,GREEN,E0-1.0,1,NO_ACTION,historical monitoring simulation

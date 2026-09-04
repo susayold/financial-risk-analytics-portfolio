@@ -1,0 +1,35 @@
+{
+  "stage": "E8",
+  "status": "PASS",
+  "tests_passed": 10,
+  "tests_failed": 0,
+  "gates": {
+    "E8-G01": "PASS",
+    "E8-G02": "PASS",
+    "E8-G03": "PASS",
+    "E8-G04": "PASS",
+    "E8-G05": "PASS",
+    "E8-G06": "PASS",
+    "E8-G07": "PASS",
+    "E8-G08": "PASS",
+    "E8-G09": "PASS",
+    "E8-G10": "PASS"
+  },
+  "controlled_root_causes": [
+    "DATA_QUALITY",
+    "DATA_COVERAGE",
+    "MISSINGNESS",
+    "POPULATION_SHIFT",
+    "PRODUCT_MIX_SHIFT",
+    "PRICING_CONTRACT_SHIFT",
+    "MODEL_PERFORMANCE",
+    "CALIBRATION",
+    "OUTCOME_MATURITY",
+    "CONCENTRATION",
+    "POLICY_CAPACITY",
+    "ECONOMIC_STRESS",
+    "UNKNOWN"
+  ],
+  "no_auto_retraining": true,
+  "stress_method": "D8-FINAL-1.1 analytical severity positioning only"
+}

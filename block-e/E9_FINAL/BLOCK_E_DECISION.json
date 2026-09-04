@@ -1,0 +1,21 @@
+{
+  "block": "E",
+  "implementation_complete": true,
+  "feature_monitoring_coverage": "79/79",
+  "scored_population": 310066,
+  "baseline": "Validation-2016",
+  "primary_historical_monitoring_window": "OOT-2017",
+  "shadow_input_window": "2018_not_available",
+  "model": "C8E_RICH_BUREAU_CATBOOST_79F",
+  "block_c_model_reopened": false,
+  "block_c_evidence_patch_applied": true,
+  "highest_current_kri_status": "AMBER",
+  "open_alerts": 4,
+  "redevelopment_candidate": false,
+  "recalibration_candidate": true,
+  "model_use_restrictions": [],
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false,
+  "status": "PASS_WITH_MONITORING",
+  "next_action": "MOVE_TO_BLOCK_F"
+}

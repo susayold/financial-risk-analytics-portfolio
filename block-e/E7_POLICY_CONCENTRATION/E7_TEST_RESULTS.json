@@ -1,0 +1,20 @@
+{
+  "stage": "E7",
+  "status": "PASS",
+  "tests_passed": 9,
+  "tests_failed": 0,
+  "gates": {
+    "E7-G01": "PASS",
+    "E7-G02": "PASS",
+    "E7-G03": "PASS",
+    "E7-G04": "PASS",
+    "E7-G05": "PASS",
+    "E7-G06": "PASS",
+    "E7-G07": "PASS",
+    "E7-G08": "PASS",
+    "E7-G09": "PASS"
+  },
+  "policy_source": "D6_POLICY_SCENARIOS.csv",
+  "pricing_scope": "DESCRIPTIVE_ONLY",
+  "hhi_formula": "sum(ead_share^2)"
+}

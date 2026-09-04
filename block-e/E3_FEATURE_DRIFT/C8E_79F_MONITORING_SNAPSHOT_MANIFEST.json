@@ -1,0 +1,17 @@
+{
+  "artifact": "C8E_79F_MONITORING_SNAPSHOT.parquet",
+  "row_count": 310066,
+  "unique_account_count": 310066,
+  "feature_count": 79,
+  "split_counts": {
+    "Development": 182181,
+    "Validation": 83664,
+    "OOT": 44221
+  },
+  "model_id": "C8E_RICH_BUREAU_CATBOOST_79F",
+  "feature_order_sha256": "7dcae936a8a6ca56078bfe9fe7bb124d8db7c2123e436d077a8e85cfcd19e7f3",
+  "snapshot_sha256": "fe2ae600c9913ccfe827509f439c2f14108260e0e237f3fa78715b145123cd42",
+  "private": true,
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false
+}

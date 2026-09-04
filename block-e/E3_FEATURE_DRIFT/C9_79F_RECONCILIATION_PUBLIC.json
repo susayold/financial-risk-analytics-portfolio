@@ -1,0 +1,19 @@
+{
+  "final_rows": 310066,
+  "unique_account_keys": 310066,
+  "split_counts": {
+    "Development": 182181,
+    "Validation": 83664,
+    "OOT": 44221
+  },
+  "expected_total": 310066,
+  "expected_split_counts": {
+    "Development": 182181,
+    "Validation": 83664,
+    "OOT": 44221
+  },
+  "feature_count": 79,
+  "missing_features": [],
+  "duplicate_final_keys": 0,
+  "status": "PASS"
+}

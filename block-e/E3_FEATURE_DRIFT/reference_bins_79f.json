@@ -1,0 +1,1015 @@
+{
+  "revenue": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      35000.0,
+      45000.0,
+      52000.0,
+      60000.0,
+      69000.0,
+      78000.0,
+      90000.0,
+      105000.0,
+      135000.0,
+      null
+    ]
+  },
+  "dti_n": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      7.41,
+      10.67,
+      13.23,
+      15.57,
+      17.91,
+      20.38,
+      23.07,
+      26.29,
+      30.54,
+      null
+    ]
+  },
+  "loan_amnt": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      4950.0,
+      6075.0,
+      8000.0,
+      10000.0,
+      12000.0,
+      15000.0,
+      18000.0,
+      21600.0,
+      28000.0,
+      null
+    ]
+  },
+  "fico_n": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      667.0,
+      672.0,
+      677.0,
+      682.0,
+      692.0,
+      697.0,
+      707.0,
+      722.0,
+      742.0,
+      null
+    ]
+  },
+  "experience_c": {
+    "type": "numeric_constant"
+  },
+  "emp_length": {
+    "type": "categorical",
+    "categories": [
+      "10+ years",
+      "2 years",
+      "3 years",
+      "< 1 year",
+      "1 year",
+      "NI",
+      "5 years",
+      "4 years",
+      "8 years",
+      "6 years",
+      "9 years",
+      "7 years"
+    ]
+  },
+  "purpose": {
+    "type": "categorical",
+    "categories": [
+      "debt_consolidation",
+      "credit_card",
+      "home_improvement",
+      "other",
+      "major_purchase",
+      "medical",
+      "car",
+      "small_business",
+      "vacation",
+      "moving",
+      "house",
+      "renewable_energy"
+    ]
+  },
+  "home_ownership_n": {
+    "type": "categorical",
+    "categories": [
+      "MORTGAGE",
+      "RENT",
+      "OWN",
+      "OTHER"
+    ]
+  },
+  "total_acc": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      11.0,
+      15.0,
+      18.0,
+      20.0,
+      23.0,
+      26.0,
+      30.0,
+      34.0,
+      41.0,
+      null
+    ]
+  },
+  "open_acc": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      6.0,
+      7.0,
+      8.0,
+      10.0,
+      11.0,
+      12.0,
+      14.0,
+      16.0,
+      19.0,
+      null
+    ]
+  },
+  "pub_rec": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      1.0,
+      null
+    ]
+  },
+  "pub_rec_bankruptcies": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      1.0,
+      null
+    ]
+  },
+  "revol_util": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      16.3,
+      26.4,
+      34.3,
+      41.5,
+      48.6,
+      55.9,
+      63.5,
+      72.1,
+      83.1,
+      null
+    ]
+  },
+  "revol_bal": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      2861.0,
+      4872.600000000002,
+      6695.0,
+      8598.0,
+      10816.5,
+      13473.0,
+      17108.0,
+      22595.40000000001,
+      33182.0,
+      null
+    ]
+  },
+  "mort_acc": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      null
+    ]
+  },
+  "application_type": {
+    "type": "categorical",
+    "categories": [
+      "Individual",
+      "Joint App"
+    ]
+  },
+  "loan_to_income": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      0.07,
+      0.1,
+      0.13,
+      0.15737704918032788,
+      0.18528175809761022,
+      0.21621621621621623,
+      0.25,
+      0.3,
+      0.3596774193548387,
+      null
+    ]
+  },
+  "log_revenue": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      10.463131911491967,
+      10.714439990727769,
+      10.859018228147887,
+      11.002116507732017,
+      11.141876276228,
+      11.264476926102367,
+      11.407576060361786,
+      11.561725152903833,
+      11.813037464800539,
+      null
+    ]
+  },
+  "log_loan_amnt": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      8.507344855361422,
+      8.712101863715663,
+      8.987321812850125,
+      9.210440366976517,
+      9.392745258631441,
+      9.61587214452889,
+      9.798182590890704,
+      9.980494888896912,
+      10.239995502805316,
+      null
+    ]
+  },
+  "fico_x_dti": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      5180.868,
+      7447.08,
+      9224.36,
+      10848.60400000001,
+      12479.04,
+      14199.84,
+      16095.920000000002,
+      18318.72,
+      21284.382999999998,
+      null
+    ]
+  },
+  "open_to_total_acc": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      0.29545454545454547,
+      0.35714285714285715,
+      0.40540540540540543,
+      0.45,
+      0.5,
+      0.5384615384615384,
+      0.5909090909090909,
+      0.6666666666666666,
+      0.75,
+      null
+    ]
+  },
+  "revol_bal_to_income": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      0.04372022727272728,
+      0.07588666666666669,
+      0.10516156794425088,
+      0.1343545054945055,
+      0.16541822393918937,
+      0.20123166666666673,
+      0.2466447004608296,
+      0.30956555164001087,
+      0.4205443749999999,
+      null
+    ]
+  },
+  "has_public_record": {
+    "type": "numeric_low_cardinality"
+  },
+  "has_bankruptcy": {
+    "type": "numeric_low_cardinality"
+  },
+  "term": {
+    "type": "categorical",
+    "categories": [
+      " 36 months",
+      " 60 months"
+    ]
+  },
+  "installment": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      156.58,
+      208.78,
+      265.68,
+      318.79,
+      374.97,
+      459.67,
+      540.0550000000003,
+      659.24,
+      843.22,
+      null
+    ]
+  },
+  "int_rate": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      7.24,
+      8.39,
+      9.75,
+      10.99,
+      11.49,
+      12.99,
+      14.46,
+      16.29,
+      19.53,
+      null
+    ]
+  },
+  "verification_status": {
+    "type": "categorical",
+    "categories": [
+      "Source Verified",
+      "Not Verified",
+      "Verified"
+    ]
+  },
+  "time_to_earliest_cr_line": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      270864.0,
+      336528.0,
+      381283.2,
+      423532.8,
+      473385.6,
+      528595.2,
+      602208.0,
+      694310.4,
+      857174.4,
+      null
+    ]
+  },
+  "installment_to_income": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      0.02691,
+      0.038464363708873385,
+      0.04828593846153848,
+      0.0579637490909091,
+      0.0682465289752058,
+      0.0794652,
+      0.09288988380836871,
+      0.110424,
+      0.1361595,
+      null
+    ]
+  },
+  "installment_to_loan": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      0.024313,
+      0.030115,
+      0.031056190476190473,
+      0.03160925925925926,
+      0.032173939393939394,
+      0.032962,
+      0.03357,
+      0.03417333333333333,
+      0.035648,
+      null
+    ]
+  },
+  "fico_x_revol_util": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      11793.6,
+      18698.399999999998,
+      24026.2,
+      28880.220000000005,
+      33660.1,
+      38472.0,
+      43632.200000000004,
+      49395.3,
+      56932.0,
+      null
+    ]
+  },
+  "dti_x_revol_util": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      170.0018,
+      330.6348,
+      486.0253000000001,
+      644.6742,
+      811.2325,
+      1000.6048000000002,
+      1219.0038,
+      1504.0396000000007,
+      1933.3308,
+      null
+    ]
+  },
+  "revol_bal_per_open_acc": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      291.03000000000014,
+      482.5678571428572,
+      648.5983333333335,
+      817.3333333333334,
+      999.8095238095239,
+      1226.516,
+      1520.1,
+      1984.5666666666668,
+      2912.971428571428,
+      null
+    ]
+  },
+  "has_mortgage_account": {
+    "type": "numeric_low_cardinality"
+  },
+  "credit_history_log": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      12.509375820759873,
+      12.726439605631388,
+      12.851300307798546,
+      12.956388600987502,
+      13.067667669788989,
+      13.17798009232588,
+      13.308359840119023,
+      13.450675842021806,
+      13.661397844082966,
+      null
+    ]
+  },
+  "fico_source_midpoint": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      667.0,
+      672.0,
+      677.0,
+      682.0,
+      692.0,
+      697.0,
+      707.0,
+      722.0,
+      742.0,
+      null
+    ]
+  },
+  "fico_source_width": {
+    "type": "numeric_low_cardinality"
+  },
+  "inq_last_6mths": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      1.0,
+      2.0,
+      null
+    ]
+  },
+  "acc_open_past_24mths": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      9.0,
+      null
+    ]
+  },
+  "bc_util": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      15.9,
+      28.9,
+      39.5,
+      49.4,
+      58.7,
+      68.0,
+      77.6,
+      86.6,
+      94.6,
+      null
+    ]
+  },
+  "bc_open_to_buy": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      435.0,
+      1267.0,
+      2418.0,
+      3774.0,
+      5516.0,
+      7931.0,
+      11380.900000000009,
+      16983.20000000001,
+      28162.300000000003,
+      null
+    ]
+  },
+  "avg_cur_bal": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      1711.0,
+      2715.0,
+      3813.0,
+      5285.0,
+      7776.0,
+      11616.80000000001,
+      16313.300000000017,
+      22404.40000000001,
+      32915.09999999999,
+      null
+    ]
+  },
+  "tot_cur_bal": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      14814.600000000002,
+      25472.600000000002,
+      37239.70000000001,
+      54270.200000000004,
+      86393.5,
+      136152.00000000015,
+      189052.2,
+      252108.60000000003,
+      350285.19999999995,
+      null
+    ]
+  },
+  "tot_hi_cred_lim": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      29854.600000000002,
+      44991.60000000001,
+      61442.90000000001,
+      83856.80000000002,
+      120733.0,
+      173009.80000000005,
+      229650.60000000003,
+      299468.00000000006,
+      410116.79999999993,
+      null
+    ]
+  },
+  "total_bal_ex_mort": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      11431.300000000001,
+      18608.0,
+      25221.0,
+      31838.0,
+      39256.0,
+      47749.80000000001,
+      58800.100000000006,
+      75374.80000000002,
+      105228.09999999999,
+      null
+    ]
+  },
+  "total_bc_limit": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      4000.0,
+      6800.0,
+      9500.0,
+      12400.0,
+      15800.0,
+      20000.0,
+      25600.0,
+      34000.0,
+      49300.0,
+      null
+    ]
+  },
+  "total_rev_hi_lim": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      8500.0,
+      12600.0,
+      16300.0,
+      20300.0,
+      24900.0,
+      30500.0,
+      37900.0,
+      48500.0,
+      68100.0,
+      null
+    ]
+  },
+  "num_accts_ever_120_pd": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      1.0,
+      2.0,
+      null
+    ]
+  },
+  "num_tl_90g_dpd_24m": {
+    "type": "numeric_low_cardinality"
+  },
+  "pct_tl_nvr_dlq": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      81.8,
+      88.9,
+      92.6,
+      95.2,
+      97.4,
+      null
+    ]
+  },
+  "percent_bc_gt_75": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      12.5,
+      25.0,
+      33.3,
+      50.0,
+      66.7,
+      80.0,
+      null
+    ]
+  },
+  "mths_since_recent_inq": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      1.0,
+      2.0,
+      4.0,
+      5.0,
+      7.0,
+      9.0,
+      11.0,
+      16.0,
+      null
+    ]
+  },
+  "mths_since_last_delinq": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      7.0,
+      13.0,
+      18.0,
+      25.0,
+      31.0,
+      38.0,
+      45.0,
+      55.0,
+      68.0,
+      null
+    ]
+  },
+  "mths_since_last_major_derog": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      15.0,
+      23.0,
+      31.0,
+      38.0,
+      44.0,
+      51.0,
+      59.0,
+      66.0,
+      73.0,
+      null
+    ]
+  },
+  "mo_sin_old_rev_tl_op": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      71.0,
+      109.0,
+      127.0,
+      144.0,
+      165.0,
+      188.0,
+      215.0,
+      254.0,
+      317.0,
+      null
+    ]
+  },
+  "mo_sin_rcnt_tl": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      7.0,
+      8.0,
+      11.0,
+      16.0,
+      null
+    ]
+  },
+  "mo_sin_rcnt_rev_tl_op": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      2.0,
+      3.0,
+      4.0,
+      6.0,
+      8.0,
+      10.0,
+      14.0,
+      19.0,
+      29.0,
+      null
+    ]
+  },
+  "num_actv_bc_tl": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      7.0,
+      null
+    ]
+  },
+  "num_actv_rev_tl": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      10.0,
+      null
+    ]
+  },
+  "num_bc_tl": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0,
+      11.0,
+      14.0,
+      null
+    ]
+  },
+  "num_il_tl": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      7.0,
+      8.0,
+      10.0,
+      13.0,
+      18.0,
+      null
+    ]
+  },
+  "num_rev_accts": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      6.0,
+      7.0,
+      9.0,
+      11.0,
+      13.0,
+      15.0,
+      17.0,
+      20.0,
+      25.0,
+      null
+    ]
+  },
+  "num_sats": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      6.0,
+      7.0,
+      8.0,
+      10.0,
+      11.0,
+      12.0,
+      14.0,
+      16.0,
+      19.0,
+      null
+    ]
+  },
+  "num_tl_op_past_12m": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      null
+    ]
+  },
+  "delinq_2yrs": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      1.0,
+      null
+    ]
+  },
+  "collections_12_mths_ex_med": {
+    "type": "numeric_low_cardinality"
+  },
+  "chargeoff_within_12_mths": {
+    "type": "numeric_low_cardinality"
+  },
+  "tax_liens": {
+    "type": "numeric_low_cardinality"
+  },
+  "tot_coll_amt": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      293.0,
+      null
+    ]
+  },
+  "total_il_high_credit_limit": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      12636.600000000002,
+      20000.0,
+      26892.40000000001,
+      34221.5,
+      42801.80000000001,
+      53506.100000000006,
+      68827.40000000001,
+      96123.99999999997,
+      null
+    ]
+  },
+  "bc_available_ratio": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      0.05965928351309708,
+      0.1393992317750899,
+      0.22203407693960886,
+      0.31525844383287477,
+      0.4063544535283993,
+      0.5,
+      0.5995017412935324,
+      0.7086786184210527,
+      0.8411044401544404,
+      null
+    ]
+  },
+  "nonmort_balance_to_income": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      0.19551066666666667,
+      0.29827834532374103,
+      0.38720897734492676,
+      0.47551841807909606,
+      0.5689989281886387,
+      0.6723943696627588,
+      0.80025,
+      0.9769105527638204,
+      1.304284204551146,
+      null
+    ]
+  },
+  "total_balance_to_income": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      0.2725564285714286,
+      0.43900652173913046,
+      0.6172021428571429,
+      0.8528788539944905,
+      1.265234375,
+      1.8817682690553177,
+      2.466810923076923,
+      3.07644911627907,
+      3.964853388888889,
+      null
+    ]
+  },
+  "recent_open_share": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      0.14285714285714285,
+      0.21428571428571427,
+      0.2857142857142857,
+      0.3333333333333333,
+      0.4,
+      0.47058823529411764,
+      0.5454545454545454,
+      0.6470588235294118,
+      0.8,
+      null
+    ]
+  },
+  "very_recent_open_share": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      0.06666666666666667,
+      0.10526315789473684,
+      0.14285714285714285,
+      0.17647058823529413,
+      0.2222222222222222,
+      0.2727272727272727,
+      0.3333333333333333,
+      0.42857142857142855,
+      null
+    ]
+  },
+  "inquiry_pressure": {
+    "type": "numeric_quantile",
+    "edges": [
+      null,
+      0.6931471805599453,
+      1.0986122886681096,
+      null
+    ]
+  },
+  "has_recent_90dpd": {
+    "type": "numeric_low_cardinality"
+  },
+  "has_ever_120pd": {
+    "type": "numeric_low_cardinality"
+  }
+}

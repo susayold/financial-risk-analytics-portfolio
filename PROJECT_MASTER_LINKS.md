@@ -35,15 +35,16 @@ This file only indexes links. The Drive root is the single storage location; Git
 
 ## Current Block E checkpoint
 
-- Status: **`STOPPED_AT_E3_G04_REAL_GATE_FAILURE`**; E0 `12/12 PASS`, E1 `10/10 PASS`, E2 `8/8 PASS`, E3 `7/8`.
-- E3 blocker: the frozen 79-feature contract has row-level values for only 9 features in the available D1 mart; 70 remain unavailable and are not fabricated.
-- R0–R3 remediation passed; R4B is blocked because no exact 79F matrix or complete frozen reconstruction logic was found. E4–E9 were not run because the plan requires stopping at the first unresolved 79F evidence gate. No `block-e-v1.0-final` tag exists.
+- Status: **`PASS_WITH_MONITORING`**; P0 canonical recovery PASS, E3 `8/8 PASS`, E4 `7/7 PASS`, E5 `10/10 PASS`, E6 `8/8 PASS`, E7 `9/9 PASS`, E8 `10/10 PASS`, E9 `23/23 PASS`.
+- Canonical 79F snapshot: 310,066 rows, 79 frozen features, exact split reconciliation, SHA-256 `fe2ae600c9913ccfe827509f439c2f14108260e0e237f3fa78715b145123cd42`.
+- `block-e-v1.0-final` is the final public release. Current AMBER signals are monitoring watch items; 2018 outcome scoring is disabled; no production or regulatory claim is made. Next action: `MOVE_TO_BLOCK_F`.
 - [Block E 79F recovery evidence](https://github.com/susayold/financial-risk-analytics-portfolio/tree/main/block-e/RECOVERY_79F)
 - [Block E status](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/BLOCK_E_STATUS.md)
 - [Block E execution tracker](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/BLOCK_E_EXECUTION_TRACKER.md)
-- [E3 blocker report](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/E3_FEATURE_DRIFT/E3_BLOCKER_REPORT.md)
-- [Block E private monitoring mart on Drive](https://drive.google.com/file/d/1XS6TfIi7pPzDHQFjxfC1MS_IX1VIvCpD/view?usp=drivesdk)
-- [Block E canonical scored population key on private Drive](https://drive.google.com/file/d/1rczaozIFNWb-7VrYzhGimKgY9o6MBRX1/view?usp=drivesdk)
+- [Block E final QA](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/E9_FINAL/BLOCK_E_FINAL_QA.json)
+- [Block E final scorecard](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/E9_FINAL/BLOCK_E_FINAL_SCORECARD.json)
+- [Block E block-F handoff](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/E9_FINAL/BLOCK_E_TO_F_HANDOFF.json)
+- [Block E private evidence folder on Drive](https://drive.google.com/drive/folders/1cF3HXZF9dH4BHLklxfN2QoPpeRj_iU1y)
 
 ### Block D Drive checkpoint artifacts
 

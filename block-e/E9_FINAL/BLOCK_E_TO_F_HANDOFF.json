@@ -1,0 +1,11 @@
+{
+  "block_e_tag": "block-e-v1.0-final",
+  "block_d_tag": "block-d-v1.0-final",
+  "model_id": "C8E_RICH_BUREAU_CATBOOST_79F",
+  "monitoring_baseline_version": "E-BASELINE-2016-1.0",
+  "monitoring_mart_version": "E1-MART-79F-1.0",
+  "79F_snapshot_sha256": "fe2ae600c9913ccfe827509f439c2f14108260e0e237f3fa78715b145123cd42",
+  "overall_status": "PASS_WITH_MONITORING",
+  "highest_kri": "AMBER",
+  "next_action": "MOVE_TO_BLOCK_F"
+}

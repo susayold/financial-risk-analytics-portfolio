@@ -1,0 +1,2 @@
+change_id,date,object_type,object_version_old,object_version_new,change_description,approved_for_portfolio_use,production_authorization
+CC-001,2026-09-04,FEATURE_CONTRACT / DATA_CONTRACT,R4B-79F-BLOCKED,E1-MART-79F-1.0,downstream evidence-retention remediation,False,False

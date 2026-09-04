@@ -1,0 +1,1 @@
+# Block E Executive Monitoring Summary\n\nThe canonical 310,066-account 79F population is monitored against Validation-2016 and OOT-2017. Current AMBER watch items are feature PSI/missingness and calibration slope.\n

@@ -1,0 +1,11 @@
+{
+  "source_scope": "canonical recovered 79F evidence bundle",
+  "source_artifact_class": "governed private dataset package",
+  "feature_count": 79,
+  "historical_transform": "C9 exact reconstruction logic",
+  "replay_mode": "FROZEN_MODEL_LOAD",
+  "private_row_level_sources": true,
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false,
+  "public_note": "Physical source paths and private URLs are intentionally omitted from the public manifest."
+}

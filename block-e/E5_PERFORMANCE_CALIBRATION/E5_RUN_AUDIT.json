@@ -1,0 +1,10 @@
+{
+  "stage": "E5",
+  "status": "PASS",
+  "eligible_windows": [
+    "Validation-2016",
+    "OOT-2017"
+  ],
+  "calibration_slope_oot": 1.2507071775766894,
+  "model": "C8E_RICH_BUREAU_CATBOOST_79F"
+}

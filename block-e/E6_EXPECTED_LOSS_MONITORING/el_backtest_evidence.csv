@@ -1,0 +1,4 @@
+analysis,status,evidence_boundary
+combined_loss_proxy,NOT_EXECUTED,GOOD-row realized-loss treatment unsupported
+incidence,EXECUTED,E5 actual_default
+severity,SOURCE_DEPENDENT,D4 evidence
