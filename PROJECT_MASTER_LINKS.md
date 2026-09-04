@@ -49,6 +49,7 @@ This file only indexes links. The Drive root is the single storage location; Git
 - [Block E patched release](https://github.com/susayold/financial-risk-analytics-portfolio/releases/tag/block-e-v1.0.1-final)
 - [Block E patched Block-F handoff](https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/E9_FINAL/BLOCK_E_TO_F_HANDOFF_PATCHED.json)
 - [Block E private evidence folder on Drive](https://drive.google.com/drive/folders/1cF3HXZF9dH4BHLklxfN2QoPpeRj_iU1y)
+- [Block E patched handoff package on Drive](https://drive.google.com/file/d/17W43Xpg5BjhT3l2VCY0agsxxBpOgrui5/view?usp=drivesdk)
 
 ### Block D Drive checkpoint artifacts
 

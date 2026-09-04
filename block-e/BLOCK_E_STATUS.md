@@ -28,3 +28,5 @@ Current highest KRI status is `AMBER`; historical highest observed KRI status is
 ## Handoff
 
 `next_action=MOVE_TO_BLOCK_F` is set after patched E9 35/35 PASS. The old `block-e-v1.0-final` remains historical; the canonical release is `block-e-v1.0.1-final`. The private handoff remains in the Block E Drive evidence folder; GitHub contains sanitized aggregate artifacts only.
+
+Patched handoff package: [Drive package](https://drive.google.com/file/d/17W43Xpg5BjhT3l2VCY0agsxxBpOgrui5/view?usp=drivesdk). GitHub release: [block-e-v1.0.1-final](https://github.com/susayold/financial-risk-analytics-portfolio/releases/tag/block-e-v1.0.1-final).
