@@ -1,0 +1,11 @@
+{
+  "primary_pages": [
+    {"number": 1, "name": "Executive Overview", "route": "/", "data_contract": "page-01-overview.json"},
+    {"number": 2, "name": "Portfolio Risk", "route": "/portfolio-risk/", "data_contract": "page-02-portfolio-risk.json"},
+    {"number": 3, "name": "Risk Model & Decisioning", "route": "/model-decisioning/", "data_contract": "page-03-model-decisioning.json"},
+    {"number": 4, "name": "Loss, Policy & Stress", "route": "/loss-policy-stress/", "data_contract": "page-04-loss-policy-stress.json"},
+    {"number": 5, "name": "Monitoring & Early Warning", "route": "/monitoring/", "data_contract": "page-05-monitoring.json"},
+    {"number": 6, "name": "Governance & Audit", "route": "/governance/", "data_contract": "page-06-governance.json"},
+    {"number": 7, "name": "Architecture & Delivery", "route": "/architecture/", "data_contract": "page-07-architecture.json"}
+  ]
+}
