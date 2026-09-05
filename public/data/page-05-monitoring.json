@@ -1,0 +1,422 @@
+{
+  "meta": {
+    "project": "CRD.PI",
+    "page": "monitoring",
+    "version": "F-P05-CONTENT-1.0",
+    "block_e_status": "PASS_WITH_MONITORING",
+    "canonical_release": "block-e-v1.0.2-final",
+    "baseline": "Validation-2016",
+    "monitoring_window": "OOT-2017",
+    "production_authorized": false,
+    "regulatory_compliance_claimed": false,
+    "public_safe": true
+  },
+  "population": {
+    "rows": 310066,
+    "feature_count": 79,
+    "unique_account_grain": true,
+    "model_id": "C8E_RICH_BUREAU_CATBOOST_79F",
+    "snapshot_sha256": "fe2ae600c9913ccfe827509f439c2f14108260e0e237f3fa78715b145123cd42"
+  },
+  "status": {
+    "current_highest_kri": "AMBER",
+    "historical_highest_kri": "RED",
+    "recalibration_candidate": true,
+    "redevelopment_candidate": false,
+    "automatic_retraining": false,
+    "model_use_restriction": "historical_portfolio_project_only",
+    "portfolio_project_use_approved": true
+  },
+  "governance_counts": {
+    "kri_count": 92,
+    "alert_count": 21,
+    "amber_alert_count": 20,
+    "red_alert_count": 1,
+    "breach_count": 3,
+    "investigation_count": 21,
+    "action_count": 21,
+    "green_alert_count": 0
+  },
+  "feature_drift": [
+    {
+      "kri_id": "E3-KRI-001",
+      "feature": "int_rate",
+      "window": "OOT-2017",
+      "metric": "PSI",
+      "value": 0.100646,
+      "severity": "AMBER",
+      "action": "WATCH"
+    },
+    {
+      "kri_id": "E3-KRI-002",
+      "feature": "installment_to_loan",
+      "window": "OOT-2017",
+      "metric": "PSI",
+      "value": 0.136962,
+      "severity": "AMBER",
+      "action": "WATCH"
+    },
+    {
+      "kri_id": "E3-KRI-003",
+      "feature": "mths_since_last_delinq",
+      "window": "OOT-2017",
+      "metric": "MISSINGNESS_SHIFT_PP",
+      "value": 2.6635,
+      "severity": "AMBER",
+      "action": "WATCH"
+    }
+  ],
+  "score_drift": {
+    "annual_psi": 0.0036352563867260096,
+    "annual_status": "GREEN",
+    "monthly": [
+      {
+        "window": "2017-01",
+        "psi": 0.006663964132455424,
+        "severity": "GREEN",
+        "n": 4267
+      },
+      {
+        "window": "2017-02",
+        "psi": 0.010091736489267627,
+        "severity": "GREEN",
+        "n": 3516
+      },
+      {
+        "window": "2017-03",
+        "psi": 0.00858883869300652,
+        "severity": "GREEN",
+        "n": 4497
+      },
+      {
+        "window": "2017-04",
+        "psi": 0.012397648559734235,
+        "severity": "GREEN",
+        "n": 3296
+      },
+      {
+        "window": "2017-05",
+        "psi": 0.00797864025803855,
+        "severity": "GREEN",
+        "n": 4319
+      },
+      {
+        "window": "2017-06",
+        "psi": 0.005902944314441239,
+        "severity": "GREEN",
+        "n": 3933
+      },
+      {
+        "window": "2017-07",
+        "psi": 0.007016754477978311,
+        "severity": "GREEN",
+        "n": 3963
+      },
+      {
+        "window": "2017-08",
+        "psi": 0.004310276842660334,
+        "severity": "GREEN",
+        "n": 4026
+      },
+      {
+        "window": "2017-09",
+        "psi": 0.016665409905933164,
+        "severity": "GREEN",
+        "n": 3491
+      },
+      {
+        "window": "2017-10",
+        "psi": 0.0012193591453111673,
+        "severity": "GREEN",
+        "n": 3115
+      },
+      {
+        "window": "2017-11",
+        "psi": 0.00940020505977789,
+        "severity": "GREEN",
+        "n": 3152
+      },
+      {
+        "window": "2017-12",
+        "psi": 0.012395091983514395,
+        "severity": "GREEN",
+        "n": 2646
+      }
+    ],
+    "quarterly": [
+      {
+        "window": "2017Q1",
+        "psi": 0.006701851733328044,
+        "severity": "GREEN",
+        "n": 12280
+      },
+      {
+        "window": "2017Q2",
+        "psi": 0.006323388900666033,
+        "severity": "GREEN",
+        "n": 11548
+      },
+      {
+        "window": "2017Q3",
+        "psi": 0.00529919406200337,
+        "severity": "GREEN",
+        "n": 11480
+      },
+      {
+        "window": "2017Q4",
+        "psi": 0.004297532255742093,
+        "severity": "GREEN",
+        "n": 8913
+      }
+    ]
+  },
+  "discrimination": {
+    "oot_roc_auc": 0.8557777504539299,
+    "oot_ks": 0.5625094217238796,
+    "quarterly_auc_range": 0.01817803162203191,
+    "quarterly": [
+      {
+        "window": "2017Q1",
+        "roc_auc": 0.848359384123037,
+        "n": 12280,
+        "bad_count": 1577,
+        "good_count": 10703
+      },
+      {
+        "window": "2017Q2",
+        "roc_auc": 0.8469118669375408,
+        "n": 11548,
+        "bad_count": 1558,
+        "good_count": 9990
+      },
+      {
+        "window": "2017Q3",
+        "roc_auc": 0.8650898985595727,
+        "n": 11480,
+        "bad_count": 1667,
+        "good_count": 9813
+      },
+      {
+        "window": "2017Q4",
+        "roc_auc": 0.8640453285829718,
+        "n": 8913,
+        "bad_count": 1090,
+        "good_count": 7823
+      }
+    ]
+  },
+  "calibration": {
+    "annual_slope": 1.2507071775766894,
+    "annual_severity": "AMBER",
+    "annual_mean_prediction": 0.15145175596075336,
+    "annual_observed_bad_rate": 0.13323986341331043,
+    "historical_red": {
+      "window": "2017-10",
+      "slope": 1.3585283041585752,
+      "sample_n": 3115,
+      "bad_count": 395,
+      "severity": "RED",
+      "alert_id": "E8A-016",
+      "breach_id": "BR-003",
+      "investigation_id": "INV-016",
+      "action_id": "ACT-016",
+      "action": "CALIBRATION_REVIEW",
+      "automatic_retraining": false
+    },
+    "monthly": [
+      {
+        "window": "2017-01",
+        "slope": 1.2947068852686867,
+        "gap": 0.02000420229778213,
+        "mean_prediction": 0.14796295552018662,
+        "observed_bad_rate": 0.1279587532224045,
+        "n": 4267,
+        "bad_count": 546
+      },
+      {
+        "window": "2017-02",
+        "slope": 1.2244418931027765,
+        "gap": 0.018764776038528524,
+        "mean_prediction": 0.14646671005445572,
+        "observed_bad_rate": 0.1277019340159272,
+        "n": 3516,
+        "bad_count": 449
+      },
+      {
+        "window": "2017-03",
+        "slope": 1.185635051126737,
+        "gap": 0.016575297311473974,
+        "mean_prediction": 0.14599491038685755,
+        "observed_bad_rate": 0.12941961307538358,
+        "n": 4497,
+        "bad_count": 582
+      },
+      {
+        "window": "2017-04",
+        "slope": 1.2046552454107617,
+        "gap": 0.012082064070862486,
+        "mean_prediction": 0.14679080193494015,
+        "observed_bad_rate": 0.13470873786407767,
+        "n": 3296,
+        "bad_count": 444
+      },
+      {
+        "window": "2017-05",
+        "slope": 1.1809263873313705,
+        "gap": 0.014180899051852963,
+        "mean_prediction": 0.1519442702025823,
+        "observed_bad_rate": 0.13776337115072934,
+        "n": 4319,
+        "bad_count": 595
+      },
+      {
+        "window": "2017-06",
+        "slope": 1.2908526164261678,
+        "gap": 0.017265604503854143,
+        "mean_prediction": 0.149225940125517,
+        "observed_bad_rate": 0.13196033562166284,
+        "n": 3933,
+        "bad_count": 519
+      },
+      {
+        "window": "2017-07",
+        "slope": 1.2901449512865504,
+        "gap": 0.00860264301531255,
+        "mean_prediction": 0.16126476766835318,
+        "observed_bad_rate": 0.15266212465304063,
+        "n": 3963,
+        "bad_count": 605
+      },
+      {
+        "window": "2017-08",
+        "slope": 1.277925119721385,
+        "gap": 0.02022562071805878,
+        "mean_prediction": 0.14938607774736826,
+        "observed_bad_rate": 0.12916045702930948,
+        "n": 4026,
+        "bad_count": 520
+      },
+      {
+        "window": "2017-09",
+        "slope": 1.2836358672741268,
+        "gap": 0.01832581615747239,
+        "mean_prediction": 0.17358218968941166,
+        "observed_bad_rate": 0.15525637353193927,
+        "n": 3491,
+        "bad_count": 542
+      },
+      {
+        "window": "2017-10",
+        "slope": 1.3585283041585752,
+        "gap": 0.025938399488364072,
+        "mean_prediction": 0.15274417797953582,
+        "observed_bad_rate": 0.12680577849117175,
+        "n": 3115,
+        "bad_count": 395
+      },
+      {
+        "window": "2017-11",
+        "slope": 1.1706493377483373,
+        "gap": 0.023536001375512552,
+        "mean_prediction": 0.14250808259378667,
+        "observed_bad_rate": 0.11897208121827411,
+        "n": 3152,
+        "bad_count": 375
+      },
+      {
+        "window": "2017-12",
+        "slope": 1.2698844402553675,
+        "gap": 0.028729802588928724,
+        "mean_prediction": 0.14966706638333538,
+        "observed_bad_rate": 0.12093726379440665,
+        "n": 2646,
+        "bad_count": 320
+      }
+    ]
+  },
+  "policy_capacity": [
+    {
+      "policy": "GROWTH",
+      "over_capacity_pp": 0.3879439972457252,
+      "severity": "AMBER",
+      "action": "POLICY_REVIEW"
+    },
+    {
+      "policy": "BALANCED",
+      "over_capacity_pp": 0.0273756021298463,
+      "severity": "AMBER",
+      "action": "WATCH"
+    },
+    {
+      "policy": "CONSERVATIVE",
+      "severity": "GREEN",
+      "alert_generated": false,
+      "action": "NO_ACTION"
+    }
+  ],
+  "loss_monitoring": {
+    "status": "GREEN",
+    "non_green_alert_count": 0,
+    "claim_boundary": "ANALYTICAL PROXY MONITORING ONLY"
+  },
+  "breaches": [
+    {
+      "id": "BR-001",
+      "kri_id": "E5-CALIBRATION_GAP-2017-12",
+      "alert_id": "E8A-008",
+      "type": "PERSISTENT_AMBER",
+      "metric": "CALIBRATION_GAP",
+      "window": "2017-12",
+      "severity": "AMBER",
+      "persistence_count": 3,
+      "investigation_id": "INV-008",
+      "action_id": "ACT-008"
+    },
+    {
+      "id": "BR-002",
+      "kri_id": "E5-CALIBRATION_SLOPE-2017-08",
+      "alert_id": "E8A-014",
+      "type": "PERSISTENT_AMBER",
+      "metric": "CALIBRATION_SLOPE",
+      "window": "2017-08",
+      "severity": "AMBER",
+      "persistence_count": 3,
+      "investigation_id": "INV-014",
+      "action_id": "ACT-014"
+    },
+    {
+      "id": "BR-003",
+      "kri_id": "E5-CALIBRATION_SLOPE-2017-10",
+      "alert_id": "E8A-016",
+      "type": "SINGLE_RED",
+      "metric": "CALIBRATION_SLOPE",
+      "window": "2017-10",
+      "severity": "RED",
+      "persistence_count": 1,
+      "investigation_id": "INV-016",
+      "action_id": "ACT-016"
+    }
+  ],
+  "change_control": {
+    "model_recalibration_candidate": true,
+    "model_redevelopment_candidate": false,
+    "automatic_retraining": false,
+    "model_change_required_for_red_event": false,
+    "production_change_required": false
+  },
+  "controls": {
+    "threshold_version": "E0-1.0.1",
+    "block_c_reopened": false,
+    "model_retrained": false,
+    "feature_contract_changed": false,
+    "outcome_2018_monitoring": "DISABLED / UNAVAILABLE",
+    "realized_loss_backtesting": "DISABLED / NOT CLAIMED",
+    "green_alerts_generated": false,
+    "root_cause_highlights": [
+      "CALIBRATION",
+      "MISSINGNESS",
+      "POLICY_CAPACITY",
+      "POPULATION / FEATURE SHIFT"
+    ]
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "version": "E0-1.0.1",
+  "metrics": {
+    "PSI": {
+      "frequency_scope": "annual|quarterly|monthly",
+      "green": "x < 0.10",
+      "amber": "0.10 <= x < 0.25",
+      "red": "x >= 0.25",
+      "insufficient_sample": "eligible n>=1000 where applicable",
+      "persistence": "same metric+frequency+population"
+    },
+    "MISSINGNESS_SHIFT_PP": {
+      "frequency_scope": "annual|quarterly|monthly",
+      "green": "x < 2",
+      "amber": "2 <= x <= 5",
+      "red": "x > 5",
+      "insufficient_sample": "eligible source-field coverage",
+      "persistence": "same metric+frequency+population"
+    },
+    "COVERAGE_DROP_PP": {
+      "frequency_scope": "annual|quarterly|monthly",
+      "green": "x < 2",
+      "amber": "2 <= x <= 5",
+      "red": "x > 5",
+      "insufficient_sample": "eligible source-field coverage",
+      "persistence": "same metric+frequency+population"
+    },
+    "AUC_DROP": {
+      "frequency_scope": "annual|quarterly|monthly",
+      "green": "x <= 0.02",
+      "amber": "0.02 < x <= 0.05",
+      "red": "x > 0.05",
+      "insufficient_sample": "n>=1000,bad>=100,good>=100",
+      "persistence": "same metric+frequency+population"
+    },
+    "KS_DROP": {
+      "frequency_scope": "annual|quarterly|monthly",
+      "green": "x <= 0.03",
+      "amber": "0.03 < x <= 0.07",
+      "red": "x > 0.07",
+      "insufficient_sample": "n>=1000,bad>=100,good>=100",
+      "persistence": "same metric+frequency+population"
+    },
+    "CALIBRATION_GAP": {
+      "frequency_scope": "annual|quarterly|monthly",
+      "green": "x < 0.02",
+      "amber": "0.02 <= x <= 0.05",
+      "red": "x > 0.05",
+      "insufficient_sample": "n>=2000,bad>=150",
+      "persistence": "same metric+frequency+population"
+    },
+    "CALIBRATION_SLOPE": {
+      "frequency_scope": "annual|quarterly|monthly",
+      "green": "0.75 <= x <= 1.25",
+      "amber": "0.65 <= x < 0.75 or 1.25 < x <= 1.35",
+      "red": "x < 0.65 or x > 1.35",
+      "insufficient_sample": "n>=2000,bad>=150",
+      "persistence": "same metric+frequency+population"
+    },
+    "DECILE_MONOTONICITY_VIOLATIONS": {
+      "frequency_scope": "annual|quarterly|monthly",
+      "green": "x == 0",
+      "amber": "x == 1",
+      "red": "x >= 2",
+      "insufficient_sample": "outcome eligible",
+      "persistence": "same metric+frequency+population"
+    },
+    "QUARTERLY_AUC_RANGE": {
+      "frequency_scope": "quarterly",
+      "green": "x < 0.05",
+      "amber": "0.05 <= x <= 0.08",
+      "red": "x > 0.08",
+      "insufficient_sample": "all eligible quarterly windows",
+      "persistence": "same metric+frequency+population"
+    },
+    "RISK_BAND_SHARE_SHIFT_PP": {
+      "frequency_scope": "annual|quarterly|monthly",
+      "green": "x < 5",
+      "amber": "5 <= x <= 10",
+      "red": "x > 10",
+      "insufficient_sample": "monitor population eligible",
+      "persistence": "same metric+frequency+population"
+    },
+    "EL_RATE_INCREASE_PCT": {
+      "frequency_scope": "annual",
+      "green": "x < 10",
+      "amber": "10 <= x <= 25",
+      "red": "x > 25",
+      "insufficient_sample": "EAD and LGD evidence available",
+      "persistence": "same metric+frequency+population"
+    },
+    "REVIEW_CAPACITY_OVER_PP": {
+      "frequency_scope": "policy_simulation",
+      "green": "x <= 0",
+      "amber": "0 < x <= 2",
+      "red": "x > 2",
+      "insufficient_sample": "frozen D6 scenario available",
+      "persistence": "same metric+frequency+population"
+    }
+  }
+}
