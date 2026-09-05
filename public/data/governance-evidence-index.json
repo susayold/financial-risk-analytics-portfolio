@@ -1,0 +1,92 @@
+[
+  {
+    "artifact_name": "Block E Status",
+    "stage": "E9",
+    "purpose": "Current closure and release authority",
+    "public_source": "https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/BLOCK_E_STATUS.md",
+    "status": "CANONICAL",
+    "release": "block-e-v1.0.2-final",
+    "public_private_class": "PUBLIC"
+  },
+  {
+    "artifact_name": "E8 Governance QA",
+    "stage": "E8",
+    "purpose": "KRI, alert and workflow integrity",
+    "public_source": "https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/E8_KRI_GOVERNANCE/E8_TEST_RESULTS_PATCHED.json",
+    "status": "25/25 PASS",
+    "release": "block-e-v1.0.1-final",
+    "public_private_class": "PUBLIC"
+  },
+  {
+    "artifact_name": "Alert Log",
+    "stage": "E8",
+    "purpose": "Non-GREEN event registry",
+    "public_source": "https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/E8_KRI_GOVERNANCE/alert_log_PATCHED.csv",
+    "status": "ACTIVE EVIDENCE",
+    "release": "block-e-v1.0.2-final",
+    "public_private_class": "PUBLIC_AGGREGATE"
+  },
+  {
+    "artifact_name": "Breach Register",
+    "stage": "E8",
+    "purpose": "Escalated event registry",
+    "public_source": "https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/E8_KRI_GOVERNANCE/breach_register_PATCHED.csv",
+    "status": "3 BREACHES",
+    "release": "block-e-v1.0.2-final",
+    "public_private_class": "PUBLIC_AGGREGATE"
+  },
+  {
+    "artifact_name": "Action Register",
+    "stage": "E8",
+    "purpose": "Governed response registry",
+    "public_source": "https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/E8_KRI_GOVERNANCE/action_register_PATCHED.csv",
+    "status": "21 ACTIONS",
+    "release": "block-e-v1.0.2-final",
+    "public_private_class": "PUBLIC_AGGREGATE"
+  },
+  {
+    "artifact_name": "E9 Final QA",
+    "stage": "E9",
+    "purpose": "Final scans and checksum integrity",
+    "public_source": "https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/E9_FINAL/BLOCK_E_FINAL_QA_PATCHED.json",
+    "status": "35/35 PASS",
+    "release": "block-e-v1.0.2-final",
+    "public_private_class": "PUBLIC"
+  },
+  {
+    "artifact_name": "Block E Decision",
+    "stage": "E9",
+    "purpose": "Use, recalibration and redevelopment decision",
+    "public_source": "https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/E9_FINAL/BLOCK_E_DECISION_PATCHED.json",
+    "status": "DECISION INPUT",
+    "release": "block-e-v1.0.2-final",
+    "public_private_class": "PUBLIC"
+  },
+  {
+    "artifact_name": "Final Checksum Manifest",
+    "stage": "E9",
+    "purpose": "Artifact fingerprint and public boundary",
+    "public_source": "https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-e/E9_FINAL/BLOCK_E_FINAL_CHECKSUM_MANIFEST_PATCHED.json",
+    "status": "PASS",
+    "release": "block-e-v1.0.2-final",
+    "public_private_class": "PUBLIC"
+  },
+  {
+    "artifact_name": "Block D Status",
+    "stage": "D9",
+    "purpose": "Carried-forward analytical and production boundaries",
+    "public_source": "https://github.com/susayold/financial-risk-analytics-portfolio/blob/main/block-d/BLOCK_D_STATUS.md",
+    "status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+    "release": "block-d-v1.0-final",
+    "public_private_class": "PUBLIC"
+  },
+  {
+    "artifact_name": "Private evidence handoff",
+    "stage": "E9",
+    "purpose": "Detailed row-level evidence retained outside the public site",
+    "public_source": "https://drive.google.com/drive/folders/1cF3HXZF9dH4BHLklxfN2QoPpeRj_iU1y",
+    "status": "PRIVATE",
+    "release": "block-e-v1.0.2-final",
+    "public_private_class": "PRIVATE_DRIVE"
+  }
+]

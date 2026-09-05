@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "project": "CRD.PI",
+    "page": "governance",
+    "document_version": "F-P06-CONTENT-1.0",
+    "canonical_block_e_release": "block-e-v1.0.2-final",
+    "block_e_status": "PASS_WITH_MONITORING",
+    "production_authorized": false,
+    "regulatory_compliance_claimed": false,
+    "public_safe": true
+  },
+  "snapshot": {
+    "rows": 310066,
+    "feature_count": 79,
+    "unique_account_key": true,
+    "sha256": "fe2ae600c9913ccfe827509f439c2f14108260e0e237f3fa78715b145123cd42",
+    "model": "C8E_RICH_BUREAU_CATBOOST_79F"
+  },
+  "qa": {
+    "e8_passed": 25,
+    "e8_failed": 0,
+    "e9_passed": 35,
+    "e9_failed": 0,
+    "e9_original_gates": "23/23 PASS",
+    "e9_patch_gates": "12/12 PASS",
+    "public_private_scan": "PASS",
+    "checksum_integrity": "PASS",
+    "foreign_keys": "PASS",
+    "snapshot_sha256": "fe2ae600c9913ccfe827509f439c2f14108260e0e237f3fa78715b145123cd42"
+  },
+  "monitoring_state": {
+    "kri_count": 92,
+    "alert_count": 21,
+    "amber_alert_count": 20,
+    "red_alert_count": 1,
+    "breach_count": 3,
+    "investigation_count": 21,
+    "action_count": 21,
+    "green_alert_count": 0,
+    "current_highest_kri": "AMBER",
+    "historical_highest_kri": "RED"
+  },
+  "model_governance": {
+    "champion": "C8E_RICH_BUREAU_CATBOOST_79F",
+    "contract": "Frozen 79-feature contract, feature order, target, score name and historical OOT evidence",
+    "block_c_model_reopened": false,
+    "model_retrained": false,
+    "hpo_rerun": false,
+    "feature_redesign": false,
+    "target_redesign": false
+  },
+  "validation_governance": {
+    "baseline": "Validation-2016",
+    "historical_oot": "OOT-2017",
+    "oot_tuning": false,
+    "new_holdout_required_if_redeveloped": true
+  },
+  "risk_economics": {
+    "block_d_status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+    "chain": [
+      "p_bad_final",
+      "LGD_CENTRAL_Q50",
+      "contractual EAD proxy",
+      "EL_MAIN_ANALYTICAL",
+      "historical policy simulation",
+      "analytical stress"
+    ],
+    "boundaries": [
+      "risk score ≠ verified regulatory 12m PD",
+      "LGD/EAD/EL are analytical proxies",
+      "policy is historical simulation",
+      "pricing is descriptive only",
+      "stress is analytical sensitivity"
+    ]
+  },
+  "threshold_contract": {
+    "version": "E0-1.0.1",
+    "deterministic": true,
+    "shared_across_monitoring": true
+  },
+  "change_control": {
+    "recalibration_candidate": true,
+    "recalibration_executed": false,
+    "redevelopment_candidate": false,
+    "automatic_retraining": false,
+    "portfolio_project_use_approved": true,
+    "production_authorized": false,
+    "regulatory_compliance_claimed": false,
+    "model_use_restriction": "historical_portfolio_project_only"
+  },
+  "historical_red_example": {
+    "metric": "CALIBRATION_SLOPE",
+    "window": "2017-10",
+    "value": 1.3585283041585752,
+    "severity": "RED",
+    "breach_id": "BR-003",
+    "investigation_id": "INV-016",
+    "action_id": "ACT-016",
+    "action_type": "CALIBRATION_REVIEW",
+    "model_change_required": false,
+    "production_change_required": false,
+    "automatic_retraining": false
+  },
+  "breach_logic": {
+    "total": 3,
+    "persistent_amber": 2,
+    "single_red": 1,
+    "rule": "single RED OR deterministic persistence escalation"
+  },
+  "release_lineage": [
+    {
+      "tag": "block-d-v1.0-final",
+      "date": "2026-09-03",
+      "type": "ANALYTICAL_CLOSURE",
+      "status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+      "current": false
+    },
+    {
+      "tag": "block-e-v1.0-final",
+      "date": null,
+      "type": "HISTORICAL_PREDECESSOR",
+      "status": "SUPERSEDED",
+      "current": false
+    },
+    {
+      "tag": "block-e-v1.0.1-final",
+      "date": "2026-09-04",
+      "type": "GOVERNANCE_REMEDIATION",
+      "status": "SUPERSEDED",
+      "scope": "workflow completeness; model/snapshot/target/findings unchanged",
+      "current": false
+    },
+    {
+      "tag": "block-e-v1.0.2-final",
+      "date": "2026-09-04",
+      "type": "DOCUMENTATION_CONSISTENCY",
+      "status": "CURRENT",
+      "scope": "stale breach documentation corrected 4 → 3; analytical evidence unchanged",
+      "current": true
+    }
+  ],
+  "release_message": "Not every patch is a model change.",
+  "checksum_manifest": {
+    "tag": "block-e-v1.0.2-final",
+    "artifact_count": 107,
+    "snapshot_unchanged": true
+  }
+}
