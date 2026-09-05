@@ -1,0 +1,312 @@
+{
+  "meta": {
+    "project": "CRD.PI",
+    "page": "loss-policy-stress",
+    "version": "F-P04-CONTENT-1.0",
+    "block_d_status": "CLOSED_WITH_LIMITATIONS_PORTFOLIO",
+    "population_scope": "matched_scored_310066",
+    "production_authorized": false,
+    "regulatory_compliance_claimed": false,
+    "public_safe": true,
+    "sources": [
+      "block-d/D4_MAIN_CASE_DECISION.json",
+      "block-d/D5_EXPECTED_LOSS/D5_PORTFOLIO_EL_SUMMARY.csv",
+      "block-d/D6_DECISION_POLICY/D6_POLICY_SCENARIOS.csv",
+      "block-d/D6_DECISION_POLICY/D6_OOT_POLICY_REPLAY.csv",
+      "block-d/D7_PRICING/D7_SCOPE_DECISION.json",
+      "block-d/D7_PRICING/D7_DESCRIPTIVE_PRICING_SUMMARY.csv",
+      "block-d/D8_STRESS/D8_FINAL_STRESS_RESULTS.csv",
+      "block-d/D8_STRESS/D8_REVERSE_STRESS_RESULTS.csv",
+      "block-d/D8_STRESS/D8_EAD_TIMING_SENSITIVITY.csv"
+    ]
+  },
+  "central_case": {
+    "accounts": 310066,
+    "mean_p_bad_final": 0.15604812219137484,
+    "lgd_scenario": "LGD_CENTRAL_Q50",
+    "lgd": 0.667384888,
+    "ead_scenario": "EAD_0M",
+    "ead_proxy": 4469158350.0,
+    "expected_loss_proxy": 526752273.6678772,
+    "el_rate": 0.11786386438240148,
+    "claim_boundary": "ANALYTICAL_EXPECTED_LOSS_PROXY"
+  },
+  "lgd_sensitivity": [
+    {
+      "scenario": "Q25_LOW_SEVERITY",
+      "lgd": 0.48967010746551115,
+      "el_proxy": 386485890.0650621,
+      "el_rate": 0.08647845070539112
+    },
+    {
+      "scenario": "Q50_CENTRAL",
+      "lgd": 0.667384888,
+      "el_proxy": 526752273.6678772,
+      "el_rate": 0.11786386438240148
+    },
+    {
+      "scenario": "Q75_ADVERSE",
+      "lgd": 0.7902973489584245,
+      "el_proxy": 623764386.8219352,
+      "el_rate": 0.13957088515826144
+    },
+    {
+      "scenario": "Q90_SEVERE",
+      "lgd": 0.865786,
+      "el_proxy": 683345925.582026,
+      "el_rate": 0.1529025986698426
+    }
+  ],
+  "ead_timing": [
+    {
+      "timing": "0M",
+      "ead_proxy": 4469158350.0,
+      "el_proxy_q50": 526752273.6678772,
+      "el_rate_q50": 0.11786386438240148
+    },
+    {
+      "timing": "6M",
+      "ead_proxy": 3933378918.8966465,
+      "el_proxy_q50": 477851450.0818497,
+      "el_rate_q50": 0.12148624882951577
+    },
+    {
+      "timing": "12M",
+      "ead_proxy": 3364104333.2269974,
+      "el_proxy_q50": 424860774.51670504,
+      "el_rate_q50": 0.12629238942454554
+    },
+    {
+      "timing": "18M",
+      "ead_proxy": 2758935032.590508,
+      "el_proxy_q50": 367404966.3725008,
+      "el_rate_q50": 0.1331691257794951
+    },
+    {
+      "timing": "24M",
+      "ead_proxy": 2115276689.2182667,
+      "el_proxy_q50": 305071359.71381724,
+      "el_rate_q50": 0.14422291006599286
+    }
+  ],
+  "policies": [
+    {
+      "scenario": "GROWTH",
+      "validation": {
+        "basis": "Validation-2016",
+        "selection_rule": "MAX_APPROVAL_WITHIN_PARETO",
+        "approve_cutoff": 0.24170213662124707,
+        "decline_cutoff": 0.40001016517331023,
+        "approval_rate": 0.7999976094855613,
+        "review_rate": 0.09999521897112258,
+        "decline_rate": 0.10000717154331612,
+        "approved_el_rate": 0.055285497093799076,
+        "bad_capture_rate": 0.5787878787878787
+      },
+      "oot": {
+        "split": "historical OOT policy replay 2017",
+        "approved_accounts": 35362,
+        "review_accounts": 4707,
+        "declined_accounts": 4152,
+        "approval_rate": 0.7996653173831437,
+        "review_rate": 0.10644264037448271,
+        "decline_rate": 0.09389204224237353,
+        "approved_bad_rate": 0.05525705559640292,
+        "review_bad_rate": 0.30125345230507755,
+        "declined_bad_rate": 0.6069364161849711,
+        "bad_capture_rate": 0.6683638832315003,
+        "good_route_out_rate": 0.12838842651778026,
+        "approved_ead": 452074300.0,
+        "review_ead": 80503600.0,
+        "declined_ead": 81602375.0,
+        "approved_el_proxy": 26173027.103134297,
+        "review_el_proxy": 16740869.03737086,
+        "declined_el_proxy": 30735708.32050252,
+        "approved_el_rate": 0.05789541034103088,
+        "review_el_rate": 0.2079518063461865,
+        "declined_el_rate": 0.37665212955508365
+      }
+    },
+    {
+      "scenario": "BALANCED",
+      "validation": {
+        "basis": "Validation-2016",
+        "selection_rule": "PROJECT_BALANCED_UTILITY",
+        "approve_cutoff": 0.08515207601719335,
+        "decline_cutoff": 0.11547320448209,
+        "approval_rate": 0.5,
+        "review_rate": 0.09999521897112258,
+        "decline_rate": 0.40000478102887743,
+        "approved_el_rate": 0.02771132074466747,
+        "bad_capture_rate": 0.858139534883721
+      },
+      "oot": {
+        "split": "historical OOT policy replay 2017",
+        "approved_accounts": 21677,
+        "review_accounts": 4390,
+        "declined_accounts": 18154,
+        "approval_rate": 0.49019696524275796,
+        "review_rate": 0.0992741005404672,
+        "decline_rate": 0.41052893421677483,
+        "approved_bad_rate": 0.025095723577985885,
+        "review_bad_rate": 0.06059225512528474,
+        "declined_bad_rate": 0.2799383056075796,
+        "bad_capture_rate": 0.9076714188730483,
+        "good_route_out_rate": 0.44864202040230633,
+        "approved_ead": 262801500.0,
+        "review_ead": 54952000.0,
+        "declined_ead": 296426775.0,
+        "approved_el_proxy": 7209090.5030421,
+        "review_el_proxy": 3671460.604210006,
+        "declined_el_proxy": 62769053.35375557,
+        "approved_el_rate": 0.027431694655632104,
+        "review_el_rate": 0.06681213794238619,
+        "declined_el_rate": 0.21175230663206984
+      }
+    },
+    {
+      "scenario": "CONSERVATIVE",
+      "validation": {
+        "basis": "Validation-2016",
+        "selection_rule": "MIN_APPROVED_EL_RATE_WITH_PRACTICAL_APPROVAL",
+        "approve_cutoff": 0.021642692308890363,
+        "decline_cutoff": 0.03349045168371278,
+        "approval_rate": 0.10000717154331612,
+        "review_rate": 0.09999521897112258,
+        "decline_rate": 0.7999976094855613,
+        "approved_el_rate": 0.01029966595228451,
+        "bad_capture_rate": 0.9916842847075406
+      },
+      "oot": {
+        "split": "historical OOT policy replay 2017",
+        "approved_accounts": 4889,
+        "review_accounts": 4206,
+        "declined_accounts": 35126,
+        "approval_rate": 0.1105583320142014,
+        "review_rate": 0.09511318152009227,
+        "decline_rate": 0.7943284864657063,
+        "approved_bad_rate": 0.00899979545919411,
+        "review_bad_rate": 0.016880646695197336,
+        "declined_bad_rate": 0.16446506861014634,
+        "bad_capture_rate": 0.9925322471147319,
+        "good_route_out_rate": 0.8735944063241932,
+        "approved_ead": 62304550.0,
+        "review_ead": 51002750.0,
+        "declined_ead": 500872975.0,
+        "approved_el_proxy": 638735.709428172,
+        "review_el_proxy": 933681.5243566257,
+        "declined_el_proxy": 72077187.22722287,
+        "approved_el_rate": 0.010251830876367328,
+        "review_el_rate": 0.018306493754878427,
+        "declined_el_rate": 0.14390312679022635
+      }
+    }
+  ],
+  "pricing": {
+    "scope": "DESCRIPTIVE_ONLY",
+    "profitability_claim_allowed": false,
+    "int_rate_recursion_caveat": true,
+    "diagnostics": [
+      {
+        "decile": 1,
+        "label": "D01 / R1",
+        "accounts": 31035,
+        "mean_rate": 6.923217335266634,
+        "mean_el_rate": 0.010315345784046717,
+        "diagnostic_spread": 0.05891682756861963
+      },
+      {
+        "decile": 5,
+        "label": "D05 / R3",
+        "accounts": 30064,
+        "mean_rate": 11.690699507716872,
+        "mean_el_rate": 0.04928114232709509,
+        "diagnostic_spread": 0.06762585275007361
+      },
+      {
+        "decile": 8,
+        "label": "D08 / R4",
+        "accounts": 32989,
+        "mean_rate": 15.3469520143078,
+        "mean_el_rate": 0.13230378132447437,
+        "diagnostic_spread": 0.021165738818603636
+      },
+      {
+        "decile": 10,
+        "label": "D10 / R5",
+        "accounts": 31467,
+        "mean_rate": 20.114652493088,
+        "mean_el_rate": 0.3813541835750352,
+        "diagnostic_spread": -0.18020765864415528
+      }
+    ]
+  },
+  "stress": [
+    {
+      "scenario": "BASE",
+      "mean_p_bad": 0.15604812219137484,
+      "lgd": 0.667384888,
+      "ead_proxy": 4469158350.0,
+      "el_proxy": 526752273.6678772,
+      "el_rate": 0.11786386438240148,
+      "delta_vs_base_el_rate": 0.0,
+      "delta_vs_base_el_proxy": 0.0
+    },
+    {
+      "scenario": "MILD",
+      "mean_p_bad": 0.17165293441051233,
+      "lgd": 0.717384888,
+      "ead_proxy": 4469158350.0,
+      "el_proxy": 620014684.754131,
+      "el_rate": 0.1387318676578401,
+      "delta_vs_base_el_rate": 0.020868003275438612,
+      "delta_vs_base_el_proxy": 93262411.08625376
+    },
+    {
+      "scenario": "ADVERSE",
+      "mean_p_bad": 0.19506015273921856,
+      "lgd": 0.7902973489584245,
+      "ead_proxy": 4469158350.0,
+      "el_proxy": 771089798.9378893,
+      "el_rate": 0.1725357972464523,
+      "delta_vs_base_el_rate": 0.05467193286405081,
+      "delta_vs_base_el_proxy": 244337525.27001214
+    },
+    {
+      "scenario": "SEVERE",
+      "mean_p_bad": 0.21846737106792474,
+      "lgd": 0.865786,
+      "ead_proxy": 4469158350.0,
+      "el_proxy": 940180785.7283051,
+      "el_rate": 0.2103708824119658,
+      "delta_vs_base_el_rate": 0.09250701802956432,
+      "delta_vs_base_el_proxy": 413428512.0604279
+    }
+  ],
+  "reverse_stress": [
+    {
+      "id": "A",
+      "question": "PD deterioration alone equals combined ADVERSE EL rate",
+      "required_mean_p_bad": 0.2333406884560317,
+      "relative_mean_p_increase": 0.4953123765876948,
+      "target_el_rate": 0.1725357972464523,
+      "scenario_version": "D8-FINAL-1.1"
+    },
+    {
+      "id": "B",
+      "question": "PD deterioration under base LGD/EAD equals final SEVERE EL rate",
+      "required_mean_p_bad": 0.28835138524285986,
+      "relative_mean_p_increase": 0.8478363032733613,
+      "target_el_rate": 0.2103708824119658,
+      "scenario_version": "D8-FINAL-1.1"
+    }
+  ],
+  "controls": {
+    "policy_selection_basis": "Validation-2016",
+    "policy_replay_split": "historical OOT 2017",
+    "oot_threshold_tuning": false,
+    "stress_version": "D8-FINAL-1.1",
+    "claim_boundary": "ANALYTICAL STRESS SENSITIVITY; NOT FORECAST; NOT REGULATORY",
+    "row_level_data_shipped": false
+  }
+}
