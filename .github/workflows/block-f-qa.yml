@@ -1,0 +1,78 @@
+name: Block F QA
+
+on:
+  push:
+    branches:
+      - main
+      - block-f-final-closure
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  block-f-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Python test dependency
+        run: python -m pip install --upgrade pytest
+
+      - name: Build all seven public data contracts
+        run: python scripts/build_all_public_data.py
+
+      - name: Run repository tests
+        run: pytest -q
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Start static server
+        run: |
+          python -m http.server 8000 --bind 127.0.0.1 > /tmp/crdpi-http.log 2>&1 &
+          echo $! > /tmp/crdpi-http.pid
+          sleep 2
+
+      - name: Run browser route, responsive, accessibility and visual QA
+        env:
+          BLOCK_F_BASE_URL: http://127.0.0.1:8000
+        run: node scripts/block_f_browser_qa.mjs
+
+      - name: Run Block F reconciliation, claim and privacy QA
+        run: python scripts/run_block_f_qa.py
+
+      - name: Rebuild Page 07 from QA state
+        run: python scripts/build_page07_public_data.py
+
+      - name: Re-run tests after QA state build
+        run: pytest -q
+
+      - name: Scan final public bundle
+        run: python scripts/validate_public_bundle.py
+
+      - name: Upload Block F QA evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: block-f-qa-evidence
+          path: |
+            outputs/block-f/
+            block-f/BLOCK_F_FINAL_QA.json
+          if-no-files-found: warn
