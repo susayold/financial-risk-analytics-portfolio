@@ -1,0 +1,25 @@
+{
+  "status": "READY_FOR_DEPLOYMENT",
+  "primary_pages": 7,
+  "upstream_analytics_changed": false,
+  "block_d_release": "block-d-v1.0-final",
+  "block_e_release": "block-e-v1.0.2-final",
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false,
+  "public_text_files_scanned": 42,
+  "gates": {
+    "data_reconciliation": "PASS",
+    "cross_page_consistency": "PASS",
+    "claim_tests": "PASS",
+    "public_private_scan": "PASS",
+    "route_tests": "PASS",
+    "responsive_qa": "PASS",
+    "accessibility_qa": "PASS",
+    "visual_qa": "PASS",
+    "deployment_smoke": "PENDING"
+  },
+  "failed_gates": [],
+  "pending_gates": [
+    "deployment_smoke"
+  ]
+}

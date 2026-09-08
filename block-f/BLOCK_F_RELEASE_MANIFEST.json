@@ -1,0 +1,30 @@
+{
+  "project": "CRD.PI",
+  "block": "F",
+  "state": "READY_FOR_DEPLOYMENT",
+  "commit_sha": "a08c714d374dce4fe2dfd0ef536d6c1f2224819b",
+  "canonical_upstream": {
+    "block_d_release": "block-d-v1.0-final",
+    "block_e_release": "block-e-v1.0.2-final",
+    "scored_population": 310066,
+    "feature_contract": 79,
+    "upstream_analytics_changed": false
+  },
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false,
+  "qa_status": "READY_FOR_DEPLOYMENT",
+  "gates": {
+    "data_reconciliation": "PASS",
+    "cross_page_consistency": "PASS",
+    "claim_tests": "PASS",
+    "public_private_scan": "PASS",
+    "route_tests": "PASS",
+    "responsive_qa": "PASS",
+    "accessibility_qa": "PASS",
+    "visual_qa": "PASS",
+    "deployment_smoke": "PENDING"
+  },
+  "public_artifact_count": 40,
+  "artifact_index_sha256": "7f00e58102a084ff356c583a23ceebf36de59fead8d0b97ae7e0c23c5addac31",
+  "target_release": "block-f-v1.0-final"
+}
