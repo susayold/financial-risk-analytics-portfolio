@@ -29,3 +29,8 @@
   .concentration-table{width:100%!important;max-width:100%!important;min-width:0!important;table-layout:fixed!important}
   .concentration-table th,.concentration-table td{min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:break-word!important}
 }
+/* BLOCK_F_RESPONSIVE_HARDENING_V4 */
+@media (max-width: 340px){
+  .risk-table{width:100%!important;max-width:100%!important;min-width:0!important;table-layout:fixed!important}
+  .risk-table th,.risk-table td{min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:break-word!important}
+}
