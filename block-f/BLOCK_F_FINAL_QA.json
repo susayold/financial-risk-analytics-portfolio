@@ -1,5 +1,5 @@
 {
-  "status": "READY_FOR_DEPLOYMENT",
+  "status": "PASS",
   "primary_pages": 7,
   "upstream_analytics_changed": false,
   "block_d_release": "block-d-v1.0-final",
@@ -16,10 +16,8 @@
     "responsive_qa": "PASS",
     "accessibility_qa": "PASS",
     "visual_qa": "PASS",
-    "deployment_smoke": "PENDING"
+    "deployment_smoke": "PASS"
   },
   "failed_gates": [],
-  "pending_gates": [
-    "deployment_smoke"
-  ]
+  "pending_gates": []
 }

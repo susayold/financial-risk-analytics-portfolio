@@ -34,7 +34,14 @@
     renderTech(page.technology_stack);
     renderQa(page.block_f_qa);
     bindMenu();
-    $("#scorecard").querySelector(".featured strong").textContent = page.meta.status.replace(/_/g, " ");
+    const statusLabel = page.meta.status.replace(/_/g, " ");
+    $("#scorecard").querySelector(".featured strong").textContent = statusLabel;
     $("#scorecard").querySelector(".featured small").textContent = "Page 07 · delivery state";
+    const heroStatus = $(".hero-badges .progress");
+    if (heroStatus) heroStatus.textContent = `BLOCK F · ${statusLabel}`;
+    const deliveryState = $(".stack-zone.delivery small");
+    if (deliveryState) deliveryState.textContent = `Current state: ${statusLabel}`;
+    const releaseChip = $(".release-chip");
+    if (releaseChip && page.meta.status === "DELIVERED") releaseChip.textContent = "release · v1.0 final";
   }).catch((error) => { console.error("Architecture data unavailable", error); document.body.dataset.dataError = "true"; const root = $("#page-cards"); root.replaceChildren(make("p", "static-contract", "Architecture data is not available in this build.")); bindMenu(); });
 })();

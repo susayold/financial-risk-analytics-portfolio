@@ -2,15 +2,18 @@
 
 Block F packages frozen analytical evidence into a seven-page recruiter-facing static delivery layer.
 
-## Current closure state
+## Final closure state
 
-`READY_FOR_DEPLOYMENT`
+`DELIVERED`
 
-- Primary pages: **7**.
+- Primary pages: **7/7 live**.
+- Live-smoke public JSON contracts: **12/12 passed**.
 - Public artifact index entries: **40**.
 - Block D canonical release: `block-d-v1.0-final`.
 - Block E canonical release: `block-e-v1.0.2-final`.
 - Upstream analytics changed in Block F: **false**.
+- Deployment smoke: **PASS**.
+- Live site: `https://susayold.github.io/financial-risk-analytics-portfolio/`.
 
 ## Interpretation boundary
 
@@ -20,5 +23,4 @@ The project continues to describe the final-resolution target, LGD/EAD assumptio
 
 ## Release decision
 
-- If `deployment_smoke` is `PENDING`, this package is a **release candidate** and Block F remains `IN_PROGRESS` on the public site.
-- Only after live GitHub Pages smoke testing passes may the project be marked `DELIVERED` and tagged `block-f-v1.0-final`.
+All required Block F delivery gates are `PASS`. The portfolio delivery layer may be released as `block-f-v1.0-final`.

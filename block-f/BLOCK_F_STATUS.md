@@ -1,7 +1,8 @@
 # CRD.PI Block F Status
 
-**State:** `READY_FOR_DEPLOYMENT`  
-**Commit:** `a08c714d374dce4fe2dfd0ef536d6c1f2224819b`  
+**State:** `DELIVERED`  
+**Live site:** `https://susayold.github.io/financial-risk-analytics-portfolio/`  
+**Transition-basis live-smoke run:** `34181579920`  
 **Block D:** `block-d-v1.0-final`  
 **Block E:** `block-e-v1.0.2-final`
 
@@ -15,7 +16,9 @@
 - `responsive_qa`: **PASS**
 - `accessibility_qa`: **PASS**
 - `visual_qa`: **PASS**
-- `deployment_smoke`: **PENDING**
+- `deployment_smoke`: **PASS**
+
+Live deployment smoke verified **7/7 primary routes** and **12/12 public JSON contracts**.
 
 ## Frozen upstream controls
 
@@ -25,6 +28,6 @@
 - Production authorization remains **false**.
 - Regulatory compliance is **not claimed**.
 
-## Release rule
+## Release
 
-`DELIVERED` and `block-f-v1.0-final` are allowed only after `deployment_smoke = PASS` and every required QA gate is `PASS`.
+Block F satisfies the fail-closed delivery gates and is eligible for final release tag `block-f-v1.0-final`.

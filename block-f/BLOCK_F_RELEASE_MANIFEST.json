@@ -1,8 +1,9 @@
 {
   "project": "CRD.PI",
   "block": "F",
-  "state": "READY_FOR_DEPLOYMENT",
-  "commit_sha": "a08c714d374dce4fe2dfd0ef536d6c1f2224819b",
+  "state": "DELIVERED",
+  "live_url": "https://susayold.github.io/financial-risk-analytics-portfolio/",
+  "transition_basis_live_smoke_run_id": 34181579920,
   "canonical_upstream": {
     "block_d_release": "block-d-v1.0-final",
     "block_e_release": "block-e-v1.0.2-final",
@@ -12,7 +13,7 @@
   },
   "production_authorized": false,
   "regulatory_compliance_claimed": false,
-  "qa_status": "READY_FOR_DEPLOYMENT",
+  "qa_status": "PASS",
   "gates": {
     "data_reconciliation": "PASS",
     "cross_page_consistency": "PASS",
@@ -22,9 +23,9 @@
     "responsive_qa": "PASS",
     "accessibility_qa": "PASS",
     "visual_qa": "PASS",
-    "deployment_smoke": "PENDING"
+    "deployment_smoke": "PASS"
   },
   "public_artifact_count": 40,
-  "artifact_index_sha256": "7f00e58102a084ff356c583a23ceebf36de59fead8d0b97ae7e0c23c5addac31",
-  "target_release": "block-f-v1.0-final"
+  "artifact_index_sha256": "29e261d0da1acad09247ebb860bf9d67bb99940eddde096f6cd8a614036c4be8",
+  "release": "block-f-v1.0-final"
 }

@@ -19,6 +19,7 @@ BASE_URL = os.environ.get(
     "https://susayold.github.io/financial-risk-analytics-portfolio/",
 ).rstrip("/")
 TIMEOUT = float(os.environ.get("BLOCK_F_SMOKE_REQUEST_TIMEOUT", "8"))
+EXPECTED_STATUS = os.environ.get("BLOCK_F_EXPECTED_DELIVERY_STATUS", "").strip().upper()
 
 ROUTES = {
     "/": "Credit Risk Intelligence & Portfolio Analytics",
@@ -48,7 +49,7 @@ PUBLIC_JSON = [
 def get(path: str) -> tuple[str, int, bytes]:
     request = urllib.request.Request(
         BASE_URL + path,
-        headers={"User-Agent": "CRD.PI-Block-F-Live-Smoke/1.1"},
+        headers={"User-Agent": "CRD.PI-Block-F-Live-Smoke/1.2"},
     )
     with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
         return path, response.status, response.read()
@@ -106,8 +107,13 @@ def audit_once() -> list[str]:
         meta = page07.get("meta", {})
         if meta.get("project") != "CRD.PI":
             failures.append("page-07: project marker mismatch")
-        if meta.get("status") not in {"IN_PROGRESS", "DELIVERED"}:
+        actual_status = str(meta.get("status", "")).upper()
+        if actual_status not in {"IN_PROGRESS", "DELIVERED"}:
             failures.append(f"page-07: invalid delivery status {meta.get('status')!r}")
+        if EXPECTED_STATUS and actual_status != EXPECTED_STATUS:
+            failures.append(
+                f"page-07: expected deployed status {EXPECTED_STATUS!r}, got {actual_status!r}"
+            )
         if page07.get("upstream", {}).get("upstream_analytics_changed_in_block_f") is not False:
             failures.append("page-07: upstream analytics mutation boundary violated")
     return failures
@@ -126,6 +132,7 @@ def main() -> None:
                 "primary_routes": len(ROUTES),
                 "public_json_contracts": len(PUBLIC_JSON),
                 "deployment_smoke": "PASS",
+                "expected_delivery_status": EXPECTED_STATUS or None,
             }, indent=2))
             return
         print(f"Live smoke attempt {attempt}/{attempts} failed with {len(last)} finding(s):", flush=True)

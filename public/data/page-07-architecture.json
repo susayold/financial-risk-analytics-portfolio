@@ -3,7 +3,7 @@
     "project": "CRD.PI",
     "page": "architecture",
     "block": "F",
-    "status": "IN_PROGRESS",
+    "status": "DELIVERED",
     "document_version": "F-P07-CONTENT-1.0",
     "production_authorized": false,
     "regulatory_compliance_claimed": false,
@@ -72,15 +72,15 @@
     "automatic_retraining": false
   },
   "block_f_qa": {
-    "data_reconciliation": "PENDING",
-    "cross_page_consistency": "PENDING",
-    "claim_tests": "PENDING",
-    "public_private_scan": "PENDING",
-    "route_tests": "PENDING",
-    "responsive_qa": "PENDING",
-    "accessibility_qa": "PENDING",
-    "visual_qa": "PENDING",
-    "deployment_smoke": "PENDING"
+    "data_reconciliation": "PASS",
+    "cross_page_consistency": "PASS",
+    "claim_tests": "PASS",
+    "public_private_scan": "PASS",
+    "route_tests": "PASS",
+    "responsive_qa": "PASS",
+    "accessibility_qa": "PASS",
+    "visual_qa": "PASS",
+    "deployment_smoke": "PASS"
   },
   "cross_page_checks": {
     "overview_oot_roc_auc": 0.8557777504539299,
@@ -115,9 +115,9 @@
   "technology_stack": [
     {
       "layer": "Application shell",
-      "technology": "Astro",
-      "status": "TARGET STACK",
-      "purpose": "static-first routing / SEO"
+      "technology": "Static HTML",
+      "status": "IMPLEMENTED",
+      "purpose": "public static routing / SEO"
     },
     {
       "layer": "Types",
@@ -127,15 +127,15 @@
     },
     {
       "layer": "Selective interactivity",
-      "technology": "React Islands",
-      "status": "TARGET STACK",
-      "purpose": "filters and drawers"
+      "technology": "Vanilla JavaScript",
+      "status": "IMPLEMENTED",
+      "purpose": "filters, tables and page interactions"
     },
     {
       "layer": "Analytical charts",
-      "technology": "Apache ECharts",
-      "status": "TARGET STACK",
-      "purpose": "responsive visualization"
+      "technology": "Browser-native SVG / CSS / JavaScript",
+      "status": "IMPLEMENTED",
+      "purpose": "lightweight analytical visualization"
     },
     {
       "layer": "Data build",
@@ -152,8 +152,8 @@
     {
       "layer": "Automation",
       "technology": "GitHub Actions",
-      "status": "TARGET AUTOMATION",
-      "purpose": "build / QA / deployment automation"
+      "status": "IMPLEMENTED",
+      "purpose": "build / QA automation"
     }
   ],
   "public_private_boundary": {

@@ -28,6 +28,7 @@ jobs:
           BLOCK_F_SMOKE_ATTEMPTS: '12'
           BLOCK_F_SMOKE_DELAY_SECONDS: '5'
           BLOCK_F_SMOKE_REQUEST_TIMEOUT: '8'
+          BLOCK_F_EXPECTED_DELIVERY_STATUS: DELIVERED
         run: |
           mkdir -p outputs/block-f
           python scripts/block_f_live_smoke.py | tee outputs/block-f/live-smoke.txt
