@@ -16,10 +16,12 @@ PUBLIC_ROOTS = [
     ROOT / "architecture",
     ROOT / "assets",
     ROOT / "public" / "data",
+    ROOT / "README.md",
+    ROOT / "PROJECT_MASTER_LINKS.md",
 ]
 TEXT_SUFFIXES = {".html", ".css", ".js", ".json", ".md", ".txt", ".svg", ".csv"}
 
-# These target payload/key/path patterns rather than legitimate boundary prose.
+# Target payload/key/path patterns rather than legitimate claim-boundary prose.
 FORBIDDEN = {
     "account_id_key": re.compile(r'["\']account_id["\']\s*:', re.I),
     "borrower_id_key": re.compile(r'["\']borrower_id["\']\s*:', re.I),
@@ -29,6 +31,7 @@ FORBIDDEN = {
     "windows_user_path": re.compile(r'[a-z]:[\\/]users[\\/][^\s"\']+', re.I),
     "authorization_bearer": re.compile(r'authorization\s*[:=]\s*["\']?bearer\s+[a-z0-9._-]+', re.I),
     "secret_assignment": re.compile(r'(?:api[_-]?key|secret[_-]?key|password)\s*[:=]\s*["\'][^"\']{8,}["\']', re.I),
+    "public_phone_label": re.compile(r'\bphone\s*:\s*\+?[0-9][0-9\s().-]{7,}', re.I),
 }
 
 
@@ -42,20 +45,27 @@ def iter_public_files():
                     yield path
 
 
+def scan_text(text: str, source: str = "<memory>") -> list[dict[str, str]]:
+    """Return scanner findings for a text payload; useful for negative-fixture tests."""
+    findings = []
+    for name, pattern in FORBIDDEN.items():
+        match = pattern.search(text)
+        if match:
+            findings.append({
+                "file": source,
+                "rule": name,
+                "snippet": match.group(0)[:120],
+            })
+    return findings
+
+
 def scan():
     findings = []
     scanned = 0
     for path in sorted(set(iter_public_files())):
         text = path.read_text(encoding="utf-8", errors="ignore")
         scanned += 1
-        for name, pattern in FORBIDDEN.items():
-            match = pattern.search(text)
-            if match:
-                findings.append({
-                    "file": str(path.relative_to(ROOT)),
-                    "rule": name,
-                    "snippet": match.group(0)[:120],
-                })
+        findings.extend(scan_text(text, str(path.relative_to(ROOT))))
     if findings:
         details = "\n".join(f"- {x['file']} [{x['rule']}] {x['snippet']}" for x in findings)
         raise AssertionError(f"Public bundle scan failed:\n{details}")
