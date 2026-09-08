@@ -36,6 +36,11 @@ jobs:
       - name: Build all seven public data contracts
         run: python scripts/build_all_public_data.py
 
+      - name: Verify deterministic public build
+        id: determinism
+        continue-on-error: true
+        run: python scripts/check_public_build_determinism.py
+
       - name: Run repository tests
         id: pytest_initial
         continue-on-error: true
@@ -109,6 +114,7 @@ jobs:
       - name: Enforce final Block F gate
         if: always()
         env:
+          DETERMINISM: ${{ steps.determinism.outcome }}
           PYTEST_INITIAL: ${{ steps.pytest_initial.outcome }}
           BROWSER_QA: ${{ steps.browser_qa.outcome }}
           ANALYTICAL_QA: ${{ steps.analytical_qa.outcome }}
@@ -119,6 +125,7 @@ jobs:
           python - <<'PY'
           import os
           checks = {
+              "determinism": os.environ["DETERMINISM"],
               "pytest_initial": os.environ["PYTEST_INITIAL"],
               "browser_qa": os.environ["BROWSER_QA"],
               "analytical_qa": os.environ["ANALYTICAL_QA"],
