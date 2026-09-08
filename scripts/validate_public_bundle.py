@@ -28,7 +28,9 @@ FORBIDDEN = {
     "customer_id_key": re.compile(r'["\']customer_id["\']\s*:', re.I),
     "row_level_key": re.compile(r'["\']row_level(?:_data|_prediction|_score)?["\']\s*:', re.I),
     "kaggle_private_path": re.compile(r'/kaggle/input/', re.I),
-    "windows_user_path": re.compile(r'[a-z]:[\\/]users[\\/][^\s"\']+', re.I),
+    # Accept one or more slash/backslash separators so escaped representations
+    # such as C:\\Users\\analyst\\file.csv are detected as well as real paths.
+    "windows_user_path": re.compile(r'[a-z]:(?:[\\/]+)users(?:[\\/]+)[^\s"\']+', re.I),
     "authorization_bearer": re.compile(r'authorization\s*[:=]\s*["\']?bearer\s+[a-z0-9._-]+', re.I),
     "secret_assignment": re.compile(r'(?:api[_-]?key|secret[_-]?key|password)\s*[:=]\s*["\'][^"\']{8,}["\']', re.I),
     "public_phone_label": re.compile(r'\bphone\s*:\s*\+?[0-9][0-9\s().-]{7,}', re.I),
