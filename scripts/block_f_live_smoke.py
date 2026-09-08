@@ -7,6 +7,7 @@ retries so failures are fast, attributable and fail-closed.
 from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import html
 import json
 import os
 import re
@@ -73,7 +74,7 @@ def audit_once() -> list[str]:
         status, payload = payloads[path]
         text = payload.decode("utf-8", errors="replace")
         title = re.search(r"<title>(.*?)</title>", text, re.I | re.S)
-        actual_title = re.sub(r"\s+", " ", title.group(1)).strip() if title else ""
+        actual_title = html.unescape(re.sub(r"\s+", " ", title.group(1)).strip()) if title else ""
         if status != 200:
             failures.append(f"{path}: HTTP {status}")
         if expected_title.lower() not in actual_title.lower():
