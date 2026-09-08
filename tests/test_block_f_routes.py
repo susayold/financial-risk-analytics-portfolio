@@ -22,6 +22,12 @@ def test_architecture_product_map_resolves_repository_relative_routes():
     assert "new URL" in js
 
 
+def test_architecture_uses_architecture_specific_og_image():
+    html = (ROOT / "architecture" / "index.html").read_text(encoding="utf-8")
+    assert '../assets/og/crdpi-architecture.svg' in html
+    assert 'property="og:image" content="../assets/og/crdpi-governance.svg"' not in html
+
+
 def test_no_primary_page_is_noindex_placeholder():
     for row in ROUTES:
         html_path = ROOT / "index.html" if row["route"] == "/" else ROOT / row["route"].strip("/") / "index.html"
