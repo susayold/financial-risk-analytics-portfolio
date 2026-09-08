@@ -15,6 +15,7 @@ MARKER_V1 = "/* BLOCK_F_RESPONSIVE_HARDENING_V1 */"
 MARKER_V2 = "/* BLOCK_F_RESPONSIVE_HARDENING_V2 */"
 MARKER_V3 = "/* BLOCK_F_RESPONSIVE_HARDENING_V3 */"
 MARKER_V4 = "/* BLOCK_F_RESPONSIVE_HARDENING_V4 */"
+MARKER_V5 = "/* BLOCK_F_RESPONSIVE_HARDENING_V5 */"
 
 PATCHES_V1 = {
     "assets/crdpi-overview.css": r"""
@@ -174,6 +175,21 @@ PATCHES_V4 = {
 """,
 }
 
+PATCHES_V5 = {
+    "assets/crdpi-portfolio.css": r"""
+/* BLOCK_F_RESPONSIVE_HARDENING_V5 */
+@media (max-width: 340px){
+  .portfolio-hero,.portfolio-hero .hero-layout,.portfolio-hero .hero-art{width:100%!important;max-width:100%!important;min-width:0!important;overflow:hidden!important}
+  .portfolio-hero .hero-layout{grid-template-columns:minmax(0,1fr)!important}
+  .portfolio-hero .hero-art{min-height:300px!important}
+  .portfolio-hero .art-grid{position:absolute!important;inset:0!important;width:100%!important;max-width:100%!important;min-width:0!important;transform:none!important;overflow:hidden!important}
+  .vintage-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;width:100%!important;max-width:100%!important;min-width:0!important;overflow:hidden!important}
+  .annual-year{position:static!important;inset:auto!important;transform:none!important;max-width:100%!important;min-width:0!important}
+  .governance-section .page-width{max-width:100%!important;min-width:0!important;overflow:hidden!important}
+}
+""",
+}
+
 PRIMARY_PAGES = [
     "index.html",
     "portfolio-risk/index.html",
@@ -217,8 +233,9 @@ def main() -> None:
     v2 = append_patches(PATCHES_V2, MARKER_V2, "responsive containment V2")
     v3 = append_patches(PATCHES_V3, MARKER_V3, "responsive containment V3")
     v4 = append_patches(PATCHES_V4, MARKER_V4, "responsive containment V4")
+    v5 = append_patches(PATCHES_V5, MARKER_V5, "responsive containment V5")
     claims = patch_claims()
-    print(f"Block F remediation complete: v1_files={v1}, v2_files={v2}, v3_files={v3}, v4_files={v4}, claim_replacements={claims}")
+    print(f"Block F remediation complete: v1_files={v1}, v2_files={v2}, v3_files={v3}, v4_files={v4}, v5_files={v5}, claim_replacements={claims}")
 
 
 if __name__ == "__main__":
