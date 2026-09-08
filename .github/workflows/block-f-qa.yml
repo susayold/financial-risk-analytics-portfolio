@@ -37,6 +37,8 @@ jobs:
         run: python scripts/build_all_public_data.py
 
       - name: Run repository tests
+        id: pytest_initial
+        continue-on-error: true
         run: |
           mkdir -p outputs/block-f
           set +e
@@ -58,17 +60,28 @@ jobs:
           sleep 2
 
       - name: Run browser route, responsive, accessibility and visual QA
+        id: browser_qa
+        continue-on-error: true
         env:
           BLOCK_F_BASE_URL: http://127.0.0.1:8000
         run: node scripts/block_f_browser_qa.mjs
 
       - name: Run Block F reconciliation, claim and privacy QA
+        id: analytical_qa
+        if: always()
+        continue-on-error: true
         run: python scripts/run_block_f_qa.py
 
       - name: Rebuild Page 07 from QA state
+        id: rebuild_page07
+        if: always()
+        continue-on-error: true
         run: python scripts/build_page07_public_data.py
 
       - name: Re-run tests after QA state build
+        id: pytest_final
+        if: always()
+        continue-on-error: true
         run: |
           set +e
           pytest -q --tb=short > outputs/block-f/pytest-final.txt 2>&1
@@ -78,6 +91,9 @@ jobs:
           exit $code
 
       - name: Scan final public bundle
+        id: bundle_scan
+        if: always()
+        continue-on-error: true
         run: python scripts/validate_public_bundle.py
 
       - name: Upload Block F QA evidence
@@ -89,3 +105,30 @@ jobs:
             outputs/block-f/
             block-f/BLOCK_F_FINAL_QA.json
           if-no-files-found: warn
+
+      - name: Enforce final Block F gate
+        if: always()
+        env:
+          PYTEST_INITIAL: ${{ steps.pytest_initial.outcome }}
+          BROWSER_QA: ${{ steps.browser_qa.outcome }}
+          ANALYTICAL_QA: ${{ steps.analytical_qa.outcome }}
+          REBUILD_PAGE07: ${{ steps.rebuild_page07.outcome }}
+          PYTEST_FINAL: ${{ steps.pytest_final.outcome }}
+          BUNDLE_SCAN: ${{ steps.bundle_scan.outcome }}
+        run: |
+          python - <<'PY'
+          import os
+          checks = {
+              "pytest_initial": os.environ["PYTEST_INITIAL"],
+              "browser_qa": os.environ["BROWSER_QA"],
+              "analytical_qa": os.environ["ANALYTICAL_QA"],
+              "rebuild_page07": os.environ["REBUILD_PAGE07"],
+              "pytest_final": os.environ["PYTEST_FINAL"],
+              "bundle_scan": os.environ["BUNDLE_SCAN"],
+          }
+          failed = {name: status for name, status in checks.items() if status != "success"}
+          print("Block F aggregate gate:", checks)
+          if failed:
+              raise SystemExit(f"Block F fail-closed: {failed}")
+          print("Block F aggregate gate PASS")
+          PY
