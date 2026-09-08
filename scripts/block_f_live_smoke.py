@@ -1,23 +1,23 @@
 """Live GitHub Pages smoke test for CRD.PI Block F.
 
-This validates the deployed static surface, not the local checkout. It checks all
-seven primary routes plus every public JSON contract with bounded retries so a
-Pages deployment can finish before the gate is evaluated.
+Validates the deployed static surface, not the local checkout. All seven primary
+routes and every public JSON contract are fetched concurrently with bounded
+retries so failures are fast, attributable and fail-closed.
 """
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import os
 import re
-import sys
 import time
-import urllib.error
 import urllib.request
 
 BASE_URL = os.environ.get(
     "BLOCK_F_LIVE_BASE_URL",
     "https://susayold.github.io/financial-risk-analytics-portfolio/",
 ).rstrip("/")
+TIMEOUT = float(os.environ.get("BLOCK_F_SMOKE_REQUEST_TIMEOUT", "8"))
 
 ROUTES = {
     "/": "Credit Risk Intelligence & Portfolio Analytics",
@@ -28,7 +28,6 @@ ROUTES = {
     "/governance/": "Governance & Audit",
     "/architecture/": "Architecture & Delivery",
 }
-
 PUBLIC_JSON = [
     "/public/data/governance-evidence-index.json",
     "/public/data/governance-taxonomy.json",
@@ -45,48 +44,62 @@ PUBLIC_JSON = [
 ]
 
 
-def get(path: str) -> tuple[int, bytes]:
+def get(path: str) -> tuple[str, int, bytes]:
     request = urllib.request.Request(
         BASE_URL + path,
-        headers={"User-Agent": "CRD.PI-Block-F-Live-Smoke/1.0"},
+        headers={"User-Agent": "CRD.PI-Block-F-Live-Smoke/1.1"},
     )
-    with urllib.request.urlopen(request, timeout=20) as response:
-        return response.status, response.read()
+    with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
+        return path, response.status, response.read()
 
 
 def audit_once() -> list[str]:
     failures: list[str] = []
+    payloads: dict[str, tuple[int, bytes]] = {}
+    paths = list(ROUTES) + PUBLIC_JSON
+    with ThreadPoolExecutor(max_workers=min(12, len(paths))) as pool:
+        futures = {pool.submit(get, path): path for path in paths}
+        for future in as_completed(futures):
+            path = futures[future]
+            try:
+                _, status, payload = future.result()
+                payloads[path] = (status, payload)
+            except Exception as exc:
+                failures.append(f"{path}: {type(exc).__name__}: {exc}")
+
     for path, expected_title in ROUTES.items():
-        try:
-            status, payload = get(path)
-            text = payload.decode("utf-8", errors="replace")
-            title = re.search(r"<title>(.*?)</title>", text, re.I | re.S)
-            actual_title = re.sub(r"\s+", " ", title.group(1)).strip() if title else ""
-            if status != 200:
-                failures.append(f"{path}: HTTP {status}")
-            if expected_title.lower() not in actual_title.lower():
-                failures.append(f"{path}: unexpected title {actual_title!r}")
-            if "<meta" not in text.lower() or "viewport" not in text.lower():
-                failures.append(f"{path}: missing viewport metadata")
-            if "noindex" in text.lower():
-                failures.append(f"{path}: noindex present")
-        except Exception as exc:
-            failures.append(f"{path}: {type(exc).__name__}: {exc}")
+        if path not in payloads:
+            continue
+        status, payload = payloads[path]
+        text = payload.decode("utf-8", errors="replace")
+        title = re.search(r"<title>(.*?)</title>", text, re.I | re.S)
+        actual_title = re.sub(r"\s+", " ", title.group(1)).strip() if title else ""
+        if status != 200:
+            failures.append(f"{path}: HTTP {status}")
+        if expected_title.lower() not in actual_title.lower():
+            failures.append(f"{path}: unexpected title {actual_title!r}")
+        if "viewport" not in text.lower():
+            failures.append(f"{path}: missing viewport metadata")
+        if "noindex" in text.lower():
+            failures.append(f"{path}: noindex present")
 
     page07 = None
     for path in PUBLIC_JSON:
+        if path not in payloads:
+            continue
+        status, payload = payloads[path]
+        if status != 200:
+            failures.append(f"{path}: HTTP {status}")
+            continue
         try:
-            status, payload = get(path)
-            if status != 200:
-                failures.append(f"{path}: HTTP {status}")
-                continue
             parsed = json.loads(payload)
-            if not isinstance(parsed, (dict, list)):
-                failures.append(f"{path}: JSON root is not object/list")
-            if path.endswith("page-07-architecture.json"):
-                page07 = parsed
         except Exception as exc:
-            failures.append(f"{path}: {type(exc).__name__}: {exc}")
+            failures.append(f"{path}: invalid JSON: {exc}")
+            continue
+        if not isinstance(parsed, (dict, list)):
+            failures.append(f"{path}: JSON root is not object/list")
+        if path.endswith("page-07-architecture.json"):
+            page07 = parsed
 
     if isinstance(page07, dict):
         meta = page07.get("meta", {})
@@ -100,27 +113,25 @@ def audit_once() -> list[str]:
 
 
 def main() -> None:
-    attempts = int(os.environ.get("BLOCK_F_SMOKE_ATTEMPTS", "18"))
+    attempts = int(os.environ.get("BLOCK_F_SMOKE_ATTEMPTS", "12"))
     delay = int(os.environ.get("BLOCK_F_SMOKE_DELAY_SECONDS", "5"))
     last: list[str] = []
     for attempt in range(1, attempts + 1):
         last = audit_once()
         if not last:
-            result = {
+            print(json.dumps({
                 "status": "PASS",
                 "base_url": BASE_URL + "/",
                 "primary_routes": len(ROUTES),
                 "public_json_contracts": len(PUBLIC_JSON),
                 "deployment_smoke": "PASS",
-            }
-            print(json.dumps(result, indent=2))
+            }, indent=2))
             return
-        print(f"Live smoke attempt {attempt}/{attempts} failed with {len(last)} finding(s):")
-        for item in last:
-            print(f"- {item}")
+        print(f"Live smoke attempt {attempt}/{attempts} failed with {len(last)} finding(s):", flush=True)
+        for item in sorted(last):
+            print(f"- {item}", flush=True)
         if attempt < attempts:
             time.sleep(delay)
-
     print(json.dumps({"status": "FAIL", "findings": last}, indent=2))
     raise SystemExit(1)
 
