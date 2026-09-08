@@ -1,0 +1,103 @@
+name: Block F Final Release
+
+on:
+  workflow_run:
+    workflows:
+      - Block F Deployment Smoke
+    types:
+      - completed
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  release:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: block-f-v1.0-final
+    steps:
+      - name: Resolve release candidate SHA
+        id: candidate
+        run: |
+          echo "sha=${{ github.event.workflow_run.head_sha }}" >> "$GITHUB_OUTPUT"
+          echo "Release candidate: ${{ github.event.workflow_run.head_sha }}"
+
+      - name: Checkout exact release candidate
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.candidate.outputs.sha }}
+          fetch-depth: 0
+
+      - name: Require delivered manifest
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          manifest = json.loads(Path('block-f/BLOCK_F_RELEASE_MANIFEST.json').read_text())
+          qa = json.loads(Path('block-f/BLOCK_F_FINAL_QA.json').read_text())
+          assert manifest['state'] == 'DELIVERED', manifest
+          assert manifest['release'] == 'block-f-v1.0-final', manifest
+          assert manifest['qa_status'] == 'PASS', manifest
+          assert all(v == 'PASS' for v in manifest['gates'].values()), manifest['gates']
+          assert qa['status'] == 'PASS', qa
+          assert all(v == 'PASS' for v in qa['gates'].values()), qa['gates']
+          assert manifest['production_authorized'] is False
+          assert manifest['regulatory_compliance_claimed'] is False
+          print('Delivered manifest and persisted QA: PASS')
+          PY
+
+      - name: Require Block F QA success for same SHA
+        env:
+          CANDIDATE_SHA: ${{ steps.candidate.outputs.sha }}
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 36); do
+            result="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$CANDIDATE_SHA&branch=main&per_page=100" --jq '[.workflow_runs[] | select(.name == "Block F QA")] | sort_by(.created_at) | reverse | .[0] | [.status,.conclusion,.html_url] | @tsv' 2>/dev/null || true)"
+            if [ -n "$result" ] && [ "$result" != "null\tnull\tnull" ]; then
+              status="$(printf '%s' "$result" | cut -f1)"
+              conclusion="$(printf '%s' "$result" | cut -f2)"
+              url="$(printf '%s' "$result" | cut -f3)"
+              echo "Block F QA: status=$status conclusion=$conclusion $url"
+              if [ "$status" = "completed" ]; then
+                test "$conclusion" = "success"
+                exit 0
+              fi
+            fi
+            sleep 10
+          done
+          echo "Timed out waiting for Block F QA on $CANDIDATE_SHA" >&2
+          exit 1
+
+      - name: Create immutable final tag and GitHub Release
+        env:
+          CANDIDATE_SHA: ${{ steps.candidate.outputs.sha }}
+        run: |
+          set -euo pipefail
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            existing="$(gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json targetCommitish --jq .targetCommitish)"
+            echo "Release already exists with target: $existing"
+            exit 0
+          fi
+          gh release create "$RELEASE_TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$CANDIDATE_SHA" \
+            --title "CRD.PI Block F v1.0 Final" \
+            --notes-file block-f/BLOCK_F_CLOSURE.md \
+            --verify-tag=false
+          echo "Created $RELEASE_TAG at $CANDIDATE_SHA"
+
+      - name: Verify release target
+        env:
+          CANDIDATE_SHA: ${{ steps.candidate.outputs.sha }}
+        run: |
+          set -euo pipefail
+          tag_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_TAG" --jq .object.sha)"
+          echo "Tag SHA: $tag_sha"
+          test "$tag_sha" = "$CANDIDATE_SHA"
+          gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json url,tagName,name,isDraft,isPrerelease,targetCommitish
