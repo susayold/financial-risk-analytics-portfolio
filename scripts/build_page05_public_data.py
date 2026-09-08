@@ -43,6 +43,7 @@ def main() -> None:
     breaches = read_csv(E / "E8_KRI_GOVERNANCE" / "breach_register_PATCHED.csv")
     actions = read_csv(E / "E8_KRI_GOVERNANCE" / "action_register_PATCHED.csv")
     decision = read_json(E / "E9_FINAL" / "BLOCK_E_DECISION_PATCHED.json")
+    kri_register = read_csv(E / "E8_KRI_GOVERNANCE" / "kri_register_PATCHED.csv")
 
     counts = {
         "kri_count": e8["kri_count"],
@@ -59,6 +60,11 @@ def main() -> None:
         "red_alert_count": 1, "breach_count": 3, "investigation_count": 21,
         "action_count": 21, "green_alert_count": 0,
     }
+    kri_stage_counts = {stage: sum(1 for row in kri_register if row["source_stage"] == stage) for stage in ("E3", "E4", "E5", "E6", "E7")}
+    if kri_stage_counts != {"E3": 3, "E4": 17, "E5": 68, "E6": 1, "E7": 3}:
+        raise ValueError(f"Unexpected canonical KRI stage counts: {kri_stage_counts}")
+    if sum(kri_stage_counts.values()) != counts["kri_count"]:
+        raise ValueError("KRI domain counts do not reconcile to the canonical total")
 
     threshold_payload = {"version": "E0-1.0.1", "metrics": {}}
     threshold_by_id = {row["threshold_id"]: row for row in thresholds}
@@ -170,6 +176,15 @@ def main() -> None:
             "portfolio_project_use_approved": decision["portfolio_project_use_approved"],
         },
         "governance_counts": counts,
+        "kri_domain_counts": {
+            "feature_drift": kri_stage_counts["E3"],
+            "score_risk_mix": kri_stage_counts["E4"],
+            "performance_calibration": kri_stage_counts["E5"],
+            "loss_severity": kri_stage_counts["E6"],
+            "policy_capacity_concentration": kri_stage_counts["E7"],
+            "total": sum(kri_stage_counts.values()),
+        },
+        "data_quality_control": {"registry": "E2", "kri_count": 0, "note": "Governed DQ control layer outside the E8 KRI registry"},
         "feature_drift": headline_feature_drift,
         "score_drift": {
             "annual_psi": f(annual_score["psi"]), "annual_status": annual_score["status"],

@@ -48,6 +48,7 @@ def main() -> None:
     discrimination = read_csv(ROOT / "block-e" / "E5_PERFORMANCE_CALIBRATION" / "discrimination_monitor.csv")
     calibration = read_csv(ROOT / "block-e" / "E5_PERFORMANCE_CALIBRATION" / "calibration_monitor.csv")
     quarterly = read_csv(ROOT / "block-e" / "E5_PERFORMANCE_CALIBRATION" / "quarterly_performance.csv")
+    score_psi = read_csv(ROOT / "block-e" / "E4_SCORE_RISK_MIX" / "score_psi.csv")
 
     feature_order = manifest["feature_order"]
     if len(feature_order) != 79 or len(set(feature_order)) != 79:
@@ -62,6 +63,7 @@ def main() -> None:
     oot_calibration = row_for(calibration, "window_id", "OOT")
     oot_quarters = [row for row in quarterly if row["window_id"].startswith("2017Q")]
     quarterly_auc_range = max(number(row, "roc_auc") for row in oot_quarters) - min(number(row, "roc_auc") for row in oot_quarters)
+    annual_score_psi = row_for(score_psi, "window_id", "OOT")
 
     group_specs = [
         ("A", "Core Borrower & Loan Signals", 8),
@@ -163,7 +165,7 @@ def main() -> None:
         "ranking": {
             "decile_monotonic_violations": 0,
             "decile_spearman": 1.0,
-            "prediction_psi": 0.003663365,
+            "prediction_psi": number(annual_score_psi, "psi"),
             "interpretation": "Risk ordering remains clean while aggregate score-distribution shift is low.",
         },
         "decisioning": {

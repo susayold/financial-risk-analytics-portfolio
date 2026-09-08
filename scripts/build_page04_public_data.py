@@ -160,11 +160,15 @@ def main() -> None:
                 "decile": decile,
                 "label": pricing_keys[decile],
                 "accounts": integer(row["account_count"]),
-                "mean_rate": number(row["mean_int_rate"]),
+                "mean_rate": number(row["mean_int_rate"]) / 100.0,
                 "mean_el_rate": number(row["mean_expected_loss_rate"]),
                 "diagnostic_spread": number(row["mean_diagnostic_spread"]),
             })
     pricing.sort(key=lambda item: item["decile"])
+    if not all(0.0 <= item["mean_rate"] <= 1.0 for item in pricing):
+        raise ValueError("Pricing mean_rate must be stored as a decimal fraction in the public contract")
+    if not all(abs((item["mean_rate"] - item["mean_el_rate"]) - item["diagnostic_spread"]) < 1e-12 for item in pricing):
+        raise ValueError("Pricing diagnostic spread does not reconcile after interest-rate normalization")
 
     stress = []
     for row in d8_stress:

@@ -2,7 +2,7 @@
   "meta": {
     "schema": "crd.pi.page-02-portfolio-risk.v1",
     "generated_at": "2026-09-05",
-    "as_of": "2017-12-01",
+    "as_of": "2018-12-01",
     "data_source": "LendingClub governed resolved-granted-loan core",
     "source_stages": [
       "B4",
@@ -13,7 +13,8 @@
       "B9"
     ],
     "claim_scope": "DESCRIPTIVE_NON_CAUSAL_OBSERVED_FINAL_RESOLUTION",
-    "public_safe": true
+    "public_safe": true,
+    "oot_cutoff": "2017-12-01"
   },
   "portfolio": {
     "accounts": 1347681,

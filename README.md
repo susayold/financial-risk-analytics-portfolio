@@ -67,15 +67,15 @@ This is a **historical analytical portfolio project**.
 
 - Block D: [`block-d-v1.0-final`](https://github.com/susayold/financial-risk-analytics-portfolio/releases/tag/block-d-v1.0-final)
 - Block E: [`block-e-v1.0.2-final`](https://github.com/susayold/financial-risk-analytics-portfolio/releases/tag/block-e-v1.0.2-final)
-- Block F: **final closure in progress** on the recruiter-facing delivery layer.
+- Block F: [`block-f-v1.0-final`](https://github.com/susayold/financial-risk-analytics-portfolio/releases/tag/block-f-v1.0-final) — **DELIVERED** recruiter-facing delivery layer.
 
-Block F must not change the model, target, 79-feature contract, Block D economics, policy thresholds or Block E monitoring findings.
+Block F did not change the model, target, 79-feature contract, Block D economics, policy thresholds or Block E monitoring findings.
 
 ## Reproducibility & delivery QA
 
 The delivery layer uses page-specific JSON contracts under `public/data/`, deterministic Python builders under `scripts/`, and repository tests under `tests/`.
 
-Block F closure adds:
+Block F delivery includes:
 
 ```text
 build all public data
