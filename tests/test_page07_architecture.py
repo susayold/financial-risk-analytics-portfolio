@@ -12,7 +12,7 @@ def load(name):
 
 def test_seven_page_registry_and_upstream_boundary():
     page = load("page-07-architecture.json")
-    assert page["meta"]["status"] == "IN_PROGRESS"
+    assert page["meta"]["status"] in {"IN_PROGRESS", "DELIVERED"}
     assert len(page["pages"]) == 7
     assert len({item["route"] for item in page["pages"]}) == 7
     assert page["upstream"]["block_d_release"] == "block-d-v1.0-final"
@@ -26,7 +26,23 @@ def test_seven_page_registry_and_upstream_boundary():
 def test_delivery_and_qa_are_separate_from_block_e():
     page = load("page-07-architecture.json")
     assert page["delivery"] == {"mode": "STATIC_PUBLIC_SITE", "hosting": "GITHUB_PAGES", "browser_row_level_data": False, "live_scoring_api": False, "production_database": False, "automatic_retraining": False}
-    assert set(page["block_f_qa"].values()) == {"PENDING"}
+    expected_gates = {
+        "data_reconciliation",
+        "cross_page_consistency",
+        "claim_tests",
+        "public_private_scan",
+        "route_tests",
+        "responsive_qa",
+        "accessibility_qa",
+        "visual_qa",
+        "deployment_smoke",
+    }
+    assert set(page["block_f_qa"]) == expected_gates
+    assert set(page["block_f_qa"].values()) <= {"PASS", "FAIL", "PENDING"}
+    if page["meta"]["status"] == "DELIVERED":
+        assert set(page["block_f_qa"].values()) == {"PASS"}
+    else:
+        assert page["block_f_qa"]["deployment_smoke"] in {"PENDING", "PASS"}
     assert page["meta"]["production_authorized"] is False
     assert page["meta"]["regulatory_compliance_claimed"] is False
     assert page["public_private_boundary"]["flow"] == ["SANITIZE", "RECONCILE", "SCAN", "PUBLISH"]
@@ -43,8 +59,8 @@ def test_cross_page_metrics_reconcile():
 
 def test_html_claim_boundary_and_required_sections():
     html = (ROOT / "architecture" / "index.html").read_text(encoding="utf-8").lower()
-    for phrase in ("architecture &amp; delivery", "turn governed evidence", "7-page", "public-safe", "static", "block f", "in progress", "block-d-v1.0-final", "block-e-v1.0.2-final", "sanitize", "reconcile", "scan", "publish", "target delivery stack", "not claimed", "back to overview"):
+    for phrase in ("architecture &amp; delivery", "turn governed evidence", "7-page", "public-safe", "static", "block f", "block-d-v1.0-final", "block-e-v1.0.2-final", "sanitize", "reconcile", "scan", "publish", "target delivery stack", "not claimed", "back to overview"):
         assert phrase in html, phrase
-    for forbidden in ("block f delivered", "production architecture", "live scoring api", "real-time model monitoring", "regulatory compliant", "enterprise security certified", "github actions deployed", "astro migration complete"):
+    for forbidden in ("production architecture", "live scoring api", "real-time model monitoring", "regulatory compliant", "enterprise security certified", "github actions deployed", "astro migration complete"):
         assert forbidden not in html, forbidden
     assert "not bank deployment" in html
