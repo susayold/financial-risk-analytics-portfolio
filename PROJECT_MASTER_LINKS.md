@@ -42,9 +42,9 @@ This file is a navigation index. Analytical claims remain governed by the canoni
 
 ## Block F delivery state
 
-Block F is being closed through a dedicated delivery QA sprint. It must not change the frozen model, target, 79-feature contract, Block D economics, policy thresholds or Block E monitoring findings.
+Block F is **DELIVERED**. The recruiter-facing seven-page website passed delivery QA and deployment smoke without changing the frozen model, target, 79-feature contract, Block D economics, policy thresholds or Block E monitoring findings.
 
-Target closure artifacts:
+Final closure artifacts:
 
 ```text
 block-f/BLOCK_F_STATUS.md
@@ -54,11 +54,7 @@ block-f/BLOCK_F_PUBLIC_ARTIFACT_INDEX.csv
 block-f/BLOCK_F_CLOSURE.md
 ```
 
-Target final tag after all delivery gates pass:
-
-```text
-block-f-v1.0-final
-```
+Final release: [`block-f-v1.0-final`](https://github.com/susayold/financial-risk-analytics-portfolio/releases/tag/block-f-v1.0-final)
 
 ## Supporting repositories
 

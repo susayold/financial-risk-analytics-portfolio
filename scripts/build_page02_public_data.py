@@ -33,6 +33,8 @@ def build():
     check(payload["governance"]["checks"]["unassigned_splits"] == 0, "Unassigned split detected")
     check(payload["meta"]["claim_scope"] == "DESCRIPTIVE_NON_CAUSAL_OBSERVED_FINAL_RESOLUTION", "Page 02 claim scope changed")
     check(payload["meta"]["public_safe"] is True, "Page 02 must remain public-safe")
+    check(payload["meta"]["as_of"] == portfolio["max_issue_d"] == "2018-12-01", "Page 02 full-core latest date must be 2018-12-01")
+    check(payload["meta"]["oot_cutoff"] == "2017-12-01", "Page 02 OOT cutoff must remain 2017-12-01")
     check("not verified 12-month PD" in payload["interpretation"]["outcome"], "PD claim boundary missing")
     check("not observed regulatory EAD" in payload["interpretation"]["exposure"], "EAD claim boundary missing")
 

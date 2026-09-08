@@ -37,6 +37,19 @@
     "action_count": 21,
     "green_alert_count": 0
   },
+  "kri_domain_counts": {
+    "feature_drift": 3,
+    "score_risk_mix": 17,
+    "performance_calibration": 68,
+    "loss_severity": 1,
+    "policy_capacity_concentration": 3,
+    "total": 92
+  },
+  "data_quality_control": {
+    "registry": "E2",
+    "kri_count": 0,
+    "note": "Governed DQ control layer outside the E8 KRI registry"
+  },
   "feature_drift": [
     {
       "kri_id": "E3-KRI-001",

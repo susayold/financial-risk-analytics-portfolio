@@ -90,7 +90,7 @@
   "ranking": {
     "decile_monotonic_violations": 0,
     "decile_spearman": 1.0,
-    "prediction_psi": 0.003663365,
+    "prediction_psi": 0.0036352563867260096,
     "interpretation": "Risk ordering remains clean while aggregate score-distribution shift is low."
   },
   "decisioning": {

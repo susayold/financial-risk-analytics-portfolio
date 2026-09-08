@@ -74,13 +74,14 @@
   }
 
   function renderDomains(page) {
+    const k = page.kri_domain_counts;
     const domains = [
-      ["Data Quality & Coverage", "GREEN", "12 KRIs", "No governed E2 alert · controlled", "green", "i-shield"],
-      ["Feature Drift", "AMBER", "18 KRIs", "3 AMBER findings · 0 RED", "amber", "i-trend"],
-      ["Score & Risk Mix", "GREEN", "16 KRIs", `Annual PSI ${page.score_drift.annual_psi.toFixed(4)} · stable`, "green", "i-bars"],
-      ["Model Performance & Calibration", "AMBER / RED", "16 KRIs", "Annual AMBER · 2017-10 RED", "mixed", "i-shield"],
-      ["Loss / Severity", "GREEN", "14 KRIs", "0 non-GREEN E6 alerts", "green", "i-target"],
-      ["Policy Capacity & Concentration", "AMBER", "18 KRIs", "Growth / Balanced watch", "amber", "i-clock"],
+      ["Data Quality & Coverage", "GREEN", "CONTROL LAYER", "E2 governed DQ checks · outside the 92-KRI registry", "green", "i-shield"],
+      ["Feature Drift", "AMBER", `${k.feature_drift} KRIs`, "3 AMBER findings · 0 RED", "amber", "i-trend"],
+      ["Score & Risk Mix", "GREEN", `${k.score_risk_mix} KRIs`, `Annual PSI ${page.score_drift.annual_psi.toFixed(4)} · stable`, "green", "i-bars"],
+      ["Model Performance & Calibration", "AMBER / RED", `${k.performance_calibration} KRIs`, "Annual AMBER · 2017-10 RED", "mixed", "i-shield"],
+      ["Loss / Severity", "GREEN", `${k.loss_severity} KRI`, "0 non-GREEN E6 alerts", "green", "i-target"],
+      ["Policy Capacity & Concentration", "AMBER", `${k.policy_capacity_concentration} KRIs`, "Growth / Balanced watch", "amber", "i-clock"],
     ];
     $("#domains").innerHTML = domains.map((row) => `<article class="domain-card ${row[4]}"><span class="domain-icon"><svg><use href="#${row[5]}"></use></svg></span><h3>${row[0]}</h3><p><b>${row[1]}</b> · ${row[2]}</p><small>${row[3]}</small></article>`).join("");
   }

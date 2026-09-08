@@ -211,7 +211,7 @@
         "decile": 1,
         "label": "D01 / R1",
         "accounts": 31035,
-        "mean_rate": 6.923217335266634,
+        "mean_rate": 0.06923217335266635,
         "mean_el_rate": 0.010315345784046717,
         "diagnostic_spread": 0.05891682756861963
       },
@@ -219,7 +219,7 @@
         "decile": 5,
         "label": "D05 / R3",
         "accounts": 30064,
-        "mean_rate": 11.690699507716872,
+        "mean_rate": 0.11690699507716872,
         "mean_el_rate": 0.04928114232709509,
         "diagnostic_spread": 0.06762585275007361
       },
@@ -227,7 +227,7 @@
         "decile": 8,
         "label": "D08 / R4",
         "accounts": 32989,
-        "mean_rate": 15.3469520143078,
+        "mean_rate": 0.153469520143078,
         "mean_el_rate": 0.13230378132447437,
         "diagnostic_spread": 0.021165738818603636
       },
@@ -235,7 +235,7 @@
         "decile": 10,
         "label": "D10 / R5",
         "accounts": 31467,
-        "mean_rate": 20.114652493088,
+        "mean_rate": 0.20114652493087998,
         "mean_el_rate": 0.3813541835750352,
         "diagnostic_spread": -0.18020765864415528
       }
