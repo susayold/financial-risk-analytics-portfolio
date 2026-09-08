@@ -13,10 +13,17 @@ fs.mkdirSync(path.join(shotDir, 'mobile'), { recursive: true });
 const failures = [];
 const diagnostics = [];
 const browser = await chromium.launch({ headless: true });
+let screenshotCount = 0;
 
+// Audit a broader responsive matrix while retaining the canonical 14 screenshots
+// used as release evidence (7 desktop + 7 mobile).
 const viewports = [
-  { name: 'desktop', width: 1440, height: 1100 },
-  { name: 'mobile', width: 390, height: 844 },
+  { name: 'phone-320', width: 320, height: 700, capture: false },
+  { name: 'phone-360', width: 360, height: 780, capture: false },
+  { name: 'mobile', width: 390, height: 844, capture: true },
+  { name: 'phone-414', width: 414, height: 896, capture: false },
+  { name: 'tablet', width: 768, height: 1024, capture: false },
+  { name: 'desktop', width: 1440, height: 1100, capture: true },
 ];
 
 for (const viewport of viewports) {
@@ -41,9 +48,11 @@ for (const viewport of viewports) {
       const maxWidth = Math.max(body.scrollWidth, html.scrollWidth);
       const overflow = maxWidth > window.innerWidth + 2;
       const active = document.querySelector('nav a[aria-current="page"], nav a.active');
+      const h1 = document.querySelector('main h1');
       const offenders = overflow ? [...document.querySelectorAll('body *')]
         .map(el => {
           const r = el.getBoundingClientRect();
+          const style = getComputedStyle(el);
           return {
             tag: el.tagName.toLowerCase(),
             id: el.id || '',
@@ -52,6 +61,9 @@ for (const viewport of viewports) {
             right: Math.round(r.right),
             width: Math.round(r.width),
             scrollWidth: el.scrollWidth || 0,
+            minWidth: style.minWidth,
+            whiteSpace: style.whiteSpace,
+            overflowX: style.overflowX,
           };
         })
         .filter(x => x.right > window.innerWidth + 2 || x.left < -2 || x.scrollWidth > window.innerWidth + 2)
@@ -67,6 +79,8 @@ for (const viewport of viewports) {
         innerWidth: window.innerWidth,
         offenders,
         activeNav: Boolean(active),
+        h1Visible: Boolean(h1 && h1.getBoundingClientRect().height > 0),
+        dataError: document.body.dataset.dataError === 'true',
       };
     });
 
@@ -77,10 +91,15 @@ for (const viewport of viewports) {
     if (audit.noindex) failures.push(`${viewport.name} ${pageDef.route}: unfinished noindex present`);
     if (audit.overflow) failures.push(`${viewport.name} ${pageDef.route}: horizontal overflow (${audit.pageScrollWidth}px > ${audit.innerWidth}px); offenders=${JSON.stringify(audit.offenders.slice(0, 4))}`);
     if (!audit.activeNav) failures.push(`${viewport.name} ${pageDef.route}: active navigation state missing`);
+    if (!audit.h1Visible) failures.push(`${viewport.name} ${pageDef.route}: primary heading not visible`);
+    if (audit.dataError) failures.push(`${viewport.name} ${pageDef.route}: public data contract failed to load`);
     for (const error of errors) failures.push(`${viewport.name} ${pageDef.route}: ${error}`);
 
-    const slug = pageDef.route === '/' ? 'overview' : pageDef.route.replaceAll('/', '');
-    await page.screenshot({ path: path.join(shotDir, viewport.name, `${slug}.png`), fullPage: true });
+    if (viewport.capture) {
+      const slug = pageDef.route === '/' ? 'overview' : pageDef.route.replaceAll('/', '');
+      await page.screenshot({ path: path.join(shotDir, viewport.name, `${slug}.png`), fullPage: true });
+      screenshotCount += 1;
+    }
     await page.close();
   }
   await context.close();
@@ -91,9 +110,10 @@ await browser.close();
 const result = {
   route_tests: failures.some(x => x.includes('HTTP failure')) ? 'FAIL' : 'PASS',
   responsive_qa: failures.some(x => x.includes('horizontal overflow')) ? 'FAIL' : 'PASS',
-  accessibility_qa: failures.some(x => x.includes('viewport meta') || x.includes('skip link') || x.includes('active navigation')) ? 'FAIL' : 'PASS',
-  visual_qa: failures.some(x => x.includes('console:') || x.includes('pageerror:') || x.includes('noindex')) ? 'FAIL' : 'PASS',
-  screenshots: 14,
+  accessibility_qa: failures.some(x => x.includes('viewport meta') || x.includes('skip link') || x.includes('active navigation') || x.includes('primary heading')) ? 'FAIL' : 'PASS',
+  visual_qa: failures.some(x => x.includes('console:') || x.includes('pageerror:') || x.includes('noindex') || x.includes('public data contract')) ? 'FAIL' : 'PASS',
+  viewport_checks: viewports.length * config.primary_pages.length,
+  screenshots: screenshotCount,
   failures,
   diagnostics,
 };
