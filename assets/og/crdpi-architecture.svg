@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">CRD.PI Architecture &amp; Delivery</title>
+  <desc id="desc">Public-safe delivery architecture for governed credit-risk evidence.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#061A38"/>
+      <stop offset="1" stop-color="#0B2F63"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2166F3"/>
+      <stop offset="1" stop-color="#12AEDD"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g opacity=".13" stroke="#DCE6F2" stroke-width="1">
+    <path d="M0 110H1200M0 220H1200M0 330H1200M0 440H1200M0 550H1200"/>
+    <path d="M160 0V630M320 0V630M480 0V630M640 0V630M800 0V630M960 0V630"/>
+  </g>
+  <text x="72" y="94" fill="#9FC0FF" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="3">CRD.PI · BLOCK F</text>
+  <text x="72" y="180" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="58" font-weight="700">Architecture &amp; Delivery</text>
+  <text x="72" y="232" fill="#C9D7EB" font-family="Arial, sans-serif" font-size="25">Governed evidence → public-safe contracts → QA → static delivery</text>
+  <g transform="translate(74 314)">
+    <rect x="0" y="0" width="192" height="112" rx="16" fill="#0E2A52" stroke="#4B78C7"/>
+    <rect x="236" y="0" width="192" height="112" rx="16" fill="#0E2A52" stroke="#4B78C7"/>
+    <rect x="472" y="0" width="192" height="112" rx="16" fill="#0E2A52" stroke="#4B78C7"/>
+    <rect x="708" y="0" width="192" height="112" rx="16" fill="#0E2A52" stroke="#4B78C7"/>
+    <text x="96" y="47" text-anchor="middle" fill="#FFFFFF" font-family="Arial" font-size="20" font-weight="700">FROZEN</text>
+    <text x="96" y="76" text-anchor="middle" fill="#AFC5E5" font-family="Arial" font-size="17">A–E evidence</text>
+    <text x="332" y="47" text-anchor="middle" fill="#FFFFFF" font-family="Arial" font-size="20" font-weight="700">PUBLIC JSON</text>
+    <text x="332" y="76" text-anchor="middle" fill="#AFC5E5" font-family="Arial" font-size="17">page contracts</text>
+    <text x="568" y="47" text-anchor="middle" fill="#FFFFFF" font-family="Arial" font-size="20" font-weight="700">QA GATES</text>
+    <text x="568" y="76" text-anchor="middle" fill="#AFC5E5" font-family="Arial" font-size="17">claims · privacy</text>
+    <text x="804" y="47" text-anchor="middle" fill="#FFFFFF" font-family="Arial" font-size="20" font-weight="700">STATIC SITE</text>
+    <text x="804" y="76" text-anchor="middle" fill="#AFC5E5" font-family="Arial" font-size="17">GitHub Pages</text>
+    <path d="M198 56H226M434 56H462M670 56H698" stroke="url(#accent)" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <rect x="72" y="500" width="460" height="58" rx="29" fill="#102F5C" stroke="#3377FF"/>
+  <text x="302" y="537" text-anchor="middle" fill="#FFFFFF" font-family="Arial" font-size="20" font-weight="700">NO LIVE BORROWER DATA · NO PRODUCTION CLAIM</text>
+</svg>
