@@ -12,7 +12,7 @@ permissions:
 jobs:
   live-smoke:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 3
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,8 +25,9 @@ jobs:
       - name: Validate live GitHub Pages surface
         env:
           BLOCK_F_LIVE_BASE_URL: https://susayold.github.io/financial-risk-analytics-portfolio/
-          BLOCK_F_SMOKE_ATTEMPTS: '24'
+          BLOCK_F_SMOKE_ATTEMPTS: '12'
           BLOCK_F_SMOKE_DELAY_SECONDS: '5'
+          BLOCK_F_SMOKE_REQUEST_TIMEOUT: '8'
         run: |
           mkdir -p outputs/block-f
           python scripts/block_f_live_smoke.py | tee outputs/block-f/live-smoke.txt
