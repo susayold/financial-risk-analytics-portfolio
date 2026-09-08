@@ -18,3 +18,8 @@
   .release-message{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important}
   .release-message strong{white-space:normal!important;max-width:100%!important;overflow-wrap:anywhere!important;word-break:break-word!important}
 }
+/* BLOCK_F_RESPONSIVE_HARDENING_V3 */
+@media (max-width: 800px){
+  .site-nav .top-cta{display:none!important}
+  .site-nav .nav-shell{width:calc(100% - 32px)!important;max-width:100%!important;min-width:0!important;gap:12px!important}
+}
