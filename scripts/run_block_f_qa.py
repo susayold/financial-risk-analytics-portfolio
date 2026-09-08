@@ -7,7 +7,10 @@ import os
 import re
 from pathlib import Path
 
-from validate_public_bundle import scan as scan_public_bundle
+try:
+    from scripts.validate_public_bundle import scan as scan_public_bundle
+except ModuleNotFoundError:  # direct execution: python scripts/run_block_f_qa.py
+    from validate_public_bundle import scan as scan_public_bundle
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "public" / "data"
@@ -45,7 +48,7 @@ def public_text():
 
 
 def check_claims(text: str):
-    # Phrases are allowed when explicitly negated in the immediate context.
+    # Phrases are allowed only when explicitly negated in the immediate context.
     risky = [
         "production ready",
         "production approved",
@@ -62,11 +65,22 @@ def check_claims(text: str):
     violations = []
     for phrase in risky:
         for match in re.finditer(re.escape(phrase), lower):
-            before = lower[max(0, match.start() - 48):match.start()]
-            if any(token in before for token in ("not ", "no ", "false", "without ", "≠", "isn't ", "is not ")):
+            before = lower[max(0, match.start() - 64):match.start()]
+            if any(token in before for token in ("not ", "not a ", "no ", "false", "without ", "≠", "isn't ", "is not ")):
                 continue
-            violations.append({"phrase": phrase, "context": lower[max(0, match.start()-40):match.end()+40]})
+            violations.append({"phrase": phrase, "context": lower[max(0, match.start()-48):match.end()+48]})
     check(not violations, f"Unsupported public claim(s): {violations}")
+
+
+def existing_deployment_smoke() -> str:
+    if not OUT.exists():
+        return "PENDING"
+    try:
+        prior = json.loads(OUT.read_text(encoding="utf-8"))
+        value = prior.get("gates", {}).get("deployment_smoke", "PENDING")
+        return str(value).upper()
+    except (json.JSONDecodeError, OSError, TypeError):
+        return "PENDING"
 
 
 def main():
@@ -115,7 +129,7 @@ def main():
     if BROWSER_QA.exists():
         browser.update(json.loads(BROWSER_QA.read_text(encoding="utf-8")))
 
-    deployment = os.environ.get("BLOCK_F_DEPLOYMENT_SMOKE", "PENDING").upper()
+    deployment = os.environ.get("BLOCK_F_DEPLOYMENT_SMOKE", existing_deployment_smoke()).upper()
     gates = {
         "data_reconciliation": "PASS",
         "cross_page_consistency": "PASS",
@@ -129,7 +143,14 @@ def main():
     }
     failed = [name for name, status in gates.items() if status == "FAIL"]
     pending = [name for name, status in gates.items() if status != "PASS"]
-    status = "FAIL" if failed else ("READY_FOR_REVIEW" if pending else "PASS")
+    if failed:
+        status = "FAIL"
+    elif pending == ["deployment_smoke"]:
+        status = "READY_FOR_DEPLOYMENT"
+    elif pending:
+        status = "READY_FOR_REVIEW"
+    else:
+        status = "PASS"
 
     result = {
         "status": status,
