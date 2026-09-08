@@ -37,7 +37,14 @@ jobs:
         run: python scripts/build_all_public_data.py
 
       - name: Run repository tests
-        run: pytest -q
+        run: |
+          mkdir -p outputs/block-f
+          set +e
+          pytest -q --tb=short > outputs/block-f/pytest-initial.txt 2>&1
+          code=$?
+          set -e
+          cat outputs/block-f/pytest-initial.txt
+          exit $code
 
       - name: Install Playwright
         run: |
@@ -62,7 +69,13 @@ jobs:
         run: python scripts/build_page07_public_data.py
 
       - name: Re-run tests after QA state build
-        run: pytest -q
+        run: |
+          set +e
+          pytest -q --tb=short > outputs/block-f/pytest-final.txt 2>&1
+          code=$?
+          set -e
+          cat outputs/block-f/pytest-final.txt
+          exit $code
 
       - name: Scan final public bundle
         run: python scripts/validate_public_bundle.py
