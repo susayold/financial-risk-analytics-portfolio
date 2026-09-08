@@ -7,3 +7,15 @@ outputs/block_e/private/
 outputs/block_e/*staging*/
 **/__pycache__/
 *.py[cod]
+.pytest_cache/
+node_modules/
+.env
+.env.*
+*.log
+.DS_Store
+
+# Local build output. Canonical public website files live at repository root/routes.
+dist/
+
+# Local browser QA screenshots are uploaded as CI artifacts, not committed by default.
+outputs/block-f/screenshots/
