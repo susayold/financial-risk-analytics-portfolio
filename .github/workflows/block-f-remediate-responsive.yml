@@ -1,0 +1,117 @@
+name: Block F Remediate Responsive Debt
+
+on:
+  push:
+    branches:
+      - block-f-final-closure
+    paths:
+      - .github/workflows/block-f-remediate-responsive.yml
+
+permissions:
+  contents: write
+
+jobs:
+  remediate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: block-f-final-closure
+          fetch-depth: 0
+
+      - name: Patch responsive containment and claim boundary
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          root = Path('.')
+          marker = '/* BLOCK_F_RESPONSIVE_HARDENING_V1 */'
+          patches = {
+              'assets/crdpi-overview.css': r'''
+/* BLOCK_F_RESPONSIVE_HARDENING_V1 */
+@media (max-width: 800px){
+  .decision-pipeline{width:100%!important;max-width:100%!important;min-width:0!important;overflow-x:auto!important;overflow-y:hidden!important}
+  .decision-pipeline .flow-track{width:100%!important;max-width:100%!important;min-width:0!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important}
+  .decision-pipeline .flow-track>*{max-width:100%!important;min-width:0!important}
+}
+''',
+              'assets/crdpi-portfolio.css': r'''
+/* BLOCK_F_RESPONSIVE_HARDENING_V1 */
+@media (max-width: 800px){
+  .segment-table,.allocation{width:100%!important;max-width:100%!important;min-width:0!important;overflow-x:auto!important;overflow-y:hidden!important}
+  .segment-table>*{min-width:0!important;overflow-wrap:anywhere}
+  .allocation-row{width:100%!important;max-width:100%!important;min-width:0!important}
+}
+''',
+              'assets/crdpi-loss.css': r'''
+/* BLOCK_F_RESPONSIVE_HARDENING_V1 */
+@media (max-width: 800px){
+  .policy-grid{width:100%!important;max-width:100%!important;min-width:0!important;grid-template-columns:minmax(0,1fr)!important;margin-left:0!important;margin-right:0!important;overflow:hidden!important}
+  .policy-card{width:100%!important;max-width:100%!important;min-width:0!important}
+}
+''',
+              'assets/crdpi-monitoring.css': r'''
+/* BLOCK_F_RESPONSIVE_HARDENING_V1 */
+@media (max-width: 800px){
+  .feature-row,.capacity-item{width:100%!important;max-width:100%!important;min-width:0!important;grid-template-columns:minmax(0,1fr)!important;gap:8px!important}
+  .feature-track,.capacity-track{width:100%!important;max-width:100%!important;min-width:0!important}
+}
+''',
+              'assets/crdpi-governance.css': r'''
+/* BLOCK_F_RESPONSIVE_HARDENING_V1 */
+@media (max-width: 800px){
+  .wide-table{width:100%!important;max-width:100%!important;min-width:0!important;overflow-x:auto!important;overflow-y:hidden!important}
+  .process-flow{width:100%!important;max-width:100%!important;min-width:0!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important;overflow:hidden!important}
+  .process-node{width:100%!important;max-width:100%!important;min-width:0!important}
+  .process-flow>i{align-self:center!important;transform:rotate(90deg)}
+}
+''',
+              'assets/crdpi-architecture.css': r'''
+/* BLOCK_F_RESPONSIVE_HARDENING_V1 */
+@media (max-width: 800px){
+  .handoff-flow{width:100%!important;max-width:100%!important;min-width:0!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important;overflow:hidden!important}
+  .handoff-flow>*{width:100%!important;max-width:100%!important;min-width:0!important}
+  .handoff-flow>i{width:auto!important;align-self:center!important;transform:rotate(90deg)}
+  .repo-tree{width:100%!important;max-width:100%!important;min-width:0!important;overflow-wrap:anywhere!important;word-break:break-word!important}
+}
+''',
+          }
+          for name, block in patches.items():
+              path = root / name
+              text = path.read_text(encoding='utf-8')
+              if marker not in text:
+                  path.write_text(text.rstrip() + '\n' + block.strip() + '\n', encoding='utf-8')
+                  print('patched', name)
+
+          primary = [
+              Path('index.html'), Path('portfolio-risk/index.html'), Path('model-decisioning/index.html'),
+              Path('loss-policy-stress/index.html'), Path('monitoring/index.html'),
+              Path('governance/index.html'), Path('architecture/index.html'),
+          ]
+          pattern = re.compile(r'(?<!not a )verified regulatory 12-month PD', re.I)
+          replacements = 0
+          for path in primary:
+              text = path.read_text(encoding='utf-8')
+              new, count = pattern.subn('Not a verified regulatory 12-month PD', text)
+              if count:
+                  path.write_text(new, encoding='utf-8')
+                  replacements += count
+                  print('strengthened claim boundary in', path, count)
+          if not replacements:
+              print('No unqualified regulatory-PD phrase required patching')
+          PY
+
+      - name: Remove one-time workflow and commit
+        run: |
+          git rm .github/workflows/block-f-remediate-responsive.yml
+          if git diff --cached --quiet && git diff --quiet; then
+            echo "No changes required"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets index.html portfolio-risk/index.html model-decisioning/index.html loss-policy-stress/index.html monitoring/index.html governance/index.html architecture/index.html
+          git commit -m "fix(block-f): harden responsive layouts and claim boundary"
+          git push origin HEAD:block-f-final-closure
