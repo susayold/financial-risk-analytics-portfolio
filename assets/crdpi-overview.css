@@ -5,3 +5,11 @@
   .decision-pipeline .flow-track{width:100%!important;max-width:100%!important;min-width:0!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important}
   .decision-pipeline .flow-track>*{max-width:100%!important;min-width:0!important}
 }
+/* BLOCK_F_RESPONSIVE_HARDENING_V2 */
+@media (max-width: 340px){
+  .hero-visual,.visual-grid,.trust-strip,.trust-strip .page-width{width:100%!important;max-width:100%!important;min-width:0!important}
+  .hero-visual,.visual-grid{overflow:hidden!important}
+  .visual-grid{inset:auto!important;transform:none!important}
+  .trust-strip .page-width{grid-template-columns:minmax(0,1fr)!important}
+  .trust-item{width:100%!important;max-width:100%!important;min-width:0!important}
+}

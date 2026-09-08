@@ -8,3 +8,9 @@
   .feature-row,.capacity-item{width:100%!important;max-width:100%!important;min-width:0!important;grid-template-columns:minmax(0,1fr)!important;gap:8px!important}
   .feature-track,.capacity-track{width:100%!important;max-width:100%!important;min-width:0!important}
 }
+/* BLOCK_F_RESPONSIVE_HARDENING_V2 */
+@media (max-width: 340px){
+  .feature-headlines{display:grid!important;grid-template-columns:minmax(0,1fr)!important;width:100%!important;max-width:100%!important;min-width:0!important}
+  .feature-headline{display:grid!important;grid-template-columns:minmax(0,1fr)!important;width:100%!important;max-width:100%!important;min-width:0!important}
+  .feature-headline>*{max-width:100%!important;min-width:0!important;overflow-wrap:anywhere!important}
+}

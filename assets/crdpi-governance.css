@@ -6,3 +6,15 @@
   .process-node{width:100%!important;max-width:100%!important;min-width:0!important}
   .process-flow>i{align-self:center!important;transform:rotate(90deg)}
 }
+/* BLOCK_F_RESPONSIVE_HARDENING_V2 */
+@media (max-width: 800px){
+  .evidence-table{width:100%!important;max-width:100%!important;min-width:0!important;table-layout:fixed!important}
+  .evidence-table th,.evidence-table td{min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:break-word!important}
+}
+@media (max-width: 380px){
+  .trail-graph{display:flex!important;flex-direction:column!important;align-items:stretch!important;width:100%!important;max-width:100%!important;min-width:0!important;overflow:visible!important;gap:8px!important}
+  .trail-graph>*{position:static!important;inset:auto!important;transform:none!important;width:100%!important;max-width:100%!important;min-width:0!important}
+  .trail-end{width:100%!important;max-width:100%!important;min-width:0!important}
+  .release-message{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important}
+  .release-message strong{white-space:normal!important;max-width:100%!important;overflow-wrap:anywhere!important;word-break:break-word!important}
+}

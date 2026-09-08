@@ -8,3 +8,9 @@
   .policy-grid{width:100%!important;max-width:100%!important;min-width:0!important;grid-template-columns:minmax(0,1fr)!important;margin-left:0!important;margin-right:0!important;overflow:hidden!important}
   .policy-card{width:100%!important;max-width:100%!important;min-width:0!important}
 }
+/* BLOCK_F_RESPONSIVE_HARDENING_V2 */
+@media (max-width: 340px){
+  .chain{display:flex!important;flex-direction:column!important;align-items:stretch!important;width:100%!important;max-width:100%!important;min-width:0!important;overflow:visible!important;gap:8px!important}
+  .chain-node{width:100%!important;max-width:100%!important;min-width:0!important}
+  .chain-op{align-self:center!important;transform:rotate(90deg)}
+}

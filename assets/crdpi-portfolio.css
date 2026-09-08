@@ -18,3 +18,9 @@
   .segment-table>*{min-width:0!important;overflow-wrap:anywhere}
   .allocation-row{width:100%!important;max-width:100%!important;min-width:0!important}
 }
+/* BLOCK_F_RESPONSIVE_HARDENING_V2 */
+@media (max-width: 340px){
+  #governance-flow.flow{display:flex!important;flex-direction:column!important;align-items:stretch!important;width:100%!important;max-width:100%!important;min-width:0!important;overflow:visible!important;gap:8px!important}
+  #governance-flow .flow-node{width:100%!important;max-width:100%!important;min-width:0!important}
+  #governance-flow>span,#governance-flow>i{align-self:center!important;transform:rotate(90deg)}
+}
