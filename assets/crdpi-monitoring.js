@@ -5,12 +5,24 @@
   const esc = (value) => String(value ?? "—").replace(/[&<>\"']/g, (char) => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[char]));
   const iconFor = (domain) => domain === "Feature Drift" ? "i-trend" : domain === "Calibration" ? "i-shield" : domain === "Policy Capacity" ? "i-clock" : domain === "Loss / Severity" ? "i-target" : "i-bars";
 
-  // The desktop governance chain is intentionally horizontal. On narrow screens
-  // the original flex/grid sizing preserved its desktop intrinsic width and
-  // caused a 24px document overflow. Keep the same semantics but stack the
-  // five nodes vertically so the public page remains fully responsive.
+  // Keep the monitoring page fail-closed on small screens. Two independent
+  // intrinsic-width sources have appeared in browser QA: the governance chain
+  // and compact evidence tables. The scoped overrides below preserve desktop
+  // presentation while ensuring neither component can widen the document.
   const responsiveFix = document.createElement("style");
   responsiveFix.textContent = `
+    .panel,
+    .chart-panel,
+    .accessible-table {
+      min-width: 0;
+      max-width: 100%;
+    }
+    .accessible-table {
+      width: 100%;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+    }
     @media (max-width: 720px) {
       .governance-flow {
         display: flex !important;
@@ -35,6 +47,19 @@
       .governance-flow small {
         max-width: 100% !important;
         overflow-wrap: anywhere;
+      }
+      .accessible-table table {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        table-layout: fixed;
+      }
+      .accessible-table th,
+      .accessible-table td {
+        min-width: 0 !important;
+        white-space: normal !important;
+        overflow-wrap: anywhere;
+        word-break: break-word;
       }
     }
   `;
