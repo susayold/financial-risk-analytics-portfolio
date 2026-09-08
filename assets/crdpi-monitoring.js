@@ -5,6 +5,41 @@
   const esc = (value) => String(value ?? "—").replace(/[&<>\"']/g, (char) => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[char]));
   const iconFor = (domain) => domain === "Feature Drift" ? "i-trend" : domain === "Calibration" ? "i-shield" : domain === "Policy Capacity" ? "i-clock" : domain === "Loss / Severity" ? "i-target" : "i-bars";
 
+  // The desktop governance chain is intentionally horizontal. On narrow screens
+  // the original flex/grid sizing preserved its desktop intrinsic width and
+  // caused a 24px document overflow. Keep the same semantics but stack the
+  // five nodes vertically so the public page remains fully responsive.
+  const responsiveFix = document.createElement("style");
+  responsiveFix.textContent = `
+    @media (max-width: 720px) {
+      .governance-flow {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+        gap: 8px !important;
+      }
+      .governance-flow > div {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+      }
+      .governance-flow > i {
+        align-self: center !important;
+        transform: rotate(90deg);
+      }
+      .governance-flow span,
+      .governance-flow b,
+      .governance-flow small {
+        max-width: 100% !important;
+        overflow-wrap: anywhere;
+      }
+    }
+  `;
+  document.head.append(responsiveFix);
+
   function renderSnapshot(page) {
     const c = page.governance_counts;
     const cards = [
