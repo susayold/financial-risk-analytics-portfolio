@@ -13,6 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MARKER_V1 = "/* BLOCK_F_RESPONSIVE_HARDENING_V1 */"
 MARKER_V2 = "/* BLOCK_F_RESPONSIVE_HARDENING_V2 */"
+MARKER_V3 = "/* BLOCK_F_RESPONSIVE_HARDENING_V3 */"
 
 PATCHES_V1 = {
     "assets/crdpi-overview.css": r"""
@@ -128,6 +129,40 @@ PATCHES_V2 = {
 """,
 }
 
+PATCHES_V3 = {
+    "assets/crdpi-portfolio.css": r"""
+/* BLOCK_F_RESPONSIVE_HARDENING_V3 */
+@media (max-width: 340px){
+  .concentration-table{width:100%!important;max-width:100%!important;min-width:0!important;table-layout:fixed!important}
+  .concentration-table th,.concentration-table td{min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:break-word!important}
+}
+""",
+    "assets/crdpi-loss.css": r"""
+/* BLOCK_F_RESPONSIVE_HARDENING_V3 */
+@media (max-width: 340px){
+  main button{min-width:0!important;max-width:100%!important;white-space:normal!important}
+  main table{width:100%!important;max-width:100%!important;min-width:0!important;table-layout:fixed!important}
+  main th,main td{min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:break-word!important}
+}
+""",
+    "assets/crdpi-governance.css": r"""
+/* BLOCK_F_RESPONSIVE_HARDENING_V3 */
+@media (max-width: 800px){
+  .site-nav .top-cta{display:none!important}
+  .site-nav .nav-shell{width:calc(100% - 32px)!important;max-width:100%!important;min-width:0!important;gap:12px!important}
+}
+""",
+    "assets/crdpi-architecture.css": r"""
+/* BLOCK_F_RESPONSIVE_HARDENING_V3 */
+@media (max-width: 800px){
+  .site-nav .top-cta{display:none!important}
+  .site-nav .nav-shell{width:calc(100% - 32px)!important;max-width:100%!important;min-width:0!important;gap:12px!important}
+  .arch-hero .hero-grid{overflow:hidden!important}
+  .browser-visual{width:100%!important;max-width:100%!important;min-width:0!important;margin-left:0!important;margin-right:0!important;left:auto!important;right:auto!important;transform:none!important}
+}
+""",
+}
+
 PRIMARY_PAGES = [
     "index.html",
     "portfolio-risk/index.html",
@@ -169,8 +204,9 @@ def patch_claims() -> int:
 def main() -> None:
     v1 = append_patches(PATCHES_V1, MARKER_V1, "responsive containment V1")
     v2 = append_patches(PATCHES_V2, MARKER_V2, "responsive containment V2")
+    v3 = append_patches(PATCHES_V3, MARKER_V3, "responsive containment V3")
     claims = patch_claims()
-    print(f"Block F remediation complete: v1_files={v1}, v2_files={v2}, claim_replacements={claims}")
+    print(f"Block F remediation complete: v1_files={v1}, v2_files={v2}, v3_files={v3}, claim_replacements={claims}")
 
 
 if __name__ == "__main__":
