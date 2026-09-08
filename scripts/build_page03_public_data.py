@@ -48,7 +48,7 @@ def main() -> None:
     discrimination = read_csv(ROOT / "block-e" / "E5_PERFORMANCE_CALIBRATION" / "discrimination_monitor.csv")
     calibration = read_csv(ROOT / "block-e" / "E5_PERFORMANCE_CALIBRATION" / "calibration_monitor.csv")
     quarterly = read_csv(ROOT / "block-e" / "E5_PERFORMANCE_CALIBRATION" / "quarterly_performance.csv")
-    score_psi = read_csv(ROOT / "block-e" / "E4_SCORE_RISK_MIX" / "score_psi.csv")
+    block_c_public = read_json(ROOT / "evidence" / "block-c" / "C9_PUBLIC_CLOSURE_SUMMARY.json")
 
     feature_order = manifest["feature_order"]
     if len(feature_order) != 79 or len(set(feature_order)) != 79:
@@ -63,7 +63,10 @@ def main() -> None:
     oot_calibration = row_for(calibration, "window_id", "OOT")
     oot_quarters = [row for row in quarterly if row["window_id"].startswith("2017Q")]
     quarterly_auc_range = max(number(row, "roc_auc") for row in oot_quarters) - min(number(row, "roc_auc") for row in oot_quarters)
-    annual_score_psi = row_for(score_psi, "window_id", "OOT")
+    if block_c_public["model_id"] != "C8E_RICH_BUREAU_CATBOOST_79F":
+        raise ValueError("Block C public evidence bridge model ID mismatch")
+    if block_c_public["prediction_psi_basis"] != "Validation-2016_to_OOT-2017":
+        raise ValueError("Block C prediction PSI basis mismatch")
 
     group_specs = [
         ("A", "Core Borrower & Loan Signals", 8),
@@ -165,8 +168,10 @@ def main() -> None:
         "ranking": {
             "decile_monotonic_violations": 0,
             "decile_spearman": 1.0,
-            "prediction_psi": number(annual_score_psi, "psi"),
-            "interpretation": "Risk ordering remains clean while aggregate score-distribution shift is low.",
+            "prediction_psi": block_c_public["prediction_psi"],
+            "prediction_psi_basis": block_c_public["prediction_psi_basis"],
+            "prediction_psi_source": block_c_public["source"],
+            "interpretation": "Block C C9 prediction PSI measures Validation-2016 to OOT-2017 shift under the frozen-model validation contract; Block E annual monitoring PSI is a separate downstream calculation.",
         },
         "decisioning": {
             "score": "p_bad_final",

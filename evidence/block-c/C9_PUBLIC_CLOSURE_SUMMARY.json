@@ -1,0 +1,15 @@
+{
+  "schema": "crd.pi.block-c.c9-public-closure-summary.v1",
+  "project": "CRD.PI",
+  "block": "C",
+  "stage": "C9_FINAL_OOT_AND_BLOCK_C_CLOSURE",
+  "status": "PASS_WITH_MONITORING",
+  "model_id": "C8E_RICH_BUREAU_CATBOOST_79F",
+  "feature_count": 79,
+  "prediction_psi": 0.003663365071810081,
+  "prediction_psi_basis": "Validation-2016_to_OOT-2017",
+  "source": "Block C C9 BLOCK_C_CLOSURE.md canonical evidence; sanitized public bridge",
+  "block_e_monitoring_annual_psi_is_separate": true,
+  "production_authorized": false,
+  "regulatory_compliance_claimed": false
+}

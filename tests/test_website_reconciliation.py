@@ -1,4 +1,5 @@
 import json
+import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,10 +20,15 @@ def test_portfolio_dates_and_release_language_are_unambiguous():
     assert "As of Block F (v1.0.2-final)" not in html
 
 
-def test_model_prediction_psi_uses_monitoring_canonical_value():
+def test_model_and_monitoring_psi_keep_distinct_canonical_lineage():
     model = load("page-03-model-decisioning.json")
     monitoring = load("page-05-monitoring.json")
-    assert model["ranking"]["prediction_psi"] == monitoring["score_drift"]["annual_psi"]
+    model_psi = model["ranking"]["prediction_psi"]
+    monitoring_psi = monitoring["score_drift"]["annual_psi"]
+    assert math.isclose(model_psi, 0.003663365071810081, rel_tol=0.0, abs_tol=1e-15)
+    assert math.isclose(monitoring_psi, 0.0036352563867260096, rel_tol=0.0, abs_tol=1e-15)
+    assert model["ranking"]["prediction_psi_basis"] == "Validation-2016_to_OOT-2017"
+    assert not math.isclose(model_psi, monitoring_psi, rel_tol=0.0, abs_tol=1e-15)
 
 
 def test_pricing_contract_uses_decimal_rate_units_and_reconciles_spread():

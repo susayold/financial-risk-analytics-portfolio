@@ -90,8 +90,10 @@
   "ranking": {
     "decile_monotonic_violations": 0,
     "decile_spearman": 1.0,
-    "prediction_psi": 0.0036352563867260096,
-    "interpretation": "Risk ordering remains clean while aggregate score-distribution shift is low."
+    "prediction_psi": 0.003663365071810081,
+    "prediction_psi_basis": "Validation-2016_to_OOT-2017",
+    "prediction_psi_source": "Block C C9 BLOCK_C_CLOSURE.md canonical evidence; sanitized public bridge",
+    "interpretation": "Block C C9 prediction PSI measures Validation-2016 to OOT-2017 shift under the frozen-model validation contract; Block E annual monitoring PSI is a separate downstream calculation."
   },
   "decisioning": {
     "score": "p_bad_final",

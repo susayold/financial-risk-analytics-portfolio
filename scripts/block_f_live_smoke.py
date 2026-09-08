@@ -4,7 +4,7 @@ Validates the deployed static surface, not the local checkout. All seven primary
 routes and every public JSON contract are fetched concurrently with bounded
 retries. In addition to availability, the smoke test enforces the post-release
 website reconciliation contract so stale status text, date ambiguity, pricing
-unit errors, PSI divergence, and KRI-count drift cannot silently reappear.
+unit errors, PSI lineage collapse, and KRI-count drift cannot silently reappear.
 """
 from __future__ import annotations
 
@@ -147,15 +147,25 @@ def audit_once() -> list[str]:
     if p02_meta.get("oot_cutoff") != "2017-12-01":
         failures.append("page-02: OOT cutoff is not 2017-12-01")
 
-    # Page 03 and Page 05 must use one canonical annual score PSI.
+    # Page 03 and Page 05 intentionally preserve distinct canonical PSI definitions.
+    # Block C: frozen-model Validation-2016 -> OOT-2017 prediction PSI.
+    # Block E: downstream annual score-monitoring PSI under the monitoring contract.
     page03 = _json(parsed_json, "/public/data/page-03-model-decisioning.json")
     page05 = _json(parsed_json, "/public/data/page-05-monitoring.json")
     ranking = page03.get("ranking", {}) if isinstance(page03.get("ranking"), dict) else {}
     score_drift = page05.get("score_drift", {}) if isinstance(page05.get("score_drift"), dict) else {}
     p03_psi = ranking.get("prediction_psi")
     p05_psi = score_drift.get("annual_psi")
-    if not isinstance(p03_psi, (int, float)) or not isinstance(p05_psi, (int, float)) or not math.isclose(float(p03_psi), float(p05_psi), rel_tol=0.0, abs_tol=1e-15):
-        failures.append(f"page-03/page-05: annual score PSI mismatch {p03_psi!r} vs {p05_psi!r}")
+    expected_p03_psi = 0.003663365071810081
+    expected_p05_psi = 0.0036352563867260096
+    if not isinstance(p03_psi, (int, float)) or not math.isclose(float(p03_psi), expected_p03_psi, rel_tol=0.0, abs_tol=1e-15):
+        failures.append(f"page-03: Block C prediction PSI lineage mismatch {p03_psi!r}")
+    if ranking.get("prediction_psi_basis") != "Validation-2016_to_OOT-2017":
+        failures.append(f"page-03: Block C prediction PSI basis mismatch {ranking.get('prediction_psi_basis')!r}")
+    if not isinstance(p05_psi, (int, float)) or not math.isclose(float(p05_psi), expected_p05_psi, rel_tol=0.0, abs_tol=1e-15):
+        failures.append(f"page-05: Block E annual monitoring PSI lineage mismatch {p05_psi!r}")
+    if isinstance(p03_psi, (int, float)) and isinstance(p05_psi, (int, float)) and math.isclose(float(p03_psi), float(p05_psi), rel_tol=0.0, abs_tol=1e-15):
+        failures.append("page-03/page-05: distinct PSI definitions were incorrectly collapsed")
 
     # Page 04: browser-facing interest rate must be a decimal fraction and
     # diagnostic spread must reconcile to rate minus analytical EL rate.

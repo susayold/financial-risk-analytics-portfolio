@@ -40,6 +40,8 @@ def test_page03_metrics_and_frozen_decisioning():
     assert abs(page["calibration"]["slope"] - 1.2507071775766894) < 1e-12
     assert page["ranking"]["decile_monotonic_violations"] == 0
     assert page["ranking"]["decile_spearman"] == 1.0
+    assert abs(page["ranking"]["prediction_psi"] - 0.003663365071810081) < 1e-15
+    assert page["ranking"]["prediction_psi_basis"] == "Validation-2016_to_OOT-2017"
     assert page["decisioning"]["split_level_qcut_allowed"] is False
     assert page["decisioning"]["risk_bands"] == ["R1 VERY_LOW", "R2 LOW", "R3 MEDIUM", "R4 HIGH", "R5 VERY_HIGH"]
 
