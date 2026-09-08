@@ -11,6 +11,7 @@ fs.mkdirSync(path.join(shotDir, 'desktop'), { recursive: true });
 fs.mkdirSync(path.join(shotDir, 'mobile'), { recursive: true });
 
 const failures = [];
+const diagnostics = [];
 const browser = await chromium.launch({ headless: true });
 
 const viewports = [
@@ -37,23 +38,44 @@ for (const viewport of viewports) {
       const noindex = document.querySelector('meta[name="robots"][content*="noindex" i]');
       const body = document.body;
       const html = document.documentElement;
-      const overflow = Math.max(body.scrollWidth, html.scrollWidth) > window.innerWidth + 2;
+      const maxWidth = Math.max(body.scrollWidth, html.scrollWidth);
+      const overflow = maxWidth > window.innerWidth + 2;
       const active = document.querySelector('nav a[aria-current="page"], nav a.active');
+      const offenders = overflow ? [...document.querySelectorAll('body *')]
+        .map(el => {
+          const r = el.getBoundingClientRect();
+          return {
+            tag: el.tagName.toLowerCase(),
+            id: el.id || '',
+            className: typeof el.className === 'string' ? el.className : '',
+            left: Math.round(r.left),
+            right: Math.round(r.right),
+            width: Math.round(r.width),
+            scrollWidth: el.scrollWidth || 0,
+          };
+        })
+        .filter(x => x.right > window.innerWidth + 2 || x.left < -2 || x.scrollWidth > window.innerWidth + 2)
+        .sort((a, b) => Math.max(b.right - window.innerWidth, b.scrollWidth - window.innerWidth) - Math.max(a.right - window.innerWidth, a.scrollWidth - window.innerWidth))
+        .slice(0, 12) : [];
       return {
         title: document.title,
         viewport: Boolean(viewportMeta),
         skip: Boolean(skip),
         noindex: Boolean(noindex),
         overflow,
+        pageScrollWidth: maxWidth,
+        innerWidth: window.innerWidth,
+        offenders,
         activeNav: Boolean(active),
       };
     });
 
+    diagnostics.push({ viewport: viewport.name, route: pageDef.route, audit });
     if (!audit.title) failures.push(`${viewport.name} ${pageDef.route}: missing title`);
     if (!audit.viewport) failures.push(`${viewport.name} ${pageDef.route}: missing viewport meta`);
     if (!audit.skip) failures.push(`${viewport.name} ${pageDef.route}: missing skip link`);
     if (audit.noindex) failures.push(`${viewport.name} ${pageDef.route}: unfinished noindex present`);
-    if (audit.overflow) failures.push(`${viewport.name} ${pageDef.route}: horizontal overflow`);
+    if (audit.overflow) failures.push(`${viewport.name} ${pageDef.route}: horizontal overflow (${audit.pageScrollWidth}px > ${audit.innerWidth}px); offenders=${JSON.stringify(audit.offenders.slice(0, 4))}`);
     if (!audit.activeNav) failures.push(`${viewport.name} ${pageDef.route}: active navigation state missing`);
     for (const error of errors) failures.push(`${viewport.name} ${pageDef.route}: ${error}`);
 
@@ -73,6 +95,7 @@ const result = {
   visual_qa: failures.some(x => x.includes('console:') || x.includes('pageerror:') || x.includes('noindex')) ? 'FAIL' : 'PASS',
   screenshots: 14,
   failures,
+  diagnostics,
 };
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(path.join(outDir, 'BLOCK_F_BROWSER_QA.json'), JSON.stringify(result, null, 2) + '\n');
