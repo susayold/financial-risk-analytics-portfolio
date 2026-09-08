@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MARKER_V1 = "/* BLOCK_F_RESPONSIVE_HARDENING_V1 */"
 MARKER_V2 = "/* BLOCK_F_RESPONSIVE_HARDENING_V2 */"
 MARKER_V3 = "/* BLOCK_F_RESPONSIVE_HARDENING_V3 */"
+MARKER_V4 = "/* BLOCK_F_RESPONSIVE_HARDENING_V4 */"
 
 PATCHES_V1 = {
     "assets/crdpi-overview.css": r"""
@@ -163,6 +164,16 @@ PATCHES_V3 = {
 """,
 }
 
+PATCHES_V4 = {
+    "assets/crdpi-portfolio.css": r"""
+/* BLOCK_F_RESPONSIVE_HARDENING_V4 */
+@media (max-width: 340px){
+  .risk-table{width:100%!important;max-width:100%!important;min-width:0!important;table-layout:fixed!important}
+  .risk-table th,.risk-table td{min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:break-word!important}
+}
+""",
+}
+
 PRIMARY_PAGES = [
     "index.html",
     "portfolio-risk/index.html",
@@ -205,8 +216,9 @@ def main() -> None:
     v1 = append_patches(PATCHES_V1, MARKER_V1, "responsive containment V1")
     v2 = append_patches(PATCHES_V2, MARKER_V2, "responsive containment V2")
     v3 = append_patches(PATCHES_V3, MARKER_V3, "responsive containment V3")
+    v4 = append_patches(PATCHES_V4, MARKER_V4, "responsive containment V4")
     claims = patch_claims()
-    print(f"Block F remediation complete: v1_files={v1}, v2_files={v2}, v3_files={v3}, claim_replacements={claims}")
+    print(f"Block F remediation complete: v1_files={v1}, v2_files={v2}, v3_files={v3}, v4_files={v4}, claim_replacements={claims}")
 
 
 if __name__ == "__main__":
