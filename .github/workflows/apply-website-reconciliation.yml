@@ -1,0 +1,55 @@
+name: Apply Website Reconciliation
+
+on:
+  push:
+    branches:
+      - block-f-website-reconciliation-authoritative
+
+permissions:
+  contents: write
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pytest numpy pandas
+
+      - name: Apply reconciliation patch
+        run: python scripts/apply_website_reconciliation.py
+
+      - name: Rebuild all public contracts
+        run: python scripts/build_all_public_data.py
+
+      - name: Run regression and repository tests
+        run: pytest -q --tb=short
+
+      - name: Scan public bundle
+        run: python scripts/validate_public_bundle.py
+
+      - name: Commit reconciled website
+        run: |
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "No reconciliation changes to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html portfolio-risk/index.html monitoring/index.html governance/index.html architecture/index.html \
+            assets/crdpi-monitoring.js \
+            public/data/page-02-portfolio-risk.json public/data/page-03-model-decisioning.json public/data/page-04-loss-policy-stress.json public/data/page-05-monitoring.json public/data/page-01-overview.json public/data/page-06-governance.json public/data/page-07-architecture.json \
+            scripts/build_page02_public_data.py scripts/build_page03_public_data.py scripts/build_page04_public_data.py scripts/build_page05_public_data.py \
+            tests/test_website_reconciliation.py README.md PROJECT_MASTER_LINKS.md
+          git commit -m "fix(block-f): reconcile public website with canonical evidence"
+          git push origin HEAD:block-f-website-reconciliation-authoritative
